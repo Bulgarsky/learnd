@@ -16,6 +16,8 @@
 <body>
     <p><a href="0-menu.html">Вернутся в меню</a></p>
     <h1>Ссылки в HTML разметке</h1>
+    <a href="#paragraph1">Параграф 1</a> | <a href="#paragraph2">Параграф 2</a> | <a href="#paragraph3">Параграф 3</a>
+    <h3 id="paragraph1">Параграф 1</h3>
     <pre>
         a - тег ссылки
             href="path"
@@ -28,6 +30,7 @@
             hreflang,media,rel,type
             framename: открытие html-документа во фрейме, который называется framename
     </pre>
+    <h3 id="paragraph2">Параграф 2</h3>
     <p>тег для вставки ссылки ~a href~ без атрибутов, открывается внутри вкладки</p>
     <A href="https://yandex.ru">yandex.ru</A></br>
     <p>a href с атрибутом target =_blank открывается на новой вкладке</p>
@@ -36,8 +39,18 @@
     <a href="03-img.html">ссылка на страницу 03-img.html</a>
 </br>
 <h2>Ссылка-картинка</h2>
-<a href="0-menu.html">
+<h3 id="paragraph3">Параграф 3</h3>
+<a href="0-menu.html">d
     <img src="imgs/menu.png" width ="50" alt="menu link">
+</a>
+<h2>Навигация внутри документа</h2>
+<a href="#paragraph1">Параграф 1</a> | <a href="#paragraph2">Параграф 2</a> | <a href="#paragraph3">Параграф 3</a>
+<h3 id="paragraph1">Параграф 1</h3>
+<p>Содержание параграфа 1</p>
+<h3 id="paragraph2">Параграф 2</h3>
+<p>Содержание параграфа 2</p>
+<h3 id="paragraph3">Параграф 3</h3>
+<p>Содержание параграфа 3</p>
 </a>
 </body>
 </html>
