@@ -1,4 +1,6 @@
 desktop.ini
 github
 github.pub
+// git rm -r --cached .idea
+//after add, commit, push
 /js/.idea/
