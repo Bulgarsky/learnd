@@ -1,0 +1,111 @@
+<!DOCTYPE html> <!-- Emmet !-->
+<html lang="en">
+<head>
+    <meta charset="UTF-8"> <!-- UTF-8 w/o (без) BOM -->
+    <base href="index.html">   <!-- <base href="http://www.microsoft.com/ --> 
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"> <!--совместимость, браузер -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Работа с таблицами в HTML 5">
+    <meta name="keywords" content="html, css, list, lists, tables">
+    <title>Таблицы в HTML5</title>
+    <style>
+        td{
+            width: 60px; 
+            height:60px; 
+            border: solid 1px black; 
+            text-align:center;
+        }
+    </style>
+</head>
+<body>
+    <p><a href="0-menu.html">Вернутся в меню</a></p>
+    <h2>Таблицы в HTML5</h2>
+    <pre>
+        table - таблицами
+        tr - строка
+        td - ячейка
+    </pre>
+
+    <table>
+        <tr>
+            <td>Производитель</td>
+            <td>Модель</td>
+            <td>Год выпуска</td>
+        </tr>
+        <tr>
+            <td>Автоваз</td>
+            <td>Lada 2114</td>
+            <td>2001</td>
+        </tr>
+        <tr>
+            <td>VAG</td>
+            <td>VW Getta 5</td>
+            <td>2012</td>
+        </tr>
+        <tr>
+            <td>Audi</td>
+            <td>Quatro</td>
+            <td>2003</td>
+        </tr>
+    </table>
+<p></p>
+<h2>Форматирование таблиц</h2>
+<pre>
+    caption - название Таблицы
+    thead - строка заголовков
+    th - ячейки строки заголовоков, выделяется жирным
+    tbody - тело Таблицы, tr, td
+    tfoot - футер таблицы. Вспомогательная информация
+   
+</pre>
+    <table>
+        <caption><b>Автомобили 2022 год</b></caption>
+        <thead>
+            <tr>
+                <th>Производитель</th> <th>Модель</th> <th>Цена</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Автоваз</td>
+                <td>Ваз 2110</td>
+                <td>60000</td>
+            </tr>
+            <tr>
+                <td>Автоваз</td>
+                <td>Lada Priora</td>
+                <td>250000</td>
+            </tr>
+            <tr>
+                <td>VAG</td>
+                <td>VW Getta 5</td>
+                <td>450000</td>
+            </tr>
+        </tbody>
+        <tfoot>
+            <tr>
+                <th colspan="3">Информация по состоянию на 25 августа 2022 года</th>
+            </tr>
+        </tfoot>
+    </table>
+<H2>Форматирование таблиц</H2>
+<pre>
+    colspan="3" - раздвигает ячейку на 3 стобца
+    rowspan="2" - раздвигает ячейку на 2 строки
+</pre>
+<table>
+    <tr>
+        <td rowspan="2" style="background-color:green;">ячейка 1</td>
+        <td>ячейка 2</td>
+        <td>ячейка 3</td>
+    </tr>
+    <tr>
+        <td>ячейка 4</td>
+        <td>ячейка 5</td>
+    </tr>
+    <tr>
+        <td>ячейка 6</td>
+        <td colspan="2" style="background-color:red;">ячейка 7</td>
+    </tr>
+</table>
+</body>
