@@ -4,16 +4,29 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="html, css, links, a, a href">
-    <title>Links HTML</title>
+    <meta name="description" content="html, css, links, a, a href,  style,">
+    <title>Работа с ссылками, стили</title>
+    <style>
+        a:link    {color:blue; text-decoration:none}
+        a:visited {color:purple; text-decoration:none}
+        a:hover   {color:red; text-decoration:underline}
+        a:active  {color:yellow; text-decoration:underline}
+    </style>
 </head>
 <body>
     <p><a href="0-menu.html">Вернутся в меню</a></p>
     <h1>Ссылки в HTML разметке</h1>
     <pre>
-        a href="link-to-www"
-        a href="path/index.html"
-        target="_blank"
+        a - тег ссылки
+            href="path"
+            target="_blank"
+            target=""
+                _blank: new tab 
+                _self: отркыть в том же окне или фрейме
+                _parent: открытие документа в родительском фрейме, если ссылка расположена во внутреннем фрейм
+                _top: открытие html-документа на все окно браузера
+            hreflang,media,rel,type
+            framename: открытие html-документа во фрейме, который называется framename
     </pre>
     <p>тег для вставки ссылки ~a href~ без атрибутов, открывается внутри вкладки</p>
     <A href="https://yandex.ru">yandex.ru</A></br>
@@ -22,6 +35,9 @@
     <p>ссылка на внутреннюю страницу </p>
     <a href="03-img.html">ссылка на страницу 03-img.html</a>
 </br>
-    
+<h2>Ссылка-картинка</h2>
+<a href="0-menu.html">
+    <img src="imgs/menu.png" width ="50" alt="menu link">
+</a>
 </body>
 </html>
