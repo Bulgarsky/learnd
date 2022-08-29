@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="keywords" content="html, css, links, a, a href, menu, frame, form, button, text field">
+    <meta name="description" content="html, css, links, a, a href, menu, frame, form, button, text field">
+    <title>Text fields HTML5</title>
+    <style>
+        td{
+            width: 300px; 
+            height:60px; 
+            border: solid 1px gray; 
+            text-align:left;
+        }
+    </style>
+</head>
+<body>
+    <p><a href="0-menu.html">Вернутся в меню</a></p>
+    <h1>Текстовые поля в HTML5</h1>
+    <h2>Однострочное поле - элемент <b>input c атрибутом type</b></h2>
+    <p>input type="text" name="login"</p>
+    <pre>
+        <h2>Дополнительные атрибуты элемента <strong>input</strong></h2>
+        <strong>dir</strong>            устанавливает направление текста
+        <strong>list</strong>           устанавливает список подсказок для ввода в поле
+        <strong>maxlength</strong>      максимально допустимое количество символов в текстовом поле
+        <strong>pattern</strong>        определяет шаблон, которому должен соответствовать вводимый текст
+        <strong>placeholder</strong>    устанавливает текст, который по умолчанию отображается в текстовом поле
+        <strong>readonly</strong>       делает текстовом поле доступным только для чтения
+        <strong>required</strong>       указывает, что текстовое поле обязательно должно иметь значение
+        <strong>size</strong>           устанавливает ширину текстового поля в видимых символах
+        <strong>value</strong>          устанавливает значение по умолчанию в текстовом поле
+    
+    </pre>
+    <table><strong>fields examples</strong>
+    <tr>
+        <td>
+            <form><strong>placeholder + placeholder</strong>
+            <p><input type="text" name="userName" placeholder="Введите имя" size="20" /></p>
+            <p><input type="text" name="userPhone" placeholder="Введите номер телефона" size="20 maxlength="12" /></p>
+            <p>
+                <button type="submit">Отправить</button> 
+                <button type="reset">Отмена</button>
+            </p>
+            </form>
+        </td>
+        <td>
+            <form><strong>Value + placeholder</strong>
+                <p><input type="text" name="userName" value="John Doe" size="20" /></p>
+                <p><input type="text" name="userPhone" placeholder="Введите номер телефона" size="20 maxlength="12" /></p>
+                <p>
+                    <button type="submit">Отправить</button> 
+                    <button type="reset">Отмена</button>
+                </p>
+                </form>
+        </td>
+        <td>
+            <form><strong>userName readonly, userPhone disabled</strong>
+                <p><input type="text" name="userName" value="John Doe" size="20" readonly /></p>
+                <p><input type="text" name="userPhone" value="+1(555)122-532" size="20 maxlength="12" disabled/></p>
+                <p>
+                    <button type="submit">Отправить</button> 
+                    <button type="reset">Отмена</button>
+                </p>
+            </form>
+        </td>
+        <tr>
+        <td>
+            <form><strong>выпадающий список</strong>
+                <p><input list="carList" type="text" name="car" placeholder="Введите модель" /></p>
+                <p>
+                    <button type="submit">Отправить</button>
+                    <button type="reset">Отмена</button>
+                </p>
+            </form>
+            <datalist id="carList">
+                <option value="Lada 21093 Samara" label="94000">
+                <option value="Lada Priora">135000</option>
+                <option value="Lada Vesta">
+            </datalist>
+        </td>
+        <td><h3>Поле Поиска</h2>
+            <form>
+                <input type="search" name="term" />
+                <input type="submit" value="Поиск" />
+            </form>
+        </td>
+        <td><strong>Поле ввода пароля ****</strong>
+            <form>
+                <p><input type="text" name="userName" placeholder="login" /></p>
+                <p><input type="password" name="password" placeholder="password"/></p>
+                <p>
+                    <input type="submit" value="Авторизация" />
+                    <input type="reset" value="Отмета" />
+                </p>
+            </form>
+        </td>
+        </tr>
+    </tr>
+    </table>
+    </body>
+</html>
