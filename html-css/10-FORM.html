@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <title>Forms HTML5</title>
+</head>
+<body>
+  <h1>Forms HTML5</h1>  
+  <ul><h2>Атрибуты тега form</h2>
+    <li>method=</li>
+    <ul>
+        <li>"post" - передать данные через спец.заголовки</li>
+        <li>"get" - передать данные через строку запроса</li>
+    </ul>
+    <li>action= - устанавливает адрес, на который передаются данные формы</li>
+    <li>enctype= - устанавливает тип передаваемых данных:</li>
+    <ul>
+        <li>"application/x-www-form-urlencoded" - кодировка отправляемых данных по умолчанию</li>
+        <li>"multipart/form-data" - эта кодировка применяется при отправке файлов</li>
+        <li>"text/plain" - эта кодировка применяется при отправке простой текстовой информации></li>
+    </ul>
+    <li>autocomplete= автозаполнение</li>
+    <ul>
+        <li>"on" - включено</li>
+        <li>"off" - выключено</li>
+    </ul>
+    <li></li>
+  </ul>
+
+<form method="post" action="http://localhost:8080/login.php">
+    <input name="login"/>
+    <input type="submit" value="Войти" />
+</form><br>
+
+<form method="post" autocomplete="off" action="http://localhost:8080/login.php">
+    <input name="login" />
+    <input name="password" />
+    <input type="submit" value="Войти" />
+</form><br>
+
+<form method="post" autocomplete="off" action="http://localhost:8080/login.php">
+    <input name="login" />
+    <input name="password" autocomplete="on" />
+    <input type="submit" value="Войти" />
+</form>
+
+</body>
+</html>
