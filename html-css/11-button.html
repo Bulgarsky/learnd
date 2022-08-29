@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="html, css, links, a, a href, menu, frame, form, button">
+    <title>buttons HTML5</title>
+    <style>
+        td{
+            width: 300px; 
+            height:60px; 
+            border: solid 1px gray; 
+            text-align:left;
+        }
+    </style>
+</head>
+<body>
+    <p><a href="0-menu.html">Вернутся в меню</a></p>
+    <h1>Кнопки в HTML5</h2>
+    <h2>button</h2>
+    <table>
+        <caption><b>Атрибуты тега button</b></caption>
+        <thead>
+            <tr>
+                <th>Атрибут</th> <th>описание</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>button type="submit"</td>
+                <td>кнопка, используемая для отправки формы</td>
+            </tr>
+            <tr>
+                <td>button type="reset"</td>
+                <td>кнопка сброса значений формы</td>
+            </tr>
+            <tr>
+                <td>button</td>
+                <td>кнопка без какого-либо специального назначения</td>
+            </tr>
+        </tbody>
+        <tfoot>
+            <tr>
+                <th colspan="3">Нижний футер для таблицы</th>
+            </tr>
+        </tfoot>
+    </table>
+<P></P>
+<P></P>
+    <table>
+        <caption><b>Доп.атрибуты. Если установлен type="submit"</b></caption>
+        <thead>
+            <tr>
+                <th>Атрибут</th> <th>описание</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>form</td>
+                <td>определяет форму, за которой закреплена кнопка отправки</td>
+            </tr>
+            <tr>
+                <td>formaction</td>
+                <td> устанавливает адрес, на который отправляется форма. Если у элемента form задан атрибут action, то он переопределяется</td>
+            </tr>
+            <tr>
+                <td>formenctype</td>
+                <td>устанавливает формат отправки данных. Если у элемента form установлен атрибут enctype, то он переопределяется</td>
+            </tr>
+            <tr>
+                <td>formmethod</td>
+                <td> устанавливает метод отправки формы (post или get). Если у элемента form установлен атрибут method, то он переопределяется</td>
+            </tr>
+        </tbody>
+        <tfoot>
+            <tr>
+                <th colspan="3">нижний футер для таблицы доп атрибутов</th>
+            </tr>
+        </tfoot>
+    </table>
+<P></P>
+<form>
+    <p><input type="text" name="login"/></p>
+    <p><input type="password" name="password"/></p>
+    <p>
+        <button type="submit" formmethod="get" formaction="index.html">Отправить</button> 
+        <button type="reset">Отмена</button>
+    </p>
+</form>
+<p>input, у которого атрибут равен submit или reset.</p>
+<form>
+    <p><input type="text" name="login"/></p>
+    <p><input type="password" name="password"/></p>
+    <p>
+        <input type="submit" value="Отправить" /> 
+        <input type="reset" value="Отмена" />
+    </p>
+</form>
+<p><h2>кнопка-картинка</h2></p>
+<form>
+    <p>
+        <input type="text" name="search" />
+        <input type="image" src="imgs/search.png" name="submit" width="32" />
+    </p>
+</form>
+</body>
+</html>
