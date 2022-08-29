@@ -7,8 +7,17 @@
     <meta name="description" content="">
     <meta name="keywords" content="">
     <title>Forms HTML5</title>
+    <style>
+    td{
+        width: 300px; 
+        height:60px; 
+        border: solid 1px gray; 
+        text-align:left;
+    }
+    </style>
 </head>
 <body>
+<p><a href="0-menu.html">Вернутся в меню</a></p>
   <h1>Forms HTML5</h1>  
   <ul><h2>Атрибуты тега form</h2>
     <li>method=</li>
@@ -46,7 +55,110 @@
     <input name="login" />
     <input name="password" autocomplete="on" />
     <input type="submit" value="Войти" />
+</form><br>
+<h2>INPUT</h2>
+<table>
+    <caption><strong>Элемент ввода /input type="type" name="name"/</strong></caption>
+    <thead>
+        <tr>
+            <th>атрибут</th><th>описание атрибута</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td><quote type="text" name=""</td>
+            <td>обычное текстовое поле</td>
+        </tr>
+       <tr>
+            <td>type="password" name="password"</td>
+            <td>текстовое поле, для ввода пароля</td>
+       </tr>
+       <tr>
+            <td>type="radio" name=""</td>
+            <td>радиокнопка или переключатель</td>
+       </tr>
+       <tr>
+            <td>type="checkbox" name=""</td>
+            <td>элемент флажок</td>
+       </tr>
+       <tr>
+            <td>type="hidden" name=""</td>
+            <td>скрытое поле</td>
+       </tr>
+       <tr>
+            <td>type=submit" name=""</td>
+            <td>кнопка отправки формы</td>
+       </tr>
+       <tr>
+            <td>type="color" name=""</td>
+            <td>поле для ввода цвета</td>
+       </tr>
+       <tr>
+            <td>type="date" name=""</td>
+            <td>поле для ввода даты</td>
+       </tr>
+       <tr>
+            <td>type="datetime" name=""</td>
+            <td>поле для ввода даты и времени с учетом часового пояса</td>
+       </tr>
+       <tr>
+            <td>type="datetime-local"</td>
+            <td>поле для ввода даты и времени без учета часового пояса</td>
+       </tr>
+       <tr>
+            <td>type="email" name="email"</td>
+            <td>поле для ввода эл.почты</td>
+       </tr>
+       <tr>
+            <td>type="month" name="month"</td>
+            <td>поле для ввода года и месяца</td>
+       </tr>
+       <tr>
+            <td>type="number" name="number"</td>
+            <td>поле для ввода чисел</td>
+       </tr>
+       <tr>
+            <td>type="range" name="range"</td>
+            <td>ПОЛЗУНОК для выбора числа из диапазона</td>
+       </tr>
+       <tr>
+            <td>type="tel" name="phone"</td>
+            <td>поле для ввода номера телефона</td>
+       </tr>
+       <tr>
+            <td>type="time" name="time"</td>
+            <td>поле для ввода времени</td>
+       </tr>
+       <tr>
+            <td>type="week" name="week"</td>
+            <td>поле для ввода года и недели</td>
+       </tr>
+       <tr>
+            <td>type="url" name="url"</td>
+            <td>поле для ввода адреса url</td>
+       </tr>
+       <tr>
+            <td>type="file" name="file"</td>
+            <td>поле для отправки файла</td>
+       </tr>
+       <tr>
+            <td>type="image" name="image"</td>
+            <td>создает кнопку в виде картинки</td>
+       </tr>
+    </tbody>
+    <tfoot>
+        <tr>
+            <th colspan="3">Все атрибуты тега инпут</th>
+        </tr>
+    </tfoot>
+</table>
+<h2>!ВАЖНЫЕ! атрибуты <b>name</b> и <b>Value</b></h2>
+<p>name - идентификация поля ввода</p>
+<P>value - установить значение</P>
+<form method="get" action="index.html">
+    <input type="text" name="login" value="Tom"/>
+    <input type="password" name="password"/>
+    <input type="submit" value="Войти" />
 </form>
-
 </body>
 </html>
