@@ -41,5 +41,44 @@
     </form>
     <p></p>
     <h2>Множественный выбор. Multiple </h2>
+    <form method="get">
+      <p>
+        <label for="tools">Choise a tools</label>
+        <br>
+        <select multiple id="tools" name="tools">
+          <option value="hands tools" selected>hammer, screwdriver, cutter</option>
+          <option value="welder">welder, spotter</option>
+          <option value="hydraulic tool">hydraulic tool</option>
+          <option value="pneumatic tools" disabled>pneumatic tools</option>
+        </select>
+      </p>
+    </form>
+<h2>Группировка в списке</h2>
+  <form method="get">
+      <p>
+        <label for="toolset">What tools do you have got ?</label>
+        <br>
+        <select id="toolset" name="toolset">
+          <optgroup label="Hand's Tools">
+            <option value="hammer">hammer</option>
+            <option value="cutter">cutter</option>
+            <option value="jack">jack</option>
+          </optgroup>
+          <optgroup label="Welding tools">
+            <option value="semi-auto welder">semi-auto welder</option>
+            <option value="spotter">spotter</option>
+          </optgroup>
+          <optgroup label="hydraulic tools">
+            <option value="hydraulic press">hydraulic press</option>
+            <option value="hydraulic push">hydraulic push</option>
+            <option value="hydraulic jack">hydraulic jack</option>
+          </optgroup>
+        </select>
+      </p>
+    <p>
+      <button type="submit">Send</button>
+      <button type="reset">Cancel</button>
+    </p>
+  </form>
 </body>
 </html>
