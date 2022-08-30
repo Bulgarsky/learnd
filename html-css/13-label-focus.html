@@ -19,6 +19,7 @@
 <body>
     <p><a href="0-menu.html">Вернутся в меню</a></p>
     <h1>Текстовые поля в HTML5, label and focus</h1>
+    <h2>Label for - фокус на текст.поле при нажатии на лейбл</h2>
     <form>
         <p>
             <label for="login">Логин: </label>
@@ -30,6 +31,22 @@
         </p>
         <p>
             <button type="submit" >Отправить</button>
+            <button type="reset">Отмена</button>
+        </p>
+    </form>
+    <p></p>
+    <h2>autofocus - выделение при активном курсоре в текстовом поле</h2>
+    <form>
+        <p>
+            <label for="login">Логин: </label>
+            <input type="text" autofocus id="login" name="login" placeholder="Enter your login" />
+        </p>
+        <p>
+            <label for="password">Пароль: </label>
+            <input type="password" id="password" name="password" placeholder="Enter your password" />
+        </p>
+        <p>
+            <button type="submit">Отправить</button>
             <button type="reset">Отмена</button>
         </p>
     </form>
