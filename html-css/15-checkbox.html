@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="keywords" content="html, css, form, button, text field, number, number field, checkbox">
+    <meta name="description" content="Переключатели (Флажки, радиокнопки) в HTML5">
+    <title>checkbox HTML5</title>
+    <style>
+        td{
+            width: 300px; 
+            height:60px; 
+            border: solid 1px gray; 
+            text-align:left;
+        }
+    </style>
+</head>
+<body>
+    <p><a href="0-menu.html">Вернутся в меню</a></p>
+    <h1>Переключатели в HTML5. Флажки и радиокнопки</h1>
+    <table>
+        <tr>
+            <td>
+                <h2>Флажок</h2>
+                <form><strong>Изучаемые технологии</strong>
+                    <p>
+                        <input type="checkbox" checked name="HTML 5">HTML 5
+                    </p>            
+                    <p>
+                        <input type="checkbox" checked name="CSS 3">CSS 3
+                    </p>
+                    <p>
+                        <input type="checkbox" name="JavaScript">JavaScript
+                    </p>
+                    <p>
+                        <input type="checkbox" name="Node.JS">Node.JS
+                    </p>
+                    <p>
+                        <input type="checkbox" name="TypeScript">TypeScript           
+                    </p>
+                    <p>
+                        <input type="checkbox" name="React">React
+                    </p>
+                    <p>
+                        <input type="checkbox" name="mobx">mobx
+                    </p>
+                </form>
+            </td>
+            <td>
+                <h2>радиокнопки (в группе)</h2>
+                <form>
+                    <strong>Choise your gender</strong>
+                    <p>
+                        <input type="radio" checked name="gender">man
+                    </p>
+                    <p>
+                        <input type="radio" name="gender">woman
+                    </p>
+                    <p>/</p>
+                    <p><strong>Choise your full stack technology</strong></p>
+                    <p>
+                        <input type="radio" name="technology">html5, css3, JS, Node.JS, TypeScript, PostgreSQL 
+                    </p>
+                    <p>
+                        <input type="radio" name="technology">C#, Asp.Net, .Net, SQL
+                    </p>
+                    <p>
+                        <input type="radio" name="technology">Java, Spring, HTML-JS, SQL
+                    </p>
+                </form>
+            </td>
+        </tr>
+    </table>        
+</body>
+</html>
