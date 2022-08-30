@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="keywords" content="html, css, form, button, text field, number, number field">
+    <meta name="description" content="Текстовые поля в HTML5, поля для ввода чисел">
+    <title>Number fields HTML5</title>
+    <style>
+        td{
+            width: 300px; 
+            height:60px; 
+            border: solid 1px gray; 
+            text-align:left;
+        }
+    </style>
+</head>
+<body>
+    <p><a href="0-menu.html">Вернутся в меню</a></p>
+    <h1>Поля для ввода чисел в HTML5 </h1>
+    <h2>простое поле с числом</h2>
+    <pre> <strong>input с атрибутом type="number"</strong>
+        min: минимально допустимое значение
+        max: максимально допустимое значение
+        readonly: доступно только для чтения
+        required: указывает, что данное поле обязательно должно иметь значение
+        step: значение, на которое будет увеличиваться число в поле
+        value: значение по умолчанию
+    </pre>
+    <form>
+        <p>
+            <label for="userAge">Возраст</label>
+            <input type="number" step="1" max="100" value="11" id="userAge" name="userAge"/>
+        </p>
+        <p>
+            <button type="submit">Отправить</button>
+            <button type="reset">Отменить</button>
+        </p>
+    </form>
+    <p>
+
+    </p>
+    <h2>Поле со списком чисел</h2>
+    <form>
+        <p>
+            <label for="price">Price: </label>
+            <input type="number" list="priceList"
+                step="100" min="100" max="1000"
+                id="price" name="price"
+                placeholder="100"
+            />
+        </p>
+        <p>
+            <button type="submit">Send</button>
+            <button type="reset">Cancel</button> 
+        </p>
+        <datalist id="priceList">
+            <option value="200">
+            <option value="300">
+            <option value="400">
+        </datalist>
+    </form>
+    <p>
+    </p>
+    <form><strong>текстовое выпадающее поле</strong><br>
+        <label for="car-choice">Choose a car:</label>
+        <input list="cars" id="car" name="car" />
+        <datalist id="cars">
+            <option value="Lada 21093 Sputnik">
+            <option value="Lada Priora">
+            <option value="Niva">
+            <option value="Vesta">
+            <option value="Granta">
+        </datalist>
+    </form>
+</body>
+</html>
