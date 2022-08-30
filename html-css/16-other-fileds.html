@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="keywords" content="html, css, form, button, text field, number, number field, color, email, url">
+    <meta name="description" content="Поля для ввода почты, номера телефона, выбора цвета в HTML5">
+    <title>color, url, email, phone HTML5</title>
+    <style>
+        td{
+            width: 300px; 
+            height:60px; 
+            border: solid 1px gray; 
+            text-align:left;
+        }
+    </style>
+</head>
+<body>
+    <p><a href="0-menu.html">Вернутся в меню</a></p>
+    <h1>Элементы для выбора цвета, поля ввода почты, телефона</h1>
+    <table>
+        <tr>
+        <td>
+            <form><strong>Простой выбор цвета</strong>
+                <p>
+                <label for="favcolor">Выбор цвет</label>
+                <input type="color" id="favcolor" name="favcolor">
+                </p>
+            </form>
+        </td>
+        <td>
+            <form><strong>Выбор из предложенных</strong>
+                <p>
+                    <label for="colorite">Выберите цвет</label>
+                    <input type="color" list="colors" id="colorite" name="colorite">
+                    <datalist id="colors">
+                        <option value="0000FF" label="blue" >
+                        <option value="008000" label="green">
+                        <option value="ff0000" label="red">
+                    </datalist>
+                </p>
+            </form>
+        </td>
+        </tr>
+    </table>
+    <h2>Поля для ввода url, email, телефона</h2>
+    <pre><strong>Type="", url, email, tel</strong>
+        maxlength: максимально допустимое количество символов в поле
+        pattern: определяет шаблон, которому должен соответствовать вводимый текст
+        placeholder: устанавливает текст, который по умолчанию отображается в поле
+        readonly: делает текстовом поле доступным только для чтения        
+        required: указывает, что текстовое поле обязательно должно иметь значение
+        size: устанавливает ширину поля в видимых символах
+        value: устанавливает значение по умолчанию для поля
+        list: устанавливает привязку к элементу datalist со списком возможных значений
+    </pre>
+    <table>
+        <tr>
+            <td>
+                <form>
+                    <p>
+                        <label for="userEmail">email: </label>
+                        <input type="email" placeholder="user@gmail.com" id="userEmail" name="userEmail">
+                    </p>
+                    <p>
+                        <label for="userPhone">phone: </label>
+                        <input type="tel" placeholder="XXX-XXX-XXXX" maxlength="12" id="userPhone" name="userPhone">
+                    </p>
+                    <p>
+                        <label for="url">URL: </label>
+                        <input type="url" id="url" name="url"/>
+                    </p>
+                    <p>
+                        <button type="submit">Send</button>
+                    </p>
+                </form>    
+            </td>
+            <td><strong>Выпадающие списки на выбор</strong>
+                <p></p>
+                <form>
+                <label for="userEmail">email: </label>
+                <input type="email" list="choiseMail" placeholder="user@gmail.com" id="userEmail" name="userEmail">
+                <datalist id="choiseMail">
+                    <option value="mail@mail.ru">mail@mail.ru</option>
+                    <option value="gmail@gmail.gmail.com">gmail@gmail.gmail.com</option>
+                    <option value="ya@yandex.ru">ya@yandex.ru</option>
+                </datalist>
+                <p>
+                    <label for="userPhone">phone: </label>
+                    <input type="tel" list="choisePhone" placeholder="XXX-XXX-XXXX" maxlength="12" id="userPhone" name="userPhone">
+                    <datalist id="choisePhone">
+                        <option value="999-888-1111">999-888-1111</option>
+                        <option value="911-000-1234">911-000-1234</option>
+                        <option value="900-111-5555">900-111-5555</option>
+                    </datalist>
+                </p>
+                <p>
+                    <button type="submit">Send</button>
+                </p>
+                </p>
+                </form>
+            </td>
+        </tr>
+    </table>
+   
+</body>
+</html>
