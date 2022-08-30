@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="keywords" content="html, css, form, button, text field, select">
+  <meta name="description" content="Элемент Select HTML5">
+  <title>Select HTML5</title>
+  <style>
+    td{
+      width: 300px;
+      height:60px;
+      border: solid 1px
+      color: gray;
+      text-align:left;
+    }
+    h1{
+      color: blueviolet;
+    }
+  </style>
+</head>
+<body>
+<p><a href="0-menu.html">Вернутся в меню</a></p>
+<h1>Select, список, get. Selected. Disabled</h1>
+    <form method="get">
+      <p>
+        <label for="car">Choise a car model</label>
+        <select id="car" name="car">
+          <option value="Lada 21093 Sputnik">Lada 21093 Sputnik</option>
+          <option value="Lada 2170 PRIORA" selected>Lada 2170 PRIORA</option>
+          <option value="VW Jetta 5 (2008)">VW Jetta 5 (2008)</option>
+          <option value="Audi A80">Audi A80 (1982)</option>
+          <option value="CAT 500" disabled>Caterpillar 500</option>
+        </select>
+      </p>
+      <p>
+        <button type="submit">Send</button>
+        <button type="reset">cancel</button>
+      </p>
+    </form>
+    <p></p>
+    <h2>Множественный выбор. Multiple </h2>
+</body>
+</html>
