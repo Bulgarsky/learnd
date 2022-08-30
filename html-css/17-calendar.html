@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="keywords" content="html, css, form, button, text field, number, number field, date, time, calendar">
+    <meta name="description" content="Поле для выбора дата и времени, календарь в HTML5">
+    <title>date-time calendar HTML5</title>
+    <style>
+        td{
+            width: 300px;
+            height:60px;
+            border: solid 1px
+            color: gray;
+            text-align:left;
+        }
+        h1{
+            color: blueviolet;
+        }
+    </style>
+</head>
+<body>
+<p><a href="0-menu.html">Вернутся в меню</a></p>
+<h1>Элементы даты, времени. Календарь HTML5</h1>
+    <pre><strong>атрибуты input</strong>
+        datetime-local: устанавливает дату и время
+        date:           устанавливает дату
+        month:          устанавливает текущий месяц и год
+        time:           устанавливает время
+        week:           устанавливает текущую неделю
+    </pre>
+<form>
+    <p>
+        <label for="userName">Your login: </label>
+        <input type="text" id="userName" name="userName" placeholder="enter your login">
+    </p>
+        <label for="date">Choise date: </label>
+        <input type="date" id="date" name="date">
+    <p>
+    <p>
+        <button type="submit">Send</button>
+        <button type="reset">Cancel</button>
+    </p>
+</form>
+<p><strong>все виды элементов</strong></p>
+<form>
+    <p>
+        <label for="week">Неделя: </label>
+        <input type="week" name="week" id="week" />
+    </p>
+    <p>
+        <label for="localdate">Дата и время: </label>
+        <input type="datetime-local" id="localdate" name="date"/>
+    </p>
+    <p>
+        <label for="month">Месяц: </label>
+        <input type="month" id="month" name="month"/>
+    </p>
+    <p>
+        <label for="time">Время: </label>
+        <input type="time" id="time" name="time"/>
+    </p>
+    <p>
+        <button type="submit">Отправить</button>
+        <button type="reset">Отменить</button>
+    </p>
+</form>
+
+</body>
+</html>
