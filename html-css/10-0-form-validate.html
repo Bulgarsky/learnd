@@ -2,9 +2,113 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="keywords" content="html, css, form, button, text field, select, form, validate">
+    <meta name="description" content="Валидация form HTML5">
+    <title>Legend fieldset HTML5</title>
+    <style>
+        td{
+            width: 300px;
+            height:60px;
+            border: solid 1px gray;
+            text-align:left;
+        }
+        h1{
+            color: blueviolet;
+        }
+    </style>
 </head>
 <body>
-
+<p><a href="0-menu.html">Вернутся в меню</a></p>
+<h1>Валидация форм в HTNL 5</h1>
+<table>
+    <tr>
+        <td>Атрибут</td>
+        <td>для элементов:</td>
+        <td>с type=""</td>
+        <td>описание</td>
+    </tr>
+    <tr>
+        <td>required</td>
+        <td>textarea, select, input</td>
+        <td>text, password, checkbox, radio, file, datetime-local, date, month, time, week, number, email, url, search, tel</td>
+        <td>требует обязательного ввода значения</td>
+    </tr>
+    <tr>
+        <td>min и max</td>
+        <td>input</td>
+        <td>datetime-local, date, month, time, week, number, range</td>
+        <td>минимальное и максимальное значения</td>
+    </tr>
+    <tr>
+    <td>pattern</td>
+    <td>input</td>
+    <td>text, password, email, url, search, tel</td>
+    <td>задает шаблон для вводимых данных</td>
+</tr>
+</table>
+<p>
+    <table>
+        <tr>
+            <td>
+                <form method="get">
+                    <p>required login</p>
+                    <p>
+                        <label for="login">Login</label>
+                        <input type="text" required id="login" name="login" placeholder="login">
+                    </p>
+                    <p>
+                        <label for="password">Password</label>
+                        <input type="text" id="password" name="password" placeholder="password">
+                    </p>
+                        <button type="submit">Send</button>
+                        <button type="reset">Reset</button>
+                </form>
+            </td>
+            <td>
+                <form method="get">
+                    <p>Min/Max</p>
+                    <p>
+                        <label for="userAge">Ваш возраст: </label>
+                        <input type="number" required min="16" max="99" value="0" id="userAge" name="userAge">
+                    </p>
+                    <p>
+                        <button type="submit">Подтвердить</button>
+                        <button type="reset">Отменить</button>
+                    </p>
+                </form>
+            </td>
+            <td>
+                 <p>pattern</p>
+                <p>
+                <form method="get">
+                <p>
+                    <label for="userPhone">Ваш номер телефона: </label>
+                    <input type="text" required placeholder="+7-xxx-xxx-xxxx" pattern="\+\d-\d{3}-\d{3}-\d{4}" id="userAge" name="userPhone">
+                </p>
+                    <p>
+                        <button type="submit">Отправить</button>
+                        <button type="reset">Отменить</button>
+                    </p>
+                </form>
+            </p>
+            </td>
+            <td>
+                <p>Отключение валидации form novalidate (в кнопке formnovalidate)</p>
+                <form novalidate method="get">
+                    <p>
+                        <label for="userTelephone">Введите ваш рабочий номер телефона: </label>
+                        <input type="text" required placeholder="+7-xxxxx-xxxxx" pattern="\+\d-\d{5}-\d{5}" id="userTelephone" name="userTelephone">
+                    </p>
+                    <p>
+                        <button type="submit" formnovalidate>Отправить</button>
+                        <button type="reset">Отменить</button>
+                    </p>
+                </form>
+            </td>
+        </tr>
+    </table>
+</p>
 </body>
 </html>
