@@ -1,0 +1,60 @@
+<!-- ШАБЛОН HTML-->
+<!-- Сообщение браузеру как стоит обработь страницу -->
+<!DOCTYPE html>
+
+<html lang="en">
+<!-- контейнер Head (не отображается для пользователя), заголовок, метаданные, стили и другие важные данные -->    
+<head>
+<!-- метаданные страницы -->
+    <meta charset="UTF-8"> <!-- кодировка -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"> <!-- совместимость с браузерами -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="keywords" content="tag, tags"> <!-- ключевые слова для поисковых систем -->
+    <meta name="description" content="ШАБЛОН HTML5"> <!-- описание страницы для вывода в поисковую систему -->
+<!--заголовок страницы в браузере -->    
+    <title>ШАБЛОН HTML5</title> <!--заголовок страницы в браузере -->
+<!-- 
+    Приоритет:
+1) inline-cтили встроенные в тег
+2) <STYLE>
+3) подключенный файл css
+-->
+<!-- стили встроенные в html -->    
+    <style>        
+    </style>
+<!-- подключение */*.css -->   
+     <link rel="stylesheet" type="text/css"  href="css/style.css"/>
+     <!--
+         tag{} - все теги
+         tag.class{} - стиль применяется к тегу
+         .class{} - все элементы с классом
+         .class tag{} - теги ВНУТРИ класса
+         tag/пробел/ .class -  все классы вложенные  в тег
+     -->
+</head>
+<!-- отображаемое тело страницы -->
+<body> 
+<!-- блок для шапки страницы, логотип, идея, меню -->
+<header> 
+</header>
+
+<!-- блок для основной информации -->
+<main role="main"> 
+</main>
+
+<!-- футер, информация об авторе, дату публикации, копирайт, блок ссылок -->
+<footer>
+    <p>
+        <a href="/telegram">Telegram</a> |
+        <a href="/about">О сайте</a> |
+        <a href="/donation">Donations</a>
+    </p>
+</footer>
+
+<!-- Адрес, способ связи с автором -->
+<address>
+    Контакты для связи <a href="mailto:bulgarpepper@gmail.com">A. Bulgarsky</a>.
+</address>
+
+</body>
+</html>

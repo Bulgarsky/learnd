@@ -1,0 +1,49 @@
+body{
+    scale: 95%;
+}
+main{
+    font-size: 14px;
+    font-family:'Courier New', Courier, monospace;
+}
+
+div{
+    background-color:white;
+    
+    font-size: 14px;
+}
+div.first{
+    width: 300px;
+    height: 200px;
+    margin-top: 1%;
+    margin-left: 75px;
+    text-align: right;
+}
+div.second{
+    width: 400px;
+    height: 300px;
+    margin-left: 375px;
+    margin-right: 125px;
+    text-align: left;
+}
+span{
+    background-color: cornflowerblue;
+}
+span.bigsmoke{
+    font-size: 25px;
+    color: black;
+}
+span.smoke{
+    font-size: 30px;
+    color: brown;
+}
+
+div.autorization{
+    font-size: 14px;
+    color: blueviolet;
+    width: 250px;
+    margin-left: 1250px;
+    margin-top: 50px;
+}
+footer{
+    margin-top: 5%;
+}

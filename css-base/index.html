@@ -1,0 +1,100 @@
+<!-- ШАБЛОН HTML-->
+<!-- Сообщение браузеру как стоит обработь страницу -->
+<!DOCTYPE html>
+
+<html lang="en">
+<!-- контейнер Head (не отображается для пользователя), заголовок, метаданные, стили и другие важные данные -->    
+<head>
+<!-- метаданные страницы -->
+    <meta charset="UTF-8"> <!-- кодировка -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"> <!-- совместимость с браузерами -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="keywords" content="tag, tags,html5,css3, selectors, cuttedcutters"> <!-- ключевые слова для поисковых систем -->
+    <meta name="description" content="Cutted Cutters"> <!-- описание страницы для вывода в поисковую систему -->
+<!--заголовок страницы в браузере -->    
+    <title>@CuttedCutters</title> <!--заголовок страницы в браузере -->
+<!-- 
+    Приоритет:
+1) inline-cтили встроенные в тег
+2) <style></style>
+3) подключенный файл css
+-->
+    <style>
+    </style>
+ <!-- подключение */*.css -->   
+    <link rel="stylesheet" type="text/css"  href="css/style.css"/>
+<!--
+    tag{} - все теги
+    tag.class{} - конкретный тег.класс
+    .class{} - все элементы с классом
+    .class tag{} - теги ВНУТРИ класса
+-->
+</head>
+<!-- отображаемое тело страницы -->
+<body> 
+<!-- блок для шапки страницы, логотип, идея, меню -->
+<header> 
+    <h1 style="color:cornflowerblue;">Cutted Cutters</h1>
+    <h3>Daily cutters. The Ones Vs The Kukl. Everyday it's new fight. Bid! Ask! Long! Short! Joy casino One More Time!</h2>
+        <nav class="menu">
+            <a href="" class="menu__link">Home</a> |
+            <a href="" class="menu__link">HTML5: Elements</a> |
+            <a href="" class="menu__link">Forms</a> |
+            <a href="" class="menu__link">Semantic</a> |
+            <a href="" class="menu__link">CSS 3: Selectors</a> |
+            <a href="" class="menu__link">Features</a> |
+            <a href="" class="menu__link">Layout</a> |
+        </nav>            
+</header>
+<!--
+<div class="autorization">
+    <form  action="#" method="post" enctype="multipart/form-data">
+        <fieldset>
+            <legend>Введите ваши данные:</legend>
+            <p>
+                <label for="login">Логин: </label>
+                <input tabindex="1" type="text" id="login" name="login">
+            </p>
+            <p>
+                <label for="password">Пароль: </label>
+                <input tabindex="2" type="text" id="password" name="password">
+            </p>
+            <P>
+                <button tabindex="3" type="submit">Авторизация</button>
+            </P>
+        </fieldset>
+    </form>
+</div>
+-->
+<!-- блок для основной информации -->
+<main> 
+    <div class="first">
+        <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. <span class="bigsmoke">Ipsam excepturi, repellat est unde doloribus nemo!</span> Accusamus pariatur, repudiandae numquam sed cum rem neque, totam quis ratione corrupti voluptatem eos, tempore facilis culpa
+        </p>
+    </div>
+    <div class="second">
+        <p>
+            Lorem <span class="smoke">Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed, omnis?</span> dolor sit amet, consectetur adipisicing elit. Sint, libero maxime. Possimus adipisci 
+        </p>
+    </div>
+</main>
+
+<!-- футер, информация об авторе, дату публикации, копирайт, блок ссылок -->
+<footer>
+    <p>
+        <a href="/telegram">Telegram</a> |
+        <a href="/about">О сайте</a> |
+        <a href="/donation">Donations</a>
+    </p>
+</footer>
+
+<!-- Адрес, способ связи с автором -->
+<br>
+<p>
+    <address>
+        Контакты для связи <a href="mailto:bulgarpepper@gmail.com">A. Bulgarsky</a>.
+    </address>
+</p>
+</body>
+</html>
