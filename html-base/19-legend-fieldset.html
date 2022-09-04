@@ -11,8 +11,7 @@
     td{
       width: 300px;
       height:60px;
-      border: solid 1px
-      color: gray;
+      border: solid 1px gray;
       text-align:left;
     }
     h1{
@@ -24,20 +23,21 @@
 <p><a href="0-menu.html">Вернутся в меню</a></p>
 <h1>Элемент Legend и fieldset</h1>
 <h2>Войти на сайт</h2>
-<form>
+
+<form action="#" method="post" enctype="multipart/form-data">
   <fieldset>
       <legend>Введите ваши данные:</legend>
       <label for="login">Логин: </label>
   <br>
-      <input type="text" id="login" name="login">
+      <input tabindex="1" type="text" id="login" name="login">
   <br>
     <p></p>
       <label for="password">Пароль: </label>
   <br>
-      <input type="text" id="password" name="password">
+      <input tabindex="2" type="text" id="password" name="password">
   <br>
     <p></p>
-      <button type="submit">Авторизация</button>
+      <button tabindex="3" type="submit">Авторизация</button>
   </fieldset>
 </form>
 </body>
