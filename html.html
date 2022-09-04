@@ -13,9 +13,24 @@
     <meta name="description" content="ШАБЛОН HTML5"> <!-- описание страницы для вывода в поисковую систему -->
 <!--заголовок страницы в браузере -->    
     <title>ШАБЛОН HTML5</title> <!--заголовок страницы в браузере -->
+<!-- 
+    Приоритет:
+1) inline-cтили встроенные в тег
+2) <STYLE>
+3) подключенный файл css
+-->
 <!-- стили встроенные в html -->    
-    <style>
+    <style>        
     </style>
+<!-- подключение */*.css -->   
+     <link rel="stylesheet" type="text/css"  href="css/style.css"/>
+     <!--
+         tag{} - все теги
+         tag.class{} - стиль применяется к тегу
+         .class{} - все элементы с классом
+         .class tag{} - теги ВНУТРИ класса
+         tag/пробел/ .class -  все классы вложенные  в тег
+     -->
 </head>
 <!-- отображаемое тело страницы -->
 <body> 
@@ -24,18 +39,22 @@
 </header>
 
 <!-- блок для основной информации -->
-<main> 
+<main role="main"> 
 </main>
 
 <!-- футер, информация об авторе, дату публикации, копирайт, блок ссылок -->
 <footer>
+    <p>
+        <a href="/telegram">Telegram</a> |
+        <a href="/about">О сайте</a> |
+        <a href="/donation">Donations</a>
+    </p>
 </footer>
 
 <!-- Адрес, способ связи с автором -->
 <address>
-    <address>
-        Контакты для связи <a href="mailto:bulgarpepper@gmail.com">A. Bulgarsky</a>.
-    </address>
+    Контакты для связи <a href="mailto:bulgarpepper@gmail.com">A. Bulgarsky</a>.
 </address>
+
 </body>
 </html>

@@ -1,3 +1,6 @@
+body{
+    scale: 95%;
+}
 main{
     font-size: 14px;
     font-family:'Courier New', Courier, monospace;
@@ -5,21 +8,22 @@ main{
 
 div{
     background-color:white;
-    width: 300px;
-    height: 200px;
+    
     font-size: 14px;
 }
 div.first{
-    margin-top: 25px;
-    margin-left: 25px;
-    margin-right: 25px;
-    margin-bottom: 20px;
+    width: 300px;
+    height: 200px;
+    margin-top: 1%;
+    margin-left: 75px;
+    text-align: right;
 }
 div.second{
-    margin-top: 25px;
-    margin-left: 125px;
+    width: 400px;
+    height: 300px;
+    margin-left: 375px;
     margin-right: 125px;
-    margin-bottom: 20px;
+    text-align: left;
 }
 span{
     background-color: cornflowerblue;
@@ -31,4 +35,15 @@ span.bigsmoke{
 span.smoke{
     font-size: 30px;
     color: brown;
+}
+
+div.autorization{
+    font-size: 14px;
+    color: blueviolet;
+    width: 250px;
+    margin-left: 1250px;
+    margin-top: 50px;
+}
+footer{
+    margin-top: 5%;
 }
