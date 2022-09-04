@@ -1,0 +1,38 @@
+
+* {
+    color: black;
+}
+address{
+    background-color: whitesmoke;
+    }
+
+
+.redblock{
+    background-color: red;
+    width: 50px;
+    height: 50px;
+    color:antiquewhite
+}
+
+.yellowblock{
+    background-color: yellow;
+    width: 50px;
+    height: 50px;
+    color: black;
+}
+
+.bluevioletblock{
+    background-color: blueviolet;
+    text-decoration-color: aliceblue;
+    width: 50px;
+    height: 50px;
+    color: whitesmoke
+}
+.selectDiv {
+}
+.redblock {
+}
+.yellowblock {
+}
+.bluevioletblock {
+}

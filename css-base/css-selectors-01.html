@@ -1,12 +1,153 @@
+<!-- ШАБЛОН HTML-->
+<!-- Сообщение браузеру как стоит обработь страницу -->
 <!DOCTYPE html>
+
 <html lang="en">
+<!-- контейнер Head (не отображается для пользователя), заголовок, метаданные, стили и другие важные данные -->    
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+<!-- метаданные страницы -->
+    <meta charset="UTF-8"> <!-- кодировка -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"> <!-- совместимость с браузерами -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CSS</title>
-</head>
-<body>
+    <meta name="keywords" content="tag, tags, html, html5, css, css3, selectors"> <!-- ключевые слова для поисковых систем -->
+    <meta name="description" content="Селекторы CSS3"> <!-- описание страницы для вывода в поисковую систему -->
+<!--заголовок страницы в браузере -->    
+    <title>CSS3 Selectors</title> <!--заголовок страницы в браузере -->
+<!-- 
+    Приорите стилей:
+1) inline - cтили встроенные в тег
+2) <STYLE> тег
+3) подключенный файл css
+-->
+<!-- стили встроенные в html -->    
+    <style>    
+    * {
+        color: black;
+    }   
+    h1, h2, h3, h4, h5, h6, p {
+        margin: 1%;
+        margin-top: 1%;
+        margin-bottom: 1%;
+    }    
+    h1 {
+        color:blueviolet;
+      ;
+    }
+    h2, h3 { 
+    color: brown;
+    }
+    div {
+    width:95%;
+    height:100%;
+    margin: 1%;
+    background-color: rgb(126, 115, 115);
+    color: whitesmoke;
+    }
     
+    #header{
+    background-color: #ccc;
+    width: 95%;
+    }
+    #content{
+    background-color: #ccc;
+    width: 95%;
+    }
+    #footer{
+    background-color: bisque;
+    width: 95%;
+    }
+    .selectDiv{
+    background-color: green;   
+    }
+    </style>
+<!-- подключение */*.css -->   
+     <link rel="stylesheet" type="text/css"  href="css/01.css"/>
+     <!--
+         tag{} - все теги, наследование
+         tag.class{} - стиль применяется к тег.класс
+         .class{} - все элементы с классом
+         .class tag{} - теги ВНУТРИ класса
+         tag/пробел/ .class -  все классы вложенные  в тег
+     -->
+</head>
+<!-- отображаемое тело страницы -->
+<body> 
+<!-- блок для шапки страницы, логотип, идея, меню -->
+<div id="header">
+<!--
+<header>
+-->
+    <h1>Стили в HTML 5. Cпособы использования.</h1>
+    </h1>
+    <ol><strong>Приорите стилей:</strong>
+        <li>inline - cтили встроенные в тег
+        <li>тег STYLE in HEAD</li>
+        <li>подключенный файл css</li>
+    </ul>
+</div>
+<!--
+</header>
+-->
+<!-- блок для основной информации -->
+<!--
+<main role="main"> 
+-->
+<div id="content">
+    <p>
+        блоки P(block), DIV (block), h1-h2 (block) - наследуют стили
+    </p>
+    
+    <h2>Селекторы CSS</h2>
+        <div class="selectDiv">some blocks</div>
+        <div class="selectDiv">some blocks</div>
+        <div class="selectDiv">some blocks</div>
+        <br>
+    <h2>Классы</h2>
+    <P><strong>css:</strong> .class, tag.class</P>
+    <p><strong>html:</strong> class="#"</p>
+    <div class="redblock">some blocks</div>
+    <div class="yellowblock">some blocks</div>
+    <div class="bluevioletblock">some blocks</div>
+    <br>
+<H2># Идентификаторы</H2>
+<p>В большей степени относятся к структуре веб-странице и в меньшей степени к стилизации. Для стилизации преимущественно используются классы, нежели идентификаторы
+</p>
+<p>
+    <strong>
+    lt; tag  id="idName" &gt; &lt; /tag &gt;
+    </strong>
+</p>
+#header { }<br>
+#content { }<br>
+#footer { }<br>
+<br>
+<h2>* { Универсальный селектор * }</h2>
+
+</div>
+<!--
+</main>
+-->
+Lorem ipsum dolor sit, amet consectetur adipisicing elit. Necessitatibus ipsam aspernatur et a quos est cumque laudantium magni mollitia suscipit.
+
+<!-- футер, информация об авторе, дату публикации, копирайт, блок ссылок -->
+<!--
+    <footer>
+-->
+<div id="footer">
+    <p>
+        <a href="/telegram">Telegram</a> |
+        <a href="/about">О сайте</a> |
+        <a href="/donation">Donations</a>
+    </p>
+</div>
+<!--
+</footer>
+-->
+
+<!-- Адрес, способ связи с автором -->
+<address>
+    Контакты для связи <a href="mailto:bulgarpepper@gmail.com">A. Bulgarsky</a>.
+</address>
+
 </body>
 </html>
