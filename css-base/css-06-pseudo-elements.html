@@ -24,7 +24,7 @@
     </style>
 
 <!-- подключение */*.css -->   
-     <link rel="stylesheet" type="text/css"  href="css/style.css"/>
+     <link rel="stylesheet" type="text/css"  href="css/06.css"/>
  </head>
 
 <!-- отображаемое тело страницы -->
@@ -32,12 +32,33 @@
 
 <!-- блок для шапки страницы, логотип, идея, меню -->
 <header tabindex="1"> 
-    <h1>Header</h1>
+    <h1>Псевдоэлементы</h1>
+    <p>Псевдоэлементы обладают рядом дополнительных возможностей по выбору элементов веб-страницы и похожи на псевдоклассы. 
+    <br> Для отличия от псевдоклассов ставятся ДВА двоеточия
+    </p>
+        <ul><strong>Список доступных псевдоэлементов:</strong>
+            <li><strong>::first-letter:</strong> позволяет выбрать первую букву из текста</li>
+            <li><strong>::first-line:</strong> стилизует первую строку текста</li>
+            <li><strong>::before:</strong> добавляет сообщение до определенного элемента</li>
+            <li><strong>::after:</strong> добавляет сообщение после определенного элемента</li>
+            <li><strong>::selection:</strong> выбирает выбранные пользователем элементы</li>
+        </ul>
 </header>
 
 <!-- блок для основной информации -->
 <main role="main"> 
-    <p>main </p>
+<div>
+    <h2>::first-letter & ::first-line</h2>
+    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Culpa, neque.</p>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti, beatae.</p>
+</div>
+
+<div>
+    <h2>псевдоэлементы before и after</h2>
+    <p>
+        <span class="warning"> Тонкий осенний лед! </span>
+    </p>
+</div>
 </main>
 
 <!-- футер, информация об авторе, дату публикации, копирайт, блок ссылок -->
