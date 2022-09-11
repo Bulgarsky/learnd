@@ -1,0 +1,19 @@
+h1 {
+background-color: antiquewhite;
+color: blueviolet;
+font-style: italic;
+}
+
+span {
+    background-color: antiquewhite;
+    color: blueviolet;
+}
+
+:enabled {
+    border: 2px blueviolet solid;
+    font-style: italic;
+    color: blueviolet;
+}
+:disabled {
+    color: red;
+}

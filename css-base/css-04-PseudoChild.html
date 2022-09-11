@@ -33,12 +33,11 @@
 <!-- блок для шапки страницы, логотип, идея, меню -->
 <header> 
     <h1>Пседво классы дочерних элементов</h1>
-</header>
-
-<!-- блок для основной информации -->
-<main role="main"> 
     <div tabindex="1">
         <h2>Дочерние элемнты псевдо классов</h2>
+        <div>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem, consequatur.</p>
+        </div>
         <div>
             <ul>
                 <li><strong>first-child</strong> - первый дочерний элемент</li>
@@ -52,10 +51,86 @@
             </ul>
         </div>
     </div>
+</header>
+
+<!-- блок для основной информации -->
+<main role="main"> 
+    <div tabindex="2">
+        <h2>Селектор First-child - первый дочерний элемент любого элемента. Для выбора первого элемента в блоках</h2>
+    <div>Автомобили: 
+        <a href="/lada">VAZ Lada 2114</a> |
+        <a href="/lada">LADA Priora 2170</a> |
+        <a href="/vs">VW Jetta 5 (2008)</a> |
+        <a href="/jeep">Jeep Wrangler Rubicon (2020)</a>
+    </div>
+</div>
+
+<div tabindex="3">
+    <h2>Селектор Last-child - последний дочерний элемент. Для выбора последнего элемнета в блоках</h2>
+    <div>
+        Lorem, ipsum.<span>Lorem ipsum dolor sit amet.</span>
+        Автомобили: 
+        <a href="/lada">VAZ Lada 2114</a> |
+        <a href="/lada">LADA Priora 2170</a> |
+        <a href="/vs">VW Jetta 5 (2008)</a> |
+        <a href="/jeep">Jeep Wrangler Rubicon (2020)</a>
+    </div>
+    <div>Автомобили: 
+        <a href="/lada">VAZ Lada 2114</a> |
+        <a href="/lada">LADA Priora 2170</a> |
+        <a href="/vs">VW Jetta 5 (2008)</a> |
+        <a href="/jeep">Jeep Wrangler Rubicon (2020)</a>
+        <p> Параграф после ссылки - последняя ссылка не берет стиль</p>
+    </div>
+</div>
+    <div tabindex="4">
+        <h2>Селектор Only-child выбирает элементы, которые являются единственными дочерними элементами в контейнерах</h2>
+            <div>
+                <p>
+                    Lorem ipsum dolor sit amet.
+                </p>
+            </div>
+            <div>
+                <p>Текст1</p>
+            </div>
+            <div>
+                <p>Текст2</p>
+                <p>Текст3</p>
+            </div>
+            <div>
+                <p>Текст4</p>
+            </div>
+    </div>
+
+    <h2>Псевдокласс only-of-type</h2>
+<div tabindex="5">
+        Header
+    <p>Единственный параграф и <span>элемент спан</span></p>
+    <div>
+        Footer
+    </div>
+</div>
+
+<div tabindex="6">
+    <h3>Псевдокласс nth-child</h3>
+    <p>nth-child позволяет стилизовать каждый второй, третий элемент, только четные или только нечетные элементы и т.д.</p>
+    <h3>smartphones</h3>
+    <table>
+        <tr><td>Samsung</td><td>Galaxy S7 Edge</td><td>60000</td></tr>
+        <tr><td>Apple</td><td>iPhone SE</td><td>39000</td></tr>
+        <tr><td>Microsoft</td><td>Lumia 650</td><td>13500</td></tr>
+        <tr><td>Alcatel</td><td>Idol S4</td><td>30000</td></tr>
+        <tr><td>Huawei</td><td>P9</td><td>60000</td></tr>
+        <tr><td>HTC</td><td>HTC 10</td><td>50000</td></tr>
+        <tr><td>Meizu</td><td>Pro 6</td><td>40000</td></tr>
+        <tr><td>Xiaomi</td><td>Mi5</td><td>35000</td></tr>
+    </table>
+    
+</div>
 </main>
 
 <!-- футер, информация об авторе, дату публикации, копирайт, блок ссылок -->
-<footer>
+<footer tabindex="5">
     <p>
         <a href="/telegram">Telegram</a> |
         <a href="/about">О сайте</a> |
@@ -65,6 +140,9 @@
     <address>
         <small>Контакты для связи <a href="mailto:bulgarpepper@gmail.com">A. Bulgarsky</a></small>
     </address>
+    <div>
+        <p>endfooter.</p>
+    </div>
 </footer>
 
 </body>
