@@ -1,11 +1,11 @@
 -- 1-6-1
 CREATE TABLE trip(
-    trip_id INTEGER PRIMARY KEY AUTOINCREMENT,
-    name VARCHAR(30),
-    city VARCHAR(25),
-    per_diem DECIMAL(8, 2),
-    date_first DATE,
-date_last DATE
+                trip_id INTEGER PRIMARY KEY AUTOINCREMENT,
+                name VARCHAR(30),
+                city VARCHAR(25),
+                per_diem DECIMAL(8, 2),
+                date_first DATE,
+                date_last DATE
                  );
 INSERT INTO trip(name,
                  city,
