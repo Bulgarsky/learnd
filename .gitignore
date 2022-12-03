@@ -3,5 +3,6 @@ github
 github.pub
 // git rm -r --cached .idea
 //after add, commit, push
-/js/.idea/
-/sql-tomsk/.dbeaver
+/js-base/.idea/
+/sql-tomsk/.dbeaver/
+/sql-tomsk/.project
