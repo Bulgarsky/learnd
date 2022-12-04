@@ -1,0 +1,78 @@
+<!-- ШАБЛОН HTML-->
+<!-- Сообщение браузеру как стоит обработь страницу -->
+<!DOCTYPE html>
+
+<html lang="en">
+<!-- контейнер Head (не отображается для пользователя), заголовок, метаданные, стили и другие важные данные -->    
+<head>
+<!-- метаданные страницы -->
+    <meta charset="UTF-8"> <!-- кодировка -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"> <!-- совместимость с браузерами -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="keywords" content="pseudoelements, css"> <!-- ключевые слова для поисковых систем -->
+    <meta name="description" content="Псевдоэлементы CSS3"> <!-- описание страницы для вывода в поисковую систему -->
+<!--заголовок страницы в браузере -->    
+    <title>Псевдоэлементы CSS</title> <!--заголовок страницы в браузере -->
+<!-- 
+    Приоритет:
+1) inline-cтили встроенные в тег
+2) <STYLE>
+3) подключенный файл css
+-->
+<!-- стили встроенные в html -->    
+    <style>        
+    </style>
+
+<!-- подключение */*.css -->   
+     <link rel="stylesheet" type="text/css"  href="css/06.css"/>
+ </head>
+
+<!-- отображаемое тело страницы -->
+<body> 
+
+<!-- блок для шапки страницы, логотип, идея, меню -->
+<header tabindex="1"> 
+    <h1>Псевдоэлементы</h1>
+    <p>Псевдоэлементы обладают рядом дополнительных возможностей по выбору элементов веб-страницы и похожи на псевдоклассы. 
+    <br> Для отличия от псевдоклассов ставятся ДВА двоеточия
+    </p>
+        <ul><strong>Список доступных псевдоэлементов:</strong>
+            <li><strong>::first-letter:</strong> позволяет выбрать первую букву из текста</li>
+            <li><strong>::first-line:</strong> стилизует первую строку текста</li>
+            <li><strong>::before:</strong> добавляет сообщение до определенного элемента</li>
+            <li><strong>::after:</strong> добавляет сообщение после определенного элемента</li>
+            <li><strong>::selection:</strong> выбирает выбранные пользователем элементы</li>
+        </ul>
+</header>
+
+<!-- блок для основной информации -->
+<main role="main"> 
+<div>
+    <h2>::first-letter & ::first-line</h2>
+    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Culpa, neque.</p>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti, beatae.</p>
+</div>
+
+<div>
+    <h2>псевдоэлементы before и after</h2>
+    <p>
+        <span class="warning"> Тонкий осенний лед! </span>
+    </p>
+</div>
+</main>
+
+<!-- футер, информация об авторе, дату публикации, копирайт, блок ссылок -->
+<footer tabindex="#">
+    <p>
+        <a href="/telegram">Telegram</a> |
+        <a href="/about">О сайте</a> |
+        <a href="/donation">Donations</a>
+    </p>
+<!-- Адрес, способ связи с автором -->
+    <address>
+        <small>Контакты для связи <a href="mailto:bulgarpepper@gmail.com">A. Bulgarsky</a></small>
+    </address>
+</footer>
+
+</body>
+</html>

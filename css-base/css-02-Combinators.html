@@ -1,0 +1,131 @@
+<!-- ШАБЛОН HTML-->
+<!-- Сообщение браузеру как стоит обработь страницу -->
+<!DOCTYPE html>
+<html lang="en">
+<!-- контейнер Head (не отображается для пользователя), заголовок, метаданные, стили и другие важные данные -->    
+<head>
+<!-- метаданные страницы -->
+    <meta charset="UTF-8"> <!-- кодировка -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"> <!-- совместимость с браузерами -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="keywords" content="tag, tags, html, html5, css, css3, selectors, combinators"> <!-- ключевые слова для поисковых систем -->
+    <meta name="description" content="Селекторы CSS3. combinators"> <!-- описание страницы для вывода в поисковую систему -->
+<!--заголовок страницы в браузере -->    
+    <title>CSS3 Combinators</title> <!--заголовок страницы в браузере -->
+<!-- 
+    Приорите стилей:
+1) inline - cтили встроенные в тег
+2) <STYLE> тег
+3) подключенный файл css
+-->
+<!-- стили встроенные в html -->    
+    <style>    
+    
+    </style>
+<!-- подключение */*.css -->   
+     <link rel="stylesheet" type="text/css"  href="css/02.css"/>
+    
+</head>
+<!-- отображаемое тело страницы -->
+<body> 
+<!-- блок для шапки страницы, логотип, идея, меню -->
+<header>
+    <h1>CSS3 on HTML5. Combinators.</h1>
+</header>
+
+<!-- Блок Main-->
+<main role="main"> 
+
+    <p>
+    <strong>типы селекторов CSS</strong><br>
+    <strong>*</strong> {Universal selector. универсальные селекторы}.<br> 
+    <strong>tag</strong> селекторы по названию тега<br>
+    <strong>.class</strong> - селекторы по классу<br>
+    <strong>id="idName"</strong> - селекторы по id<br>
+    Type selector. селекторы по атрибуту<br>
+    <br>      
+    
+    <strong>div span</strong> - Descendant combinator (селекторы потомков, или контекстные селекторы)<br>
+    <strong>tag > tag</strong> - селекторы дочерние (Child, только первые)<br>
+    <strong>tag + tag</strong> - Adjacent sibling combinator. Одного уровня<br>
+    селекторы сестринские, или соседние (расположенные на одном уровне)<br>
+    селекторы псевдоклассов (селекторы состояния)<br>
+    селекторы псевдоэлементов    <br>
+    </p>
+<br>
+<div tabindex="1">
+    <h2>
+        <strong>Descendant combinator</strong>. Селекторы потомков. потомок Только <strong>1-го уровня!</strong>
+    </h2>
+    <p>
+        The " " (space) combinator selects nodes that are descendants of the first element.<br>
+        Syntax:     A B <br>
+        Example:    div span <br> 
+        will match all span elements that are inside a Div element.
+    <div>
+        Lorem ipsum dolor sit amet.<span>Lorem, ipsum dolor.</span> Lorem ipsum dolor sit amet.<br>
+        <span>Lorem, ipsum.</span> Lorem, ipsum dolor.
+    </div>
+    </p>
+</div>
+<br>
+<div tabindex="2">
+    <h2>
+       <strong>Child combinator</strong>. Дочерние Селекторы
+    </h2>
+    <p>
+        The > combinator selects nodes that are direct children of the first element.<BR>
+        <strong>Syntax: A > B</strong> <br>
+        <strong>Example: ul > li</strong><br>
+        will match all <strong>li</strong> elements that are nested directly inside a <strong>ul</strong> element.
+    </p>   
+    <div>
+    <ul>ul tag
+        <li>li 1</li>
+        <li>li 2</li>
+        <li>li 3</li>
+    </ul>
+    </div>
+</div>
+<br>
+<div tabindex="3">
+    <h2><strong>Adjacent siblings (tag + tag)</strong> - один уровень вложенности</h2>
+    <div>
+        <p><strong>h2+div </strong>Данный параграф вложен в первый div-блок после h2. Блок должен идти не сразу после указанного</p>
+    </div>
+    <div>
+        <p>Данный параграф во втором div-блоке</p>
+    </div>
+</div>
+<div tabindex="4">
+    <h3>tag ~ tag. Для стилизации всех cоседних элементов 1го уровня</h3>
+    <div>
+        <p>Первый параграф. Lorem, ipsum dolor.</p>
+    </div>
+    <div>
+        <p>Второй параграф. Lorem ipsum dolor sit.</p>
+    </div>
+    <div>
+        <p>Третий параграф.  Lorem ipsum dolor sit amet..</p>
+    </div>
+</div>
+</main>
+<br>
+
+<!-- футер, информация об авторе, дату публикации, копирайт, блок ссылок -->
+<footer>
+    <p>
+        <a href="/telegram">Telegram</a> |
+        <a href="/about">О сайте</a> |
+        <a href="/donation">Donations</a>
+    </p>
+    <!-- Адрес, способ связи с автором -->
+    <address>
+        <small>Контакты для связи <a href="mailto:bulgarpepper@gmail.com">A. Bulgarsky</a></small>
+    </address>
+</footer>
+
+
+
+</body>
+</html>

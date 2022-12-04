@@ -1,0 +1,96 @@
+<!-- ШАБЛОН HTML-->
+<!-- Сообщение браузеру как стоит обработь страницу -->
+<!DOCTYPE html>
+
+<html lang="en">
+<!-- контейнер Head (не отображается для пользователя), заголовок, метаданные, стили и другие важные данные -->    
+<head>
+<!-- метаданные страницы -->
+    <meta charset="UTF-8"> <!-- кодировка -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"> <!-- совместимость с браузерами -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="keywords" content="html, css, selectors, pseudo-class, pseudo-element"> <!-- ключевые слова для поисковых систем -->
+    <meta name="description" content="Псевдо-классы и Псевдо-элементы HTML5"> <!-- описание страницы для вывода в поисковую систему -->
+<!--заголовок страницы в браузере -->    
+    <title>Pseudo HTML5</title> <!--заголовок страницы в браузере -->
+<!-- 
+    Приоритет:
+1) inline-cтили встроенные в тег
+2) <STYLE>
+3) подключенный файл css
+-->
+<!-- стили встроенные в html -->    
+    <style>        
+    </style>
+
+<!-- подключение */*.css -->   
+     <link rel="stylesheet" type="text/css"  href="css/03.css"/>
+ </head>
+<!-- отображаемое тело страницы -->
+<body> 
+<!-- блок для шапки страницы, логотип, идея, меню -->
+<header> 
+    <h1>Pseudo-class & pseudo-element</h1>
+</header>
+
+<!-- блок для основной информации -->
+<main role="main"> 
+    <h2>Псевдо классы</h2>
+    <div tabindex="1">
+        <div>
+            <ul>
+                <li><strong>root {атрибут:значение}</strong> - позволяет выбрать корневой элемент веб-страницы(почти всегда html)</li>
+                <li><strong>focus {атрибут:значение}</strong> - фокус при табуляции, нажатии мыши на поле ввода</li>
+                <li><strong>empty {}</strong> выбирает gecnst элементы, которые не имеют вложенных элементов</li>
+                <li><strong>not</strong> -  позволяет исключить элементы из списка элементов, к которым применяется стиль</li>
+                <li><strong>lang -</strong>  стилизует элементы на основании значения атрибута lang</li>
+            </ul>
+            <ul>A: псевдоклассы для ссылок
+                <li><strong>link {атрибуты}</strong> - обычное состояние, без перехода</li>
+                <li><strong>visited {атрибуты}</strong> - состояние "посещен"</li>
+                <li><strong>active {атрибуты}</strong> - состояние непосредственно при переходе</li>
+                <li><strong>hover {атрибуты}</strong> - состояние при наведении указателя мыши</li>
+            </ul>
+            Псевдоклассы для тега ссылки а </h2>
+        </div>
+    </div>
+    <div>
+        <a href="index.html">Учебник по CSS3</a>
+        <input type="text" />
+    </div>
+    <div tabindex="2">
+        <h2>Селектор :not</h2>
+        <div>
+            <a>Первая ссылка</a><br/>
+            <a class="blueLink">Вторая ссылка</a><br/>
+            <a>Третья ссылка</a></div>
+    </div>
+    <div tabindex="3">
+        <h2>Псевдокласс :lang</h2>
+        <div>
+            <form>
+                <p lang="ru-RU">Я изучаю CSS3</p>
+                <p lang="en-US">I study CSS3</p>
+                <p lang="de-DE">Ich lerne CSS3</p>
+            </form>
+        </div>
+    </div>
+
+</main>
+
+
+<!-- футер, информация об авторе, дату публикации, копирайт, блок ссылок -->
+<footer>
+    <p>
+        <a href="/telegram">Telegram</a> |
+        <a href="/about">О сайте</a> |
+        <a href="/donation">Donations</a>
+    </p>
+<!-- Адрес, способ связи с автором -->
+    <address>
+        <small>Контакты для связи <a href="mailto:bulgarpepper@gmail.com">A. Bulgarsky</a></small>
+    </address>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,162 @@
+<!-- ШАБЛОН HTML-->
+<!-- Сообщение браузеру как стоит обработь страницу -->
+<!DOCTYPE html>
+
+<html lang="en">
+<!-- контейнер Head (не отображается для пользователя), заголовок, метаданные, стили и другие важные данные -->    
+<head>
+<!-- метаданные страницы -->
+    <meta charset="UTF-8"> <!-- кодировка -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"> <!-- совместимость с браузерами -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="keywords" content="css,css3,pseudoclass, form"> <!-- ключевые слова для поисковых систем -->
+    <meta name="description" content="CSS3 псевдоклассы формы"> <!-- описание страницы для вывода в поисковую систему -->
+<!--заголовок страницы в браузере -->    
+    <title>CSS Forms</title> <!--заголовок страницы в браузере -->
+<!-- 
+    Приоритет:
+1) inline-cтили встроенные в тег
+2) <STYLE>
+3) подключенный файл css
+-->
+<!-- стили встроенные в html -->    
+    <style>        
+    </style>
+
+<!-- подключение */*.css -->   
+     <link rel="stylesheet" type="text/css"  href="css/05.css"/>
+ </head>
+<!-- отображаемое тело страницы -->
+<body> 
+<!-- блок для шапки страницы, логотип, идея, меню -->
+<header tabindex="1"> 
+    <h1>Псевдоклассы форм</h1>
+    <div>
+        <p>
+        <span><strong>:enabled:</strong></span> выбирает элемент, если он доступен для выбора (то есть у него не установлен атрибут <strong>disabled</strong>)<br>   
+        <span><strong>:disabled:</strong></span> выбирает элемент, если он не доступен для выбора (то есть у него установлен атрибут <strong>disabled</strong>)<br>
+        <span><strong>:checked:</strong></span> выбирает элемент, если у него установлен атрибут <strong>checked</strong> (для флажков и радиокнопок)<br>
+        <span><strong>:default:</strong></span> выбирает элементы по умолчанию<br>
+        <span><strong>:valid:</strong></span> выбирает элемент, если его значение проходит валидацию HTML5<br>
+        <span><strong>:invalid:</strong></span> выбирает элемент, если его значение не проходит валидацию<br>
+        <span><strong>:in-range:</strong></span> выбирает элемент, если его значение находится в определенном диапазоне (для элементов типа ползунка)<br>
+        <span><strong>:out-of-range:</strong></span> выбирает элемент, если его значение не находится в определенном диапазоне<br>
+        <span><strong>:required:</strong></span> выбирает элемент, если у него установлен атрибут <strong>required</strong><br>
+        <span><strong>:optional:</strong></span> выбирает элемент, если у него не установлен атрибут <strong></strong>required</strong><br>
+        </p>
+    </div>
+</header>
+
+<!-- блок для основной информации -->
+<main role="main"> 
+    <div tabindex="2">
+        <h2>Псевдоклассы enabled и disabled</h2>
+        <p>Выбирают элементы форм в зависимости от того, установлен ли у них атрибут <strong>Disabled</strong></p>
+        <div>
+           <p>
+            <input type="text" value="Enabled"> Поле 1
+           </p> 
+           <p>
+            <input type="text" disabled value="Disabled"> Поле 2 - атрибутом Disabled
+           </p>
+        </div>
+    </div>
+    <div tabindex="3">
+        <h2>Псевдокласс checked</h2>
+        <p>Псевдокласс checked стилизует элементы формы, у которых установлен атрибут <strong>checked</strong>
+        <br>Селектор :checked + span позволяет выбрать элемент, соседний с отмеченным элементом формы.
+        </p>
+        <div>
+            <h3>Выберите изучаемую технологию:</h3>
+            <p><input type="checkbox" name="html5"><span>HTML 5</span></p>
+            <p><input type="checkbox" checked name="css3"><span>CSS 3</span></p>
+            <p><input type="checkbox" name="JavaScript"><span>JavaScript</span></p>
+            <p><input type="checkbox" name="dotnet"><span>. NET</span></p>
+        </div>
+        <div>
+            <h3>Выберите ваш gender:</h3>
+            <input type="radio" checked name="gender" value="man"><span>MAN</span>
+            <input type="radio" name="gender" value="woman"><span>WOMAN</span>
+            <input type="radio" name="gender" value="unknown"><span>unknown</span>
+        </div>
+    </div>
+    <div tabindex="4">
+        <h2>Псевдокласс default</h2>
+        <p>Псевдокласс <span>:default</span> выбирает стандартный элемент на форме.
+        <br>Как правило, в роли такого элемента выступает кнопка отправки:</p>
+        <div>
+            <form>
+            <p>
+            <input type="text" name="login" placeholder="login">
+            <input type="submit" value="Войти">
+            </p>
+            </form>
+        </div>
+    </div>
+    <div tabindex=5>
+        <h2>Псевдоклассы valid и invalid</h2>
+        <p>Псевдоклассы <span>:valid</span> и <span>:invalid</span> стилизуют элементы формы в зависимости от того, проходят они валидацию или нет.</p>
+        <div>
+            <form>
+                <p><input type="text" name="login" placeholder="Введите логин" required></p>
+                <p><input type="password" name="password" placeholder="Введите пароль"  required> </p>
+                <input type="submit">
+            </form>
+        </div>
+    </div>
+    <div tabindex="6">
+        <H2>Псевдоклассы in-range и out-of-range</H2>
+        <p>Псевдоклассы <strong>:in-range и :out-of-range</strong> стилизуют элементы формы в зависимости от того, попадает ли их значение в определенный диапазон.
+        <br>Это в первую очередь относится к элементу <span><strong>input type="number"</strong></span>
+        <br>атрибуты min и max задают диапазон, в которое должно попадать вводимое в поле значение
+        </p>
+        <div>
+            <form>
+                <p>
+                    <label for="age">Ваш возраст:</label>
+                    <input type="number" min="18" max="99" value="10" id="age">
+                </p>
+                <input type="submit">
+            </form>
+        </div>
+
+    </div>
+    <div tabindex="7">
+        <h2>Псевдоклассы required и optional</h2>
+        <p>Псевдоклассы <span>:required и :optional</span> стилизуют элемент в зависимости от того, установлен ли у него атрибут <span><strong>required</strong></span>
+        <br> <strong>! ! !  не работаю вместе с input:valid / input:invalid </strong>
+        </p>
+        <div>
+            <form>
+            <p>
+                <label for="userLogin">Login</label>
+                <input type="text" name="userLogin" id="userLogin" required placeholder="Enter login">
+            </p>
+            <p>
+                <label for="userPassword">password</label>
+                <input type="password" name="userPassword" id="userPassword" required placeholder="Enter Password"> 
+            </p>
+            <p>
+                <label for="userName">Name</label>
+                <input type="text" name="userName" id="userName" placeholder="Enter Your Name">
+            </p>
+            <input type="submit" value="Registarion">
+            </form>
+        </div>
+    </div>
+</main>
+<!-- футер, информация об авторе, дату публикации, копирайт, блок ссылок -->
+<footer tabindex="8">
+    <p>
+        <a href="/telegram">Telegram</a> |
+        <a href="/about">О сайте</a> |
+        <a href="/donation">Donations</a>
+    </p>
+<!-- Адрес, способ связи с автором -->
+    <address>
+        <small>Контакты для связи <a href="mailto:bulgarpepper@gmail.com">A. Bulgarsky</a></small>
+    </address>
+</footer>
+
+</body>
+</html>

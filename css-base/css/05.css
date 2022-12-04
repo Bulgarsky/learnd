@@ -1,0 +1,51 @@
+h1 {
+background-color: antiquewhite;
+color: blueviolet;
+font-style: italic;
+}
+
+h2 {
+    color: blueviolet;
+}
+span {
+    background-color: antiquewhite;
+    color: blueviolet;
+}
+
+:enabled {
+    border: 2px blueviolet solid;
+    color: blueviolet;
+}
+:disabled {
+    color: red;
+}
+:checked + span {
+    color: red;
+    font-weight: bold;
+}
+
+:default {
+    border: 3px solid blue;
+}
+input:invalid {
+    border: 2px solid red;
+
+}
+input:valid {
+    border: 2px solid green;
+    color: green;
+}
+
+:in-range {
+    border: 2px green solid;
+}
+:out-of-range {
+    border: 2px red solid;
+}
+
+:optional {
+    border: 4px solid blue;
+}
+:required {
+    border: 3px solid yellow;
+}

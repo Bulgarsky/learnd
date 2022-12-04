@@ -1,0 +1,15 @@
+a:link    {color:blue; text-decoration:none}
+a:visited {color:pink; text-decoration:none}
+a:hover   {color:red; text-decoration:underline}
+a:active  {color:yellow; text-decoration:underline}
+input:hover {border:5px solid red;}
+
+div {
+    margin-top: 20px;
+}
+
+a:not(.blueLink) { color: rgb(55, 0, 255); }
+
+:lang(ru) {
+    color: rgb(238, 11, 219);
+}

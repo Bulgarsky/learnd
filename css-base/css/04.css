@@ -1,0 +1,40 @@
+a:first-child {
+    color: red;
+}
+
+a:last-child {
+    background-color: yellowgreen;
+}
+
+p:only-child {
+background-color: aquamarine;
+font-size: 25px;
+}
+
+span:only-of-type {
+    color:red;
+}
+
+p:only-of-type {
+    font-size: 25px;
+}
+
+div:only-of-type {
+    font-style: italic;
+    font-size: small;
+    background-color: bisque;
+}
+
+tr:nth-child(odd) {
+    background-color: #bbb;
+}
+tr:nth-of-type(2) {
+    color: blue;
+}
+
+td:nth-child(even) {
+    background-color: #fff;
+}
+td:nth-last-child(2){
+    font-style: oblique;
+}
