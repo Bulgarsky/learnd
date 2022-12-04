@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .rootShow{
+            list-style-type: none;
+            display: inline-block;
+            position: relative;
+            background-color: #ccc;
+            padding:  10px 15px;
+        }
+        .dropDown{
+            display: none;
+            list-style: none;
+            /* list-style-type: none; */
+            position: absolute;
+            top: 37px;
+            left: 0;
+            background-color: #716ccc;
+            padding: 10px;
+            box-sizing: border-box;
+            width: 100%;
+        }
+        .rootShow:hover .dropDown{
+            display:block;
+        }
+        .dropDown > li {
+            cursor: pointer;
+            list-style: none;
+        }
+        .dropDown > li:hover {
+            color: #fff;
+        }
+        .dropDown > li > a:hover {
+            color: #fff;
+            text-decoration: underline;
+        }
+        .dropDown > li > a:active {
+            color: #fff;
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <ul class="rootShow">
+        <li>TV Show Cartoons
+            <ul class="dropDown">
+                <li><a href="https://futurama.fox-fan.tv/" target="_blank">Futurama</a></li>
+                <li>Rick and Morty</li>
+                <li>Brickleberry</li>
+                <li>DisEnchantment</li>
+            </ul>
+        </li>
+    </ul>
+</body>
+</html>

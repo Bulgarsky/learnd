@@ -22,16 +22,36 @@
     <img src="https://i.playground.ru/p/PXnGB2rHazkzNsuP_fwXHw.jpeg" width="200" alt="картинка из хартстоун. матч">
     </br>
 <div>
-    <h2>Вставка локальной картинки</h2>
-    <img src="imgs/WoodenPlace.jpg" width="200" alt="Деревянная беседка" style="float:left; margin-right:20px;">
-    <p>
-        Деревянная беседка 
-    </p>
-</div>    
+        <h2>Вставка локальной картинки</h2>
+        <img src="imgs/WoodenPlace.jpg" width="200" alt="Деревянная беседка" style="float:left; margin-right:20px;">
+        <p>
+            Деревянная беседка 
+        </p>
+</div>
+</br>    
 <div>
     <img src="imgs/georgian-cat.png" alt="Anton's cat from Georgia" width ="150" style="float:left; margin-right:10px;" />
     <H2>Картинка в блоке див, и текст</H2>
     <p>Это кот Антона. Антон жил не тужил в городе герое Москва, пока его не клюнул петух в очко. <br> Но как трусливая собака сбежал в Грузию. <br> Сидит там загнивает, пьет вино каждый день, кушает хачапури, устроился на 10 работ, и пытается свести концы с концами.<br> Мечтает о работе в Google, жить в Соединительных Штатах Америки</p>
 </div>
+
+<br>
+<div>
+    <h2>HTML5 Picture tag</h2>
+    <picture>
+        <source type="image/webp" srcset="img/name.webp">
+        <source type="image/jpeg" srcset="img/name.jpeg">
+        <img scr="img/name.jpg" alt="#">
+    </picture>
+</div>
+
+<div>
+    <picture class="pic">
+        <source media="(max-width: 500px)" srcset="img/name.png">
+        <source media="(max-width: 900px)" srcset="img/name.png">
+        <img scr="img/name.png" alt="##">
+    </picture>
+</div>
+
 </body>
 </html>

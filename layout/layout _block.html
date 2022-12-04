@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- метаданные страницы -->
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="#">
+    <meta name="keywords" content="block, layout, block layout, блочная верстка"> 
+    <!--заголовок страницы в браузере -->  
+    <title>block layout</title>
+ <!-- стили встроенные в html -->   
+<!-- 
+Приоритет:
+1) inline-cтили встроенные в тег
+2) <STYLE></STYLE>
+3) подключенный файл css 
+-->
+ <style>
+ div{
+    margin: 10px;
+    border: 1px solid brown;
+    font-size: 20px;
+    height: 80px;
+ }      
+
+ #header {
+    background-color: #ccc;
+ }
+
+#leftSidebar {
+    background-color: #bbb;
+    float: left;
+    width: 150px;
+ }
+
+#rightSidebar{
+    background-color: #bbb;
+    float: right;
+    width: 150px;
+ }
+
+#main{
+    background-color: #aaa;
+    height: 200px;
+    margin-left: 170px;
+    margin-right: 170px;
+ }
+
+#footer{
+    background-color: #ccc
+ }
+</style>
+<!-- подключение */*.css -->   
+ <link rel="stylesheet" type="text/css"  href="css/#.css"/>
+</head>
+<!-- отображаемое тело страницы -->
+<body>
+    <div id="header">Шапка</div>
+    <div id="leftSidebar">Левый сайдбар</div>
+    <div id="rightSidebar">Правый сайдбар</div>
+    <div id="main">Основное одержание</div>
+    <div id="footer">Футер</div>
+</body>
+
+</html>

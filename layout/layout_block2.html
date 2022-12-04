@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- метаданные страницы -->
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="#">
+    <meta name="keywords" content="block, layout, block layout, блочная верстка"> 
+    <!--заголовок страницы в браузере -->  
+    <title>block layout</title>
+ <!-- стили встроенные в html -->   
+<!-- 
+Приоритет:
+1) inline-cтили встроенные в тег
+2) <STYLE></STYLE>
+3) подключенный файл css 
+-->
+ <style>
+body, h2, p{
+    margin: 0px;
+    padding: 0px;
+}
+
+body {
+    margin-top: 0px;
+    font-size: 18px;
+}
+
+#header{ 
+    background-color: #eee;
+    border-bottom: 2px solid #ccc;
+    height: 80px;
+    }
+
+#wrapper{
+    background-color: #ddd;
+}
+#menu{
+    background-color: #ddd;
+    float:left;
+    width: 150px;
+}
+#main{
+    background-color: #F7F7F7;
+    border-left: 2px solid #ccc;
+    margin-left: 150px;
+    padding: 10px;
+ }
+
+#footer{
+    border-top: 2px SOLID #ccc;
+    background-color: #aaa
+ }
+</style>
+<!-- подключение */*.css -->   
+ <link rel="stylesheet" type="text/css"  href="css/#.css"/>
+</head>
+<!-- отображаемое тело страницы -->
+<body>
+    <div id="header">
+        <h2>
+            MyFirstSite.www
+        </h2>
+    </div>
+    <div id="wrapper">
+        <div id="menu">
+            <a href="#">Главная</a></br>
+            <a href="#">Блог</a></br>
+            <a href="#">Новости</a></br>
+            <a href="#">Контакты</a></br>
+            <a href="#">О сайте</a></br>
+        </div>
+        <div id="main">
+            <h2>Основное одержание</h2>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi corrupti a sint doloribus. Aperiam quis modi quo eaque quidem perferendis, quod odio. Ipsam debitis minima tenetur suscipit ab inventore, libero dolorum facere laudantium id nihil nesciunt a amet maiores excepturi iusto cupiditate at dolore hic repudiandae officiis ex fugiat? Neque, beatae. Ab nesciunt illo voluptatibus magnam neque eos quo consequuntur quas quibusdam culpa, sunt ducimus accusantium consectetur ipsa aut ut mollitia autem voluptas sapiente dolor exercitationem! Perferendis laboriosam architecto officia, provident iusto laborum ullam labore tempore odit, temporibus eum impedit excepturi ad veritatis hic fugit dolorum officiis porro? Sint, adipisci.
+        </div>
+    </div>
+    
+    <div id="footer">
+        <p>
+            <a href="/telegram">Telegram</a> |
+            <a href="/about">О сайте</a> |
+            <a href="/donation">Donations</a>
+        </p>
+    <!-- Адрес, способ связи с автором -->
+        <address>
+            <small>Контакты для связи <a href="mailto:bulgarpepper@gmail.com">A. Bulgarsky</a></small>
+        </address>
+    </div>
+</body>
+
+</html>
