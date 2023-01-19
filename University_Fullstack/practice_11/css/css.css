@@ -1,0 +1,123 @@
+body {
+  font-size: 14pt; 
+  font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+h1 {
+  font-size: 18pt;
+  font-weight: bold;
+  padding-left: 15px;
+} 
+h2 {
+  font-size: 16pt;
+  font-weight: bold;
+  padding-left: 15px;
+}
+h4  {
+  font-size: 12pt;
+  font-weight: bold;
+  padding-left: 15px;
+}
+.header_links {
+    display: flex;
+    width: auto;
+    gap: 10px;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    border-style:groove;
+    border-color: royalblue;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    margin: 20px;
+    background-color: bisque;
+  }
+
+  .header_links div {
+    padding: 5px;
+    ;
+  }
+
+  .header_links div:last-child {
+    display: outside;
+    position: fixed;
+    border-style: groove;
+    border-color: royalblue;
+    width: 100px;
+    background-color: bisque;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    bottom: 40px;
+    right: 20px;
+    width: auto;
+    height: auto;
+    }
+    
+  .header_links a {
+    color:blue;
+    text-decoration: none;
+  }
+  
+  .header_links a:hover {
+    text-decoration: none;
+    background-color: black;
+    color: white;
+    font-size: 16pt;
+    font-weight: 400;
+    border-color: black;
+    border-style: groove;
+    border-top-left-radius: 7px;
+    border-top-right-radius: 7px;
+    border-bottom-left-radius: 7px;
+    border-bottom-right-radius: 7px;
+  }
+
+  .main_columns {
+    display: flex;
+    width: auto;
+    gap: 1px;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: left;
+    align-content: flex-start;
+    border-style:groove;
+    border-color: royalblue;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+    margin: 20px;
+    padding: 5px;
+  }
+
+  .main_columns div {
+    background-color: bisque;
+    width: 100%;
+    height: 100%;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    margin-bottom: 5px;
+    justify-items: center;
+    ;
+  }
+  .main_columns div:last-child {
+    height: 800px;
+    background-color: whitesmoke;
+    ;
+  }
+
+  .main_columns p {
+    margin: 15px;
+  }
+
+.img_row {
+  width: 15%;
+  padding: 5px;
+  border-radius: 15px;
+}

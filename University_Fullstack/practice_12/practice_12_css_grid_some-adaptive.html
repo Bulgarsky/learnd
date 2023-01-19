@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Практическая работа 12. CSS Grid">
+    <meta name="author" content="Кулуев А. Р.">
+<!-- 
+    <link rel="stylesheet" type="text/css" href="grid.css">
+    -->
+<style>
+ body {
+    display: grid;
+    grid-template-columns: 1fr 65% 1.5fr;
+    grid-template-rows: 150px 150px 800px 100px;
+    gap: 10px;
+    grid-template-areas:   
+        "nav header header"
+        "nav article aside"
+        "nav main aside"
+        "nav footer aside"
+        ;
+    font-size: 25pt;
+    color: white;    
+    ;
+    }
+
+header, article, nav, main, aside, footer {
+    background-color: royalblue;
+    padding: 10px;
+    ;
+    }
+
+.header {   grid-area: header;      } 
+.article {  grid-area: article;     }
+.nav {  grid-area: nav;     }   
+.main {    grid-area: main;    }
+.aside {    grid-area: aside;    }
+.footer {    grid-area: footer;   }
+
+@media all and (max-width: 580px) {
+    body {
+        grid-template-areas: 
+            "header"
+            "article"
+            "nav"
+            "main"
+            "aside"
+            "footer"
+            ;
+        grid-template-columns: 100%;
+        grid-template-rows: repeat(6, minmax(150px, auto));
+        ;
+        }
+    }      
+</style>
+    <title>CSS Grid Adaptive</title>
+</head>
+<body>
+    <header class="header">header h1 site name. Text Lorem, ipsum dolor.</header>
+    <article class="article">article. NEWS. Lorem ipsum dolor, sit amet consectetur adipisicing elit. Expedita, aperiam.</article>
+    <nav class="nav">nav #link1 #link2 #link3 #link4</nav>
+    <main class="main">Lorem ipsum dolor sit amet consectetur adipisicing elit. Officia vel expedita eum rerum? Ipsa accusantium ipsum libero voluptate atque est, odio distinctio tempora! Facere unde eaque pariatur sapiente assumenda nemo maxime nisi dignissimos quod quidem illum mollitia blanditiis laborum quis ab possimus molestiae aliquid cum aliquam vero aspernatur, nulla atque.</main>
+    <aside class="aside">aside. addvise. Lorem ipsum dolor sit amet. <img scr="img/img.png" alt="Aside image not found"> </aside>
+    <footer class="footer">footer email author adress</footer>
+</body>
+</html>
