@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!--meta data -->
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="CSS. Практическая работа 10. Создание форм">
+    <meta name="author" content="Кулуев А.Р.">
+    <!-- css-connection -->
+    <link rel="stylesheet" type="text/css"  href="#"/>
+    <!--Fonts connection-->
+   
+    <!--page title-->
+
+    <!--styles-->
+    <style>
+        .div_column {
+        float:left;
+        width: 33.33%;
+        padding: 1%;
+        }
+
+    </style>
+    <title>Form</title>
+
+</head>
+<header>
+    <h1>Регистрационная форма. Форма аккаунта</h1>
+</header>
+<main>
+    <div>
+        <form method="get" action="http://localhost:8080/login.php">
+        <div class="div_column">
+            <fieldset>
+            <legend>Личная информация</legend>
+                <input type="text" name="userFirstName" placeholder="Фамилия">
+                <hr>
+                <input type="text" name="userSecondName" placeholder="Имя">
+                <hr>
+                <input type="text" name="userMiddleName" placeholder="Отчество">
+                <hr>
+                <input type="email" name="userEmail" id="userEmail" placeholder="Электронная почта">
+                <hr>
+                <input type="password" name="userPassword" id="userPassword" placeholder="Пароль">
+                <hr>
+                Дата рождения <input type="date" name="userBirthday" id="userBirthday">
+                <hr>
+                    <fieldset>
+                        <legend>Ваш пол</legend>
+                            <input type="radio" checked name="gender">Мужской
+                            <input type="radio"  name="gender">Женский
+                    </fieldset>
+            </fieldset>
+        </div>
+
+        <div class="div_column">
+            <fieldset>
+            <legend>Регистрационные данные</legend>
+                <label for="edu_plan">Программа обучения</label>
+                
+                   <input type="text" list="edu_plan_list">
+                   <datalist id="edu_plan_list">
+                        <option value="Группа: FSJ">Fullstack разработка на Java</option>
+                        <option value="Группа: FSP" >Fullstack разработка Python</option>
+                        <option value="Группа: FSJS">Fullstack разработка на JavaScript</option>
+                   </datalist>
+                
+                <hr>
+                <label for="edu_form">Форма обучения</label>
+                    <select name="edu_form" id="edu_form" required>
+                        <option value="edu_form_fulltime" disabled>Очная</option>
+                        <option value="edu_form_extramural">Зачная</option>
+                        <option value="edu_form_parttime">Очно-заочная</option>
+                    </select>
+                <hr>
+                Аватар: 
+                    <input type="file" name="userAvatar" accept="image/*" >
+                <hr>
+                <label for="userInfo">Дополнительная информация о Вас: </label>
+                <br>
+                <textarea name="userAddInfo"
+                        id="userAssInfo"
+                        cols="40"
+                        rows="7"
+                        placeholder="Не более 500 символов"
+                        maxlength="500">
+                </textarea>
+            </legend>
+            </fieldset>
+            <form>
+                <input type="checkbox" name="consent_data" style="margin: 2%;">Даю согласие на обработку персональных данных
+            </form>
+        </div>
+        <div style="clear: both; width: 70.66%;">
+            <hr>
+            <button type="submit">Готово</button>
+        </div>
+        </form>
+    </div>
+</main>
+
+<footer>
+
+</footer>
+<body>
+
+</body>

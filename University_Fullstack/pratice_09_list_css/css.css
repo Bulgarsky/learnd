@@ -1,0 +1,31 @@
+body {
+    font-size: 7pt;
+    ;
+}
+
+.list_wrapper {
+    width: 33.33%;
+    ;
+}
+
+ul {
+    list-style-type:disc;
+    ;
+}
+
+li {
+    border: 1px solid royalblue;
+    border-radius: 10px;
+    padding-left: 5px;
+    margin-top: 2px;
+    color: royalblue;
+    ;
+}
+
+li:hover {
+    color: green;
+    border-left: 4px solid green;
+    ;
+}
+
+

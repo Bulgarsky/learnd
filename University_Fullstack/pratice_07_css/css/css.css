@@ -1,0 +1,53 @@
+body {
+    font-family: arial;
+    ;
+}
+
+p {
+    font-size: 12pt;
+    color:darkgrey;
+    ;
+}
+
+h1 {
+    font-size: 18pt;
+    font-weight: bold;
+    ;
+}
+
+h2 {
+    font-size: 16pt;
+}
+
+h3 {
+    font-size: 14pt;
+    font-style: italic;
+    ;
+}
+
+.img_avatars {
+    width: 80px;
+    border-radius: 50px;
+    margin-left: 2%;
+    margin-right: 2%;
+    align: justify;
+
+    ;
+}
+
+div {
+    padding: 10px;
+    ;
+}
+.div_column {
+    width: 44%;
+    float: left;
+    ;
+}
+
+hr {
+    border: 0px none;
+    border-top: dashed 2px orangered;
+    height: 2px;
+    ;
+}

@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="descrpition" content="Практика 6. Простой лендинг одностраничного сайта">
+    <meta name="author" content="Кулуев А. Р.">
+    <title>Landing</title>
+    <style>
+        header {
+            margin-left: 5%;
+            margin-right: 5%;
+            margin-top: 1%;
+            margin-bottom: 0%;
+            ;
+        }
+
+        main {
+            font-family: Arial;
+            font-size: 12px;
+            margin-left: 10%;
+            margin-right: 0%;
+            margin-top: 5%;
+            margin-bottom: 5%;
+        }
+        h1 {font-size: 14px;}
+        h2 {font-size: 12px;}
+    </style>
+</head>
+
+<body>
+<header tabindex="1">
+    <a href="https://profidigital.gosuslugi.ru/" target="_blank">
+        <img src="img/headermap.jpg" usemap="#headermap" width="100%"  >
+    </a>
+
+    <!-- Мап - для экрана с разрешением 2К.
+    Нужно доделывать для других размеров экрана
+    Запрашивать размер экрана и выводить нужное
+    <map id="headermap" name="headermap">
+        <area shape="rect" 
+            alt="Цифровые профессии" 
+            title="Цифровые профессии" 
+            coords="118,116,448,342" 
+            href="https://profidigital.gosuslugi.ru/" target="_blank" />
+    
+        <area shape="rect" 
+            alt="цп2023" 
+            title="цп2023" 
+            coords="1116,354,1454,402" 
+            href="https://profidigital.gosuslugi.ru/" target="_blank" />    
+        
+        <area shape="rect" 
+            alt="Госуслуги" 
+            title="Госуслуги" 
+            coords="942,352,1064,400" 
+            href="https://www.gosuslugi.ru/"  target="_blank" />
+    
+        <area shape="rect" 
+            alt="Минцифры" 
+            title="Минцифры" 
+            coords="1342,40,1572,94" 
+            href="https://digital.gov.ru/" target="_blank" />
+        
+        <area shape="rect" 
+            alt="Цифровая экономика" 
+            title="" coords="1614,36,1802,96" 
+            href="https://data-economy.ru/" target="_blank" />
+        
+        <area shape="rect" 
+            alt="Университет 2035" title="Университет 2035" 
+            coords="1826,38,2006,98" 
+            href="https://www.2035.university/" target="_black" />
+    </map>
+-->
+</header>
+
+<main>
+<div style="width: 480px; float:left"> 
+    <h1>Общие сведения</h1> 
+        <div style="background-color: #f6f9ff; float: left; width: 200px; height: 200px; padding: 20px; float:left">
+            <div style="background-color: #2f5bc3; width: 100px; border-radius: 50px;">
+                <img src="img/logo_load.png" width="100px"> 
+            </div>
+            <h2>Объем программы</h2>
+            <p><b>500</b> ак. часов (из них 288 в взаимодействии с преподавателем, 144 занятия)</p>
+        </div>
+    
+        <div style="background-color: #f3faf7; float: left; width: 200px; height: 200px; padding: 20px; float:left" >
+            <div style="background-color: #39cc9a; width: 100px; border-radius: 50px;">
+                <img src="img/logo_currency.png" width="100px"> 
+            </div>
+            <h2>Стоимость обучения</h2>
+            <p><span style="color: #39cc9a">150 000</span> рублей оплата возможна в 4 этапа</p>
+        </div>
+        
+        <div style="background-color: #fef9f3; float: left; width: 200px; height: 200px; padding: 20px; clear:both; float:left" >
+            <div style="background-color: #fd9f47; width: 100px; border-radius: 50px;">
+                <img src="img/logo_smile.png" width="100px"> 
+            </div>
+            <h2>Категория слушателей</h2>
+            <p>к освоению программы допускаются лица, имеющие или получающие среднее профессиональное и (или) высшее образование.</p>
+        </div>
+
+        <div style="background-color: #f9eeee; float: left; width: 200px; height: 200px; padding: 20px; float:left" >
+            <div style="background-color: #b8000f; width: 100px; border-radius: 50px;">
+                <img src="img/logo_phone.png" width="100px"> 
+            </div>
+            <h2>Контакты</h2>
+            <p>
+                +7 (499) 317-91-92 <br>
+                +7 (903) 105-90-17  <br>
+                uc@mpt.ru  <br>
+                Университет 2035  <br>
+            </p>
+        </div> *Header adapted. Main not. width 1200px
+</div>
+<div style="float: left; ">
+            <h1>Университет 2035</h1>
+                <div style="width: 440px; height: 200px; background-color: #f3f5fa; padding: 20px">
+                    <p>
+                    По данной программе можно учиться со скидкой граждане из льготных категорий начиная с 16 лет и до выхода на пенсию по старости. Нужно иметь высшее или среднее профессиональное образование либо быть студентом.
+                    Чтобы узнать размер скидки и особенности её предоставления, нажмите на подходящую категорию:
+                    <ul style="list-style-type:disc">
+                        <li>Инвалиды</li>
+                        <li>Безработные</li>
+                        <li>С детьми до 3 лет</li>
+                        <li>Студенты</li>
+                        <li>Бюджетники</li>
+                        <li>С низким доходом</li>
+                    </ul>
+                     Более подробную информацию можно получить на Госуслугах.
+                 </p>
+                 
+                </div>
+</div>
+
+</main>
+<!--
+<footer tabindex="#" style="clear: both;">
+    <p>
+        <a href="/telegram">Telegram</a> |
+        <a href="/about">О сайте</a> |
+        <a href="/donation">Donations</a>
+    </p>
+
+    <address>
+        <small>Контакты для связи <a href="mailto:bulgarpepper@gmail.com">A. Bulgarsky</a></small>
+    </address>
+</footer>
+-->
+</body>
+</html>

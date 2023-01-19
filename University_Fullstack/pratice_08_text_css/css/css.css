@@ -1,0 +1,81 @@
+@font-face {
+    font-family: "Unutterable";
+    src: url("../fonts/Unutterable.ttf") format("truetype");
+    ;
+}
+
+body {
+    font-size: 10pt;
+}
+
+h1 {
+    font-family: "Unutterable";
+    font-size: 14pt;
+    text-decoration:underline overline green;
+    ;
+}
+
+h2 {
+    font-family: "Unutterable";
+    font-size: 12pt ;
+}
+
+hr {
+    border: 0px none;
+    border-top: groove green;
+    height: 2px;
+    ;
+}
+
+#spaccing {
+    font-size: 10pt;
+    word-spacing: 10px;
+}
+
+div {
+    width: 44%;
+    float: left;
+}
+span {
+    font-family: "Unutterable";
+    font-style: italic;
+    color: green;
+    font-weight:700;
+    ;
+}
+
+#span_underline {
+    text-decoration: underline;
+    color:black;
+    ;
+}
+
+#span_underline_green {
+    text-decoration: underline green;
+    color:green;
+    ;
+}
+
+#span_overline {
+    text-decoration: overline royalblue;
+    color: royalblue;
+    ;
+}
+
+#span_line-thought {
+    text-decoration:line-through blueviolet;
+    color:blueviolet;
+    ;
+}
+
+#span_underline_overline {
+    text-decoration: overline underline lightseagreen;
+    color:lightseagreen;
+    ;
+}
+
+#span_underline_overline_dotted_red {
+    text-decoration: underline overline dotted lightcoral;
+    color: lightcoral;
+    ;
+}
