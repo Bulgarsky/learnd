@@ -1,0 +1,6 @@
+SHORT shortA 128 conversation to BYTE = -128
+SHORT shortAA 127 conversation to BYTE = 127
+FLOAT floatA = 3.14 conversation to DOUBLE = 3.140000104904175
+LONG longA 12345678 conversion to INT = 12345678
+INT intA 12345678 conversion to DOUBLE = 1.2345678E7
+DOUBLE doubleB = 1.65 conversation to INT with math.round = 2
