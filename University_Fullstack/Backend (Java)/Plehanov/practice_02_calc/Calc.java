@@ -8,10 +8,10 @@ public class Calc {
         System.out.println("Arithmetic operation (use comma) ");
         System.out.print("enter A = ");
         Scanner in = new Scanner(System.in);
-        double a = in.nextDouble();
-        //Scanner in = new Scanner(System.in);
+        var a = in.nextDouble();
+        
         System.out.print("enter B = ");
-        double b = in.nextDouble();
+        var b = in.nextDouble();
 
         System.out.printf("entered data: A = %.2f; B = %.2f \n", a, b);
         

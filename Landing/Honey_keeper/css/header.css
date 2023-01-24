@@ -1,0 +1,89 @@
+/* подключение шрифтов*/
+@font-face {
+    font-family: "AutourOne-regular";
+    src: url("../fonts/AutourOne-Regular.ttf") format("truetype");
+    ;
+}
+
+@font-face {
+    font-family: "Aclonica-Regular";
+    src: url("../fonts/Aclonica-Regular.ttf") format("truetype");
+    ;
+}
+
+@font-face {
+    font-family: "Roboto-Regular";
+    src: url("../fonts/Roboto-Regular.ttf") format("truetype");
+    ;
+
+}
+body {
+    font-family: "AutourOne-regular";
+    color: rgb(255, 255, 255);
+    background-color: #FFE7B9;
+    margin-left: auto;
+    margin-right: auto
+}
+
+/* Header Полупрозрачный фон (картинка) */
+header {
+    background-image: url("../img/header-bg.png");
+	background-repeat: no-repeat;
+    width: 1440px;
+    height: 1024px;
+    z-index: -1;
+}
+header::before {
+    /* Прозрачность */
+    content: "";
+    display: block;
+    position: fixed;
+    overflow: auto;
+    width: 1440px;
+    height: 1024px;
+    
+    background-color: rgba(255, 255, 255, 0.6);
+}
+
+/* Header navigation links  */
+.header-nav {
+
+    display: flex;
+    flex-direction: row;
+    position: absolute;
+    justify-content: flex-end;
+    align-items: center;
+}
+.header-nav i {
+    color: #230700;
+}
+/* HEADER LINKS */
+.header-links {}
+
+
+/* Header Banner */
+.header-banner { }
+.header-banner-text {
+    position:absolute;
+    width: 1156px;
+    height: 363px;
+    background-color: rgba(106, 21, 1, 0.75);
+}
+
+.header-banner-text p {
+    width: 1156px;
+    height: 363px;
+    font-family: "Roboto-regular";
+    font-size: 22pt;
+    color:#FFC451;
+    text-align: center;   
+}
+h1 {
+    font-family: "Aclonica-Regular";
+    font-size: 55pt;
+    font-weight: 400;
+    text-align: center;  
+    color: #FFC451;
+}
+
+
