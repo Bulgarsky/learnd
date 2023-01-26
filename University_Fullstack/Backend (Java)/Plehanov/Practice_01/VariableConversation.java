@@ -5,7 +5,7 @@ public class VariableConversation {
         //to byte
         short shortA = 128;
         byte shortB = (byte)shortA;
-        //128 >> -128, изза нуля видимо
+        //128 >> -128, изза нуля 
         System.out.println("SHORT shortA " + shortA + " conversation to BYTE = " + shortB);
         //shortA-1
         short shortAA = 127;
@@ -20,10 +20,10 @@ public class VariableConversation {
 
         // conversion CHAR [1symbol, UTF-16, 0 .. 65535, 2 bytes]
         // to INT [-2147483648 .. 2147483647, 4 bytes]
-        //char charA = "z";
-        //int charB = (int)charA;
+        char charA = 'z';
+        int charB = (int)charA;
         // ERROR incompatible types
-        // System.out.println("CHAR charA ="+ charA + "conversation to INT = " + charB);
+        System.out.println("CHAR charA ="+ charA + "conversation to INT = " + charB);
 
         // conversion LONG [–9 223 372 036 854 775 808 .. 9 223 372 036 854 775 807, 8 bytes]
         // to INT [-2147483648 .. 2147483647, 4 bytes]
