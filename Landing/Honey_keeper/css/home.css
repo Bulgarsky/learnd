@@ -6,7 +6,7 @@
     
     border-style: dotted;
     width: auto;
-    height: auto;
+    height: 1024px;
   }
   
   .home-l-side { grid-area: 1 / 1 / 7 / 2; }
