@@ -19,12 +19,12 @@ public class Calc {
         System.out.printf("sum(%.2f + %.2f) = %.2f \n", a, b, result);
         
         result = a - b;
-        System.out.printf("difference (%.2f + %.2f)  = %.2f \n", a, b, result);
+        System.out.printf("difference (%.2f - %.2f)  = %.2f \n", a, b, result);
 
         result = a * b;
         System.out.printf("multiplication (%.2f * %.2f) = %.2f \n", a, b, result);
 
         result = a / b;
-        System.out.printf("division (%.2f / %.2f) = %.2f \n", a, b, result);
+        System.out.printf("division (%.2f / %.2f) = %.3f \n", a, b, result);
     }
 }

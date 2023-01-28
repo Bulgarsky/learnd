@@ -1,9 +1,12 @@
-.home {  display: grid;
-    grid-template-columns: minmax(60px, 100px) 0.5fr 0.5fr minmax(10px, 60px) 0.5fr 0.5fr minmax(60px, 100px);
+.home { 
+    display: grid;
+    grid-template-columns: minmax(10px, 60px) 0.5fr 0.5fr minmax(10px, 60px) 0.5fr 0.5fr minmax(60px, 100px);
     grid-template-rows: 0.5fr 2fr 0.25fr 0.25fr 0.25fr 0.5fr;
-    gap: 10px 0px;
+    gap: 5px 0px;
     
-    background-color: antiquewhite;
+    border-style: dotted;
+    width: auto;
+    height: auto;
   }
   
   .home-l-side { grid-area: 1 / 1 / 7 / 2; }
@@ -12,46 +15,42 @@
   
   .home-header {
     grid-area: 1 / 2 / 2 / 7; 
-    height: 150px;
+    height: 50px;
+    background-color: #666;
 }
   
   .home-footer {
     grid-area: 6 / 2 / 7 / 7;
-    height: 150px;
+    height: 50px;
+    background-color: #666;
 }
   
   .home-main {
     align-self: center;
     grid-area: 2 / 2 / 3 / 7;
-   
     height: 400px;
-    
-  }
+    background-color: black;
+    border-bottom-right-radius: 50px ;
+    }
   
   .home-buttots-place {
-    grid-area: 3 / 2 / 6 / 7;
-      
+    grid-area: 3 / 2 / 6 / 7;   
     height: 300px;
 }
   
   .home-button-buy {
-    justify-self: stretch;
-    align-self: center;
     grid-area: 4 / 5 / 5 / 6;
-    width: 100%;
+    width: 280px;
     height: 75px;
-}
+    border-style: dotted;
+    }
   
    .home-button-news {
-    align-self: center;
+    justify-items: baseline;
     grid-area: 4 / 3 / 5 / 4;
-    
-    width: 200px;
+    width: 280px;
     height: 75px;
-    width: 100%;
-    height: 75px;
-    align-items: center;
-    justify-content: center;
+    border-style: dotted;
   }
 
   .home-bottom-arrow {
@@ -59,7 +58,7 @@
     grid-area: 6 / 4 / 7 / 5;
     background-color: tomato;
     border-radius: 50% 20% / 10% 40%;
-    width: 150%;
+    width: 100px;
     height: 75px;
     align-items: center;
     justify-content: center;
@@ -67,11 +66,10 @@
   .home-bottom-arrow div {
     text-align: center; 
     margin: 5px 20px 0px 20px;
-    
-    animation:arrow-position 2s infinite ease-in-out;
+    animation:arrow-position 1s infinite ease-in-out;
   }
 @keyframes arrow-position {
-    0% {font-size: 12pt;}
+    0% {font-size: 22pt;}
     100% {font-size: 28pt;}
 }
   .button {
@@ -86,11 +84,12 @@
 
   .home-banner {
     background-color:rgba(255, 99, 71, 0.603);
-    width:  90%;
-    height: 85%;
-    margin: 25px 25px 25px 25px; 
+    width:  910px;
+    height: 363px;
+    margin: 0px;
+    border-style: dotted;
     border-bottom-right-radius: 50px;
-    padding: 10px;
+    padding: 35px;
   }
   .btn {
     border: none;
@@ -99,8 +98,9 @@
     background-color: tomato;
     cursor: pointer;
     border-radius: 5px;
-    width: 200px;
-    height: 55px;
+    width: 280px;
+    height: 48px;
+    font-style: italic
     ;
   }
 

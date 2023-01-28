@@ -1,27 +1,25 @@
+body { background-color: #FFE7B9;}
+
 section {
-  width: 94%;
-  height: 1000px;
-  padding-top: 25px;
-  padding-left: 50px;
-  padding-right: 50px;
-  padding-bottom: 25px;
-  background-color: #FFE7B9;;
+  width: auto;
+  height: 1024px;
+  margin: 5px;
+  padding: 5px;
+  ;
 }
 
 #section_head {
-  background-color:#FFE7B9;
   width: 98%;
   height: 98%;
   border-style: dotted;
 }
 #section_main {
-  background-color: #FFE7B9;
   width: 98%;
   height: 98%;
   border-style: dotted;
 }
+
 #section_feed {
-  background-color: #FFE7B9;
   width: 98%;
   height: 98%;
   border-style:dotted;
@@ -30,43 +28,66 @@ section {
 .header_links {
   display: flex;
   width: auto;
+  justify-content: center;
+  text-align: center;
   gap: 10px;
   flex-direction: row;
   justify-content: flex-end;
   align-items: center;
-  border-style:groove;
-  border-color: royalblue;
-  border-top-left-radius: 10px;
-  border-top-right-radius: 10px;
-  border-bottom-left-radius: 10px;
-  border-bottom-right-radius: 10px;
   margin: 20px;
-}
-
-.header_links div {
-  color:#230700;
-  width: 100px;
-  height: 25px;
-  border-style: dotted;
-  border-color: #FF9245;
   border-radius: 10px;
   padding-top: 7px;
-  text-align: center;
-  text-decoration: solid;
-  background-color: #FF9245;
-  ;
-  
+  color:#230700;
 }
+
+.header_links div:nth-child(3) {
+  width: 150px;
+  height: 35px;
+  border-radius: 10px;
+  padding-top: 7px;
+  background-color: #FF9245;
+  ; 
+}
+.header_links div:nth-child(4) {
+  width: 150px;
+  height: 35px;
+  border-radius: 10px;
+  padding-top: 7px;
+  background-color: #FF9245;
+  ; 
+}
+
+.header_links div:nth-child(5) {
+  width: 150px;
+  height: 35px;
+  border-radius: 10px;
+  padding-top: 7px;
+  background-color: #FF9245;
+  ; 
+}
+.header_links div:nth-child(7) {
+  width: 150px;
+  height: 35px;
+  border-radius: 10px;
+  padding-top: 7px;
+  background-color: #FF9245;
+  ; 
+}
+
 .header_links div:first-child {
   width:30px;
   height: 28px;
-  border-style: dotted;
-  border-color: blue;
   border-radius: 10px;
   text-align: center;
   padding: 7px;
 }
+.push {
+  margin-left: auto;
+}
+.name {
 
+  background-color: none;
+}
   
 .header_links div a {
   color:#230700;
