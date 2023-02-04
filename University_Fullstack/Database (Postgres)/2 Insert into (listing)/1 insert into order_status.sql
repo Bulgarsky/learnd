@@ -1,3 +1,4 @@
+--заполнение таблицы Статус заказа
 INSERT INTO order_status(name)
 VALUES
 	('открыт'), 
