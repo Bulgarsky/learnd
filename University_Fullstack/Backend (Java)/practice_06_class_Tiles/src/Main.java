@@ -4,6 +4,14 @@ public class Main {
         Tiles Noname = new Tiles(); // исп. стандартного конструктора
         Noname.getInfo(); //метод - получить инфу
 
+        Tiles Russia = new Tiles();
+        Russia.brand = "Russia Omsk";
+        Russia.sizeHeight = 200;
+        Russia.sizeWidth = 200;
+        Russia.price = 100;
+
+        Russia.getInfo();
+
         Tiles India = new Tiles(200); // передача 1 арг
         India.getInfo();
 
