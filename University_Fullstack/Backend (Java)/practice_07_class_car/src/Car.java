@@ -23,7 +23,7 @@ public class Car {
                " Марка : "+ getModel()+
                ", цвет: "+ getColor() +
                ", гос.номер: "+ getNumber() +
-               ", пробег: " + getMileage() +
+               ", пробег: " + getMileage() + " км" +
                ", топливo: " +getFuel() +
                ", мест: " + getPassenger()
                 );
@@ -54,13 +54,25 @@ public class Car {
         this.number = number;
     }
     public void setMileage(int mileage) {
-        this.mileage = mileage;
+        if (mileage<=999999999) {
+            this.mileage = mileage / 1000;
+        }
+        else {
+            throw  new RuntimeException("Введенные данные ("+getMileage() +
+                    " в метрах) превышают ограничения одометра пробега (999 999 км)");
+        }
+
     }
     public void setFuel(int fuel) {
         this.fuel = fuel;
     }
     public void setPassenger(int passenger) {
-        this.passenger = passenger;
+        if (passenger<=8) {
+            this.passenger = passenger;
+        }
+        else {
+            throw  new RuntimeException(getModel()+" количество посадочных мест не должно превышать 8 ");
+        }
     }
 
     //ГЕТТЕРЫ (методы для получения значений переменных)
