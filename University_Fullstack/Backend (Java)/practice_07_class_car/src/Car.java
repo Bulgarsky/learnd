@@ -9,6 +9,7 @@ public class Car {
 
     {
         //инизиализатор
+        //System.out.println("");
         model = "не заполнено";
         color = "не заполнено";
         number = "не заполнено";
@@ -24,15 +25,14 @@ public class Car {
                ", цвет: "+ getColor() +
                ", гос.номер: "+ getNumber() +
                ", пробег: " + getMileage() + " км" +
-               ", топливo: " +getFuel() +
-               ", мест: " + getPassenger()
+               ", осталось: " +getFuel() + " литров бензина" +
+               ", пассажирских мест: " + getPassenger()
                 );
     }
 
     //КОНСТРУКТОРЫ
     Car() {
         //без аргументов
-
     }
     public Car(String model, String color, String number, int mileage, int fuel, int passenger) {
         setModel(model);
@@ -54,6 +54,7 @@ public class Car {
         this.number = number;
     }
     public void setMileage(int mileage) {
+        //проверка
         if (mileage<=999999999) {
             this.mileage = mileage / 1000;
         }
@@ -61,12 +62,12 @@ public class Car {
             throw  new RuntimeException("Введенные данные ("+getMileage() +
                     " в метрах) превышают ограничения одометра пробега (999 999 км)");
         }
-
     }
     public void setFuel(int fuel) {
         this.fuel = fuel;
     }
     public void setPassenger(int passenger) {
+        //проверка
         if (passenger<=8) {
             this.passenger = passenger;
         }
