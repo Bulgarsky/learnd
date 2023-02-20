@@ -23,7 +23,7 @@ public class Main {
         System.out.println("у авто "+Skoda.getModel()+" теперь пробег = "+Skoda.getMileage()+" км, осталось топлива: "+Skoda.getFuel()+" литров и посадочных мест осталось: "+Skoda.getPassenger());
 
         System.out.println("Пробег у "+Volkswagen.getModel()+" = "+Volkswagen.getMileage()+" км");
-        System.out.println("Количество посадочных мест у "+Lada.getModel()+" = "+Lada.getNumber());
+        System.out.println("Количество посадочных мест у "+Lada.getModel()+" = "+Lada.getPassenger());
         System.out.println("у авто "+Mersedes.getModel()+" цвет - "+Mersedes.getColor());
         System.out.println("у авто "+Volkswagen.getModel()+" гос.номер - "+Volkswagen.getNumber());
     }
