@@ -35,12 +35,20 @@ public class Car {
         //без аргументов
     }
     public Car(String model, String color, String number, int mileage, int fuel, int passenger) {
+        this.model = model;
+        this.color = color;
+        this.number = number;
+        this.mileage = mileage;
+        this.fuel = fuel;
+        this.passenger = passenger;
+        /*
         setModel(model);
         setColor(color);
         setNumber(number);
         setMileage(mileage);
         setFuel(fuel);
         setPassenger(passenger);
+        */
     }
 
     //СЕТТЕРЫ (методы для изменения и уставнки переменных, без прямого дсотупа к основным полям)
