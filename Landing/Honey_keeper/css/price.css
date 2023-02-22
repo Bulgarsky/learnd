@@ -1,36 +1,38 @@
 /* секция прайс */
 .section_price {
-    display: grid; 
+    display: grid;
     grid-auto-columns: 1fr; 
-    grid-template-columns: 0.25fr 1fr 1fr 1fr 1fr 0.25fr; 
-    grid-template-rows: minmax(30px, 60px) 0.5fr 1fr 1fr minmax(30px, 60px); 
-    gap: 10px 10px; 
-    grid-template-areas: 
-      "price-l-side price-header price-header price-header price-header price-r-side"
-      "price-l-side price-text price-text price-text price-text price-r-side"
-      "price-l-side price-area price-area price-area price-area price-r-side"
-      "price-l-side price-area price-area price-area price-area price-r-side"
-      "price-l-side price-footer price-footer price-footer price-footer price-r-side"; 
+    grid-template-columns: 0.25fr 0.5fr 1fr 1fr 0.5fr 0.25fr;
+    grid-template-rows: minmax(30px, 60px) 0.5fr 1fr 1fr minmax(30px, 60px);
+    gap: 10px 10px;
+    grid-auto-flow: row;
   }
-  .price-area { grid-area: price-area; padding: 50px}
-  .price-text { grid-area: price-text; }
-  .price-header { grid-area: price-header; }
-  .price-footer { grid-area: price-footer; }
-  .price-l-side { grid-area: price-l-side; }
-  .price-r-side { grid-area: price-r-side; }
+  
+    .price-area { grid-area: 3 / 2 / 5 / 6; }
+    .price-text { grid-area: 2 / 2 / 3 / 6; }
+    .price-header { grid-area: 1 / 2 / 2 / 6; }
+    .price-footer { grid-area: 5 / 2 / 6 / 6; }
+    .price-l-side { grid-area: 1 / 1 / 6 / 2; }
+    .price-r-side { grid-area: 1 / 6 / 6 / 7; }
+    .price-area-l { grid-area: 3 / 2 / 5 / 3; }
+    .price-area-r { grid-area: 3 / 5 / 5 / 6; }
+    .price-area-table { grid-area: 3 / 3 / 5 / 5; }
+  
 
-  .price-area, .price-footer, .price-header, .price-l-side, .price-r-side, .price-text, .section_price {
+  .price-area, .price-footer, .price-header, .price-l-side, .price-r-side, .price-text, .section_price, .price-area-table, .price-area-l, .price-area-r {
     border-style: dotted;
     border-color: #6A1501;
     ;
   }
 
 /* Стили таблицы (price-table) */
+caption {font-size: 18pt;}
+.price_tr_firstline {font-weight:900 ;}
 table.price-table{
     
     text-decoration: none;
     border-collapse:collapse;
-    width: 1000px;
+    width: 98%;
     text-align:start;
     margin: 10px;
 }
@@ -56,7 +58,7 @@ table.price-table td,table.rice-table th{
     padding:10px 5px;
     line-height:18px;
     vertical-align: middle;
-    border: 1px solid #0f65a3;
+    border: 2px solid #0f65a3;
 }
 
 
