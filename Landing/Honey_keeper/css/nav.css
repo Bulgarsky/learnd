@@ -1,5 +1,7 @@
 body { background-color: #FFE7B9;}
 
+
+/*  СЕКЦИИ */
 section {
   width: auto;
   height: auto;
@@ -24,7 +26,24 @@ section {
   height: 98%;
   border-style:dotted;
 }
+#section_gallery {
+  width: 98%;
+  height: 98%;
+  border-style:dotted;
+}
+#section_price {
+  width: 98%;
+  height: 98%;
+  border-style:dotted;
+}
 
+#section_feedback {
+  width: 98%;
+  height: 98%;
+  border-style:dotted;
+}
+
+/* ХЕАДЕР МЕНЮ */
 .header_links {
   display: flex;
   width: auto;
@@ -39,7 +58,24 @@ section {
   padding-top: 7px;
   color:#230700;
 }
+.header_links div:first-child {
+  width:30px;
+  height: 28px;
+  border-radius: 10px;
+  text-align: center;
+  padding: 7px;
+}
+.push {
+  margin-left: auto;
+}
 
+.header_links .header_btn {
+  width: 150px;
+  height: 35px;
+  border-radius: 10px;
+  padding-top: 7px;
+  background-color: #FF9245;
+}
 .header_links div:nth-child(3) {
   width: 150px;
   height: 35px;
@@ -73,19 +109,24 @@ section {
   background-color: #FF9245;
   ; 
 }
-
-.header_links div:first-child {
-  width:30px;
-  height: 28px;
+.header_links div:nth-child(9) {
+  width: 150px;
+  height: 35px;
   border-radius: 10px;
-  text-align: center;
-  padding: 7px;
+  padding-top: 7px;
+  background-color: #FF9245;
+  ; 
 }
-.push {
-  margin-left: auto;
+.header_links div:nth-child(11) {
+  width: 150px;
+  height: 35px;
+  border-radius: 10px;
+  padding-top: 7px;
+  background-color: #FF9245;
+  ; 
 }
-.name {
 
+.name {
   background-color: none;
 }
   
@@ -114,4 +155,7 @@ section {
   top: 87.5%; bottom: 0; left: 87.5%; right: 0;
 }
 
-
+/* НОВОСТИ */
+/* ГАЛЛЕРЕЯ */
+/* ПРАЙС ЛИСТ */
+/* ОБРАТНАЯ СВЯЗЬ */

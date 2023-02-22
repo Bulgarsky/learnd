@@ -1,0 +1,64 @@
+/* секция прайс */
+.section_price {
+    display: grid; 
+    grid-auto-columns: 1fr; 
+    grid-template-columns: 0.25fr 1fr 1fr 1fr 1fr 0.25fr; 
+    grid-template-rows: minmax(30px, 60px) 0.5fr 1fr 1fr minmax(30px, 60px); 
+    gap: 10px 10px; 
+    grid-template-areas: 
+      "price-l-side price-header price-header price-header price-header price-r-side"
+      "price-l-side price-text price-text price-text price-text price-r-side"
+      "price-l-side price-area price-area price-area price-area price-r-side"
+      "price-l-side price-area price-area price-area price-area price-r-side"
+      "price-l-side price-footer price-footer price-footer price-footer price-r-side"; 
+  }
+  .price-area { grid-area: price-area; padding: 50px}
+  .price-text { grid-area: price-text; }
+  .price-header { grid-area: price-header; }
+  .price-footer { grid-area: price-footer; }
+  .price-l-side { grid-area: price-l-side; }
+  .price-r-side { grid-area: price-r-side; }
+
+  .price-area, .price-footer, .price-header, .price-l-side, .price-r-side, .price-text, .section_price {
+    border-style: dotted;
+    border-color: #6A1501;
+    ;
+  }
+
+/* Стили таблицы (price-table) */
+table.price-table{
+    
+    text-decoration: none;
+    border-collapse:collapse;
+    width: 1000px;
+    text-align:start;
+    margin: 10px;
+}
+
+table.price-table th{
+    font-weight:normal;
+    font-size:18px; 
+    color:#ffffff;
+    background-color:#0f65a3;
+}
+
+table.price-table td{
+    font-size:18px;
+    color:#354251;
+    width: 50px;
+}
+table.price-table td:first-child {
+    width: 10px;
+}
+
+table.price-table td,table.rice-table th{
+    white-space:pre-wrap;
+    padding:10px 5px;
+    line-height:18px;
+    vertical-align: middle;
+    border: 1px solid #0f65a3;
+}
+
+
+table.price-table tr:hover{background-color:#f9fafb}
+table.price-table tr:hover td{color:#354251;cursor:default;}
