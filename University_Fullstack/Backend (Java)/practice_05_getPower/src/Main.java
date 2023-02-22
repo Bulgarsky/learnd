@@ -16,9 +16,15 @@ public class Main {
     }
 
     static void getPower(int numb, int power) {
-        long result = numb;
-        for (int i=1; i < power; i++) {
-            result = result * numb;
+        long result;
+        if (power  == 0) {
+            result = 1;
+        }
+        else {
+            result = numb;
+            for (int i = 1; i < power; i++) {
+                result *= numb;
+            }
         }
         System.out.println("RU: Результат = "+ result);
     }
