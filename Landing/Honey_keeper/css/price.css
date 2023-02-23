@@ -9,7 +9,14 @@
   }
   
     .price-area { grid-area: 3 / 2 / 5 / 6; }
-    .price-text { grid-area: 2 / 2 / 3 / 6; }
+    .price-banner { 
+      grid-area: 2 / 2 / 3 / 6; 
+      align-self: center;
+      height: 200px;
+      background-color:tomato;
+      border-bottom-right-radius: 50px;
+      padding: 25px;
+    }
     .price-header { grid-area: 1 / 2 / 2 / 6; }
     .price-footer { grid-area: 5 / 2 / 6 / 6; }
     .price-l-side { grid-area: 1 / 1 / 6 / 2; }
@@ -18,18 +25,17 @@
     .price-area-r { grid-area: 3 / 5 / 5 / 6; }
     .price-area-table { grid-area: 3 / 3 / 5 / 5; }
   
-
+    /*
   .price-area, .price-footer, .price-header, .price-l-side, .price-r-side, .price-text, .section_price, .price-area-table, .price-area-l, .price-area-r {
     border-style: dotted;
     border-color: #6A1501;
     ;
   }
-
+  */
 /* Стили таблицы (price-table) */
 caption {font-size: 18pt;}
 .price_tr_firstline {font-weight:900 ;}
 table.price-table{
-    
     text-decoration: none;
     border-collapse:collapse;
     width: 98%;
@@ -58,9 +64,9 @@ table.price-table td,table.rice-table th{
     padding:10px 5px;
     line-height:18px;
     vertical-align: middle;
-    border: 2px solid #0f65a3;
+    border: 2px solid tomato;
 }
 
 
-table.price-table tr:hover{background-color:#f9fafb}
+table.price-table tr:hover{background-color:#FF9245}
 table.price-table tr:hover td{color:#354251;cursor:default;}
