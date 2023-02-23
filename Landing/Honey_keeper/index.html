@@ -25,6 +25,7 @@
     <link rel="stylesheet" href="css/news.css">
     <link rel="stylesheet" href="css/price.css">
     <link rel="stylesheet" href="css/gallery.css">
+    <link rel="stylesheet" href="css/feedback.css">
 </head>
 <body>
    
@@ -80,9 +81,9 @@
                 <div class="news-header">
                     <h1>Our products</h1>
                 </div>
-                <div class="l-side">l-side</div>
-                <div class="r-side">r-side</div>
-                <div class="news-footer">news-footer</div>
+                <div class="l-side"></div>
+                <div class="r-side"></div>
+                <div class="news-footer"></div>
         
                 <div class="news1 news-row">
                     <div class="news-text news-text-left">
@@ -122,7 +123,7 @@
         
                 <div class="news4 news-row">
                     <div>
-                        <img  class="news-img" src="img/news4.png" alt="баночки мёда">    
+                        <img  class="news-img" src="img/news4.jpg" alt="баночки мёда">    
                     </div>
                     <div class="news-text news-text-right">
                         <h2>Organic products</h2>
@@ -136,21 +137,33 @@
     </section>
 
     <section class="section_gallery" id="section_gallery">
-        <div class="gallery-header">gallery header</div>
-        <div class="gallery-footer">gallery</div>
-        <div class="gallery-l-side">l</div>
-        <div class="gallery-r-side">r</div>
+        <div class="gallery-header"></div>
+        <div class="gallery-footer"></div>
+        <div class="gallery-l-side"></div>
+        <div class="gallery-r-side"></div>
         <div class="gallery-banner">
             <h2>Season 2023 !</h2>
             <P>Season 2023 started. Work in progress</P>
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque, sapiente numquam? A ipsum magnam quas ducimus nostrum, repellendus voluptatibus modi?</p>
         </div>
-        <div class="gallery-1"></div>
-        <div class="gallery-2"></div>
-        <div class="gallery-3"></div>
-        <div class="gallery-4"></div>
-        <div class="gallery-5"></div>
-        <div class="gallery-6"></div>
+        <div class="gallery-1">
+            <img src="img/1.jpg" width="100%" alt="">
+        </div>
+        <div class="gallery-2">
+            <img src="img/2.jpg" width="100%" alt="">
+        </div>
+        <div class="gallery-3">
+            <img src="img/3.jpg" width="100%" alt="">
+        </div>
+        <div class="gallery-4">
+            <video src="video/place.mp4" width="100%" controls muted ></video>
+        </div>
+        <div class="gallery-5">
+            <video src="video/place.mp4" width="100%" controls muted ></video>
+        </div>
+        <div class="gallery-6">
+            <video src="video/place.mp4" width="100%" controls muted ></video>
+        </div>
     </section>
    
 
@@ -166,12 +179,12 @@
             </div>
             
         </div>
-        <div class="price-header">prise header</div>
-        <div class="price-footer">prise footer</div>
-        <div class="price-l-side">left side area</div>
-        <div class="price-r-side">right side area</div>
-        <div class="price-area-l">prise leftside container</div>
-        <div class="price-area-r">price rightside container</div>
+        <div class="price-header"></div>
+        <div class="price-footer"></div>
+        <div class="price-l-side"></div>
+        <div class="price-r-side"></div>
+        <div class="price-area-l"></div>
+        <div class="price-area-r"></div>
         <div class="price-area-table">
             <table class="price-table">
                 <tbody>
@@ -294,10 +307,112 @@
       </div>
     </section>
 
-    <section id="section_feedback">
-        <div>
-            FEEDBACK Block
+    <section class="section_feedback" id="section_feedback">
+        <div class="feedback-l"></div>
+        <div class="feedback-r"></div>
+        <div class="feedback-header">h</div>
+        <div class="feedback-footer">f</div>
+        <div class="feedback-banner">
+            <h2>Feedback us!</h2>
+            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nam, ut?</p>    
+            <h3>mail us!</h3>
+            <p>Lorem ipsum dolor sit amet.</p>
         </div>
+        <div class="feedback-mail">
+            <form>
+                <fieldset>
+                <legend>Feedback us</legend>
+                <div class="form-group">
+                  <label  for="textinput">Your name</label>  
+                  <div>
+                  <input id="textinput" name="textinput" type="text" placeholder="Name" required="">
+    
+                  </div>
+                </div>
+                
+                <div>
+                  <label for="textinput">e-mail</label>  
+                  <div>
+                  <input id="textinput" name="textinput" type="text" placeholder="mail@mail.com" required="">
+                    
+                  </div>
+                </div>
+                
+              
+                <div>
+                  <label for="textinput">phone number</label>  
+                  <div>
+                  <input id="textinput" name="textinput" type="text" placeholder="+7-999-999-99-99">
+                    
+                  </div>
+                </div>
+                
+                <div>
+                  <label for="radios">want to place an order?</label>
+                  <div> 
+                    <label for="radios-0">
+                      <input type="radio" name="radios" id="radios-0" value="1" checked="checked">
+                      No
+                    </label> 
+                    <label for="radios-1">
+                      <input type="radio" name="radios" id="radios-1" value="2">
+                      Yes
+                    </label>
+                  </div>
+                </div>
+                
+                
+                <div>
+                  <label for="checkboxes">Callback</label>
+                  <div>
+                    <label for="checkboxes-0">
+                      <input type="checkbox" name="checkboxes" id="checkboxes-0" value="1">
+                      Yes
+                    </label>
+                    <label for="checkboxes-1">
+                      <input type="checkbox" name="checkboxes" id="checkboxes-1" value="2">
+                      No
+                    </label>
+                  </div>
+                </div>
+                
+                <div>
+                  <label for="textarea">Message</label>
+                  <div>                     
+                    <textarea id="textarea" name="textarea" cols="50" rows="10">Enter your message</textarea>
+                  </div>
+                </div>
+                </fieldset>
+            </form>
+                
+        </div>
+
+        <div class="feedback-address">
+            <h3>Our address!</h3>
+            <ul>
+                <li>Russia</li>
+                <li>Bashkortostan republic</li>
+                <li>Alekseevka village</li>
+                <li>Shkolnaya street</li>
+                <li>13</li>
+            </ul>
+            <p></p>
+            <ul>
+                <li>Russia</li>
+                <li>TMZ city</li>
+                <li>Raimanovo village</li>
+                <li>Central street</li>
+                <li>18</li>
+            </ul>
+        </div>
+
+
+        <div class="feedback-map">
+           <img src="img/map.png" alt="address map">
+        </div>
+        <div class="feedback-social">
+            social
+         </div>
     </section>
 </body> 
 </html>

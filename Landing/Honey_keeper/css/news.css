@@ -22,13 +22,7 @@
   .news4 { grid-area: news4; }
   
   body{background-color: #FFE7B9;;}
-  /*
-  .news-header, .l-side, .r-side, .news-footer, .news1, .news2, .news3, .news4  {
-      border-style: dotted;
-      border-color: #6A1501;
-      ;
-  }
-  */
+  
  
   .news1, .news2, .news3, .news4 {
       height: 160px;
