@@ -41,7 +41,7 @@
         // 2)Дано двухзначное число. Определить какая цифра больше, сравнить , вывести сообщение
         let userNumber2, secondPosition, firstPosition;
         userNumber2 = prompt("2) Сравнение цифр. Введите двух значное число:");
-        secondPosition = userNumber2 % 10
+        secondPosition = userNumber2 % 10;
         firstPosition = (userNumber2 - (userNumber2 % 10)) / 10;
         
         if (firstPosition > secondPosition) {
@@ -59,7 +59,7 @@
         r = prompt("3) Введите R");
         t = prompt("Введите T");
         if (0<t<=1) {
-            result = Math.pow(r, 2) - Math.sin(Math.pow(r, 2)+t)
+            result = Math.pow(r, 2) - Math.sin(Math.pow(r, 2)+t);
             }
         else if (t<=0) {
             result = 0;
