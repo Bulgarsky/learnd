@@ -46,8 +46,38 @@
     width: 95%;
 }
 .feedback-social { grid-area: feedback-social; }
-  
+  /*
   .feedback-header, .feedback-banner, .feedback-footer, .feedback-l, .feedback-r, .feedback-address, .feedback-address-img, .feedback-mail, .feedback-map, .feedback-social {
     border-style: dotted;
     border-color: black;
   }
+*/
+.feedback-social {
+  display: grid; 
+  grid-template-columns: 0.5fr 1fr 1fr 1fr 0.5fr; 
+  grid-template-rows: 0.5fr 1fr 0.5fr 1fr 0.5fr; 
+  gap: 0px 0px; 
+  grid-template-areas: 
+    ". . . . ."
+    ". social-1 social-2 social-3 ."
+    ". . . . ."
+    ". social-4 social-5 social-6 ."
+    ". . . . ."; 
+  grid-area: feedback-social; 
+}
+.social-1 { grid-area: social-1; }
+.social-2 { grid-area: social-2; }
+.social-3 { grid-area: social-3; }
+.social-4 { grid-area: social-4; }
+.social-5 { grid-area: social-5; }
+.social-6 { grid-area: social-6; }
+
+.social-1, .social-2, .social-3, .social-4, .social-5, .social-6 {
+  margin: 5px;
+}
+.feedback-social img:hover {
+  border-radius: 50px;
+  -moz-box-shadow:0 0 10px #000;
+  -webkit-box-shadow:0 0 10px #000;
+  box-shadow:0 0 10px #000;
+}

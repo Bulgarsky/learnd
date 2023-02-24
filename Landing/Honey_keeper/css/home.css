@@ -3,7 +3,7 @@
     grid-template-columns: 7% 0.5fr 0.5fr minmax(10px, 60px) 0.5fr 0.5fr 7%;
     grid-template-rows: 0.5fr 2fr 0.25fr 0.25fr 0.25fr 0.25fr;
     gap: 5px 0px;
-    border-style: dotted;
+    /*border-style: dotted;*/
     width: auto;
     height: 1024px;
   }
@@ -97,10 +97,17 @@
 
   .active, .btn:hover {
     background-color:  tomato;
-    color: white;
+    -moz-box-shadow:0 0 10px #000;
+  -webkit-box-shadow:0 0 10px #000;
+  box-shadow:0 0 10px #000;
+  color: white;
   }
   .btn a {
     text-decoration: none;
+    color:black;
   }
-
+  .btn a:hover {
+    text-decoration: none;
+    color: white;;
+  }
   

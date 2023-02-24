@@ -22,7 +22,7 @@
     height: 180px;
     background-color:#FF9245;
     border-bottom-right-radius: 50px;
-    padding: 20px;   
+    padding: 25px;   
     margin-bottom: 25px;
 }
   .gallery-1 { grid-area: gallery-1; }
