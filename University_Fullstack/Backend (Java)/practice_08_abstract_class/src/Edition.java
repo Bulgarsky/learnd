@@ -1,12 +1,12 @@
 public abstract class Edition {
     private String title;
     private String author;
-
     //constructor
     public Edition(String title, String author) {
         this.title = title;
         this.author = author;
     }
+
     //getters
     public String getTitle() {
         return title;
@@ -14,6 +14,7 @@ public abstract class Edition {
     public String getAuthor() {
         return author;
     }
+
     //setters
     public void setTitle(String title) {
         this.title = title;
@@ -24,7 +25,7 @@ public abstract class Edition {
 
     //methods
     public abstract void printInfo();
-
+}
     //class extends
     //Book
     class Book extends Edition {
@@ -113,7 +114,7 @@ public abstract class Edition {
         //methods
         @Override
         public void printInfo() {
-            System.out.println("Название: "+getTitle()+", Автор :"+getAuthor()+", Аннотация: "+synopsis+", Ссылка: "+reference);
+            System.out.println("Название: "+getTitle()+", Автор: "+getAuthor()+", Аннотация: "+synopsis+", Ссылка: "+reference);
         }
         //getters
 
@@ -131,4 +132,3 @@ public abstract class Edition {
             this.synopsis = synopsis;
         }
     }
-}
