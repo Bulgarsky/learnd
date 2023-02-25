@@ -22,10 +22,8 @@ public abstract class Edition {
         this.author = author;
     }
 
-
     //methods
     public abstract void printInfo();
-
 
     //class extends
     //Book
