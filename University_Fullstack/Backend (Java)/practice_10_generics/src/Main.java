@@ -21,5 +21,6 @@ public class Main {
         order1.printInfo();
         order2.printInfo();
         order3.printInfo();
+        System.out.println(order3.getClass());
     }
 }

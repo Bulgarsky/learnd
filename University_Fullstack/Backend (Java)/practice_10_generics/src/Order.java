@@ -1,9 +1,9 @@
-class Order<OID,UID,C> {
+class Order<OID,UID,S> {
     private OID orderId;
     private UID userId;
-    private C status;
+    private S status;
     //constructor
-    Order(OID orderId, UID userId, C status) {
+    Order(OID orderId, UID userId, S status) {
     this.orderId = orderId;
     this.userId = userId;
     this.status = status;
@@ -15,12 +15,12 @@ class Order<OID,UID,C> {
     public UID getUserId() {
         return userId;
     }
-    public C getStatus() {
+    public S getStatus() {
         return status;
     }
 
     //setters
-    public void setStatus(C status) {
+    public void setStatus(S status) {
           this.status = status;
     }
 
