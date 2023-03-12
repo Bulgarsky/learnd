@@ -3,19 +3,13 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         System.out.println("regexp");
-        String login = "admin";
-        String password = "password";
-
+        System.out.print("введи сособщение согласно маске ввода: ");
         Scanner in = new Scanner(System.in);
-        System.out.print("enter login: ");
-        String logIn = in.nextLine();
-        System.out.print("enter password: ");
-        String passIn = in.nextLine();
-
-        if (logIn.matches(login) && passIn.matches(password)) {
-            System.out.println("system: You are logged");
+        String str = in.nextLine();
+        if (str.matches("[A-Z]{2}\\d{4}")) {
+            System.out.println("correct");
         } else {
-            System.out.println("system: logging failure");
+            System.out.println("incorrect");
         }
 
     }
