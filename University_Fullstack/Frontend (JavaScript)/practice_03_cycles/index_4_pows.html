@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>задание 4</title>
+</head>
+<body>
+    <script>
+        let n = Number(prompt("N = "));
+        let a = Number(prompt("A = "));
+        let result = a;
+        let status = true;
+        for (let i = 2; i <= n; i++) {
+            //чередование сложения и вычитания
+            if (status) {
+                result+=Math.pow(a, i); //сложение
+                status = false; //переключение на вычитание
+            } else {
+                result-=Math.pow(a, i); //вычитание
+                status = true; // переключение на сложение
+            }     
+        }
+        result+=1;
+        alert("результат:" + result);
+    </script>
+</body>
+</html>

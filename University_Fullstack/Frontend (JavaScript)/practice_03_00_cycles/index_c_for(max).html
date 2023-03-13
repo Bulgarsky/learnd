@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>for max</title>
+</head>
+<body>
+<script>
+  let n = Number(prompt("Введите N:"));
+  let inputNo;
+  inputNo = Number(prompt("1-число:"));
+  let max = inputNo;
+  for (let i = 1; i <= n; i++) {
+    inputNo = Number(prompt("число:"));
+    if (inputNo > max) max = inputNo;
+  }
+    alert("MAX NO result: " + max);
+
+</script>
+</body>
+</html>

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>задание 2</title>
+</head>
+<body>
+    <script>
+        //ввод цепочки N, посчитать количество чисел болье 5 и меньше 10
+        let n = Number(prompt("введите N: "));
+        let numbers;
+        let count=0;
+        for (let i = 1; i <= n; i++) {
+            numbers = Number(prompt(i + "-число:"));
+            if (numbers  > 5 && numbers < 10) {count++;}
+        }
+        alert("(5> число <10). Результат: " + count);
+    </script>
+</body>
+</html>
