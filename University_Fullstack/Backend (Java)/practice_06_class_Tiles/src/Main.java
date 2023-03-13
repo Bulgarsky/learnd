@@ -19,6 +19,7 @@ public class Main {
         Italy.getInfo();
 
         Tiles France = new Tiles(350, 400, 550); //исп. конструктора с передачей 3 аргументов
+        
         France.getInfo();
 
         Tiles Canada = new Tiles("Canadian Winter", 150, 450, 750); // 4
