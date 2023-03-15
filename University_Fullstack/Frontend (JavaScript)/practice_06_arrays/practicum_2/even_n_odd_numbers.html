@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title> odd and even numbers on array </title>
+</head>
+<body>
+<script>
+    let inputNumbers = new Array (); //массив для заполенния
+    let oddNumbers = new Array (); // массив с  нечетными элементами
+    let evenNumbers = new Array(); // массив с  четными элементами
+    let oddIndex = 0; //индекс для массива oddNumbers
+    let evenIndex = 0; //индекс для массива evenNumbers
+    let inputDimension =  Number(prompt ("введите размероность массива: "));
+    // -1 2 -2 5 0 4 7
+    for (let i = 0; i < inputDimension; i++) {
+        inputNumbers[i] = Number(prompt(i + " array's element: "));
+    }
+    for (let i=0; i < inputDimension; i++) {
+        //let element = inputNumbers[i];
+        if (Math.abs(inputNumbers[i]) % 2 == !0) { //если модуль(остаток от деления на 2) не равен 0
+            oddNumbers[oddIndex] = inputNumbers[i]; //копируем нечетное число в новый массив
+            oddIndex++;
+        } else { //если остаток от деления == 0
+            evenNumbers[evenIndex] = inputNumbers[i]; //копируем четное число в новый массив
+            evenIndex++;
+        }
+    }
+    alert("array w/ odd(нечет) numbers["+oddNumbers.length+"]: " + oddNumbers); //-1 5 7
+    alert("array w/ even(чёт) numbers["+evenNumbers.length+"]: " + evenNumbers); //2 -2 0 4
+</script>
+</body>
+</html>

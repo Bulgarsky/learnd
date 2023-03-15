@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>array local min</title>
+</head>
+<body>
+<script>
+    let numbers = new Array ();
+    let inputDimension =  Number(prompt ("введите размероность массива: "));
+    // -1 2 1 5 0 4
+    for (let i = 0; i < inputDimension; i++) {
+        numbers[i] = Number(prompt(i+" array's element: "));
+    }
+    for (let i=1; i < inputDimension-1; i++) {
+        if (numbers[i] < numbers[i-1] && numbers[i] < numbers[i+1]) {
+            alert ("Local min is: ["+i+"] "+numbers[i]);
+            // [2]1
+            // [4]0
+        }
+    }
+</script>
+</body>
+</html>
