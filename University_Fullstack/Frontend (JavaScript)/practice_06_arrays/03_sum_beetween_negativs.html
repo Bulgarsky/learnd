@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+  //сумма элементов массива расположенных между первым и последним отрицательным числом
+  let numbers = new Array ();
+  let searchFirstIndex = 0;
+  let searchLastIndex = 0;
+  let elementSum = 0;
+  let inputLength =  Number(prompt ("введите длину массива: "));
+  // 2 -1 1 -2 6 -3 4
+  for (let i = 0; i < inputLength; i++) {
+    numbers[i] = Number(prompt(i+" array's element: "));
+  }
+  //цикл для нахождения индекса последнего отрицательного числа
+  for (let i = 0; i < numbers.length; i++) {
+    if (numbers[i] < 0) {
+      searchLastIndex = i;
+    }
+  }
+  for (let i = numbers.length; i > 0; i--) {
+    if (numbers[i] < 0) {
+      searchFirstIndex = i;
+    }
+  }
+  alert("searchFirstIndex: "+searchFirstIndex+", searchLastIndex: " + searchLastIndex); // 1 , 5
+  // 2 (-1 1 -2 6 -3) 4
+
+  for (let i = searchFirstIndex+1; i < searchLastIndex; i++) { //от 2 до 4 элемента
+    // 2 -1 (1 -2 6) -3 4
+    elementSum += numbers[i];
+  }
+  alert("Сумма элементов: " + elementSum); // 5
+</script>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>sum</title>
+</head>
+<body>
+
+<script>
+    //сумма элементов массива расположенных до последнего положительного элемента
+    let numbers = new Array ();
+    let searchIndex = 0;
+    let elementSum = 0;
+    let inputLength =  Number(prompt ("введите длину массива: "));
+    // -1 2 1 -2 5 4 -3
+    for (let i = 0; i < inputLength; i++) {
+        numbers[i] = Number(prompt(i+" array's element: "));
+    }
+    //цикл для нахождения индекса последнего положительного числа
+    for (let i = 0; i < numbers.length; i++) {
+        if (numbers[i] > 0) {
+            searchIndex = i;
+        }
+    }
+    alert("searchIndex: " + searchIndex);
+
+    for (let i = 0; i <= searchIndex; i++) {
+        elementSum += numbers[i];
+    }
+    alert("Сумма элементов до посл.положительного числа: " + elementSum);
+</script>
+</body>
+</html>

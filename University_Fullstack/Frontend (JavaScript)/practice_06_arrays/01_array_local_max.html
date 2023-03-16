@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>array local max</title>
+</head>
+<body>
+<script>
+  // найти номер локального максимума (элемент который больше любого из своих соседей
+  // let numbers = [-1, 2, 1, 5, 0, 4];
+  let localMax = 0;
+  let localMaxIndex= 0;
+
+  // ручной ввод массива:
+  let numbers = new Array ();
+
+  let inputLength =  Number(prompt ("введите размероность массива: "));
+  // -2 2 4 5 -2 4 1
+  for (let i = 0; i < inputLength; i++) {
+    numbers[i] = Number(prompt(i+" array's element: "));
+  }
+
+  for (let i = 1; i <= numbers.length; i++) {
+    if (numbers[i] > numbers[i-1] && numbers[i] > numbers[i+1]) {
+      localMax = numbers[i];
+      localMaxIndex = i;
+      alert("local max: ["+i+"] "+numbers[i]);
+      // [3] 5
+      // [5] 4  //last
+    }
+  }
+  alert ("LAST Local max is: [index: "+localMaxIndex+"] "+localMax);
+</script>
+</body>
+</html>

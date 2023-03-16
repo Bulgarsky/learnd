@@ -6,23 +6,24 @@
 </head>
 <body>
 <script>
-    let inputNumbers = new Array (); //массив для заполенния
-    let oddNumbers = new Array (); // массив с  нечетными элементами
-    let evenNumbers = new Array(); // массив с  четными элементами
+
+    let numbers = new Array (); //массив для заполенния
+    let oddNumbers = new Array (); // массив для заполенния нечетными элементами
+    let evenNumbers = new Array(); // массив для заполенния четными элементами
     let oddIndex = 0; //индекс для массива oddNumbers
     let evenIndex = 0; //индекс для массива evenNumbers
-    let inputDimension =  Number(prompt ("введите размероность массива: "));
+    let inputLength =  Number(prompt ("введите длину массива: "));
     // -1 2 -2 5 0 4 7
-    for (let i = 0; i < inputDimension; i++) {
-        inputNumbers[i] = Number(prompt(i + " array's element: "));
+    for (let i = 0; i < inputLength; i++) {
+        numbers[i] = Number(prompt(i + " array's element: "));
     }
-    for (let i=0; i < inputDimension; i++) {
+    for (let i=0; i < inputLength; i++) {
         //let element = inputNumbers[i];
         if (Math.abs(inputNumbers[i]) % 2 == !0) { //если модуль(остаток от деления на 2) не равен 0
-            oddNumbers[oddIndex] = inputNumbers[i]; //копируем нечетное число в новый массив
+            oddNumbers[oddIndex] = numbers[i]; //копируем нечетное число в новый массив
             oddIndex++;
         } else { //если остаток от деления == 0
-            evenNumbers[evenIndex] = inputNumbers[i]; //копируем четное число в новый массив
+            evenNumbers[evenIndex] = numbers[i]; //копируем четное число в новый массив
             evenIndex++;
         }
     }

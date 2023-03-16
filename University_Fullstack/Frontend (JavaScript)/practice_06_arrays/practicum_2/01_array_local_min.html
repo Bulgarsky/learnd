@@ -6,13 +6,14 @@
 </head>
 <body>
 <script>
+    // найти номер локального минимума (элемент который меньше любого из своих соседей
     let numbers = new Array ();
-    let inputDimension =  Number(prompt ("введите размероность массива: "));
+    let inputLength =  Number(prompt ("введите размероность массива: "));
     // -1 2 1 5 0 4
-    for (let i = 0; i < inputDimension; i++) {
+    for (let i = 0; i < inputLength; i++) {
         numbers[i] = Number(prompt(i+" array's element: "));
     }
-    for (let i=1; i < inputDimension-1; i++) {
+    for (let i=1; i < inputLength-1; i++) {
         if (numbers[i] < numbers[i-1] && numbers[i] < numbers[i+1]) {
             alert ("Local min is: ["+i+"] "+numbers[i]);
             // [2]1

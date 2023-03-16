@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>del odd numb</title>
+</head>
+<body>
+    <script>
+        // удалить нечетные числа из массива
+        let numbers = new Array ();
+        let inputLength =  Number(prompt ("введите длину массива: "));
+        // -1 2 1 5 0 4 8
+        for (let i = 0; i < inputLength; i++) {
+            numbers[i] = Number(prompt(i+" array's element: "));
+        }
+        for (let i = numbers.length; i >= 0; i--) {
+            if (numbers[i] %2 != 0 ) { //остаток от деления на 2 не равен 0
+                numbers.splice(i, 1); //то удалить элемент
+            }
+        }
+        alert("["+numbers.length+"] "+numbers);
+    </script>
+</body>
+</html>
