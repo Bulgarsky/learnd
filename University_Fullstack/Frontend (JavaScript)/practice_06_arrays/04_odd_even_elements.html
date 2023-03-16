@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>odd even elements</title>
+</head>
+<body>
+<script>
+  let numbers = new Array ();
+  let oddElements = new Array ();
+  let evenElements = new Array ();
+  let oddIndex = 0;
+  let evenIndex = 0;
+  let inputLength =  Number(prompt ("введите размероность массива: "));
+  // -3 2 4 5 -1 7 1  -elements
+  //  0 1 2 3  4 5 6 -index
+
+  for (let i = 0; i < inputLength; i++) {
+    numbers[i] = Number(prompt(i+" array's element: "));
+  }
+
+  for (let i = 0; i < numbers.length; i+=2) {
+    evenElements[evenIndex] = numbers[i];
+    evenIndex += 1;
+  }
+
+  for (let i = 0; i < numbers.length; i+=2) {
+    oddElements[oddIndex] = numbers[i+1];
+    oddIndex += 1;
+  }
+
+  alert("новый массив нечётных элементов: "+ oddElements); // 2 5 7
+  alert("новый массив чётных элементов: "+ evenElements); // -3 4 -1 1
+
+</script>
+</body>
+</html>

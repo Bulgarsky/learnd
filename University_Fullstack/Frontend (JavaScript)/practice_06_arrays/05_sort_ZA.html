@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>sort Z-A</title>
+</head>
+<body>
+<script>
+  // тсортировать  массивы в обратном порядке
+  let numbers = new Array ();
+
+  let inputLength =  Number(prompt ("введите размероность массива: "));
+  // -1 2 1 5 -3 0 4
+  for (let i = 0; i < inputLength; i++) {
+    numbers[i] = Number(prompt(i+" array's element: "));
+  }
+  alert("сортировка по убыванию: "+ numbers.sort(sortZA));
+
+  //сравнение соседних элементов
+  function sortZA(a, b) {
+    if (Number(a) > Number(b)) { return -1;}
+    else if (Number(b) > Number(a)) {return 1;}
+    else { return 0; }
+  }
+</script>
+</body>
+</html>

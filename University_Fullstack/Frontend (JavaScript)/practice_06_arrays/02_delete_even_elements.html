@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>delete even el</title>
+</head>
+<body>
+<script>
+  //удалить четные элементы из массива
+  let numbers = new Array ();
+  let updated = new Array ();
+  let updatedIndex = 0;
+  let inputLength =  Number(prompt ("введите длину массива: "));
+  // -3 2 4 5 -1 7 1
+  // 0  1 2 3  4 5 6
+
+  for (let i = 0; i < inputLength; i++) {
+    numbers[i] = Number(prompt(i+" array's element: "));
+  }
+
+  for (let i = 0; i < numbers.length; i+=2) {
+    updated[updatedIndex] = numbers[i+1];
+    updatedIndex += 1;
+    alert(numbers[i+1]);
+  }
+  alert("массив после удаления четных элементов: "+ updated); // 2 5 7
+</script>
+</body>
+</html>

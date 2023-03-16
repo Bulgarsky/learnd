@@ -16,13 +16,13 @@
   for (let i = 0; i < inputLength; i++) {
     numbers[i] = Number(prompt(i+" array's element: "));
   }
-  //цикл для нахождения индекса последнего отрицательного числа
-  for (let i = 0; i < numbers.length; i++) {
+
+  for (let i = 0; i < numbers.length; i++) { //looking for last index of negative numb
     if (numbers[i] < 0) {
       searchLastIndex = i;
     }
   }
-  for (let i = numbers.length; i > 0; i--) {
+  for (let i = numbers.length; i > 0; i--) { //looking for first index of positive numb
     if (numbers[i] < 0) {
       searchFirstIndex = i;
     }
