@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>degree90 clockwise</title>
+</head>
+<body>
+<script>
+  let arrayD = new Array ();
+
+  let inputLength =  Number(prompt ("введите размерность(квадратный массив): "));
+  // заполнение массива
+  for (let i = 0; i<inputLength; i++) {
+    arrayD[i] = new Array();
+    for (let j = 0; j < inputLength; j++) {
+      arrayD[i][j] = Number(prompt("["+i+", "+j+"] array's element: "));
+    }
+  }
+
+  // вывод массива на экран
+  for (let i = 0; i<inputLength; i++) {
+    for (let j = 0; j <inputLength; j++) {
+      document.write(arrayD[i][j] + "<span> </span>");
+    }
+    document.write("<br>");
+  }
+
+
+
+  document.write("<p> повернуть массив на 90 градуосв по часавой</p>");
+  for (let i = 0; i<inputLength; i++) {
+    for (let j = inputLength-1; j >= 0; j--) {
+      document.write(arrayD[j][i] + "<span> </span>");
+    }
+    document.write("<br>");
+  }
+</script>
+</body>
+</html>

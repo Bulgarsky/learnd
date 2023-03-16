@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+  // посчитать сумму каждой строки
+  let arrayD = new Array ();
+  let stringSum = 0;
+
+  let inputLength =  Number(prompt ("введите размерность(квадратный массив): "));
+  // заполнение массива
+  for (let i = 0; i<inputLength; i++) {
+    arrayD[i] = new Array();
+    for (let j = 0; j < inputLength; j++) {
+      arrayD[i][j] = Number(prompt("["+i+", "+j+"] array's element: "));
+    }
+  }
+
+  // вывод массива на экран
+  for (let i = 0; i<inputLength; i++) {
+    for (let j = 0; j < inputLength; j++) {
+      document.write(arrayD[i][j] + "<span> </span>");
+    }
+    document.write("<br>");
+  }
+  //вывод подсчетов
+  for (let i = 0; i<inputLength; i++) {
+    for (let j = 0; j < inputLength; j++) {
+      stringSum += arrayD[i][j];
+    }
+    //document.write("<br>");
+    document.write("сумма "+i+"-строки: "+stringSum+"<br>");
+    stringSum = 0;
+  }
+
+</script>
+</body>
+</html>

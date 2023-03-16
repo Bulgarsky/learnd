@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>main diagonal </title>
+</head>
+<body>
+<script>
+  // обнулить главную диагональ
+  let arrayD = new Array ();
+
+  let inputLength =  Number(prompt ("введите размерность(квадратный массив): "));
+  // заполнение массива
+  for (let i = 0; i<inputLength; i++) {
+    arrayD[i] = new Array();
+    for (let j = 0; j < inputLength; j++) {
+      arrayD[i][j] = Number(prompt("["+i+", "+j+"] array's element: "));
+    }
+  }
+
+  // вывод массива на экран
+  for (let i = 0; i<inputLength; i++) {
+    for (let j = 0; j < inputLength; j++) {
+      document.write(arrayD[i][j] + "<span> </span>");
+    }
+    document.write("<br>");
+  }
+  //обнуление диагонали i=j
+  for (let i = 0; i<inputLength; i++) {
+    for (let j = 0; j < inputLength; j++) {
+        if (i==j) {
+            arrayD[i][j] = 0;
+        }
+    }
+  }
+
+  // вывод массива на экран
+  document.write("<p>Обнулить главную диагональ: </p>");
+  for (let i = 0; i<inputLength; i++) {
+      for (let j = 0; j < inputLength; j++) {
+          document.write(arrayD[i][j] + "<span> </span>");
+      }
+      document.write("<br>");
+  }
+</script>
+</body>
+</html>
