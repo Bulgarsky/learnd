@@ -1,5 +1,4 @@
 import java.util.Objects;
-
 public class Flights <price> {
     private String flightNO;
     private String airportName;
@@ -8,16 +7,15 @@ public class Flights <price> {
     private String departureTime;
     private price ticketPrice;
 
-    Flights (){}
+    Flights (){} //конструктор по умолчанию
     Flights(String flightNO, String airportName, String carrierName, String destination, String departureTime, price ticketPrice) {
         this.flightNO = flightNO;
         this.airportName = airportName;
         this.carrierName = carrierName;
         this.destination = destination;
         this.departureTime = departureTime;
-        this.ticketPrice = ticketPrice;
+        this.ticketPrice = ticketPrice; //конструктор с аргументами на все поля
     }
-
     //getters
     public String getFlightNO () { return flightNO;}
     public String getAirportName() {
@@ -35,7 +33,6 @@ public class Flights <price> {
     public price getTicketPrice() {
         return ticketPrice;
     }
-
     //Setters
     public void setFlightNO(String flightNO) {
         this.flightNO = flightNO;

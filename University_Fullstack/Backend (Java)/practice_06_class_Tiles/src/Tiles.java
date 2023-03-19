@@ -15,7 +15,7 @@ public class Tiles{
     }
     Tiles(int p) {
         // 1 аргумент: цена
-        price = p;
+        this.price = p;
     }
 
     Tiles(String brand, int price) {

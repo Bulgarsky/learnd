@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Clients</title>
+    <style>
+        .form, .injection {
+            width: 260px;
+            box-shadow: 0px 1px 10px dimgray;
+            margin-top: 20px;
+            padding: 10px;
+            border: 2px solid darkgreen;
+            border-radius: 15px;
+        }
+        button {
+            border: 2px solid darkgreen;
+            color: white;
+            background-color: darkgreen;
+            height: 30px;
+            width: 100%;
+            border-radius: 10px;
+        }
+        button:hover {
+            border: 2px solid darkgreen;
+            color: darkgreen;
+            background-color: white;
+            height: 30px;
+            width: 100%;
+        }
+        input:invalid {
+            border: darkred solid 2px;
+        }
+        .btn-small {
+            width: 125px;
+            background: linear-gradient(90deg,yellow, yellowgreen, green);
+        }
+        .btn-small:hover {
+            width: 125px;
+            background: linear-gradient(90deg, lightskyblue, dodgerblue, royalblue);
+            color: white;
+            border-color: black;
+        }
+    </style>
+    <script>
+
+    </script>
+</head>
+<body>
+    <div class="form">
+        <img src="img/sber.svg">
+        <h3>Введите данные клиента:</h3>
+        <form>
+            <label>Фамилия: </label><input type="text" id="lastName" ><br>
+            <br>
+            <label>Имя: <input type="text" id="firstName" ></label><br>
+            <br>
+            <label>Отчество: <input type="text" id="middleName" ></label><br>
+            <br>
+            <label>Возраст: <input type="number" id="age" pattern="[0-9]" onchange="question();"></label><br>
+            <br>
+        </form>
+    </div>
+
+    <div class="injection" id="injection">
+
+    </div>
+<script>
+    do {
+        let status = true;
+        let clientList = new Array();
+        let clientId = 1;
+        let firstName = document.getElementById("firstName");
+        let lastName = document.getElementById("firstName");
+        let middleName = document.getElementById("firstName");
+        let age = document.getElementById("firstName");
+        if (document.getElementById("add").click() == true) {
+            clientList[clientId] = new Client(firstName, lastName, middleName, age);
+            clientId +=1;
+            status = true;
+        } else {
+            clientId +=1;
+            clientList[clientId] = new Client(firstName, lastName, middleName, age);
+            status = false;
+
+        }
+    }while (status);
+    class Client {
+        lastName;
+        firstName;
+        middleName;
+        age;
+        constructor(lastName, firstName, middleName, age) {
+            this.lastName = lastName;
+            this.firstName = firstName;
+            this.middleName = middleName;
+            this.age = age;
+        }
+        personnelFile(){
+            document.getElementById("injection").innerHTML= 'Клиенты: <br> '+
+          "Клиент: "+this.lastName+" "+this.firstName+" "+ this.middleName+", возраст: "+this.age;
+        }
+    }
+function question() {
+    document.getElementById("injection").innerHTML=
+        "<p><h3>Добавить еще клиента?</h3><br>" +
+        "<button class='btn-small' id='add' onclick='clientAdd()'>Добавить</button> <button class='btn-small' id='done' onclick='personnelFile(); clientAdd()'>Завершить</button>"+
+        "<br>"+
+        "</p>";
+}
+
+</script>
+</body>
+</html>
