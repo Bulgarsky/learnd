@@ -3,20 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <title>1st</title>
+    <script src="func_uppercase.js">
+    </script>
 </head>
 <body>
-    <script>
-        let userInput = prompt("введите строку:").toString();
 
-        alert("С большой буквы: "+firstSymbolUp(userInput));
-        alert(firstSymbolUp(userInput));
-        alert(firstSymbolUp("грузовик перевернулся"));
-
-        function firstSymbolUp (String) {
-            let firstSymbol = String.toUpperCase().charAt(0);
-            let result = String.replace(String.charAt(0), firstSymbol);
-            return result;
-        }
-    </script>
 </body>
 </html>
