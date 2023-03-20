@@ -10,7 +10,7 @@ body {
 #gradient {
     width: 360px;
     height: 50px;
-    background: linear-gradient(90deg,yellow, yellowgreen, green);
+    background: linear-gradient(90deg, red, orange, yellow, yellowgreen, green, yellow, orange, red);
     border-radius: 10px;
 }
 button {
