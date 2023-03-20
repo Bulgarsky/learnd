@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>text red</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <script src="js/selects.js"></script>
+</head>
+<body>
+<div id="main">
+<h2>Primitive text redactor</h2>
+
+<select id="fonts" onchange="selectFont()">
+    <option value="'Times New Roman', Times, serif">Times New Roman</option>
+    <option value="Georgia, serif">Georgia</option>
+    <option value="Arial, Helvetica, sans-serif	">Arial</option>
+    <option value="'Arial Black', Gadget, sans-serif">Arial Black</option>
+    <option value="Verdana, Geneva, sans-serif	">Verdana</option>
+    <option value="'Trebuchet MS', Helvetica, sans-serif">Trebuchet MS</option>
+    <option value="'Impact, Charcoal, sans-serif">Impact</option>
+    <option value="'Comic Sans MS', cursive, sans-serif">Comic Sans MS</option>
+    <option value="'Courier New', Courier, monospace">Courier New</option>
+</select>
+
+<input type="color" id="fontColor" onchange="selectColor()">
+<input type="number" id="fontSize" onchange="selectSize()" value="12" step="2">
+
+
+
+<!-- buttons -->
+<br>
+<button type="button" id="alignLeft">
+    <img src="img\left.jpg" class="align-button" onclick="selectAlignLeft()" alt="left button img">
+</button>
+<button type="button" id="alignCenter">
+    <img src="img\center.jpg" class="align-button" onclick="selectAlignCenter()" alt="center button img">
+</button>
+<button type="button" id="alignRight">
+    <img src="img\right.jpg" class="align-button" onclick="selectAlignRight()" alt="right button img">
+</button>
+
+<button type="button" id="typeItalic">
+    <img src="img\italic.jpg" class="align-button" onclick="selectTypeItalic()" alt="italic button img">
+</button>
+<button type="button" id="typeBold">
+    <img src="img\bold.jpg" class="align-button" onclick="selectTypeBold()" alt="bold button img">
+</button>
+<button type="button" id="typeUnderline">
+    <img src="img\underline.jpg" class="align-button" onclick="selectTypeUnderline()" alt="underline button img">
+</button>
+
+<br>
+<hr>
+<br>
+
+<div class="editlist" id="editor">
+        Белая берёза<br>
+        Под моим окном<br>
+        Принакрылась снегом,<br>
+        Точно серебром.<br>
+    <br>
+        На пушистых ветках<br>
+        Снежною каймой<br>
+        Распустились кисти<br>
+        Белой бахромой.<br>
+    <br>
+        И стоит берёза<br>
+        В сонной тишине,<br>
+        И горят снежинки<br>
+        В золотом огне.<br>
+    <br>
+        А заря, лениво<br>
+        Обходя кругом,<br>
+        Обсыпает ветки<br>
+        Новым серебром.<br>
+    <br>
+        1913 г.<br>
+
+</div>
+<!-- <textarea class="editlist" id="editor">some text 1256! sdf</textarea> -->
+
+</div>
+</body>
+</html>

@@ -1,0 +1,48 @@
+#main{
+    padding-top: 20px;
+    width: 50vw;
+    background-color: white;
+    margin: 0 10vw;
+    outline: none;
+    border-width: 0px;
+    box-shadow:  5px -5px 10px royalblue;
+    padding: 20px;
+    min-height: 50vh;
+    border-radius: 10px;
+}
+h2 {
+    font-family: Tahoma;
+    color: black;
+    text-shadow: 5px 5px 10px royalblue;
+}
+.editlist {
+    background-color: white;
+    width: 45vw;
+    margin-left: 1vw;
+    outline: none;
+    border-width: 0px;
+    box-shadow:  5px -5px 20px royalblue;
+    padding: 20px;
+    min-height: 50vh;
+}
+body, input, select, button, hr {
+    margin: 10px;
+    font-family: Impact;
+    font-size: 16pt;
+    background-color: lightskyblue;
+    outline: none;
+}
+
+input, select, button {
+    opacity: 50%;
+    box-shadow:  5px 5px 20px royalblue;
+}
+input:hover, select:hover, button:hover {
+    opacity: 100%;
+    border: 2px solid royalblue;
+    box-shadow: 0 0 10px royalblue;
+}
+.align-button {
+    width: 25px;
+    width: 18px;
+}
