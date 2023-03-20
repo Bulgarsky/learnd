@@ -1,0 +1,39 @@
+#main{
+    width: 50vw;
+    background-color: white;
+    margin: 0 10vw;
+    outline: none;
+    border-width: 0px;
+    box-shadow:  10px 10px 10px saddlebrown;
+    padding: 20px;
+    min-height: 50vh;
+    border-radius: 10px;
+}
+h2 {
+    font-family: Tahoma;
+    color: black;
+    text-shadow: 5px 5px 10px saddlebrown;
+}
+
+body, select, button, hr {
+    margin: 10px;
+    font-family: Impact;
+    background-color: sandybrown;
+    outline: none;
+}
+input {
+ background-color: white;
+}
+
+#all-ranges, #size-block {
+    text-align: center;
+}
+
+input:checked {
+    border: 1px solid saddlebrown;
+    box-shadow: 0 0 5px saddlebrown;
+}
+
+input[type=range] {
+    width: 98%;
+}

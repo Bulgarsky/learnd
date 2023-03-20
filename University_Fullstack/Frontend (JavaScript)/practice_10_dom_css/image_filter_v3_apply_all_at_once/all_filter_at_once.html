@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>img:filters</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <script src="js/atOnce.js"></script>
+</head>
+<body>
+    <div id="main">
+    <h2>image: filters, all at once</h2>
+
+        <form id="all-ranges">
+            <label>Прозрачность:
+                <input type="range" id="setOpacityRange" min="0" max="100" value="100" " >
+            </label>
+            <br>
+
+            <label>Контраст:
+                <input type="range" id="setContrastRange" min="1" max="100" value="50" onchange="filtersAtOnce()">
+            </label>
+            <br>
+
+            <label>Инверсия:
+                <input type="range" id="setInvertRange" min="1" max="100" value="0" onchange="filtersAtOnce()">
+            </label>
+            <br>
+
+            <label>Оттенки серого:
+                <input type="range" id="setGrayscaleRange" min="1" max="100" value="0" onchange="filtersAtOnce()">
+            </label>
+            <br>
+
+            <label>Насыщенность:
+                <input type="range" id="setSaturateRange" min="1" max="300" value="100" onchange="filtersAtOnce()">
+            </label>
+            <br>
+
+            <label>Cепия:
+                <input type="range" id="setSepiaRange" min="1" max="100" value="0" onchange="filtersAtOnce()">
+            </label>
+            <br>
+
+            <label>Оттенок-поворот:
+                <input type="range" id="setHueRotateRange" min="1" max="300" value="0" onchange="filtersAtOnce()">
+            </label>
+            <br>
+
+            <label>Размытие:
+                <input type="range" id="setBlurRange" min="1" max="100" value="0" onchange="filtersAtOnce()">
+            </label>
+            <br>
+
+            <label>Яркость:
+                <input type="range" id="setBrightnessRange" min="1" max="100" value="100" onchange="filtersAtOnce()">
+            </label>
+            <br>
+            <hr>
+            <label>Изменить размер изображения:
+                <input type="range" id="setImgSizeRange" min="0" max="100" value="100" onchange="setImgSize();" >
+            </label>
+            <hr><br>
+        </form><br>
+
+        <img src="img\private.jpg" alt="private property img" id="img" style="width: 100%">
+        <br>
+    </div>
+
+</body>
+</html>

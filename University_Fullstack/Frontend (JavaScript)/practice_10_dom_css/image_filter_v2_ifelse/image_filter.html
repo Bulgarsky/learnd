@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>img:filters</title>
+    <link rel="stylesheet" href="../image_filter_v2_ifelse/css/styles.css">
+    <script src="../image_filter_v2_ifelse/js/function.js"></script>
+</head>
+<body>
+    <div id="main">
+    <h2>image: filters, one</h2>
+
+
+    <form onchange="injectSlider();"> <!-- радиопереключатели в группе -->
+        <input name="filter" type="radio" id="setOpacity">Прозрачность;
+        <input name="filter" type="radio" id="setContrast">Конраст;
+        <input name="filter" type="radio" id="setInvert">Инверсия;
+        <br>
+        <input name="filter" type="radio" id="setGrayscale">Оттенки серого;
+        <input name="filter" type="radio" id="setSaturate">Насыщенность;
+        <input name="filter" type="radio" id="setSepia">Сепия;
+         <br>
+        <input name="filter" type="radio" id="setHueRotate">Оттенок-поворот;
+        <input name="filter" type="radio" id="setBlur">Размытие;
+        <input name="filter" type="radio" id="setBrightness">Яркость;
+         <br>
+    </form> <br>
+    <hr>
+        <div id="injection">
+        <!-- slider injection div -->
+        </div>
+    <hr>
+    <img src="img\private.jpg" alt="private property img" style="width: 100%">
+        <br>
+        <div id="size-block">
+            <br>
+         <label>Изменить размер изображения: <input type="number" id="imgSize" min="1" max="100" value="100" onchange="setImgSize();">%</label>
+        </div>
+    </div>
+
+</body>
+</html>
