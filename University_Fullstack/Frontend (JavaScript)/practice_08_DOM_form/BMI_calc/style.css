@@ -1,0 +1,42 @@
+body {
+    width: 360px;
+    box-shadow: 0px 1px 10px dimgray;
+    margin-top: 20px;
+    padding: 10px;
+    border: 2px solid darkgreen;
+    border-radius: 15px;
+}
+
+#gradient {
+    width: 360px;
+    height: 50px;
+    background: linear-gradient(90deg,yellow, yellowgreen, green);
+    border-radius: 10px;
+}
+button {
+    border: 2px solid darkgreen;
+    color: white;
+    background-color: darkgreen;
+    height: 50px;
+    width: 100%;
+    border-radius: 10px;
+}
+button:hover {
+    border: 2px solid darkgreen;
+    color: darkgreen;
+    background-color: white;
+    height: 50px;
+    width: 100%;
+}
+#range {
+    width: 360px;
+    border-radius: 10px;
+    overflow: initial;
+}
+
+input[type=range]::-webkit-slider-runnable-track {
+    height: 0px;
+}
+input[type=range]::-webkit-slider-thumb {
+    border: 10px solid;
+}
