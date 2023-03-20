@@ -4,26 +4,26 @@ function setImgSize() {
 }
 
 function filtersAtOnce() {
-    let img = document.getElementById("img");
-    let Opacity = Number(document.getElementById("setOpacityRange").value);
-    let Contrast = Number(document.getElementById("setContrastRange").value);
-    let Invert = Number(document.getElementById("setInvertRange").value);
-    let Grayscale = Number(document.getElementById("setGrayscaleRange").value);
-    let Saturate = Number(document.getElementById("setSaturateRange").value);
-    let Sepia = Number(document.getElementById("setSepiaRange").value);
-    let Huerotate = Number(document.getElementById("setHueRotateRange").value);
-    let Blur = Number(document.getElementById("setBlurRange").value);
-    let Brightness = Number(document.getElementById("setBrightnessRange").value);
+    const img = document.getElementById("img");
+    const opacity = Number(document.getElementById("setOpacityRange").value);
+    const contrast = Number(document.getElementById("setContrastRange").value);
+    const invert = Number(document.getElementById("setInvertRange").value);
+    const grayscale = Number(document.getElementById("setGrayscaleRange").value);
+    const saturate = Number(document.getElementById("setSaturateRange").value);
+    const sepia = Number(document.getElementById("setSepiaRange").value);
+    const huerotate = Number(document.getElementById("setHueRotateRange").value);
+    const blur = Number(document.getElementById("setBlurRange").value);
+    const brightness = Number(document.getElementById("setBrightnessRange").value);
 
     img.style.filter = `
-        opacity(${Opacity}%)
-         contrast(${Contrast * 10}%)
-          invert(${Invert}%)
-           grayscale(${Grayscale}%)
-            saturate(${Saturate * 10}%)
-             sepia(${Sepia}%)
-              hue-rotate(${Huerotate}deg)
-               blur(${Blur}px)
-                brightness(${Brightness}%)`
+        opacity(${opacity}%)
+         contrast(${contrast * 10}%)
+          invert(${invert}%)
+           grayscale(${grayscale}%)
+            saturate(${saturate * 10}%)
+             sepia(${sepia}%)
+              hue-rotate(${huerotate}deg)
+               blur(${blur}px)
+                brightness(${brightness}%)`
                 ;
 }

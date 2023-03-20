@@ -3,8 +3,8 @@ function injectSlider() {
         "<input type='range' min='0' max='100' value='0' class='slider' id='sliderRange' onchange='setFilterValue()'>";
 }
 function setFilterValue() {
-    let value = Number(document.getElementById("sliderRange").value);
-    let img = document.querySelector("img");
+    const value = Number(document.getElementById("sliderRange").value);
+    const img = document.querySelector("img");
 
     if (document.getElementById("setOpacity").checked) {
         img.style.filter = `opacity(${value}%)`;
@@ -37,6 +37,6 @@ function setFilterValue() {
 }
 
 function setImgSize() {
-    let value = Number(document.getElementById("imgSize").value);
+    const value = Number(document.getElementById("imgSize").value);
     document.querySelector("img").style.width = value+"%";
 }
