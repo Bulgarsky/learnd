@@ -1,0 +1,36 @@
+body, select, button, hr {
+    margin: 10px;
+    font-family: Tahoma;
+    outline: none;
+}
+.sheet {
+    width: 330px;
+    background-color: darkseagreen;
+    margin: 25px;
+    padding: 35px 35px 35px 35px;
+    box-shadow: 10px 10px 10px dimgray;
+}
+
+.form, .injection {
+    width: 290px;
+    box-shadow: 5px 5px 10px dimgray;
+    padding: 20px;
+    border: none;
+    background-color: white;
+}
+
+#injection {
+    font-size: 14px;
+}
+
+input:invalid {
+    border: darkred solid 2px;
+}
+
+input[type=radio]:checked {
+    border: none;
+    box-shadow: 1px 1px 5px saddlebrown;
+}
+input[type=range]{
+    width: 98%;
+}
