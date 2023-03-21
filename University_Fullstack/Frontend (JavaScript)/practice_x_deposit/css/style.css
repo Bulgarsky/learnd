@@ -28,9 +28,27 @@ input:invalid {
 }
 
 input[type=radio]:checked {
-    border: none;
-    box-shadow: 1px 1px 5px saddlebrown;
+
 }
 input[type=range]{
     width: 98%;
+}
+
+td select, td input {
+    width: 150px;
+}
+
+#visual td {
+    vertical-align: bottom;
+    text-align: center;
+    padding: 10px;
+}
+
+#visual div {
+    margin: auto;
+}
+table {
+    font-family: Tahoma;
+    font-size: 14px;
+    font-weight: normal;
 }

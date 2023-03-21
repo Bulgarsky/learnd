@@ -5,6 +5,8 @@
     <title>Bank deposit</title>
     <link rel="stylesheet" href="css/style.css">
     <script src="js/deposit.js"></script>
+
+
 </head>
 <body>
 <div class="sheet">
@@ -14,9 +16,9 @@
         <p></p>
         <fieldset>
         <legend> Калькулятор депозита </legend>
-        <form name="form" onchange="result();">
-            <label>Сумма: <input type="number" id="cash" min="10000" max="100000000" step="100000" value="10000" onchange="setInput();" ></label><br>
-            <input type="range" id="range" min="1" max="100" onchange="setRange();">
+        <form name="form" onchange="result(); getCompoundInterest();  ">
+            <label>Сумма: <input type="number" id="cash" min="10000" max="100000000" step="100000" value="10000" onchange="setCount();" ></label><br>
+            <input type="range" id="range" min="10000" max="100000000" onchange="setCount();">
             <br>
             <label>Срок: <input type="number" id="days" min="30" max="3660" step="30" value="30"> дней</label><br>
             <br>
@@ -32,7 +34,9 @@
             <label>Ставка: <input type="number" id="rate" min="0.25" max="30" step="0.25" value="10"> %</label><br>
         </form>
         <br><hr><br>
-       <p id="injection"></p>
+
+        <div id="inject-visual"></div>
+        <p id="injection"></p>
         </fieldset>
     </div>
 </div>
