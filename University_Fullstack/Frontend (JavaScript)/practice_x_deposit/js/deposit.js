@@ -22,15 +22,12 @@ function injectVisual() {
 }
 
 function getSimpleInterest(rate, days, cash) {
-    let cut
+    const typePeriod = "дн.";
+    const typeCapital = "на момент снятия";
+    const repeat = days;
     let interest = ((cash * rate * days) / 365)/100;
     const total = cash + interest;
-    document.getElementById("injection").innerHTML =
-        "Информация:<br> Cтавка по вкладу: "+`${rate}` +"% годовых<br>"+
-        "Проценты за "+`${days}`+" дн.: " +
-        `${interest.toFixed(2)}`+
-        "<br>Депозит: "+`${cash}`+
-        "<br>Общая сумма: "+`${total.toFixed(2)}`;
+    injectInfo(rate, typeCapital, repeat, typePeriod, total, cash);
 
     document.getElementById('height-finish').style.height = total.toFixed(0) / cash * 100 + 'px';
     document.getElementById('cash-start').innerHTML = cash;
@@ -48,7 +45,7 @@ function  getCompoundInterest(rate, days, cash) {
         for (let i=1; i <= repeat; i++) {
             total += ((total * rate * 30)/365)/100;
         }
-        injectCompoundInfo(rate, typeCapital, repeat, typePeriod, total, cash);
+        injectInfo(rate, typeCapital, repeat, typePeriod, total, cash);
     }
     else if (document.getElementById("compound").checked && document.getElementById("periodQuarter").checked){
         //quarter
@@ -58,7 +55,7 @@ function  getCompoundInterest(rate, days, cash) {
         for (let i=1; i <= repeat; i++) {
             total += ((total * rate * 120)/365)/100;
         }
-        injectCompoundInfo(rate, typeCapital, repeat, typePeriod, total, cash);
+        injectInfo(rate, typeCapital, repeat, typePeriod, total, cash);
     }
     else if (document.getElementById("compound").checked && document.getElementById("periodYear").checked){
         //year
@@ -68,14 +65,14 @@ function  getCompoundInterest(rate, days, cash) {
         for (let i=1; i <= repeat; i++) {
             total += ((total * rate * 365)/365)/100;
         }
-        injectCompoundInfo(rate, typeCapital, repeat, typePeriod, total, cash);
+        injectInfo(rate, typeCapital, repeat, typePeriod, total, cash);
     }
     document.getElementById('height-finish').style.height = total.toFixed(0) / cash * 100 + 'px';
     document.getElementById('cash-start').innerHTML = cash;
     document.getElementById('cash-finish').innerHTML = total.toFixed(2);
 }
 
-function injectCompoundInfo(rate, typeCapital, repeat, typePeriod, total, cash) {
+function injectInfo(rate, typeCapital, repeat, typePeriod, total, cash) {
     document.getElementById("injection").innerHTML =
         "Информация:<br> Cтавка: "+`${rate}` +" % годовых <br> "+
         "Капитализация: "+ `${typeCapital}` +"<br>"+
