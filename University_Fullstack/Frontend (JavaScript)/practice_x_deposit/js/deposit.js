@@ -25,13 +25,10 @@ function getSimpleInterest(rate, days, cash) {
     const typePeriod = "дн.";
     const typeCapital = "на момент снятия";
     const repeat = days;
-    let interest = ((cash * rate * days) / 365)/100;
+    const interest = ((cash * rate * days) / 365)/100;
     const total = cash + interest;
     injectInfo(rate, typeCapital, repeat, typePeriod, total, cash);
-
-    document.getElementById('height-finish').style.height = total.toFixed(0) / cash * 100 + 'px';
-    document.getElementById('cash-start').innerHTML = cash;
-    document.getElementById('cash-finish').innerHTML = total.toFixed(2);
+    setVisualStyle(total, cash);
 }
 
 function  getCompoundInterest(rate, days, cash) {
@@ -41,7 +38,7 @@ function  getCompoundInterest(rate, days, cash) {
         //month
         const typePeriod = "мес.";
         const typeCapital ="ежемесячная";
-        let repeat = Math.trunc((days / 30));
+        const repeat = Math.trunc((days / 30));
         for (let i=1; i <= repeat; i++) {
             total += ((total * rate * 30)/365)/100;
         }
@@ -51,7 +48,7 @@ function  getCompoundInterest(rate, days, cash) {
         //quarter
         const typePeriod = "кв.";
         const typeCapital = "ежеквартально";
-        let repeat = Math.trunc((days / 120));
+        const repeat = Math.trunc((days / 120));
         for (let i=1; i <= repeat; i++) {
             total += ((total * rate * 120)/365)/100;
         }
@@ -61,15 +58,13 @@ function  getCompoundInterest(rate, days, cash) {
         //year
         const typePeriod = "г.";
         const typeCapital = "ежегодно";
-        let repeat = Math.trunc((days / 365));
+        const repeat = Math.trunc((days / 365));
         for (let i=1; i <= repeat; i++) {
             total += ((total * rate * 365)/365)/100;
         }
         injectInfo(rate, typeCapital, repeat, typePeriod, total, cash);
     }
-    document.getElementById('height-finish').style.height = total.toFixed(0) / cash * 100 + 'px';
-    document.getElementById('cash-start').innerHTML = cash;
-    document.getElementById('cash-finish').innerHTML = total.toFixed(2);
+    setVisualStyle(total, cash);
 }
 
 function injectInfo(rate, typeCapital, repeat, typePeriod, total, cash) {
@@ -78,4 +73,10 @@ function injectInfo(rate, typeCapital, repeat, typePeriod, total, cash) {
         "Капитализация: "+ `${typeCapital}` +"<br>"+
         "Итого за "+`${repeat}`+" "+`${typePeriod}`+": "+ `${total.toFixed(2)}`+
         "<br>Проценты составили: "+`${(total - cash).toFixed(2)}`;
+}
+
+function setVisualStyle(total, cash) {
+    document.getElementById('height-finish').style.height = total.toFixed(0) / cash * 100 + 'px';
+    document.getElementById('cash-start').innerHTML = cash;
+    document.getElementById('cash-finish').innerHTML = total.toFixed(2);
 }
