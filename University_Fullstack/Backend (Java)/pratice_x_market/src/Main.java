@@ -39,13 +39,12 @@ public class Main {
                         System.out.println("[Пользователь добавлен!]\n ");
                     }
                     break;
-                case 2: ////вход в лк
+                case 2:
                     System.out.println("Вход в ЛК");
                     System.out.print("Введите свой логин: ");
                     String loginAuth = in.nextLine();
                     System.out.print("Введите свой пароль: ");
                     String passwordAuth = in.nextLine();
-                    //User userAuth = new User(loginAuth, passwordAuth);
                     //аутентификация
                     if (!authentication(loginAuth, passwordAuth, usersList)) { //false
                         System.out.println("[Введеные не корректные логин или пароль!]\n");
@@ -66,11 +65,11 @@ public class Main {
                                 int adminMenu = in.nextInt();
                                 in.nextLine(); // каретка
                                 switch (adminMenu) {
-                                    case 1: //список товаров
+                                    case 1:
                                         System.out.println("\nСписок всех товаров:");
                                         getProductsList(productsList);
                                         break;
-                                    case 2: //поиск по артикулу с проверками
+                                    case 2:
                                         do {
                                             checkStatus = true;
                                             System.out.print("Введите артикул для поиска: ");
@@ -86,27 +85,27 @@ public class Main {
                                             }
                                         } while (checkStatus);
                                         break;
-                                    case 3: // удалить товар
+                                    case 3:
                                         System.out.println("\n[Меню удаления товара]");
                                         getProductsList(productsList);
                                         System.out.print("Введите индекс товара по списку для удаления: ");
                                         int index = in.nextInt();
 
-                                        System.out.print("Удалить товар?\n[1] Удалить\n[2] Отмена\n~~~~ ");
+                                        System.out.print("Удалить товар?\n[1] Да\n[2] Нет\n~~~~ ");
                                         int deleteAccept = in.nextInt();
                                         switch (deleteAccept) {
-                                            case 1: //да
+                                            case 1:
                                                 productsList.remove(index);
                                                 System.out.println("[Товар удален!]\n");
                                                 break;
-                                            case 2: // нет
+                                            case 2:
                                                 System.out.println("[Удаление отменено]\n");
                                                 break;
                                         }
                                         break;
-                                    case 4: // добавить товар
+                                    case 4:
                                         System.out.println("\n[добавить товар]");
-                                        do {//цикл проверки артикула
+                                        do {
                                             checkStatus = false;
                                             System.out.print("Введите артикул: ");
                                             addProductNO = in.nextLine();
@@ -129,33 +128,33 @@ public class Main {
                                         System.out.print("Добавить товар?\n[1] Добавить\n[2] Отмена\n~~~~ ");
                                         int addAccept = in.nextInt();
                                         switch (addAccept) {
-                                            case 1: //да
+                                            case 1:
                                                 productsList.add(new Product(addProductNO, addItem, addPrice, addDescription));
                                                 System.out.println("[Товар добавлен!]\n");
                                                 break;
-                                            case 2: // нет
+                                            case 2:
                                                 System.out.println("[Добавление товара отменено]");
                                                 break;
                                         }
-                                        //добавить товар: конец
+
                                         break;
-                                    case 5: // Вывести всем пользователей
+                                    case 5:
                                         printUserList(usersList);
                                         break;
-                                    case 6: // Повысить пользователя до администратора
+                                    case 6:
                                         System.out.println("[Управление правами пользователей]");
                                         printUserList(usersList);
                                         System.out.print("Введите индекс пользователя для изменения роли: ");
                                         int userIndex = in.nextInt();
-                                        System.out.print("Выдать права администратора?\n[1] Да\n[2] Отмена\n~~~~ ");
+                                        System.out.print("Выдать права администратора?\n[1] Да\n[2] Нет\n~~~~ ");
                                         int rightsAccept = in.nextInt();
                                         switch (rightsAccept) {
-                                            case 1: //да
+                                            case 1:
                                                 usersList.get(userIndex).setAdminRights(true);
                                                 System.out.println("[Пользователь "+usersList.get(userIndex).getLogin()+" теперь администратор!]\n");
                                                 break;
-                                            case 2: // нет
-                                                System.out.println("[Удаление отменено]\n");
+                                            case 2:
+                                                System.out.println("[Выдача прав отменена]\n");
                                                 break;
                                         }
                                         break;
@@ -165,19 +164,17 @@ public class Main {
                                         break; //false
                                     default:
                                         System.out.println("Используйте нумерацию меню 1-7\n");
-                                } //конец adminMenu
-
-                                //onlineStatus = false;
-                            } else { //false -> visitor
+                                }
+                            } else {
                                 System.out.println("\nЛичный кабинет (Посетитель):\n1 Просмотр товаров\n2 Поиск по артикулу \n3 Выйти из аккаунта");
                                 System.out.print("---> ");
                                 int userMenu = in.nextInt();
                                 switch (userMenu) { // ЛК  user
-                                    case 1: //список товаров
+                                    case 1:
                                         System.out.println("\nСписок всех товаров:");
                                         getProductsList(productsList);
                                         break;
-                                    case 2: //поиск по артикулу с проверками
+                                    case 2:
                                         do {
                                             checkStatus = true;
                                             System.out.print("Введите артикул для поиска: ");
@@ -193,26 +190,25 @@ public class Main {
                                             }
                                         } while (checkStatus);
                                         break;
-                                    case 3: //выход в предыдущий свитч
+                                    case 3:
                                         System.out.println("\n[Вы вышли из своего аккаунта]\n");
                                         onlineStatus = false;
-                                        break; //false
+                                        break;
                                     default:
                                         System.out.println("[Используйте нумерацию меню 1-3]\n");
-                                }//конец userMenu}
+                                }
                             }
-                        } //конец цикла для аккаунта
-                    } //аутентификация: конец else
+                        }
+                    }
                     break;
-                case 3: //остановка программы
-                    //выход
+                case 3:
                     System.out.println("[Вы вышли из магазина]\n");
                     return;
                 default:
                     System.out.println("[Используйте нумерацию меню 1-3]\n");
-            } //конец marketMenu
-        } //конец while
-    }// market() end
+            }
+        }
+    }
 
     // ПОЛЬЗОВАТЕЛИ
     //authentication
@@ -261,7 +257,6 @@ public class Main {
         for (Product item : productsList) {
             System.out.println("[" + productsList.indexOf(item) + "] " + item.toString());
         }
-        //return  true;
     }
 
     //поиск товара по артикулу
@@ -272,7 +267,6 @@ public class Main {
                 return true;
             }
         }
-        //System.out.println("Артикул не найден в базе");
         return false;
     }
 
@@ -280,7 +274,4 @@ public class Main {
     static boolean checkProductNO(String productNO) {
         return productNO.matches("[A-ZА-Я]{3}\\d{3}");
     }
-
-
-//end
 }
