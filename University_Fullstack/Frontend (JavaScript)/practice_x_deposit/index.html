@@ -17,8 +17,8 @@
         <fieldset>
         <legend> Калькулятор депозита </legend>
         <form name="form" onchange="result();">
-            <label>Сумма: <input type="number" id="cash" min="10000" max="100000000" step="100000" value="10000" pattern="[0-9]{8}"></label><br>
-            <!--<input type="range" id="range" min="10000" max="100000000"> -->
+            <label>Сумма: <input type="number" id="cash" min="10000" max="100000000" step="100000" value="10000" onchange="updateRangeInput(this.value);"></label><br>
+            <input type="range" id="range" min="10000" max="100000000" step="100000" oninput="updateTextInput(this.value);">
             <br>
             <label>Срок: <input type="number" id="days" min="30" max="3660" step="30" value="30"> дней</label><br>
             <br>

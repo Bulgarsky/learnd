@@ -3,7 +3,7 @@ function result() {
     const cash = Number(document.getElementById("cash").value);
     const days = Number(document.getElementById("days").value);
     if (Number(document.getElementById("cash").value > 100000000)) {
-        alert("Введите сумму меньше 100 000 000");
+        alert("Введите сумму меньше 100,000,000");
     } else {
         if (document.getElementById("simple").checked) {
             injectVisual();
@@ -83,3 +83,11 @@ function setVisualStyle(total, cash) {
     document.getElementById('cash-start').innerHTML = cash;
     document.getElementById('cash-finish').innerHTML = total.toFixed(2);
 }
+
+function updateTextInput(value) {
+    document.getElementById("cash").value = value;
+}
+function updateRangeInput(value) {
+    document.getElementById("range").value = value;
+}
+
