@@ -84,6 +84,8 @@ function setVisualStyle(total, cash) {
     document.getElementById('cash-finish').innerHTML = total.toFixed(2);
 }
 
+
+//input+range linked
 function updateTextInput(value) {
     document.getElementById("cash").value = value;
 }
