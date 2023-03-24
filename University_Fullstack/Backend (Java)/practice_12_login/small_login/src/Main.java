@@ -16,5 +16,6 @@ public class Main {
             System.out.println("system: You are logged");
         } else {
             System.out.println("system: logging failure");
+        }
     }
 }

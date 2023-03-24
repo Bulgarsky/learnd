@@ -5,8 +5,8 @@
     <title>Bank deposit</title>
     <link rel="stylesheet" href="css/style.css">
     <script src="js/deposit.js"></script>
-
-
+    <meta name="description" content="Deposit interest calculator. Web">
+    <meta name="author" content="Кулуев А Р (bulgarsky@github.com)">
 </head>
 <body>
 <div class="sheet">
@@ -39,6 +39,34 @@
         <p id="injection"></p>
         </fieldset>
     </div>
+</div>
+
+<div id="description">
+    <h4>Описание: </h4>
+    <p>
+        <strong>Формула простого процента (без капитализации вклада):</strong>
+        доход = (депозит * ставка * срок размещения(в днях) / 365 ) / 100;<br>
+        S=(P*I*t/K)/100<br>
+        K — число дней в году (365)<br>
+    </p>
+    <p>
+        <strong>Формула сложного процента (с капитализацией вклада):</strong>
+        вклад =  ((вклад(и проценты) * ставка * срок капитализации) / 365 ) / 100;<br>
+        S=(P*I*j/K)/100<br>
+        K — число дней в году (365)<br>
+    </p>
+    <p>
+        <strong>Значения:</strong><br>
+        месяц = 30;
+        квартал = 120;
+        год = 365;
+    </p>
+    <p>
+        <strong>Ограничения полей:</strong><br>
+        Сумма вклада: мин = 10 000; макс = 100 000 000; шаг = 100 000;<br>
+        Срок: мин = 1; макс = 3660; шаг = 30;<br>
+        Стака: мин = 0,25%; макс = 30%; шаг = 0,25%;,<br>
+    </p>
 </div>
 
 </body>
