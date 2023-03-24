@@ -260,9 +260,9 @@ public class Main {
     }
 
     //поиск товара по артикулу
-    static boolean findProduct(String article, ArrayList<Product> productsList) {
+    static boolean findProduct(String productNO, ArrayList<Product> productsList) {
         for (Product item : productsList) {
-            if (item.getProductNO().equals(article)) {
+            if (item.getProductNO().equals(productNO)) {
                 System.out.println("[" + productsList.indexOf(item) + "] " + item);
                 return true;
             }

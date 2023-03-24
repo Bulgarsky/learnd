@@ -23,9 +23,9 @@ public class User {
     }
 
     //getters
-    public String getLogin() {        return login;    }
-    public String getPassword() {        return password;    }
-    public boolean isAdminRights() {        return adminRights;    }
+    public String getLogin() {return login;}
+    public String getPassword() {return password;}
+    public boolean isAdminRights() {return adminRights;}
 
     //setters
     public void setLogin(String login) {this.login = login;}

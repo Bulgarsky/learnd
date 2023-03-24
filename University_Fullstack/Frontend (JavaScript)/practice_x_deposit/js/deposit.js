@@ -2,14 +2,17 @@ function result() {
     const rate = Number(document.getElementById("rate").value);
     const cash = Number(document.getElementById("cash").value);
     const days = Number(document.getElementById("days").value);
-
-    if (document.getElementById("simple").checked) {
-        injectVisual();
-        getSimpleInterest(rate, days, cash);
-
+    if (Number(document.getElementById("cash").value > 100000000)) {
+        alert("Введите сумму меньше 100 000 000");
     } else {
-        injectVisual();
-        getCompoundInterest(rate, days, cash);
+        if (document.getElementById("simple").checked) {
+            injectVisual();
+            getSimpleInterest(rate, days, cash);
+
+        } else {
+            injectVisual();
+            getCompoundInterest(rate, days, cash);
+        }
     }
 }
 function injectVisual() {
