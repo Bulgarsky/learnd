@@ -31,6 +31,7 @@ public class User {
     public void setLogin(String login) {this.login = login;}
     public void setPassword(String password) {this.password = password;}
 
+    public void setAdminRights(boolean adminRights) {this.adminRights = adminRights;}
 
     //@Override equals()
     @Override
