@@ -19,8 +19,8 @@ public class Main {
             switch (inputMenu) {
                 case 1:
                     System.out.println("\n[ДОБАВЛЕНИЕ НОВОГО РЕЙСА]");
-                    //цикл
-                    do {
+
+                    do {//цикл проверки маски рейса
                         status = false; //переключение статуса  на false
                         System.out.print("Введите номер рейса: ");
                         flightNO = in.nextLine();

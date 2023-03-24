@@ -40,11 +40,11 @@ public class Product {
 
     @Override
     public String toString() {
-        return "товар {" +
-                "артикул: '" + productNO + '\'' +
+        return
+                " артикул: '" + productNO + '\'' +
                 ", наименование: '" + item + '\'' +
                 ", цена: '" + price + '\'' +
-                ", описание: '" + description + '\'' +
-                '}';
+                ", описание: '" + description + '\''
+                ;
     }
 }

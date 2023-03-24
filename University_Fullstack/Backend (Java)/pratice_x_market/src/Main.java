@@ -5,7 +5,6 @@ public class Main {
         market();
     }
     public static void market() {
-        Scanner in = new Scanner(System.in);
         ArrayList<User> usersList = new ArrayList <>();
         usersList.add(new User("admin", "admin"));
         ArrayList<Product> productsList = new ArrayList<>();
@@ -13,6 +12,10 @@ public class Main {
         productsList.add(new Product("BBB222", "Dexp 32 QF321K", "15999", "Монитор с разрешением 2К"));
         productsList.add(new Product("CCC333", "Kitfort kt-220", "7650", "Рожковая кофемашина 3 режима"));
         productsList.add(new Product("DDD444", "A4tech KB-755bk", "1399", "Игровая клавиатура"));
+
+        boolean searchStatus;
+        Scanner in = new Scanner(System.in);
+
         while (true) {
             System.out.println("Магазин\n1 регистрация пользователя\n2 вход в ЛК\n3 выход из системы");
             System.out.print("---> ");
@@ -57,11 +60,19 @@ public class Main {
                                 getProductsList(productsList);
                                 break;
                             case 2:
-                                System.out.print("Введите артикул для поиска: ");
-                                String article = in.next();
-                                if (!findProduct(article, productsList)) {
-                                    System.out.println("Товар не найден");
-                                }
+                                do {
+                                    searchStatus = false;
+                                    System.out.print("Введите артикул для поиска: ");
+                                    String article = in.next();
+                                    if (!checkProductNO(article)) {
+                                        System.out.println("Введите артикул согласно маске [AAA222]! Р");
+                                        searchStatus = true;
+                                    } else
+                                    if (findProduct(article, productsList)) {
+                                        searchStatus = false;
+                                    }
+                                } while (searchStatus);
+
                                 break;
                             case 3:
                                 System.out.println("\n[Вы вышли из своего аккаунта]\n");
@@ -104,27 +115,30 @@ public class Main {
         }
         return  false;
     }
+
     //список товаров
     static boolean getProductsList (ArrayList<Product> productsList) {
-
         for (Product item: productsList) {
-            //System.out.println(item); //override toString
-            System.out.println("["+productsList.indexOf(item)+"] Артикул: "+ item.getProductNO()+", Наименование: "+item.getItem()+", Цена: "+item.getPrice()+", Описание: "+item.getDescription());
-
+            System.out.println("["+productsList.indexOf(item)+"] "+ item.toString());
             }
         return  true;
     }
+
     //поиск товара по артикулу
     static boolean findProduct (String article,ArrayList<Product> productsList) {
-
         for (Product item: productsList) {
             if (item.getProductNO().equals(article)) {
-            System.out.println("["+productsList.indexOf(item)+"] Артикул: "+ item.getProductNO()+", Наименование: "+item.getItem()+", Цена: "+item.getPrice()+", Описание: "+item.getDescription());
-            break;
+            System.out.println("["+productsList.indexOf(item)+"] "+ item.toString());
+            return true;
             }
         }
-        return  true;
+        return  false;
     }
     // проверка на идентичность товара
-
+    static boolean checkProductNO(String productNO) {
+        if (productNO.matches("[A-ZА-Я]{3}\\d{3}")) {
+            return true;
+        }
+        return false;
+    }
 }
