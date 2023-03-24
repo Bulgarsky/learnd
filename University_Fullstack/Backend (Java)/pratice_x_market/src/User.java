@@ -3,27 +3,36 @@ import java.util.Objects;
 public class User {
     private String login;
     private String password;
+    private boolean adminRights;
+    {//default user: Visitor
+        boolean adminRights = false;
+    }
 
     //constructor
-    public User (String login, String password) {
+    public User(String login, String password) {
+        //default: visitor
         this.login = login;
         this.password = password;
+    }
+
+    public User(String login, String password, boolean adminRights) {
+        //admin
+        this.login = login;
+        this.password = password;
+        this.adminRights = adminRights;
     }
 
     //getters
-    public String getLogin(){return login;}
-    public String getPassword() {return password;}
+    public String getLogin() {        return login;    }
+    public String getPassword() {        return password;    }
+    public boolean isAdminRights() {        return adminRights;    }
 
     //setters
-    public void setLogin(String login) {
-        this.login = login;
-    }
+    public void setLogin(String login) {this.login = login;}
+    public void setPassword(String password) {this.password = password;}
 
-    public void setPassword(String password) {
-        this.password = password;
-    }
+
     //@Override equals()
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -35,5 +44,13 @@ public class User {
     @Override
     public int hashCode() {
         return Objects.hash(login, password);
+    }
+
+    @Override
+    public String toString() {
+        return "Пользователь {" +
+                "Login: " + login +
+                ", adminRights: " + adminRights +
+                '}';
     }
 }

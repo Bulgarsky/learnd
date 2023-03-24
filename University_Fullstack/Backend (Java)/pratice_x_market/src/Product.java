@@ -20,7 +20,13 @@ public class Product {
     public String getDescription() {return description;}
 
     //setters
-    public void setProductNO(String productNO) {this.productNO = productNO;}
+    public boolean setProductNO(String productNO) {
+        if (productNO.matches("[A-ZА-Я]{3}\\d{3}")) {
+            this.productNO = productNO;
+            return true;
+        }
+        return false;
+        }
     public void setItem(String item) {this.item = item;}
     public void setPrice(String price) {this.price = price;}
     public void setDescription(String description) {this.description = description;}
