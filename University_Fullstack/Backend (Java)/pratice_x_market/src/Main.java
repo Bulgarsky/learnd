@@ -51,11 +51,14 @@ public class Main {
                     do {
                         checkStatus = false;
                         System.out.print("Введите почту: ");
-                        email= in.nextLine();
+                        email = in.nextLine();
                         if (checkEmail(email)) {
                             System.out.println("[Введите почту согласно маске: email@domain.tld ]");
                             checkStatus = true;
                         }
+                        if (findEmail(email, usersList)) {
+                            checkStatus = true;
+                        } else {checkStatus = false;}
                     } while (checkStatus);
 
                     System.out.print("Введите вашу фамилию: ");
@@ -73,7 +76,7 @@ public class Main {
                     String accountAuth = in.nextLine();
                     System.out.print("Введите свой пароль: ");
                     String passwordAuth = in.nextLine();
-                    //аутентификация (!authentication(loginAuth, passwordAuth, usersList)
+                    //аутентификация
                     if (!authentication(accountAuth, passwordAuth, usersList)) { //false
                         System.out.println("[Введены не корректные логин/email или пароль!]");
                     } else { //true
@@ -338,7 +341,15 @@ public class Main {
         }
         return false;
     }
-
+    //проверка: маска ввода почта
+    static boolean checkEmail (String email) {
+        if (email.matches("[A-Za-z0-9]{1,10}@[A-Za-z0-9]{2,10}.[A-Za-z0-9]{2,4}")) {
+            return false;
+        }
+        else {
+            return true;
+        }
+    }
     //проверка: права админа
     static boolean checkAdminRights(String account, ArrayList<User> usersList) {
         for (User user : usersList) {
@@ -360,6 +371,16 @@ public class Main {
         }
         return false;
     }
+    //поиск почты
+    static boolean findEmail(String email, ArrayList<User> usersList) {
+        for (User user : usersList) {
+            if (user.getEmail().contains(email)) {
+                System.out.println("Почта [" + user.getEmail() + "] уже используется в аккаунте ["+user.getLogin()+"]. Используйте другую почту!\n");
+                return true;
+            }
+        }
+        return false;
+    }
 
     //список всех пользователей
     static void printUserList(ArrayList<User> usersList) {
@@ -370,7 +391,7 @@ public class Main {
     }
 
     //ТОВАРЫ
-    //список товаров
+    //Товары: список (список в базе, список корзины)
     static void getProductsList(ArrayList<Product> productsList) {
         int i = 0;
         for (Product item : productsList) {
@@ -379,13 +400,8 @@ public class Main {
         }
     }
 
-    static void getBasketList(ArrayList<Product> orderBasket) {
-        for (Product item : orderBasket) {
-            System.out.println("[" + orderBasket.indexOf(item) + "] " + item.toString());
-        }
-    }
 
-    //поиск товара по артикулу
+    //Товары: поиск товара по артикулу
     static boolean findProduct(String productNO, ArrayList<Product> productsList) {
         for (Product item : productsList) {
             if (item.getProductNO().equals(productNO)) {
@@ -401,24 +417,5 @@ public class Main {
         return productNO.matches("[A-ZА-Я]{3}\\d{3}");
     }
 
-    //проверка: маска ввода почта
-    static boolean checkEmail (String email) {
-        if (email.matches("[A-Za-z0-9]{1,10}@[A-Za-z0-9]{2,10}.[A-Za-z0-9]{2,4}")) {
-            return false;
-        }
-        else {
-            return true;
-        }
-    }
-
-    //проверка: вход по почте или логину
-    static boolean ckeckAccount (String accaunt, String password, ArrayList<User> usersList) {
-        for (User user : usersList) {
-            if ((user.getLogin().contains(accaunt) && user.getPassword().equals(password)) || (user.getEmail().contains(accaunt) && user.getPassword().equals(password))) {
-                return true;
-            }
-        }
-        return false;
-    }
 
 }
