@@ -230,19 +230,18 @@ public class Main {
                                         } while (checkStatus);
                                         break;
                                     case 3: //корзина
-
                                         boolean addBasketStatus = false;
                                         do {
                                             System.out.println("[Список доступных товаров в магазине]");
                                             getProductsList(productsList);
                                             System.out.print("Введите индекс для добавления товара в корзину: ");
                                             int productIndex = in.nextInt();
-                                            Product orderItem = productsList.get(productIndex);
+                                            Product tempProduct = productsList.get(productIndex);
                                             System.out.print("Добавить товар в корзину?\n[1] Да\n[2] Нет\n~~~~ ");
                                             int addBasket = in.nextInt();
                                             switch (addBasket) {
                                                 case 1:
-                                                    orderBasket.add(orderItem);
+                                                    orderBasket.add(tempProduct);
                                                     System.out.println("[Товар добавлен в корзину!]");
                                                     break;
                                                 case 2:
@@ -266,7 +265,7 @@ public class Main {
                                         do {
                                             removeBasketStatus = false;
                                             System.out.println("[Список товаров в корзине]");
-                                            getBasketList(orderBasket);
+                                            getProductsList(orderBasket);
                                             System.out.print("Введите индекс для удаления товара из корзины: ");
                                             int removeIndex = in.nextInt();
                                             Product orderItem = orderBasket.get(removeIndex);
@@ -373,10 +372,13 @@ public class Main {
     //ТОВАРЫ
     //список товаров
     static void getProductsList(ArrayList<Product> productsList) {
+        int i = 0;
         for (Product item : productsList) {
-            System.out.println("[" + productsList.indexOf(item) + "] " + item.toString());
+            System.out.println("[" + i + "] " + item.toString());
+            i++;
         }
     }
+
     static void getBasketList(ArrayList<Product> orderBasket) {
         for (Product item : orderBasket) {
             System.out.println("[" + orderBasket.indexOf(item) + "] " + item.toString());
