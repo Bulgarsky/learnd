@@ -1,3 +1,5 @@
+import org.w3c.dom.ls.LSOutput;
+
 import java.util.ArrayList;
 import java.util.Scanner;
 public class Main {
@@ -16,6 +18,7 @@ public class Main {
         productsList.add(new Product("CCC333", "Kitfort kt-220", "7650", "Рожковая кофемашина 3 режима"));
         productsList.add(new Product("DDD444", "A4tech KB-755bk", "1399", "Игровая клавиатура"));
 
+        ArrayList<Product> orderBasket = new ArrayList<>();
         boolean checkStatus;
         String addProductNO = null;
         Scanner in = new Scanner(System.in);
@@ -81,10 +84,10 @@ public class Main {
                                 System.out.print("""
                                         
                                         Личный кабинет (Администратор):
-                                        1 Просмотр товаров
+                                        1 Просмотр всех товаров в магазине
                                         2 Поиск по артикулу
-                                        3 Удалить товар
-                                        4 Добавить товар
+                                        3 Удалить товар из базы
+                                        4 Добавить товар в базу
 
                                         5 Вывести всех пользователей
                                         6 Повысить пользователя до администратора
@@ -120,8 +123,8 @@ public class Main {
                                         int index = in.nextInt();
 
                                         System.out.print("Удалить товар?\n[1] Да\n[2] Нет\n~~~~ ");
-                                        int deleteAccept = in.nextInt();
-                                        switch (deleteAccept) {
+                                        int removeProduct = in.nextInt();
+                                        switch (removeProduct) {
                                             case 1:
                                                 productsList.remove(index);
                                                 System.out.println("[Товар удален!]");
@@ -154,14 +157,14 @@ public class Main {
                                         String addDescription = in.nextLine();
 
                                         System.out.print("Добавить товар?\n[1] Добавить\n[2] Отмена\n~~~~ ");
-                                        int addAccept = in.nextInt();
-                                        switch (addAccept) {
+                                        int addProduct = in.nextInt();
+                                        switch (addProduct) {
                                             case 1:
                                                 productsList.add(new Product(addProductNO, addItem, addPrice, addDescription));
-                                                System.out.println("[Товар добавлен!]");
+                                                System.out.println("[Товар добавлен в базу!]");
                                                 break;
                                             case 2:
-                                                System.out.println("[Добавление товара отменено]");
+                                                System.out.println("[Добавление товара в базу отменено]");
                                                 break;
                                         }
                                         break;
@@ -194,8 +197,16 @@ public class Main {
                                         System.out.println("Используйте нумерацию меню 1-7\n");
                                 }
                             } else {
-                                System.out.println("\nЛичный кабинет (Посетитель):\n1 Просмотр товаров\n2 Поиск по артикулу \n3 Выйти из аккаунта");
-                                System.out.print("---> ");
+                                System.out.print("""
+
+                                        Личный кабинет (Посетитель):
+                                        1 Просмотр всех товаров в магазине
+                                        2 Поиск по артикулу
+                                        3 Добавить товары в корзину
+                                        4 Удалить товары из корзины
+                                        5 Корзина
+                                        6 Выйти из аккаунта
+                                         ~~~~ \s""");
                                 int userMenu = in.nextInt();
                                 switch (userMenu) { // ЛК  user
                                     case 1:
@@ -204,7 +215,7 @@ public class Main {
                                         break;
                                     case 2:
                                         do {
-                                            checkStatus = true;
+                                            //checkStatus = true;
                                             System.out.print("Введите артикул для поиска: ");
                                             String article = in.next();
                                             if (!checkProductNO(article)) {
@@ -218,12 +229,81 @@ public class Main {
                                             }
                                         } while (checkStatus);
                                         break;
-                                    case 3:
+                                    case 3: //корзина
+
+                                        boolean addBasketStatus = false;
+                                        do {
+                                            System.out.println("[Список доступных товаров в магазине]");
+                                            getProductsList(productsList);
+                                            System.out.print("Введите индекс для добавления товара в корзину: ");
+                                            int productIndex = in.nextInt();
+                                            Product orderItem = productsList.get(productIndex);
+                                            System.out.print("Добавить товар в корзину?\n[1] Да\n[2] Нет\n~~~~ ");
+                                            int addBasket = in.nextInt();
+                                            switch (addBasket) {
+                                                case 1:
+                                                    orderBasket.add(orderItem);
+                                                    System.out.println("[Товар добавлен в корзину!]");
+                                                    break;
+                                                case 2:
+                                                    System.out.println("[Добавление товара в корзину отменено]");
+                                                    break;
+                                            }
+                                            System.out.print("Хотите добавить еще товар?\n 1 Да\n 2 Нет\n ~~~ ");
+                                            int addRepeat = in.nextInt();
+                                            switch (addRepeat) {
+                                                case 1:
+                                                    addBasketStatus = true;
+                                                    break;
+                                                case 2:
+                                                    addBasketStatus = false;
+                                                    break;
+                                            }
+                                        }while (addBasketStatus);
+                                        break;
+                                    case 4:
+                                        boolean removeBasketStatus;
+                                        do {
+                                            removeBasketStatus = false;
+                                            System.out.println("[Список товаров в корзине]");
+                                            getBasketList(orderBasket);
+                                            System.out.print("Введите индекс для удаления товара из корзины: ");
+                                            int removeIndex = in.nextInt();
+                                            Product orderItem = orderBasket.get(removeIndex);
+                                            System.out.print("Удалить товар из корзины?\n[1] Да\n[2] Нет\n~~~~ ");
+                                            int removeBasket = in.nextInt();
+                                            switch (removeBasket) {
+                                                case 1:
+                                                    orderBasket.remove(removeIndex);
+                                                    System.out.println("[Товар удален из корзины!]");
+                                                    break;
+                                                case 2:
+                                                    System.out.println("[Удаление товара из корзины отменено]");
+                                                    break;
+                                            }
+                                            System.out.print("Хотите удалить еще товар?\n 1 Да\n 2 Нет\n ~~~ ");
+                                            int removeRepeat = in.nextInt();
+                                            switch (removeRepeat) {
+                                                case 1:
+                                                    removeBasketStatus = true;
+                                                    break;
+                                                case 2:
+                                                    removeBasketStatus = false;
+                                                    break;
+                                            }
+
+                                        }while (removeBasketStatus);
+                                        break;
+                                    case 5:
+                                        System.out.println("[Список товаров в корзине]");
+                                        getProductsList(orderBasket);
+                                        break;
+                                    case 6:
                                         System.out.println("[Вы вышли из своего аккаунта]");
                                         onlineStatus = false;
                                         break;
                                     default:
-                                        System.out.println("[Используйте нумерацию меню 1-3]");
+                                        System.out.println("[Используйте нумерацию меню 1-6]");
                                 }
                             }
                         }
@@ -295,6 +375,11 @@ public class Main {
     static void getProductsList(ArrayList<Product> productsList) {
         for (Product item : productsList) {
             System.out.println("[" + productsList.indexOf(item) + "] " + item.toString());
+        }
+    }
+    static void getBasketList(ArrayList<Product> orderBasket) {
+        for (Product item : orderBasket) {
+            System.out.println("[" + orderBasket.indexOf(item) + "] " + item.toString());
         }
     }
 
