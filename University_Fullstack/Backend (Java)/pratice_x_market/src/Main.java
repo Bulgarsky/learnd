@@ -7,8 +7,8 @@ public class Main {
 
     public static void market() {
         ArrayList<User> usersList = new ArrayList<>();
-        usersList.add(new User("admin", "admin", true)); //admin
-        usersList.add(new User("user", "user")); //visitor
+        usersList.add(new User("admin", "admin", true, "admin@market.info", "Market", "Super", "Admin"));
+        usersList.add(new User("user", "user", "user@market.info", "Local", "Test", "Account"));
 
         ArrayList<Product> productsList = new ArrayList<>();
         productsList.add(new Product("AAA111", "Samsung TV 43", "34499", "Телевизор Самсунг 43 дюйма со SmartTV"));
@@ -21,52 +21,80 @@ public class Main {
         Scanner in = new Scanner(System.in);
 
         while (true) {
-            System.out.print("Магазин\n1 регистрация пользователя\n2 вход в ЛК\n3 выход из системы\n ~~~");
+            System.out.print("""
+                    
+                    [Магазин]
+                    1 регистрация пользователя
+                    2 вход в ЛК
+                    3 выход из системы
+                    ~~~ \s""");
             int marketMenu = in.nextInt();
             in.nextLine();
             switch (marketMenu) {
                 case 1: //регистрация
-                    System.out.println("Регистрация пользователя:");
-                    System.out.print("Введите логин: ");
-                    String login = in.nextLine();
+                    System.out.println("[Регистрация пользователя]");
+                    String login;
+                    do {
+                        checkStatus = false;
+                        System.out.print("Введите логин: ");
+                        login = in.nextLine();
+                        if (findLogin(login, usersList)) { //true
+                            checkStatus = true;
+                        }
+                    }while (checkStatus);
                     System.out.print("Введите пароль: ");
                     String password = in.nextLine();
-                    //поиск акаунта
-                    if (findLogin(login, usersList)) { //true
-                        break;
-                    } else { //false
-                        usersList.add(new User(login, password));
-                        System.out.println("[Пользователь добавлен!]\n ");
-                    }
+                    String email;
+                    do {
+                        checkStatus = false;
+                        System.out.print("Введите почту: ");
+                        email= in.nextLine();
+                        if (checkEmail(email)) {
+                            System.out.println("[Введите почту согласно маске: email@domain.tld ]");
+                            checkStatus = true;
+                        }
+                    } while (checkStatus);
+
+                    System.out.print("Введите вашу фамилию: ");
+                    String lastName = in.nextLine();
+                    System.out.print("Введите ваше имя: ");
+                    String firstName = in.nextLine();
+                    System.out.print("Введите ваше отчество: ");
+                    String middleName = in.nextLine();
+                    usersList.add(new User(login, password, email, lastName, firstName, middleName));
+                    System.out.println("[Пользователь добавлен!]");
                     break;
                 case 2:
-                    System.out.println("Вход в ЛК");
-                    System.out.print("Введите свой логин: ");
-                    String loginAuth = in.nextLine();
+                    System.out.println("\n[Вход в ЛК]");
+                    System.out.print("Введите свой логин или почту: ");
+                    String accountAuth = in.nextLine();
                     System.out.print("Введите свой пароль: ");
                     String passwordAuth = in.nextLine();
-                    //аутентификация
-                    if (!authentication(loginAuth, passwordAuth, usersList)) { //false
-                        System.out.println("[Введеные не корректные логин или пароль!]\n");
+                    //аутентификация (!authentication(loginAuth, passwordAuth, usersList)
+                    if (!authentication(accountAuth, passwordAuth, usersList)) { //false
+                        System.out.println("[Введены не корректные логин/email или пароль!]");
                     } else { //true
                         boolean onlineStatus = true;
                         while (onlineStatus) {
                             //admin
-                            if (checkAdminRights(loginAuth, usersList)) { //true
-                                System.out.print("\n" +
-                                        "Личный кабинет (Администратор):\n" +
-                                        "1 Просмотр товаров\n" +
-                                        "2 Поиск по артикулу\n" +
-                                        "3 Удалить товар\n" +
-                                        "4 Добавить товар\n" +
-                                        "5 Вывести всех пользователей\n" +
-                                        "6 Повысить пользователя до администратора\n" +
-                                        "7 Выйти из аккаунта\n ~~~ ");
+                            if (checkAdminRights(accountAuth, usersList)) { //true
+                                System.out.print("""
+                                        
+                                        Личный кабинет (Администратор):
+                                        1 Просмотр товаров
+                                        2 Поиск по артикулу
+                                        3 Удалить товар
+                                        4 Добавить товар
+
+                                        5 Вывести всех пользователей
+                                        6 Повысить пользователя до администратора
+                                        7 Выйти из аккаунта
+                                         ~~~ \s""");
                                 int adminMenu = in.nextInt();
                                 in.nextLine(); // каретка
                                 switch (adminMenu) {
                                     case 1:
-                                        System.out.println("\nСписок всех товаров:");
+                                        System.out.println("Список всех товаров:");
                                         getProductsList(productsList);
                                         break;
                                     case 2:
@@ -96,10 +124,10 @@ public class Main {
                                         switch (deleteAccept) {
                                             case 1:
                                                 productsList.remove(index);
-                                                System.out.println("[Товар удален!]\n");
+                                                System.out.println("[Товар удален!]");
                                                 break;
                                             case 2:
-                                                System.out.println("[Удаление отменено]\n");
+                                                System.out.println("[Удаление отменено]");
                                                 break;
                                         }
                                         break;
@@ -130,13 +158,12 @@ public class Main {
                                         switch (addAccept) {
                                             case 1:
                                                 productsList.add(new Product(addProductNO, addItem, addPrice, addDescription));
-                                                System.out.println("[Товар добавлен!]\n");
+                                                System.out.println("[Товар добавлен!]");
                                                 break;
                                             case 2:
                                                 System.out.println("[Добавление товара отменено]");
                                                 break;
                                         }
-
                                         break;
                                     case 5:
                                         printUserList(usersList);
@@ -146,20 +173,21 @@ public class Main {
                                         printUserList(usersList);
                                         System.out.print("Введите индекс пользователя для изменения роли: ");
                                         int userIndex = in.nextInt();
-                                        System.out.print("Выдать права администратора?\n[1] Да\n[2] Нет\n~~~~ ");
+                                        System.out.print("[Авторизация прав]\n[1] Назначить администратором\n[2] Назначить пользователем\n~~~~ ");
                                         int rightsAccept = in.nextInt();
                                         switch (rightsAccept) {
                                             case 1:
                                                 usersList.get(userIndex).setAdminRights(true);
-                                                System.out.println("[Пользователь "+usersList.get(userIndex).getLogin()+" теперь администратор!]\n");
+                                                System.out.println("[Пользователь ["+usersList.get(userIndex).getLogin()+"] теперь администратор!]");
                                                 break;
                                             case 2:
-                                                System.out.println("[Выдача прав отменена]\n");
+                                                usersList.get(userIndex).setAdminRights(false);
+                                                System.out.println("[Пользователь ["+usersList.get(userIndex).getLogin()+"] теперь обычный пользователь!]");
                                                 break;
                                         }
                                         break;
                                     case 7: //выход в предыдущий свитч
-                                        System.out.println("\n[Вы вышли из своего аккаунта]\n");
+                                        System.out.println("[Вы вышли из своего аккаунта]");
                                         onlineStatus = false;
                                         break; //false
                                     default:
@@ -171,7 +199,7 @@ public class Main {
                                 int userMenu = in.nextInt();
                                 switch (userMenu) { // ЛК  user
                                     case 1:
-                                        System.out.println("\nСписок всех товаров:");
+                                        System.out.println("\n[Список всех товаров]");
                                         getProductsList(productsList);
                                         break;
                                     case 2:
@@ -180,7 +208,7 @@ public class Main {
                                             System.out.print("Введите артикул для поиска: ");
                                             String article = in.next();
                                             if (!checkProductNO(article)) {
-                                                System.out.println("[Введите артикул согласно маске AAA222!]\n");
+                                                System.out.println("[Введите артикул согласно маске AAA222!]");
                                                 checkStatus = true;
                                             } else if (findProduct(article, productsList)) {
                                                 checkStatus = false;
@@ -191,28 +219,28 @@ public class Main {
                                         } while (checkStatus);
                                         break;
                                     case 3:
-                                        System.out.println("\n[Вы вышли из своего аккаунта]\n");
+                                        System.out.println("[Вы вышли из своего аккаунта]");
                                         onlineStatus = false;
                                         break;
                                     default:
-                                        System.out.println("[Используйте нумерацию меню 1-3]\n");
+                                        System.out.println("[Используйте нумерацию меню 1-3]");
                                 }
                             }
                         }
                     }
                     break;
                 case 3:
-                    System.out.println("[Вы вышли из магазина]\n");
+                    System.out.println("[Вы вышли из магазина]");
                     return;
                 default:
-                    System.out.println("[Используйте нумерацию меню 1-3]\n");
+                    System.out.println("[Используйте нумерацию меню 1-3]");
             }
         }
     }
 
     // ПОЛЬЗОВАТЕЛИ
     //authentication
-    static boolean authentication(String login, String password, ArrayList<User> usersList) {
+    static boolean authentication2(String login, String password, ArrayList<User> usersList) {
         for (User user : usersList) {
             if (user.getLogin().equals(login) && user.getPassword().equals(password)) {
                 System.out.println("[Вы вошли в аккаунт [" + user.getLogin() + "]");
@@ -221,11 +249,22 @@ public class Main {
         }
         return false;
     }
+    //authentication: вход по почте или логину
+    static boolean authentication(String account, String password, ArrayList<User> usersList) {
+        for (User user : usersList) {
+            if ((user.getLogin().contains(account) && user.getPassword().equals(password))
+                    || (user.getEmail().contains(account) && user.getPassword().equals(password))) {
+                return true;
+            }
+        }
+        return false;
+    }
 
     //проверка: права админа
-    static boolean checkAdminRights(String loginAuth, ArrayList<User> usersList) {
+    static boolean checkAdminRights(String account, ArrayList<User> usersList) {
         for (User user : usersList) {
-            if (user.getLogin().contains(loginAuth) && user.isAdminRights()) {
+            if ((user.getLogin().contains(account) && user.isAdminRights())
+                    || user.getEmail().contains(account) &&user.isAdminRights()) {
                 return true;
             }
         }
@@ -236,7 +275,7 @@ public class Main {
     static boolean findLogin(String login, ArrayList<User> usersList) {
         for (User user : usersList) {
             if (user.getLogin().contains(login)) {
-                System.out.println("аккаунт [" + user.getLogin() + "] уже существует!\n");
+                System.out.println("аккаунт [" + user.getLogin() + "] уже существует. Используйте другой логин!\n");
                 return true;
             }
         }
@@ -274,4 +313,25 @@ public class Main {
     static boolean checkProductNO(String productNO) {
         return productNO.matches("[A-ZА-Я]{3}\\d{3}");
     }
+
+    //проверка: маска ввода почта
+    static boolean checkEmail (String email) {
+        if (email.matches("[A-Za-z0-9]{1,10}@[A-Za-z0-9]{2,10}.[A-Za-z0-9]{2,4}")) {
+            return false;
+        }
+        else {
+            return true;
+        }
+    }
+
+    //проверка: вход по почте или логину
+    static boolean ckeckAccount (String accaunt, String password, ArrayList<User> usersList) {
+        for (User user : usersList) {
+            if ((user.getLogin().contains(accaunt) && user.getPassword().equals(password)) || (user.getEmail().contains(accaunt) && user.getPassword().equals(password))) {
+                return true;
+            }
+        }
+        return false;
+    }
+
 }
