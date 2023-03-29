@@ -7,7 +7,7 @@ public class CarDealership {
     }
     */
 
-    //IoC, в качестве параметра принимается object интерфейса. слабосвязный код
+    //IoC, в качестве параметра принимается object интерфейса. слабосвязнй код
     public CarDealership(Car car) {
         this.car = car;
     }
