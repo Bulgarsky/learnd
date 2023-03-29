@@ -12,19 +12,12 @@
     <bean id="JeepBean" class="Jeep"/>
     <bean id="HatchbackBean" class="Hatchback" />
 
-<!--    scope singleton (default) -->
+<!--    scope singleton  -->
     <bean id="cardealer_sale_jeep"
-          class="Dealership">
+          class="Dealership" scope="singleton">
         <property name="car" ref="JeepBean" />
         <property name="city" value="${Dealership.city1}"/>
     </bean>
-
-<!--    &lt;!&ndash; scope prototype&ndash;&gt;-->
-<!--    <bean id="car_dealer_sale_jeep"-->
-<!--          class="CarDealership" scope="prototype">-->
-<!--        <property name="car" ref="JeepBean" />-->
-<!--        <property name="city" value="${CarDealership.city1}"/>-->
-<!--    </bean>-->
 
     <!-- scope="singleton" (default)-->
     <bean id="cardealer_sale_hatchback"
