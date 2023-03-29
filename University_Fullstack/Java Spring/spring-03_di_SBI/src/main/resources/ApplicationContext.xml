@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="JeepBean" class="Jeep"/>
+    <bean id="HatchbackBean" class="Hatchback" /><!-- объект интерфейса -->
+
+    <!-- setter based injection -->
+    <!-- setCar  -> car  (set discarded; Car.toLowerCase -> car -->
+    <bean id="cardealer_sale_jeep"
+          class="Dealership">
+        <property name="car" ref="JeepBean"/>  <!--Внедрение ссылки на JeepBean. name = (set)Name -->
+    </bean>
+
+    <bean id="dealer_sale_hatchback"
+          class="Dealership">
+        <property name="car" ref="HatchbackBean"/>
+    </bean>
+
+
+</beans>
