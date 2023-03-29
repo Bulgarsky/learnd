@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="JeepBean" class="Jeep"/>
+    <bean id="HatchbackBean" class="Hatchback" /><!-- объект интерфейса -->
+
+    <!-- setter based injection -->
+    <!-- setCar  -> car  (set discarded; Car.toLowerCase -> car -->
+    <bean id="car_dealer_sale_jeep"
+          class="CarDealership">
+       <property name="car" ref="JeepBean"/>  <!-- name = (set)Name -->
+    </bean>
+
+    <!-- constructor based injection -->
+    <bean id="car_dealer_sale_hatchback"
+          class="CarDealership"> <!-- создать объект класса, конструктор принимает 1 аргумент -->
+        <constructor-arg ref="HatchbackBean"/>  <!-- аргумент (объект интерфейса) -->
+    </bean>
+
+</beans>
