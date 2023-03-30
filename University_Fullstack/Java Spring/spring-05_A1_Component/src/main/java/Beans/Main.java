@@ -15,14 +15,14 @@ public class Main {
         int choice = in.nextInt();
         switch (choice) {
             case 1: {
-                Car car1 = context.getBean("jeep_bean", Car.class);
+                Car car1 = context.getBean("jeep", Car.class);
                 //создаем объект класса Jeep
                 Dealership dealer = new Dealership(car1); //создаем объект магазина
                 dealer.getInfo();
                 break;
             }
             case 2:{
-                Car car2 = context.getBean("hatchback_bean", Car.class);
+                Car car2 = context.getBean("hatchback", Car.class);
                 Dealership dealer = new Dealership(car2);
                 dealer.getInfo();
                 break;
