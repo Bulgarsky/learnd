@@ -24,6 +24,13 @@ public class Dealership {
     public Dealership(Jeep jeep) {
         this.jeep = jeep;
     }
+
+    /*
+    //внедрение через сеттер:
+    @Autowired public void setJeep(Jeep jeep) {
+        this.jeep = jeep;
+    }
+    */
     public void getInfo() {
         System.out.println("в магазине продается: " + jeep.getName() + ". " + jeep.accelerate() + ". " + jeep.brake());
     }
