@@ -20,9 +20,14 @@ public class Main {
         Dealership dealer2 = new Dealership(car2); //создаем объект магазина
         dealer2.getInfo();
 */
+        /*
         //Пример 2 - конкретный класс
         Jeep jeep1 = context.getBean("jeep", Jeep.class);
         Dealership dealer1 = new Dealership(jeep1); //создаем объект магазина
+        dealer1.getInfo();
+*/
+        //пример 3: внедрение нескольких бинов в поля
+        Dealership dealer1 =  context.getBean("dealership", Dealership.class);
         dealer1.getInfo();
 
         context.close();
