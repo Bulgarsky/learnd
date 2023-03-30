@@ -1,0 +1,5 @@
+@Configuration
+@ComponentScan("Bean")
+@PropertySource("classpath:Dealership.properties")
+public class Config {
+}
