@@ -2,7 +2,7 @@ package Beans;
 import org.springframework.stereotype.Component;
 
 
-//@Component
+@Component("hatchback")
 public class Hatchback implements Car{
     public String accelerate() {
         return "Хетчбек может разгонятся";

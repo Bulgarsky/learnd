@@ -2,7 +2,7 @@
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <groupId>org.example</groupId>
-  <artifactId>spring_autowired</artifactId>
+  <artifactId>spring_qualifier</artifactId>
   <packaging>war</packaging>
   <properties>
     <maven.compiler.source>18</maven.compiler.source>
@@ -40,6 +40,6 @@
     </dependency>
   </dependencies>
   <build>
-    <finalName>spring_autowired</finalName>
+    <finalName>spring_qualifier</finalName>
   </build>
 </project>
