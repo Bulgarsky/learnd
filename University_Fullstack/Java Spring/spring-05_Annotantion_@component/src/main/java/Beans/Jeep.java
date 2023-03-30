@@ -1,3 +1,8 @@
+package Beans;
+
+import org.springframework.stereotype.Component;
+
+@Component("jeep_bean")
 public class Jeep implements Car{
 
     public String accelerate() {
