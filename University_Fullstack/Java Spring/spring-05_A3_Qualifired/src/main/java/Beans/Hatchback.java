@@ -1,11 +1,8 @@
 package Beans;
 import org.springframework.stereotype.Component;
 
-
+//Если указать два класса реализумые интерфейсом, и использовать autowired - будет ошибка (нет конкретного указания какой бин внедрять)
 //@Component
-//Если не указать имя: class Name.toLowerCase -> name
-//Если имяСоставное: (HatchBack -> hatch_back)
-@Component("hatchback_bean")
 public class Hatchback implements Car{
     public String accelerate() {
         return "Хетчбек может разгонятся";
