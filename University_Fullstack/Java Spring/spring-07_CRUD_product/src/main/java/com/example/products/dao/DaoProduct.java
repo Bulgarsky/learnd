@@ -37,4 +37,13 @@ public class DaoProduct {
         //return productList.stream().filter(product -> product.getId() == id).findAny().orElse(null);
     }
 
+    //найти товар по id и внести изменения полученные из формы
+    public void updateProduct(int id, Product product) {
+        Product productUpdate = getProductId(id);
+        productUpdate.setName(product.getName());
+        productUpdate.setPrice(product.getPrice());
+        productUpdate.setWeight(product.getWeight());
+        productUpdate.setProvider(product.getProvider());
+    }
+
 }

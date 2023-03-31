@@ -46,10 +46,23 @@ public class Product {
         return "add_product";
     }
 
-    @PostMapping("/product/add")
+    @PostMapping("/product/add") //submit form and safe product
     public String newProduct(@ModelAttribute("product")com.example.products.models.Product product){
         daoProduct.addProduct(product);
         return "redirect:/product";
     }
 
+    @GetMapping("/product/edit/{id}") //get obj(id) for redaction and return form view
+    public String editProduct(@PathVariable("id") int id, Model model) {
+        model.addAttribute("editProduct", daoProduct.getProductId(id));
+        return "edit_product";
+    }
+
+    @PostMapping("/product/edit/{id}") //get obj(id) for redaction and return form view
+    public String updateEditProduct(
+            @ModelAttribute("editProduct")com.example.products.models.Product product,
+            @PathVariable("id") int id) {
+        daoProduct.updateProduct(id, product);
+        return "redirect:/product";
+    }
 }

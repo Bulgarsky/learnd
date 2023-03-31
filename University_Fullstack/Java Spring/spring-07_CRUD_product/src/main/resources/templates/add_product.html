@@ -15,7 +15,7 @@
         <option
                 th:each="enum : ${T(com.example.products.enumm.Provider).values()}"
                 th:text="${enum.getDisplayValue()}"
-                th:value="${enum}">
+                th:value="${enum}" >
         </option>
     </select>
     <br>
