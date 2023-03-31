@@ -16,17 +16,17 @@ class HelloControllerTest {
     private MockMvc mockMvc;
     @Test
     void getHello() throws Exception {
-        mockMvc.perform(get("/home/hello"))
+        mockMvc.perform(get("/spring/hello"))
                 .andExpect(status().isOk())
                 .andExpect(view().name("hello"))
-                .andExpect(content().string(containsString("App started ...")));
+                .andExpect(content().string(containsString("Spring App started ...")));
     }
 
     @Test
     void getMessage() throws Exception {
-        mockMvc.perform(get("/home/about"))
+        mockMvc.perform(get("/spring/message"))
                 .andExpect(status().isOk())
-                .andExpect(view().name("about"))
-                .andExpect(content().string(containsString("Message: Верстальщик не програмист")));
+                .andExpect(view().name("message"))
+                .andExpect(content().string(containsString("Message: Spring learning begin")));
     }
 }
