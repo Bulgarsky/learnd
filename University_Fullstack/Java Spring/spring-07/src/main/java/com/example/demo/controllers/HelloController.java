@@ -5,15 +5,15 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller //extend @Component
-@RequestMapping("spring/")
+@RequestMapping("home/")
 public class HelloController {
     @GetMapping("/hello") //url
     public String getHello() {
         return "hello"; //return hello view from templates
     }
 
-    @GetMapping("/message")
+    @GetMapping("/about")
     public String getMessage(){
-        return "message";
+        return "about";
     }
 }
