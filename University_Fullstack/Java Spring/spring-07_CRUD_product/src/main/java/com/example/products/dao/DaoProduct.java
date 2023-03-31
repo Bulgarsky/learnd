@@ -46,4 +46,7 @@ public class DaoProduct {
         productUpdate.setProvider(product.getProvider());
     }
 
+    public void removeProduct(int id) {
+        productList.removeIf((product -> product.getId() == id));
+    }
 }

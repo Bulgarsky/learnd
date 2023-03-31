@@ -65,4 +65,10 @@ public class Product {
         daoProduct.updateProduct(id, product);
         return "redirect:/product";
     }
+
+    @GetMapping("product/delete/{id}")
+    public String deleteProduct(@PathVariable("id") int id) {
+        daoProduct.removeProduct(id);
+        return "redirect:/product";
+    }
 }
