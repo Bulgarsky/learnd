@@ -40,7 +40,7 @@ public class HelloController {
     }
     */
 
-    //http://localhost:8085/spring/hello?lastName=Ivanov&firstName=Sergey&middleName=Antonovich
+    //localhost:8085/spring/hello?lastName=Ivanov&firstName=Sergey&middleName=Antonovich
     @GetMapping("/hello") //получение names from getParameter.
     public String getHelloUser(
             @RequestParam(value = "lastName", required = false) String lastName,
