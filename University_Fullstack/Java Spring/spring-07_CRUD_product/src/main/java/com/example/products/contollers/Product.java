@@ -4,9 +4,7 @@ import com.example.products.dao.DaoProduct;
 import com.example.products.enumm.Provider;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 public class Product {
@@ -19,18 +17,18 @@ public class Product {
     //product/add?name=Молоко&price=170&weight=2&provider=agroprom
     //product/add?name=Хлеб&price=40&weight=1&provider=bars
 
-    /*
-    @GetMapping("/product/add") //get param and addProduct to ArrayList DAO
-    public void addProduct(
-            @RequestParam(value = "name", required = false) String name,
-            @RequestParam(value = "price", required = false) float price,
-            @RequestParam(value = "weight", required = false) String weight,
-            @RequestParam(value = "provider", required = false) Provider provider){
-        daoProduct.addProduct(name, price, weight, provider);
-    }
-    */
 
-    @GetMapping("/product") //get productList and return view
+//    @GetMapping("/product/add") //get param and addProduct to ArrayList DAO
+//    public void addProduct(
+//            @RequestParam(value = "name", required = false) String name,
+//            @RequestParam(value = "price", required = false) float price,
+//            @RequestParam(value = "weight", required = false) String weight,
+//            @RequestParam(value = "provider", required = false) Provider provider){
+//        daoProduct.addProduct(name, price, weight, provider);
+//    }
+
+
+    @GetMapping("/product") //get productList and return view/#
     public String index(Model model) {
         model.addAttribute("product", daoProduct.getProductList());
         return "product";
@@ -42,9 +40,16 @@ public class Product {
         return "product_info";
     }
 
-    @GetMapping("/product/add")
+    @GetMapping("/product/add") //form view
     public String addProduct(Model model) {
         model.addAttribute("product", new com.example.products.models.Product());
         return "add_product";
     }
+
+    @PostMapping("/product/add")
+    public String newProduct(@ModelAttribute("product")com.example.products.models.Product product){
+        daoProduct.addProduct(product);
+        return "redirect:/product";
+    }
+
 }

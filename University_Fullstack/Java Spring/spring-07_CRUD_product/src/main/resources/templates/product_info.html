@@ -5,18 +5,12 @@
     <title>Product Info</title>
 </head>
 <body>
-
-<strong>##: </strong><span th:text="${product.getId()}">##</span><br>
-<strong>Товар: </strong><span th:text="${product.getName()}">Товар</span><br>
-<strong>Цена: </strong><span th:text="${product.getPrice()}">Цена</span><br>
-<strong>Вес: </strong><span th:text="${product.getWeight()}">Вес</span><br>
-<strong>Поставщик: </strong><span th:text="${product.getProvider()}">Поставщик</span><br>
-<br>
-<br>
 <span th:text="'##: ' +${product.getId()}">##</span><br>
 <span th:text="'Товар: ' +${product.getName()}">Товар</span><br>
 <span th:text="'Цена: ' + ${product.getPrice()}"></span><br>
 <span th:text="'Вес: ' +${product.getWeight()}">Вес</span><br>
 <span th:text="'Поставщик: ' +${product.getProvider()}">Поставщик</span><br>
+
+<a href="/product/">product_list</a>
 </body>
 </html>

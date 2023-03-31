@@ -12,9 +12,13 @@ public class DaoProduct {
     private int id;
     private List<Product> productList = new ArrayList<>();
 
-    //create obj and add to ArrayList
-    public void addProduct(String name, float price, String weight, Provider provider) {
-        productList.add(new Product(++id, name, price, weight, provider));
+    // create obj and add to ArrayList
+//    public void addProduct(String name, float price, String weight, Provider provider) {
+//        productList.add(new Product(++id, name, price, weight, provider));
+//    }
+    public void addProduct(Product product) {
+        productList.add(product);
+        product.setId(++id);
     }
 
     //getter: all product from ArrayList
@@ -32,4 +36,5 @@ public class DaoProduct {
         //lambda
         //return productList.stream().filter(product -> product.getId() == id).findAny().orElse(null);
     }
+
 }
