@@ -22,7 +22,7 @@
     <h2>/user/</h2>
 <div th:each="user : ${user}">
     <a th:href="@{/user/{id}(id=${user.getId()})}"
-       th:text="${user.getId()}+': '+${user.getLastName()}+' '+${user.getFirstName()}">link</a>
+       th:text="${user.getId()}+': '+${user.getLastName()}+' '+${user.getFirstName()} +' '+ ${user.getMiddleName()}">link</a>
 </div>
     <br>
     <a href="/user/add">Add_user</a>
