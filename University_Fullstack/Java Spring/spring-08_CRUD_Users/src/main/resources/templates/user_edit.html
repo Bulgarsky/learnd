@@ -3,18 +3,41 @@
 <head>
   <meta charset="UTF-8">
   <title>user: edit</title>
+  <style>
+    body {
+      background-color: antiquewhite;
+    }
+    #block {
+      margin: 25px;
+      padding: 20px;
+      width: 330px;
+      background-color: white;
+      border-style: none;
+      box-shadow: 5px 5px 10px black;
+    }
+  </style>
 </head>
 <body>
-<h3>User: edit</h3>
+<div id="block">
+  <fieldset>
+  <legend> РЕДАКТИРОВАНИЕ </legend>
 <form th:method="POST" th:action="@{/user/edit/{id}(id=${editUser.getId()})}" th:object="${editUser}">
-  <label for="lastName">lastName: </label><input type="text" th:field="*{lastName}" id="lastName"><br>
-  <label for="firstName">firstName: </label><input type="text" th:field="*{firstName}" id="firstName"><br>
-  <label for="middleName">middleName: </label><input type="text" th:field="*{middleName}" id="middleName"><br>
-  <label for="age">age: </label><input type="text" th:field="*{age}" id="age"><br>
-  <label for="email">email: </label><input type="text" th:field="*{email}" id="email"><br>
-  <label for="phoneNo">phoneNo: </label><input type="text" th:field="*{phoneNo}" id="phoneNo"><br>
+  <h3>Пользователь: <span th:text="*{id}">id</span></h3>
+  <label for="lastName"><strong>lastName: </strong></label><input type="text" th:field="*{lastName}" id="lastName"><br>
+  <br>
+  <label for="firstName"><strong>firstName: </strong></label><input type="text" th:field="*{firstName}" id="firstName"><br>
+  <br>
+  <label for="middleName"><strong>middleName: </strong></label><input type="text" th:field="*{middleName}" id="middleName"><br>
+  <br>
+  <label for="age"><strong>age: </strong></label><input type="text" th:field="*{age}" id="age"><br>
+  <br>
+  <label for="email"><strong>email: </strong></label><input type="text" th:field="*{email}" id="email"><br>
+  <br>
+  <label for="phoneNo"><strong>phoneNo: </strong></label><input type="text" th:field="*{phoneNo}" id="phoneNo"><br>
   <br>
   <input type="submit" value="edit_user">
 </form>
+  </fieldset>
+</div>
 </body>
 </html>

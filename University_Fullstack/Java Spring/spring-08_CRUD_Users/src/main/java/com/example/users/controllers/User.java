@@ -42,16 +42,24 @@ public class User {
         return "user_info";
     }
 
+    //get obj for redact and return form view w/ fields
     @GetMapping("/user/edit/{id}")
     public String editUser(@PathVariable("id") int id, Model model){
         model.addAttribute("editUser", daoUser.getUserId(id));
         return "user_edit";
     }
+    //update fields and safe obj
     @PostMapping("/user/edit/{id}")
     public String updateEditUser(
             @ModelAttribute("editUser")com.example.users.models.User user,
             @PathVariable("id") int id) {
         daoUser.updateUser(id, user);
+        return "redirect:/user";
+    }
+
+    @GetMapping("user/delete/{id}")
+    public String deleteUser(@PathVariable("id") int id) {
+        daoUser.removeUser(id);
         return "redirect:/user";
     }
 

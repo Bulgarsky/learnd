@@ -15,10 +15,13 @@ public class DaoUser {
         return userList;
     }
 
+    //user.add nad set id
     public void addUser(User user){
         userList.add(user);
         user.setId(++id);
     }
+
+    //looking for id and return obj
     public User getUserId(int id){
         for (User item: userList) {
             if(item.getId() == id) {
@@ -30,6 +33,7 @@ public class DaoUser {
         //return userList.stream().filter(user -> user.getId() == id).findAny().orElse((null));
     }
 
+    //looking for id and user.update
     public void updateUser(int id, User user) {
         User userUpdate = getUserId(id);
         userUpdate.setLastName(user.getLastName());
@@ -37,5 +41,10 @@ public class DaoUser {
         userUpdate.setMiddleName(user.getMiddleName());
         userUpdate.setAge(user.getAge());
         userUpdate.setEmail(user.getEmail());
+    }
+
+    //looking for id and user.delete
+    public void removeUser(int id){
+        userList.removeIf((user -> user.getId() == id));
     }
 }

@@ -3,13 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <title>User list</title>
+    <style>
+        body {
+            background-color: antiquewhite;
+        }
+        #block {
+            margin: 25px;
+            padding: 20px;
+            width: 330px;
+            background-color: white;
+            border-style: none;
+            box-shadow: 5px 5px 10px black;
+        }
+    </style>
 </head>
 <body>
+<div id="block">
+    <h2>/user/</h2>
 <div th:each="user : ${user}">
     <a th:href="@{/user/{id}(id=${user.getId()})}"
-       th:text="${user.getLastName()}+' '+${user.getFirstName()}">link</a>
+       th:text="${user.getId()}+': '+${user.getLastName()}+' '+${user.getFirstName()}">link</a>
+</div>
+    <br>
+    <a href="/user/add">Add_user</a>
 </div>
 <br>
-<a href="/user/add">Add_user</a>
+
 </body>
 </html>
