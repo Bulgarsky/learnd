@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add product</title>
+</head>
+<body>
+<h3>Add product:</h3>
+<form th:method="POST" th:action="@{/product/add}" th:object="${product}">
+    <label for="name">Name: </label>
+        <input type="text" th:field="*{name}" id="name"><br>
+            <div style="color:red" th:if="${#fields.hasErrors('name')}" th:errors="*{name}" ></div>
+    <br>
+    <label for="price">Price: </label>
+        <input type="text" th:field="*{price}" id="price"><br>
+            <div style="color:red" th:if="${#fields.hasErrors('price')}" th:errors="*{price}" ></div>
+    <br>
+    <label for="weight">Weight: </label>
+        <input type="text" th:field="*{weight}" id="weight"><br>
+            <div style="color:red" th:if="${#fields.hasErrors('weight')}" th:errors="*{weight}" ></div>
+    <br>
+    <label for="provider">select provider:</label>
+    <select id="provider" th:field="*{provider}">
+        <option
+                th:each="enum : ${T(com.example.products.enumm.Provider).values()}"
+                th:text="${enum.getDisplayValue()}"
+                th:value="${enum}" >
+        </option>
+    </select>
+    <br>
+    <input type="submit" value="Add_product">
+</form>
+</body>
+</html>

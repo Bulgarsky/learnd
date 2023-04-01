@@ -60,7 +60,7 @@ public class User {
     //update fields and safe obj
     @PostMapping("/user/edit/{id}")
     public String updateEditUser(
-            @ModelAttribute("editUser") @Valid com.example.users.models.User user,
+            @ModelAttribute("editUser")@Valid com.example.users.models.User user,
             BindingResult bindingResult,
             @PathVariable("id") int id) {
         if(bindingResult.hasErrors()){
