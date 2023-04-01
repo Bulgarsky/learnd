@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>user: edit</title>
+</head>
+<body>
+<h3>User: edit</h3>
+<form th:method="POST" th:action="@{/user/edit/{id}(id=${editUser.getId()})}" th:object="${editUser}">
+  <label for="lastName">lastName: </label><input type="text" th:field="*{lastName}" id="lastName"><br>
+  <label for="firstName">firstName: </label><input type="text" th:field="*{firstName}" id="firstName"><br>
+  <label for="middleName">middleName: </label><input type="text" th:field="*{middleName}" id="middleName"><br>
+  <label for="age">age: </label><input type="text" th:field="*{age}" id="age"><br>
+  <label for="email">email: </label><input type="text" th:field="*{email}" id="email"><br>
+  <label for="phoneNo">phoneNo: </label><input type="text" th:field="*{phoneNo}" id="phoneNo"><br>
+  <br>
+  <input type="submit" value="edit_user">
+</form>
+</body>
+</html>

@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>user: info</title>
+</head>
+<body>
+<h3>User: Info</h3>
+<span th:text="'id: ' +${user.getId()}">id</span><br>
+<span th:text="'lastName: ' +${user.getLastName()}">lastName</span><br>
+<span th:text="'firstName: ' +${user.getFirstName()}">firstName</span><br>
+<span th:text="'middleName: ' +${user.getMiddleName()}">middleName</span><br>
+<span th:text="'age: ' +${user.getAge()}">age</span><br>
+<span th:text="'email: ' +${user.getEmail()}">email</span><br>
+<br>
+<a th:href="@{/user/edit/{id}(id=${user.getId()})}">User: Edit</a><br>
+<br>
+<a th:href="@{/user/delete/{id}(id=${user.getId()})}">User: Delete</a><br>
+</body>
+</html>
