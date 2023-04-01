@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>user: info</title>
+    <style>
+        body {
+            background-color: antiquewhite;
+        }
+        #block {
+            margin: 25px;
+            padding: 20px;
+            width: 330px;
+            background-color: white;
+            border-style: none;
+            box-shadow: 5px 5px 10px black;
+        }
+    </style>
+</head>
+<body>
+<div id="block">
+    <h2>/user/<span th:text="${user.getId()}"></span></h2>
+    <fieldset>
+        <legend> ИНФОРМАЦИЯ </legend>
+            <br>
+            <strong>lastName: </strong><span th:text="${user.getLastName()}"></span><br>
+            <br>
+            <strong>firstName: </strong><span th:text="${user.getFirstName()}"></span><br>
+            <br>
+            <strong>middleName: </strong><span th:text="${user.getMiddleName()}"></span><br>
+            <br>
+            <strong>age: </strong><span th:text="${user.getAge()}">age</span><br>
+            <br>
+            <strong>email: </strong><span th:text="${user.getEmail()}"></span><br>
+        </fieldset>
+<br>
+<a th:href="@{/user/edit/{id}(id=${user.getId()})}">User: Edit</a><br>
+<br>
+<a th:href="@{/user/delete/{id}(id=${user.getId()})}">User: Delete</a><br>
+<br>
+</div>
+</body>
+</html>
