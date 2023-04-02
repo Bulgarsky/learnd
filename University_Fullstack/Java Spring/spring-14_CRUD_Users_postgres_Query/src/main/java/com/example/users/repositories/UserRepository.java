@@ -26,8 +26,7 @@ public interface UserRepository extends JpaRepository<User, Integer> {
     //select * from user_site where last_name like '{startingWith}%'
     List<User> findByLastNameStartingWith(String startingWith);
 
-
-    //Custom Query
+    //Custom sql Query
     @Query(value = "select * from user_site where user_site .last_name = ?1 order by age desc", nativeQuery = true)
     List<User> findByLastNameOrderByAgeDesc(String lastName);
 }
