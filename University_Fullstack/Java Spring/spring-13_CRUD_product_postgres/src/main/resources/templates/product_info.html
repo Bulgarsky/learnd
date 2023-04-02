@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Product Info</title>
+</head>
+<body>
+<span th:text="'##: ' +${product.getId()}">##</span><br>
+<span th:text="'Товар: ' +${product.getName()}">Товар</span><br>
+<span th:text="'Цена: ' + ${product.getPrice()}"></span><br>
+<span th:text="'Вес: ' +${product.getWeight()}">Вес</span><br>
+<span th:text="'Поставщик: ' +${product.getProvider().getDisplayValue()}">Поставщик</span><br>
+<br>
+<a th:href="@{/product/edit/{id}(id=${product.getId()})}">product edit</a><br>
+<br>
+<a th:href="@{/product/delete/{id}(id=${product.getId()})}">product delete</a><br>
+<br>
+<a href="/product/">product_list</a>
+
+</body>
+</html>
