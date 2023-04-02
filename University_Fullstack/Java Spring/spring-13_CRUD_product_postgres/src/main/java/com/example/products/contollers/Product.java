@@ -1,45 +1,36 @@
 package com.example.products.contollers;
 
-import com.example.products.dao.DaoProduct;
 import com.example.products.enumm.Provider;
+import com.example.products.services.ProductService;
+import jakarta.validation.Valid;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
+
 
 @Controller
+//@RequestMapping("/product")
+
 public class Product {
-    private final DaoProduct daoProduct;
+    private final ProductService productService;
 
-    public Product(DaoProduct daoProduct) {
-        this.daoProduct = daoProduct;
+    @Autowired
+    public Product(ProductService productService) {
+        this.productService = productService;
     }
-
-    //product/add?name=Молоко&price=170&weight=2&provider=agroprom
-    //product/add?name=Хлеб&price=40&weight=1&provider=bars
-
-
-//    @GetMapping("/product/add") //get param and addProduct to ArrayList DAO
-//    public void addProduct(
-//            @RequestParam(value = "name", required = false) String name,
-//            @RequestParam(value = "price", required = false) float price,
-//            @RequestParam(value = "weight", required = false) String weight,
-//            @RequestParam(value = "provider", required = false) Provider provider){
-//        daoProduct.addProduct(name, price, weight, provider);
-//    }
-
 
     @GetMapping("/product") //get productList and return view/#
     public String index(Model model) {
-        model.addAttribute("product", daoProduct.getProductList());
+        model.addAttribute("product", productService.getProducts());
         return "product";
     }
 
     @GetMapping("/product/{id}")
     public String productInfo (@PathVariable("id") int id, Model model) {
-        model.addAttribute("product", daoProduct.getProductId(id));
+        model.addAttribute("product", productService.getProductId(id));
         return "product_info";
     }
 
@@ -52,18 +43,18 @@ public class Product {
     @PostMapping("/product/add") //submit form and safe product
     public String newProduct(
             @ModelAttribute("product")
-            @Valid com.example.products.models.Product product,
+            @Valid com.example.products.models.Product newProduct,
             BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             return "add_product";
         }
-        daoProduct.addProduct(product);
+        productService.addProduct(newProduct);
         return "redirect:/product";
     }
 
     @GetMapping("/product/edit/{id}") //get obj(id) for redaction and return form view
     public String editProduct(@PathVariable("id") int id, Model model) {
-        model.addAttribute("editProduct", daoProduct.getProductId(id));
+        model.addAttribute("editProduct", productService.getProductId(id));
         return "edit_product";
     }
 
@@ -76,13 +67,13 @@ public class Product {
         if (bindingResult.hasErrors()) {
             return "edit_product";
         }
-        daoProduct.updateProduct(id, product);
+        productService.editProduct(id, product);
         return "redirect:/product";
     }
 
     @GetMapping("product/delete/{id}")
     public String deleteProduct(@PathVariable("id") int id) {
-        daoProduct.removeProduct(id);
+        productService.deleteProduct(id);
         return "redirect:/product";
     }
 }
