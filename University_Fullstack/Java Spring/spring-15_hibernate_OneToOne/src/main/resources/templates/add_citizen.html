@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ADD Citizen</title>
+    <style>
+        body {
+            background-color: antiquewhite;
+        }
+        #block {
+            margin: 25px;
+            padding: 20px;
+            width: 330px;
+            background-color: white;
+            border-style: none;
+            box-shadow: 5px 5px 10px black;
+        }
+    </style>
+</head>
+<body>
+<div id="block">
+<!--    <fieldset>-->
+<!--        <legend> ДОБАВЛЕНИЕ </legend>-->
+        <form th:method="POST" th:action="@{/citizen/add}" th:object="${addCitizen}">
+            <br>
+            <label for="lastName">Фамилия: </label>
+                <input type="text" th:field="*{lastName}" id="lastName"><br>
+            <br>
+            <label for="firstName">Имя: </label>
+                <input type="text" th:field="*{firstName}" id="firstName"><br>
+            <br>
+            <label for="middleName">Отчество: </label>
+                <input type="text" th:field="*{middleName}" id="middleName"><br>
+            <br>
+            <label for="passport">Паспорт: </label>
+            <select name="number" id="passport">
+                <div th:each="element : ${passports}">
+                    <option th:text="${element.number}">number</option>
+                </div>
+            </select><br>
+            <br>
+            <button type="submit">ДОБАВИТЬ</button>
+            <br>
+            <hr>
+            <br>
+<!--            спан под вывод простого сообщения об ошибке-->
+<!--            <span style="color:darkred" th:text="${passportError}">placeholder</span>-->
+
+<!--            див под вывод массива ошибок (bindingResult)-->
+            <div th:if="${#fields.hasErrors('global')}">
+                <small th:each="err : ${#fields.errors('global')}" th:text="${err}" style="color: darkred"></small>
+            </div>
+        </form>
+
+<!--    </fieldset>-->
+</div>
+</body>
+</html>

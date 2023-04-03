@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>PASSPORT LIST</title>
+    <style>
+        body {
+            background-color: antiquewhite;
+        }
+        #block {
+            margin: 25px;
+            padding: 20px;
+            width: 330px;
+            background-color: white;
+            border-style: none;
+            box-shadow: 5px 5px 10px black;
+        }
+    </style>
+</head>
+<body>
+<div id="block">
+<div th:each="passport : ${passports}">
+    <br>
+    <strong>Серия паспорта: </strong><span th:text="${passport.getSeries()}">placeholder</span><br>
+    <strong>Номер паспорта: </strong><span th:text="${passport.getNumber()}">placeholder</span>
+    <br>
+</div>
+<br>
+<a href="citizen.html">CITIZEN LIST</a>
+</div>
+</body>
+</html>

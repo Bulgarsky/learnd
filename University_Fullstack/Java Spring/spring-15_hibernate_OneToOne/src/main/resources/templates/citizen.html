@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>CITIZEN</title>
+  <style>
+    body {
+      background-color: antiquewhite;
+    }
+    #block {
+      margin: 25px;
+      padding: 20px;
+      width: 330px;
+      background-color: white;
+      border-style: none;
+      box-shadow: 5px 5px 10px black;
+    }
+  </style>
+</head>
+<body>
+<div id="block">
+  <h3>CITIZEN LIST</h3>
+  <a href="citizen/add">Add new citizen</a> <br>
+  <br>
+  <div th:each="citizen : ${citizens}">
+    <fieldset>
+      <legend th:text="'Citizen #'+${citizen.getId()}">placeholder</legend>
+      <br>
+      <strong>Фамилия: </strong><span th:text="${citizen.getLastName}">placeholder</span><br>
+      <br>
+      <strong>Имя: </strong><span th:text="${citizen.getFirstName}">placeholder</span><br>
+      <br>
+      <strong>Отчетсво: </strong><span th:text="${citizen.getMiddleName}">placeholder</span><br>
+      <br>
+      <strong>Паспорт</strong> серия: <span th:text="${citizen.getPassport().getSeries()}">placeholder</span>
+      , номер: <span th:text="${citizen.getPassport().getNumber()}">placeholder</span>
+    </fieldset>
+    <br>
+  </div>
+  <br>
+</div>
+</body>
+</html>
