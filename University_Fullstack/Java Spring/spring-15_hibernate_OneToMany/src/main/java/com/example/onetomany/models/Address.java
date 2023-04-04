@@ -1,20 +1,18 @@
 package com.example.onetomany.models;
 
 import jakarta.persistence.*;
-
 import java.util.List;
 
 @Entity
 public class Address {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
     private String city;
     private String street;
     private String building;
     @OneToMany(mappedBy = "address", fetch = FetchType.EAGER)
     private List<Person> tenants;
-
-    public Address() {}
 
     public String getCity() {
         return city;
@@ -27,6 +25,9 @@ public class Address {
     }
     public List<Person> getTenants() {
         return tenants;
+    }
+    public int getId() {
+        return id;
     }
 
     public void setCity(String city) {
@@ -41,4 +42,9 @@ public class Address {
     public void setTenants(List<Person> tenants) {
         this.tenants = tenants;
     }
+    public void setId(int id) {
+        this.id = id;
+    }
+    public Address() {}
+
 }

@@ -18,18 +18,19 @@ public class MainController {
     private AddressRepository addressRepository;
     @Autowired
     private PersonRepository personRepository;
+
     @GetMapping("/person")
     public String index(Model model) {
 //        List<Address> addresses = addressRepository.findAll();
 //        model.addAttribute("address", addresses);
-        model.addAttribute("address", addressRepository.findAll());
+        model.addAttribute("addresses", addressRepository.findAll());
         model.addAttribute("persons", personRepository.findAll());
         return "person";
     }
 
     @GetMapping("/person/add")
     public String addPerson(Model model){
-        model.addAttribute("addresses", addressRepository.findAll());
+        model.addAttribute("address", addressRepository.findAll());
         return "add_person";
     }
 
@@ -40,8 +41,8 @@ public class MainController {
             @RequestParam String middleName,
             @RequestParam String street){
         Address address = addressRepository.findByStreet(street);
-        Person addPerson = new Person(lastName, firstName, middleName, address);
-        personRepository.save(addPerson);
+        Person person = new Person(lastName, firstName, middleName, address);
+        personRepository.save(person);
         return "redirect:/person";
     }
 }

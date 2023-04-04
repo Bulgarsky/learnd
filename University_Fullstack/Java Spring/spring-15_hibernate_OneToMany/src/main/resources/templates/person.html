@@ -3,31 +3,48 @@
 <head>
     <meta charset="UTF-8">
     <title>PERSON LIST</title>
+  <style>
+    body {
+      background-color: antiquewhite;
+    }
+    #block {
+      margin: 25px;
+      padding: 20px;
+      width: 330px;
+      background-color: white;
+      border-style: none;
+      box-shadow: 5px 5px 10px black;
+    }
+  </style>
 </head>
 <body>
-<div>
+<div id="block">
   <h2>Person list</h2>
   <br>
   <a href="person/add">Добавить</a>
   <br>
-  <div th:each="person : ${persons}">
+  <br>
+  <div th:each="element : ${persons}">
     <fieldset>
-      <legend th:text="'Пользователь #'+${person.getId()}"></legend>
+      <legend th:text="'Пользователь #'+${element.getId()}"></legend>
       <br>
-      <strong>Фамилия :</strong><span th:text="${person.getLastName()}"></span><br>
+      <strong>Фамилия: </strong><span th:text="${element.getLastName()}"></span><br>
       <br>
-      <strong>Имя :</strong><span th:text="${person.getFirstName()}"></span><br>
+      <strong>Имя: </strong><span th:text="${element.getFirstName()}"></span><br>
       <br>
-      <strong>Отчество :</strong><span th:text="${person.getMiddleName()}"></span><br>
+      <strong>Отчество: </strong><span th:text="${element.getMiddleName()}"></span><br>
       <br>
-      <strong>Город :</strong><span th:text="${person.getAdres().getCity()}"></span><br>
+      <strong>Город: </strong><span th:text="${element.getAddress().getCity()}"></span><br>
       <br>
-      <strong>Улица :</strong><span th:text="${person.getAdres().getStreet()}"></span><br>
+      <strong>Улица: </strong><span th:text="${element.getAddress().getStreet()}"></span><br>
       <br>
-      <strong>Дом :</strong><span th:text="${person.getAdres().getBuilding()}"></span><br>
+
+      <strong>Дом: </strong><span th:text="${element.getAddress().getBuilding()}"></span><br>
       <br>
     </fieldset>
+    <br>
   </div>
+
 </div>
 </body>
 </html>

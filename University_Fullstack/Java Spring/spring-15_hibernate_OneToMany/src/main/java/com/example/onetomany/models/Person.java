@@ -41,7 +41,6 @@ public class Person {
     public void setId(int id) {
         this.id = id;
     }
-
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
