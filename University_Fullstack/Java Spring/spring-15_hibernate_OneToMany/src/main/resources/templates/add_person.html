@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ADD Person</title>
+</head>
+<body>
+<fieldset>
+  <legend> ДОБАВЛЕНИЕ </legend>
+  <form th:action="${'/person/add'}" method="post" >
+      <br>
+      <input type="text"name="lastName">Введите фамилию<br>
+      <br>
+      <input type="text" name="firstName">Введите имя<br>
+      <br>
+      <input type="text"  name="middleName">Введите отчество<br>
+        <br>
+      <label for="street">Выберите: </label><br>
+      <br>
+      <select name="street" id="street">
+          <div th:each="address : ${addresses}">
+              <option th:text="${address.getStreet()}"></option>
+          </div>
+      </select>
+      <br>
+      <button type="submit">Добавить</button>
+  </form>
+</fieldset>
+</body>
+</html>

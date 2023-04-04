@@ -30,24 +30,27 @@ public class MainController {
     }
 
 
-    //получение всех ситизен и view
+    //получение всех ситизен и передать в view citizen
     @GetMapping("/citizen")
     public String getAllCitizen(Model model){
+        //citizen view
         model.addAttribute("citizens", citizenService.getAllCitizen());
         return "citizen";
     }
 
-    //получение всех паспортов и передать в view
+    //получение всех passport и передать их в  view passport
     @GetMapping("/passport")
     public String getAllPassport(Model model){
         model.addAttribute("passports", passportService.getAllPassport());
         return "passport";
     }
 
-    //view с добавлением ситизена
+    //вернуть view с добавлением ситизена и передать все паспорта
     @GetMapping("/citizen/add")
     public String addCitizen(Model model){
-        model.addAttribute("addCitizen", new Citizen());
+        //addCitizen view - form object "citizen"
+        model.addAttribute("citizen", new Citizen());
+        //add_citizen vies (send passport number to select)
         model.addAttribute("passports", passportService.getAllPassport());
         return "add_citizen";
     }
@@ -65,13 +68,14 @@ public class MainController {
 
         for(Citizen citizenDB : citizenService.getAllCitizen()) {
             if(citizenDB.getPassport().getId() == newCitizen.getPassport().getId()) {
+                //помещаем в модель экземпляр addCitizen и все паспорта
                 model.addAttribute("addCitizen", addCitizen);
                 model.addAttribute("passports", passportService.getAllPassport());
                 // выводить просто сообщение об ошибке (без указания где она)
                  //model.addAttribute("passportError", "Гражданин с таким паспортом существует!");
 
                 //массив ошибок
-                ObjectError error= new ObjectError("error", "Гражданин с таким паспортом существует!");
+                ObjectError error = new ObjectError("duplicate", "Гражданин с таким паспортом существует!");
                 bindingResult.addError(error);
                 return "add_citizen";
             }

@@ -19,9 +19,9 @@
 </head>
 <body>
 <div id="block">
-<!--    <fieldset>-->
-<!--        <legend> ДОБАВЛЕНИЕ </legend>-->
-        <form th:method="POST" th:action="@{/citizen/add}" th:object="${addCitizen}">
+    <fieldset>
+        <legend> ДОБАВЛЕНИЕ </legend>
+        <form th:method="POST" th:action="@{/citizen/add}" th:object="${citizen}">
             <br>
             <label for="lastName">Фамилия: </label>
                 <input type="text" th:field="*{lastName}" id="lastName"><br>
@@ -34,8 +34,8 @@
             <br>
             <label for="passport">Паспорт: </label>
             <select name="number" id="passport">
-                <div th:each="element : ${passports}">
-                    <option th:text="${element.number}">number</option>
+                <div th:each="passport : ${passports}">
+                    <option th:text="${passport.number}">number</option>
                 </div>
             </select><br>
             <br>
@@ -52,7 +52,7 @@
             </div>
         </form>
 
-<!--    </fieldset>-->
+    </fieldset>
 </div>
 </body>
 </html>

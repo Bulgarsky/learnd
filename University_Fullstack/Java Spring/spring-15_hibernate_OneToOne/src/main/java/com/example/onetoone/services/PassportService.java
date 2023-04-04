@@ -17,12 +17,12 @@ public class PassportService {
         this.passportRepository = passportRepository;
     }
 
-    //получить все паспорта
+    //получить лист с паспортами
     public List<Passport> getAllPassport(){
         return passportRepository.findAll();
     }
 
-    //добавление паспорта
+    //добавление нового паспорта
     @Transactional(readOnly = false)
     public void addPassport(Passport passport){
         passportRepository.save(passport);

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>PERSON LIST</title>
+</head>
+<body>
+<div>
+  <h2>Person list</h2>
+  <br>
+  <a href="person/add">Добавить</a>
+  <br>
+  <div th:each="person : ${persons}">
+    <fieldset>
+      <legend th:text="'Пользователь #'+${person.getId()}"></legend>
+      <br>
+      <strong>Фамилия :</strong><span th:text="${person.getLastName()}"></span><br>
+      <br>
+      <strong>Имя :</strong><span th:text="${person.getFirstName()}"></span><br>
+      <br>
+      <strong>Отчество :</strong><span th:text="${person.getMiddleName()}"></span><br>
+      <br>
+      <strong>Город :</strong><span th:text="${person.getAdres().getCity()}"></span><br>
+      <br>
+      <strong>Улица :</strong><span th:text="${person.getAdres().getStreet()}"></span><br>
+      <br>
+      <strong>Дом :</strong><span th:text="${person.getAdres().getBuilding()}"></span><br>
+      <br>
+    </fieldset>
+  </div>
+</div>
+</body>
+</html>
