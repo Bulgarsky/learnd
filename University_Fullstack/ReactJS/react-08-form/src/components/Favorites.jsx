@@ -2,9 +2,9 @@ import React from 'react';
 import {Spinner} from "react-bootstrap";
 
 const Favorites = () => {
-    console.log("переход в избранное");
+    console.log("->рендер избранное");
     return (
-        <div>
+        <div  style={{margin: "50px", padding: "50px"}}>
             Favorites<br/>
             <br/>
             <Spinner animation="border" role="status" size="md" variant="danger" /> Work in progress ...

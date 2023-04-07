@@ -2,8 +2,9 @@ import React from 'react';
 import {Spinner} from "react-bootstrap";
 
 const Footer = () => {
+    console.log("-> рендер Footer");
     return (
-        <div className="shadow">
+        <div className="shadow"  style={{ padding: "50px" }}>
             <div
                 className="mx-auto py-4 flex-wrap"
                 display="flex" width="80%" justifyContent="between" alignItems= "center" >

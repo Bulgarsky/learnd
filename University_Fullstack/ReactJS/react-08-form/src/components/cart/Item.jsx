@@ -2,6 +2,7 @@ import React from 'react';
 import {Badge, Button} from "react-bootstrap";
 
 const Item = (props) => {
+    console.log("-> рендер карточки товара");
     return (
         <div className='container py-3'>
             <div className='row row-cols-1 justify-content-evenly row-cols-md-3 row-cols-sm-2 text-center'>

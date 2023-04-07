@@ -2,6 +2,7 @@ import React from 'react';
 import Item from "./Item";
 
 const ProductCard = (props) => {
+    console.log("JSON -> CardInfo");
     return (
         <div className='container py-3'>
             {

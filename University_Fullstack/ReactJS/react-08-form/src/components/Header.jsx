@@ -11,6 +11,7 @@ import {Link} from 'react-router-dom';
 
 //rsc
 const Header= () => {
+    console.log("-> рендер HEADER");
     return (
         <div>
             <Navbar bg="dark" variant="dark">
@@ -40,7 +41,7 @@ const Header= () => {
                         {/*</NavDropdown>*/}
 
                         <Nav.Link>
-                            <Link to={'/contacts'}>Contact us</Link>  {' '}
+                            <Link to={'/feedback'}>Feedback us!</Link>  {' '}
                             <Spinner animation="grow" role="status" variant='warning' size="sm"/>
                         </Nav.Link>
 

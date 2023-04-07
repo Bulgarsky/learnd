@@ -4,7 +4,7 @@ import ProductCard from "./cart/productCard";
 import Slider from "./Slider";
 
 const Home = () => {
-    console.log("переход на главную (слайдер)");
+    console.log("-> HOME Slider");
     return (
         <div>
            <Slider/>

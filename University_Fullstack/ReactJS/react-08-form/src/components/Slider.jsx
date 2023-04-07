@@ -3,6 +3,7 @@ import React from 'react';
 import {Badge} from "react-bootstrap";
 
 function Slider() {
+    console.log("-> рендер слайдера");
     return (
         <div>
         <Carousel>

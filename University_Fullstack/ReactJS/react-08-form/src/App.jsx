@@ -2,7 +2,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 import Header from "./components/Header";
 import Home from "./components/Home";
-import Contacts from "./components/Contacts";
+import Feedback from "./components/Feedback";
 import Products from "./components/Products";
 import Favorites from "./components/Favorites";
 import Cart from "./components/Cart";
@@ -25,11 +25,13 @@ import "./App.css";
 //rsc
 
 function App() {
+    console.log("-> APP.JSX Start");
 
     const [products, setProducts] = useState([])
 
     useEffect(()=>{
         async function axiosData(){
+            console.log("async function");
             const productsData = await axios.get('https://642ea6618ca0fe3352d53368.mockapi.io/products');
             console.log(productsData);
             setProducts(productsData.data);
@@ -44,10 +46,10 @@ function App() {
               <Header/>
               <Routes>
                   <Route path='/' element={<Home />} />
+                  <Route path='/feedback' element={<Feedback/>} />
                   <Route path='/products' element={<Products item={products}/>} />
                   <Route path='/favorites' element={<Favorites/>} />
                   <Route path='/cart' element={<Cart/>} />
-                  <Route path='/contacts' element={<Contacts/>} />
               </Routes>
             <Footer/>
           </Router>

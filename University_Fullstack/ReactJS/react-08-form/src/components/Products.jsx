@@ -3,9 +3,9 @@ import ProductCard from "./cart/productCard";
 
 
 const Products = (props) => {
-    console.log("переход в продукты");
+    console.log("-> рендер продукты");
     return (
-        <div>
+        <div >
            <ProductCard item={props.item} />
         </div>
     );
