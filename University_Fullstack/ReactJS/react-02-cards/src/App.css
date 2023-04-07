@@ -1,38 +1,60 @@
-.App {
+body {
+  background-color: papayawhip;
+  margin:10px;
+  padding: 10px;
+}
+
+.card{
+  margin: 10px;
+  padding: 15px;
+  box-shadow: 5px 5px 10px black;
+  width: 250px;
+  height: 350px;
+  border-style: none;
+  background-color: white;
+  position: absolute;
+  top: 10%;
+  left: 10%;
   text-align: center;
 }
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.card .color-overlay {
+  background: darkseagreen;
+  position: absolute;
+  top: 0;
+  left: 0;
+  transition: 1s cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+.card-info {
+  width: 100%;
+  position: absolute;
+  bottom: 10px;
+  left: 0;
+  margin:  0 auto;
+  color:darkslateblue;
+  font-family: Elephant, serif;
+  font-size: large;
+  transition: 0.5s cubic-bezier(0.075, 0.82, 0.165, 1);
+  z-index: 1;
+  opacity: 0;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.card:hover .card-info {
+  opacity: 1;
+  bottom: 120px;
+}
+.card:hover .color-overlay {
+  background: darkslateblue;
+}
+h3{
+  font-size: 20px;
+  font-family: Tahoma;
+  color: darkslateblue;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+hr {
+  width: 50%;
 }
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.info{
+  width: 200px;
+  margin: auto;
 }
