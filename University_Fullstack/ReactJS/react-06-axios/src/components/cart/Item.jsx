@@ -11,7 +11,7 @@ const Item = (props) => {
                             <h5>{props.title} {' '}
                                 <Badge bg="dark">Новинка</Badge>
                             </h5>
-                            <img alt="img 2" src={props.img} width={'100%'}/>
+                            <img alt="img 2" src={props.img} width="auto"/>
 
                             <p>{props.description}</p>
 

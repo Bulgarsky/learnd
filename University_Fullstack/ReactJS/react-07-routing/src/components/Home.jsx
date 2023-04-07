@@ -1,6 +1,6 @@
 
 import React from 'react';
-import CartItem from "./cart/CartItem";
+import ProductCard from "./cart/productCard";
 import Slider from "./Slider";
 
 const Home = () => {

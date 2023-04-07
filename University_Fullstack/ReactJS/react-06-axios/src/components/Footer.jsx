@@ -5,9 +5,12 @@ const Footer = () => {
     return (
         <div className="shadow">
             <div
+                display="flex"
+                justifyContent="between"
+                alignItems="center"
                 className="mx-auto py-4 flex-wrap"
-                display="flex" width="80%" justifyContent="between" alignItems= "center" >
-
+                style={{ width: '80%' }}
+            >
                 <div display="flex" alignItems="center">
                     <a href="https://t.me/cotton_deluxe" rel="noreferrer" target="_blank" className="d-flex align-items-center p-0 text-dark">
                         <img

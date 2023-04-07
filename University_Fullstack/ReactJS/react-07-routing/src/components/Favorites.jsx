@@ -4,7 +4,7 @@ const Favorites = () => {
     console.log("переход в избранное");
     return (
         <div>
-            
+            Favorites
         </div>
     );
 };

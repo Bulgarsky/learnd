@@ -21,7 +21,7 @@ function Slider() {
                 </Carousel.Caption>
             </Carousel.Item>
             <Carousel.Item interval={5000}>
-                <img  height={1000}
+                <img width={400} height={800}
                     className="d-block w-100"
                     src="./img/surgut/2.jpg"
                     alt="Second slide"
@@ -32,7 +32,7 @@ function Slider() {
                 </Carousel.Caption>
             </Carousel.Item>
             <Carousel.Item interval={5000}>
-                <img height={1000}
+                <img width={400} height={800}
                     className="d-block w-100"
                     src="./img/surgut/3.jpg"
                     alt="Third slide"
@@ -45,7 +45,7 @@ function Slider() {
                 </Carousel.Caption>
             </Carousel.Item>
             <Carousel.Item interval={5000}>
-                <img height={1000}
+                <img width={400} height={800}
                     className="d-block w-100"
                     src="./img/surgut/4.jpg"
                     alt="Four slide"
@@ -58,7 +58,7 @@ function Slider() {
                 </Carousel.Caption>
             </Carousel.Item>
             <Carousel.Item interval={5000}>
-                <img height={1000}
+                <img width={400} height={800}
                      className="d-block w-100"
                      src="./img/surgut/5.jpg"
                      alt="Four slide"

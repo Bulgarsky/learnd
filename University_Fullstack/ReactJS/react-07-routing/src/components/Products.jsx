@@ -1,12 +1,12 @@
 import React from 'react';
-import CartItem from "./cart/CartItem";
+import ProductCard from "./cart/productCard";
 
 
 const Products = (props) => {
     console.log("переход в продукты");
     return (
         <div>
-           <CartItem item={props.item} />
+           <ProductCard item={props.item} />
         </div>
     );
 };

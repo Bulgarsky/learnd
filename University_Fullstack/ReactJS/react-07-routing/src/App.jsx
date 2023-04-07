@@ -1,15 +1,18 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
+
 import Header from "./components/Header";
 import Home from "./components/Home";
+import Contacts from "./components/Contacts";
+import Products from "./components/Products";
+import Favorites from "./components/Favorites";
+import Cart from "./components/Cart";
 import Footer from "./components/Footer";
 
 import React, {useState, useEffect} from "react";
 import axios from "axios";
 import {Route, Routes, BrowserRouter as Router} from 'react-router-dom';
-import Favorites from "./components/Favorites";
-import Products from "./components/Products";
-import "./App.css";
 
+import "./App.css";
 
 //npm install
 //npm install react-bootstrap bootstrap
@@ -19,7 +22,6 @@ import "./App.css";
 //npm i react-router-dom
 //npm run build
 //rsc
-
 
 function App() {
 
@@ -50,11 +52,12 @@ function App() {
               <Routes>
                   <Route path='/' element={<Home />} />
                   <Route path='/products' element={<Products item={products}/>} />
-                  <Route path='favorites' element={<Favorites/>} />
+                  <Route path='/favorites' element={<Favorites/>} />
+                  <Route path='/cart' element={<Cart/>} />
+                  <Route path='/contacts' element={<Contacts/>} />
               </Routes>
             <Footer/>
           </Router>
-
       </div>
   );
 }

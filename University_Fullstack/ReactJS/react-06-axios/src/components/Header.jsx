@@ -7,7 +7,6 @@ import Button from 'react-bootstrap/Button';
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 import Popover from "react-bootstrap/Popover";
 import {NavDropdown, Spinner} from "react-bootstrap";
-import {Link} from 'react-router-dom';
 
 //rsc
 const Header= () => {
@@ -15,48 +14,25 @@ const Header= () => {
         <div>
             <Navbar bg="dark" variant="dark">
                 <Container>
-                    <Navbar.Brand>
-                        <Link to={'/'}>COTTON DELUXE</Link>
-                    </Navbar.Brand>
-
+                    <Navbar.Brand href="#home">COTTON DELUXE</Navbar.Brand>
                     <Nav className="me-auto">
+                        <Nav.Link href="#Activities">Activity</Nav.Link>
+                        <Nav.Link href="#products">Products</Nav.Link>
                         <NavDropdown
                             id="nav-dropdown-dark-example"
                             title="Documents"
-                            menuVariant="dark">
-                            <NavDropdown.Item>
-                                <Link to={'/prices'}>Prices</Link>
-                            </NavDropdown.Item>
-                            <NavDropdown.Item>
-                                <Link to={'/media'}>Media about us</Link>
-                            </NavDropdown.Item>
-                            <NavDropdown.Item>
-                                <Link to={'/presentations'}>Presentations</Link>
-                                </NavDropdown.Item>
+                            menuVariant="dark"
+                        >
+                            <NavDropdown.Item href="#Prices">Prices</NavDropdown.Item>
+                            <NavDropdown.Item href="#Media">Media about us</NavDropdown.Item>
+                            <NavDropdown.Item href="#Presentations">Presentations</NavDropdown.Item>
                             <NavDropdown.Divider />
-                            <NavDropdown.Item>
-                                <Link to={'/documents'}>Founding documents</Link>
-                            </NavDropdown.Item>
+                            <NavDropdown.Item href="#Documents">Founding documents</NavDropdown.Item>
                         </NavDropdown>
-
-                        <Nav.Link>
-                            <Link to={'/contacts'}>Contact us</Link>  {' '}
+                        <Nav.Link href="#Contact">Contact us {' '}
                             <Spinner animation="grow" role="status" variant='warning' size="sm"/>
                         </Nav.Link>
-
-                        <Nav.Link>
-                            <Link to={'/products'}>Products</Link>
-                        </Nav.Link>
-
-                        <Nav.Link>
-                            <Link to={'/favorites'}>Favorites</Link>
-                        </Nav.Link>
-
-                        <Nav.Link>
-                            <Link to={'/cart'}>Cart</Link>
-                        </Nav.Link>
                     </Nav>
-
                     <Nav>
                         <OverlayTrigger trigger="click" placement="bottom" overlay={popup}>
                             <Button className='enter' variant={"outline-primary"} >
