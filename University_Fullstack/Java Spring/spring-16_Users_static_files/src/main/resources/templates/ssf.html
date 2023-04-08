@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Sort Search Filter</title>
+    <link th:href="@{/css/style.css}" type="text/css" rel="stylesheet">
+</head>
+<body>
+<div id="block">
+<h3>SSF. Sort, Search, Filter</h3>
+<form method="POST" th:action="@{/ssf}">
+    <lable for="filterOptions">Select option:</lable>
+    <br>
+        <select name="filterOptions" id="filterOptions">
+            <option value="email">filter: email</option>
+            <option value="phoneNo">filter: phone number</option>
+            <option value="lastName">filter: last name (age asc)</option>
+            <option value="lastNameDesc">filter: last name (age desc)</option>
+            <option value="lastNameStart">filter: last name start with</option>
+        </select> <br>
+    <br>
+    <input type="text" name="lookingRequest"><br>
+    <br>
+    <button type="submit">Accept looking request</button>
+</form>
+<hr>
+<div th:each="element : ${user}">
+    <fieldset>
+        <legend> ИНФОРМАЦИЯ </legend>
+        <br>
+        <strong>lastName: </strong><span th:text="${element.getLastName()}"></span><br>
+        <br>
+        <strong>firstName: </strong><span th:text="${element.getFirstName()}"></span><br>
+        <br>
+        <strong>middleName: </strong><span th:text="${element.getMiddleName()}"></span><br>
+        <br>
+        <strong>age: </strong><span th:text="${element.getAge()}">age</span><br>
+        <br>
+        <strong>email: </strong><span th:text="${element.getEmail()}"></span><br>
+    </fieldset>
+</div>
+    <br>
+    <a href="/user">USER LIST</a>
+    <br>
+
+</div>
+<img th:src="@{/img/springBoot.png}" style="width: 200px">
+</body>
+</html>

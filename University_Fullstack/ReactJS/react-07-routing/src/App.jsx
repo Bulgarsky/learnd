@@ -34,14 +34,6 @@ function App() {
             setProducts(productsData.data);
             console.log(productsData.data);
         }
-        /*
-             fetch('https://642ea6618ca0fe3352d53368.mockapi.io/products').then((productJSON) => {
-             return productJSON.json();
-             }).then((productJSON) => {
-                 setProducts(productJSON);
-                 console.log(productJSON);
-             })
-         */
         axiosData();
          },[]);
 

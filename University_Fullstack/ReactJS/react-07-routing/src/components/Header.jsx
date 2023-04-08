@@ -20,25 +20,6 @@ const Header= () => {
                     </Navbar.Brand>
 
                     <Nav className="me-auto">
-                        <NavDropdown
-                            id="nav-dropdown-dark-example"
-                            title="Documents"
-                            menuVariant="dark">
-                            <NavDropdown.Item>
-                                <Link to={'/prices'}>Prices</Link>
-                            </NavDropdown.Item>
-                            <NavDropdown.Item>
-                                <Link to={'/media'}>Media about us</Link>
-                            </NavDropdown.Item>
-                            <NavDropdown.Item>
-                                <Link to={'/presentations'}>Presentations</Link>
-                                </NavDropdown.Item>
-                            <NavDropdown.Divider />
-                            <NavDropdown.Item>
-                                <Link to={'/documents'}>Founding documents</Link>
-                            </NavDropdown.Item>
-                        </NavDropdown>
-
                         <Nav.Link>
                             <Link to={'/contacts'}>Contact us</Link>  {' '}
                             <Spinner animation="grow" role="status" variant='warning' size="sm"/>
