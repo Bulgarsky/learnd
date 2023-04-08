@@ -37,6 +37,10 @@
         <strong>age: </strong><span th:text="${element.getAge()}">age</span><br>
         <br>
         <strong>email: </strong><span th:text="${element.getEmail()}"></span><br>
+        <br>
+        <strong>photo:</strong><br>
+        <img th:src="'/img/'+${element.getLinkPhoto()}" style="width: 200px"><br>
+        <br>
     </fieldset>
 </div>
     <br>

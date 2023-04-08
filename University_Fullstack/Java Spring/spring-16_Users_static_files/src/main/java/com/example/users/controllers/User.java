@@ -3,14 +3,22 @@ package com.example.users.controllers;
 import com.example.users.services.UserService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.io.File;
+import java.io.IOException;
+import java.util.UUID;
 
 @Controller
 //@RequestMapping("/user")
 public class User {
+    @Value("${upload.path}")
+    private String uploadPath;
     private final UserService userService;
 
     @Autowired
@@ -32,14 +40,27 @@ public class User {
         model.addAttribute("user", new com.example.users.models.User());
         return "add_user";
     }
-    //submit form, validate, and safe user
+    //submit form, validate, and safe new user
     @PostMapping("user/add")
     public String newUser(
             @ModelAttribute("user")
             @Valid com.example.users.models.User newUser,
-            BindingResult bindingResult) {
+            BindingResult bindingResult,
+            @RequestParam("file") MultipartFile file
+    ) throws IOException {
         if(bindingResult.hasErrors()){
             return "add_user";
+        }
+        if(file != null){
+            //создаем путь для хранения всех файлов
+            File uploadDir = new File(uploadPath);
+            if(!uploadDir.exists()) {
+                uploadDir.mkdir();
+            }
+            String uuid = UUID.randomUUID().toString();
+            String resultFileName = uuid+"."+file.getOriginalFilename();
+            file.transferTo(new File(uploadPath + "/" + resultFileName));
+            newUser.setFileName(resultFileName);
         }
         //daoUser.addUser(newUser);
         userService.addUser(newUser);
@@ -63,11 +84,11 @@ public class User {
     public String updateEditUser(
             @ModelAttribute("editUser")@Valid com.example.users.models.User user,
             BindingResult bindingResult,
-            @PathVariable("id") int id) {
+            @PathVariable("id") int id)  {
         if(bindingResult.hasErrors()){
             return "user_edit";
         }
-        //daoUser.updateUser(id, user);
+        //need refactor, func edit
         userService.editUser(id, user);
         return "redirect:/user";
     }

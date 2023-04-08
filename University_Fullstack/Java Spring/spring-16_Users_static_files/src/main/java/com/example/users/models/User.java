@@ -36,9 +36,11 @@ public class User {
     @Column(name = "phoneNo", length = 12, nullable = false, columnDefinition = "text", unique = true)
     private String phoneNo;
 
+    private String fileName;
+
     //model constructors
     public User(){}
-    public User(int id, String lastName, String firstName, String middleName, int age, String email, String phoneNo) {
+    public User(int id, String lastName, String firstName, String middleName, int age, String email, String phoneNo, String fileName) {
         this.id = id;
         this.lastName = lastName;
         this.firstName = firstName;
@@ -46,6 +48,7 @@ public class User {
         this.age = age;
         this.email = email;
         this.phoneNo = phoneNo;
+        this.fileName = fileName;
     }
 
     //model getters
@@ -70,36 +73,31 @@ public class User {
     public String getPhoneNo() {
         return phoneNo;
     }
+    public String getFileName() { return fileName; }
 
     //model setters
-
     public void setId(int id) {
         this.id = id;
     }
-
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
-
     public void setFirstName(String firstName) {
         this.firstName = firstName;
     }
-
     public void setMiddleName(String middleName) {
         this.middleName = middleName;
     }
-
     public void setAge(int age) {
         this.age = age;
     }
-
     public void setEmail(String email) {
         this.email = email;
     }
-
     public void setPhoneNo(String phoneNo) {
         this.phoneNo = phoneNo;
     }
+    public void setFileName(String fileName) { this.fileName = fileName; }
 
     @Override
     public String toString() {
@@ -111,6 +109,7 @@ public class User {
                 ", age=" + age +
                 ", email='" + email + '\'' +
                 ", phoneNo='" + phoneNo + '\'' +
+                ", linkPhoto='"+ fileName + '\'' +
                 '}';
     }
 

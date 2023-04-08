@@ -20,6 +20,9 @@
             <strong>age: </strong><span th:text="${user.getAge()}">age</span><br>
             <br>
             <strong>email: </strong><span th:text="${user.getEmail()}"></span><br>
+            <br>
+            <img th:src="'/img/'+ ${user.getFileName()}" style="width: 200px"><br>
+            <br>
         </fieldset>
 <br>
 <a th:href="@{/user/edit/{id}(id=${user.getId()})}">User: Edit</a><br>
