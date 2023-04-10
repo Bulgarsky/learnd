@@ -39,15 +39,17 @@
         <strong>email: </strong><span th:text="${element.getEmail()}"></span><br>
         <br>
         <strong>photo:</strong><br>
-        <img th:src="'/img/'+${element.getLinkPhoto()}" style="width: 200px"><br>
+        <img th:src="'/img/'+${element.getFileName()}" ><br>
         <br>
     </fieldset>
 </div>
     <br>
     <a href="/user">USER LIST</a>
     <br>
-
 </div>
-<img th:src="@{/img/springBoot.png}" style="width: 200px">
+<br>
+
+<img th:src="@{/img/springBoot.png}">
+<script th:src="@{/js/test.js}"></script>
 </body>
 </html>
