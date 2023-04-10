@@ -1,7 +1,9 @@
 package com.example.session_cookies.contollers;
 
 import com.example.session_cookies.models.Auth;
+import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,6 +21,11 @@ public class AccountController {
         if(authSession == null) {
             return "redirect:/auth";
         } else {
+            Cookie[] cookies = request.getCookies();
+            for (Cookie element: cookies) {
+                System.out.println("Cookie name: "+ element.getName());
+                System.out.println("Cookie value: "+ element.getValue());
+            }
             return "account";
         }
     }
@@ -32,7 +39,16 @@ public class AccountController {
     @PostMapping("/auth")
     public String auth(
             @ModelAttribute("auth") Auth auth,
-            HttpServletRequest request){
+            HttpServletRequest request,
+            HttpServletResponse response){
+
+        //create new cookie (key-value). data - String
+        Cookie cookie = new Cookie("user_id", "1");
+        //указываем сколько будут хранится куки в браузере клиента
+        //48 hours * 60 min * 60 sec
+        cookie.setMaxAge(48*60*60);
+        response.addCookie(cookie);
+
         HttpSession session = request.getSession();
         Auth authSession = (Auth) session.getAttribute("user");
         authSession = new Auth();
