@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>CART</title>
+    <link th:href="@{/css/style.css}" type="text/css" rel="stylesheet">
+</head>
+<body>
+<div id="block">
+    <div th:if="${session.cart != null}">
+        <fieldset>
+            <legend> Пример корзины в сессии </legend>
+            <br>
+            <strong>Product name: </strong>
+            <span th:text="${session.cart.getProductName()}"></span><br>
+            <br>
+            <strong>Product price: </strong>
+            <span th:text="${session.cart.getPrice()}"></span><br>
+            <br>
+            <strong>Product amount: </strong>
+            <span th:text="${session.cart.getAmount()}"></span><br>
+            <br>
+        </fieldset>
+    </div>
+        <br>
+        <div th:if="${session.cart == null}">
+            <p style="color: darkred">
+                Корзина пустая
+            </p>
+        </div>
+    <br>
+     <a href="/product/add/in/cart"> Добавить товар  в корзину </a><br>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Auth</title>
+</head>
+<body>
+<div id="block">
+  <fieldset>
+    <legend> ВХОД В ЛИЧНЫЙ КАБИНТ </legend>
+    <form th:method="POST" th:action="@{/auth}" th:object="${auth}">
+      <br>
+      <label for="login"><strong>Enter Login: </strong></label>
+        <input type="text" th:field="*{login}" id="login"><br>
+      <br>
+      <label for="password"><strong>Enter Password: </strong></label>
+        <input type="text" th:field="*{password}" id="password"><br>
+      <br>
+      <button type="submit">Enter</button>
+    </form>
+  </fieldset>
+</div>
+
+</body>
+</html>
