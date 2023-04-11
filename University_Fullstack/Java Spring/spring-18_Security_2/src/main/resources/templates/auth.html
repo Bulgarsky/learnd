@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Authentication</title>
+    <style>
+        #block{
+            width: 300px;
+        }
+    </style>
+</head>
+<body>
+<div id="block">
+<fieldset>
+    <legend> Authentication </legend>
+    <form method="post" action="/process_login">
+        <br>
+        <label for="username"><strong>Login: </strong></label>
+        <input type="text" placeholder="Enter login" name="username" id="username"><br>
+        <br>
+        <label for="password"><strong>Password: </strong></label>
+        <input type="text" placeholder="Enter password" name="password" id="password"><br>
+        <br>
+        <button type="submit">Accept</button><br>
+        <br>
+    </form>
+    <br>
+    <div th:if="${param.error}" style="color: darkred">Incorrect login or password</div>
+</fieldset>
+</div>
+</body>
+</html>

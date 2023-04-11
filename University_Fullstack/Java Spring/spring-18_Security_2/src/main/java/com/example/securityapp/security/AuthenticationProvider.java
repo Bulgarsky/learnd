@@ -1,4 +1,5 @@
-package com.example.securityapp.config;
+/*
+package com.example.securityapp.security;
 
 import com.example.securityapp.services.PersonDetailsService;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -41,3 +42,4 @@ public class AuthenticationProvider implements org.springframework.security.auth
         return true;
     }
 }
+*/

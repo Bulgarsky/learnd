@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Registration</title>
+    <style>
+      #block{
+        width: 300px;
+      }
+    </style>
+</head>
+<body>
+<div id="block">
+  <fieldset>
+    <legend> Registration </legend>
+    <br>
+    <form method="post" th:action="@{/reg}" th:object="${person}">
+      <br>
+      <label for="login"><strong>Login: </strong></label>
+      <input type="text" th:field="*{login}" id="login"><br>
+      <br>
+      <div style="color: darkred" th:if="${#fields.hasErrors('login')}" th:errors="*{login}"></div>
+      <br>
+      <label for="password"><strong>Password: </strong></label>
+      <input type="text" th:field="*{password}" id="password"><br>
+      <br>
+      <div style="color: darkred" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></div>
+      <br>
+      <button type="submit"> Accept </button>
+      <br>
+    </form>
+  </fieldset>
+</div>
+</body>
+</html>
