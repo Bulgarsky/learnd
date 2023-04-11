@@ -4,8 +4,16 @@
     <meta charset="UTF-8">
     <title>Authentication</title>
     <style>
-        #block{
-            width: 300px;
+        body {
+            background-color: antiquewhite;
+        }
+        #block {
+            margin: 25px;
+            padding: 20px;
+            width: 330px;
+            background-color: white;
+            border-style: none;
+            box-shadow: 5px 5px 10px black;
         }
     </style>
 </head>
@@ -19,13 +27,16 @@
         <input type="text" placeholder="Enter login" name="username" id="username"><br>
         <br>
         <label for="password"><strong>Password: </strong></label>
-        <input type="text" placeholder="Enter password" name="password" id="password"><br>
+        <input type="password" placeholder="Enter password" name="password" id="password"><br>
         <br>
         <button type="submit">Accept</button><br>
         <br>
     </form>
     <br>
     <div th:if="${param.error}" style="color: darkred">Incorrect login or password</div>
+    <br>
+    <a href="/reg">Registration</a>
+    <br>
 </fieldset>
 </div>
 </body>

@@ -4,8 +4,16 @@
     <meta charset="UTF-8">
     <title>Registration</title>
     <style>
-      #block{
-        width: 300px;
+      body {
+        background-color: antiquewhite;
+      }
+      #block {
+        margin: 25px;
+        padding: 20px;
+        width: 330px;
+        background-color: white;
+        border-style: none;
+        box-shadow: 5px 5px 10px black;
       }
     </style>
 </head>
@@ -22,13 +30,16 @@
       <div style="color: darkred" th:if="${#fields.hasErrors('login')}" th:errors="*{login}"></div>
       <br>
       <label for="password"><strong>Password: </strong></label>
-      <input type="text" th:field="*{password}" id="password"><br>
+      <input type="password" th:field="*{password}" id="password"><br>
       <br>
       <div style="color: darkred" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></div>
       <br>
       <button type="submit"> Accept </button>
       <br>
     </form>
+    <br>
+    <a href="/auth">AUTH</a>
+    <br>
   </fieldset>
 </div>
 </body>

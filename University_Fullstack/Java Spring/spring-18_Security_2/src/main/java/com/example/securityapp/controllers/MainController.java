@@ -2,10 +2,10 @@ package com.example.securityapp.controllers;
 
 import com.example.securityapp.models.Person;
 import com.example.securityapp.security.PersonDetails;
+import com.example.securityapp.services.PersonService;
 import com.example.securityapp.util.PersonValidate;
 import jakarta.validation.Valid;
 import org.springframework.security.core.Authentication;
-
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -16,9 +16,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 @Controller
 public class MainController {
     private  final PersonValidate personValidate;
-
-    public MainController(PersonValidate personValidate) {
+    private final PersonService personService;
+    public MainController(PersonValidate personValidate, PersonService personService) {
         this.personValidate = personValidate;
+        this.personService = personService;
     }
 
     @GetMapping("/index")
@@ -39,10 +40,16 @@ public class MainController {
         return "reg";
     }
     @PostMapping("/reg")
-    public String registrationResult(@ModelAttribute("person")@Valid Person person, BindingResult bindingResult){
+    public String registrationResult(
+            @ModelAttribute("person")@Valid Person person,
+            BindingResult bindingResult){
+
+        personValidate.validate(person, bindingResult);
         if (bindingResult.hasErrors()){
             return "reg";
         }
+        personService.register(person);
+        return "redirect:/index";
 
     }
 }

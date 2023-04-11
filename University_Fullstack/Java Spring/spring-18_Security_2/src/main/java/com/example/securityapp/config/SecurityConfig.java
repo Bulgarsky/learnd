@@ -36,7 +36,7 @@ public class SecurityConfig{
         http.csrf().disable()
                 .authorizeHttpRequests() //указание что все старницы длж б защищеты Auth
                 //какие страницы доступны всем и на обьект ошибки
-                .requestMatchers("/auth", "/error").permitAll()
+                .requestMatchers("/auth", "/reg","/error").permitAll()
                 //для остальных страниц - вызвать метод Auth:
                 .anyRequest().authenticated()
                 .and() //соединить компоненты в рамках одного кофнига
