@@ -21,9 +21,11 @@ public class AuthenticationController {
         return "reg";
     }
      */
+    /*
     @GetMapping("/reg")
     public String registration(@ModelAttribute("person") Person person){
         return "reg";
     }
+     */
 
 }
