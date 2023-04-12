@@ -9,6 +9,7 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfiguration;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
@@ -22,9 +23,15 @@ public class SecurityConfig{
     }
 
     //параметр позвол. не шифровать пароли (только для теста):
+    /*
     @Bean
     public PasswordEncoder getPasswordEncode(){
         return NoOpPasswordEncoder.getInstance();
+    }
+     */
+    @Bean
+    public PasswordEncoder getPasswordEncode(){
+        return new BCryptPasswordEncoder();
     }
 
     //конфиг
@@ -32,7 +39,7 @@ public class SecurityConfig{
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception{
         //конфиг работы Spring Security
 
-        //отиключаем CSRF токены (защиту от межсайтовой подделки запросов):
+        //отключаем CSRF токены (защиту от межсайтовой подделки запросов):
         http.csrf().disable()
                 .authorizeHttpRequests() //указание что все старницы длж б защищеты Auth
                 //какие страницы доступны всем и на обьект ошибки
@@ -55,20 +62,22 @@ public class SecurityConfig{
         return http.build();
 
         //before login
-        // Idea-52a55762=19407d44-a17a-4a3c-9dce-b29228c47bb7; user_id=1;
-        // JSESSIONID=9FA724698A5CFD35A90C8236402AA1F8
+//        Idea-52a553a3=3865262a-b47a-4670-a33d-514f5a2f7457;
+//        JSESSIONID=3C3315A7A9C1CD16DB9612E646F03694
 
         //Logout
-        //Idea-52a55762=19407d44-a17a-4a3c-9dce-b29228c47bb7; user_id=1;
-        //JSESSIONID=AE52B13D360DD01B1D465D6F0C8DCB21
+//        Idea-52a553a3=3865262a-b47a-4670-a33d-514f5a2f7457;
+//        JSESSIONID=1DA1FB46627AE73930DBC94E2AD1CE47
     }
 
 
     protected void configure(AuthenticationManagerBuilder authenticationManagerBuilder) throws Exception{
 
-        //так же будет ошибка, тк в БД ключ не зашифрованы бикрипт
+        //так же будет ошибка, тк в БД ключ не зашифрованы бикрипт (нужно отключить )
         //AuthenticationProvider (все что было в логике, вся проверка под копотом Spring Security) :
-        authenticationManagerBuilder.userDetailsService(personDetailsService);
+        authenticationManagerBuilder.userDetailsService(personDetailsService)
+                //вызываем метод хеширования
+                .passwordEncoder(getPasswordEncode());
     }
 }
 

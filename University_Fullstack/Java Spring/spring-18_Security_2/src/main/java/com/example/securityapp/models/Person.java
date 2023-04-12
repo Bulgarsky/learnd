@@ -1,11 +1,11 @@
 package com.example.securityapp.models;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
+
+import java.util.Objects;
 
 @Entity
 @Table(name="user_list")
@@ -13,6 +13,7 @@ public class Person {
 
     @Id
     @Column(name="id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     @NotEmpty(message = "Логин не может быть пустым")
@@ -22,6 +23,7 @@ public class Person {
 
     @NotEmpty(message = "Пароль не может быть пустым")
     @Column(name="password")
+    //@Pattern()
     private String password;
 
     public int getId() {
@@ -42,5 +44,19 @@ public class Person {
     }
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Person person = (Person) o;
+        return id == person.id && Objects.equals(login, person.login) && Objects.equals(password, person.password);
+    }
+
+    //данный метод преобразует объект класса в число
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, login, password);
     }
 }

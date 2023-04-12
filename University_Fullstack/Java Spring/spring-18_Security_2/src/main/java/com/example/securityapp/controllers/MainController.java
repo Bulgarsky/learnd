@@ -31,6 +31,8 @@ public class MainController {
         System.out.println("user ID: "+personDetails.getPerson().getId());
         System.out.println("user login: "+personDetails.getPerson().getLogin());
         System.out.println("user password: "+personDetails.getPerson().getPassword());
+
+        System.out.println(personDetails);
         return "index";
     }
 
