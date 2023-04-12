@@ -39,13 +39,27 @@ public class SecurityConfig{
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception{
         //конфиг работы Spring Security
 
-        //отключаем CSRF токены (защиту от межсайтовой подделки запросов):
-        http.csrf().disable()
+        //отключаем CSRF токены (защиту от межсайтовой подделки запросов) для тестов:
+        //http.csrf().disable()
+        http
                 .authorizeHttpRequests() //указание что все старницы длж б защищеты Auth
                 //какие страницы доступны всем и на обьект ошибки
+
+                //БЕЗ РОЛЕЙ
+                /*
                 .requestMatchers("/auth", "/reg","/error").permitAll()
                 //для остальных страниц - вызвать метод Auth:
                 .anyRequest().authenticated()
+                 */
+
+                //ПОСЛЕ ДОБАВЛЕНИЯ РОЛЕЙ
+                //настрйока доступа к странице для роли ADMIN (префикс отбрасывается)
+                .requestMatchers("/admin").hasRole("ADMIN")
+                //настройка доступа страницам для других ролей
+                .requestMatchers("/auth", "/reg", "/error", "/resources/**", "/static/**", "/css/**", "js/**", "img/**").permitAll()
+                //настройка доступа к остальным страницам для ролей
+                .anyRequest().hasAnyRole("USER", "ADMIN")
+
                 .and() //соединить компоненты в рамках одного кофнига
                 //на какой url -> будет оптравляться запрос при входе на защищ.стр.
                 .formLogin().loginPage("/auth")

@@ -29,6 +29,7 @@ public class PersonService {
     public void register(Person person){
         //херованный пароль:
         person.setPassword((passwordEncoder.encode(person.getPassword())));
+        person.setRole("ROLE_USER"); //назначение всем роли USER
         personRepository.save(person);
     }
 }

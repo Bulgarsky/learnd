@@ -26,6 +26,9 @@ public class Person {
     //@Pattern()
     private String password;
 
+    @Column(name="role")
+    private String role;
+
     public int getId() {
         return id;
     }
@@ -34,6 +37,9 @@ public class Person {
     }
     public String getPassword() {
         return password;
+    }
+    public String getRole() {
+        return role;
     }
 
     public void setId(int id) {
@@ -44,6 +50,9 @@ public class Person {
     }
     public void setPassword(String password) {
         this.password = password;
+    }
+    public void setRole(String role) {
+        this.role = role;
     }
 
     @Override

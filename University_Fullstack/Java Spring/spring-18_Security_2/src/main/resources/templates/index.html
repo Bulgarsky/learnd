@@ -18,7 +18,19 @@
                 some blocks
             </div>
             <br>
-            <a href="/logout">Logout from account</a>
+<!--            При вкл scrf нельзя разлогинится Get запросу-->
+            <!-- способ1 - навесить на ссылку стили через бутстрап -->
+            <a href="/logout">Logout from account</a><br>
+            <br>
+            <!-- способ2 - сделать форму -->
+            <form method="post" action="/logout">
+            <button type="submit">Logout from account</button>
+            </form>
+            <!-- способ3 - через js -->
+            <script th:inline="javasript">
+                let username = [[${user.getId}]];
+                //обработть нажатие на кнопку и перенаправлить по url
+            </script>
         </div>
     </fieldset>
 </div>
