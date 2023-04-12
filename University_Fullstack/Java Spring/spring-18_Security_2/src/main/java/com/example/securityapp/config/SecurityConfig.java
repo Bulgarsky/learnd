@@ -47,9 +47,20 @@ public class SecurityConfig{
                 //на какой url необходимо направить после успешной Auth. True - чтоы редирект был в любом случае после успеха Auth
                 .defaultSuccessUrl("/index", true)
                 //куда делать редирект после провала Auth. В запрос будет передан obj error, который  будет проверятся на форме и при наличии, будет выводтся сообщение
-                .failureUrl("/auth?error");
+                .failureUrl("/auth?error")
+                .and()
+                //настройка выхода из аккаунта, редирект (удалеяется сессия)
+                .logout().logoutUrl("/logout").logoutSuccessUrl("/auth");
 
         return http.build();
+
+        //before login
+        // Idea-52a55762=19407d44-a17a-4a3c-9dce-b29228c47bb7; user_id=1;
+        // JSESSIONID=9FA724698A5CFD35A90C8236402AA1F8
+
+        //Logout
+        //Idea-52a55762=19407d44-a17a-4a3c-9dce-b29228c47bb7; user_id=1;
+        //JSESSIONID=AE52B13D360DD01B1D465D6F0C8DCB21
     }
 
 

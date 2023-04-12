@@ -3,23 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <title>Home page</title>
-    <style>
-        body {
-            background-color: antiquewhite;
-        }
-        #block {
-            margin: 25px;
-            padding: 20px;
-            width: 330px;
-            background-color: white;
-            border-style: none;
-            box-shadow: 5px 5px 10px black;
-        }
-    </style>
+    <link th:href="@{/css/style.css}"
+          type="text/css"
+          rel="stylesheet">
+
 </head>
 <body>
 <div id="block">
-<h3>Spring security app</h3>
+    <fieldset>
+        <legend> Account </legend>
+        <div>
+            <h3>Spring Security App</h3>
+            <div>
+                some blocks
+            </div>
+            <br>
+            <a href="/logout">Logout from account</a>
+        </div>
+    </fieldset>
 </div>
 </body>
 </html>
