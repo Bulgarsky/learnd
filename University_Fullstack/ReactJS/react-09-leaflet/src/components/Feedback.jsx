@@ -6,6 +6,10 @@ import {
     CircleMarker, MapContainer, Marker, Polygon, Popup, TileLayer, Tooltip
 } from 'react-leaflet';
 
+<<<<<<< HEAD
+//npm i react-leaflet leaflet
+=======
+>>>>>>> a0158c4be067dd6c0a2c37fe41cd2cccd8e4d2bb
 const centerPolygon = [
     [
         [61.245111, 73.455368],
