@@ -25,16 +25,25 @@ public class Main {
         */
 
         //получение json с user/2
+        /*
         String response = restTemplate.getForObject("https://reqres.in/api/users/2", String.class);
         System.out.println(response);
+         */
 
         //parsing json w/ Jackson (преобразуем строки в объект
+        /*
         ObjectMapper mapper = new ObjectMapper();
         JsonNode obj = mapper.readTree(response);
         System.out.println("email: "+obj.get("data").get("email"));
         System.out.println("lastName: "+obj.get("data").get("last_Name"));
         System.out.println("firstName: "+obj.get("data").get("first_name"));
         System.out.println("avatar: "+obj.get("data").get("avatar"));
+         */
+
+        //connect local host api(git: spring-20_API)
+        System.out.println(restTemplate.getForObject("http://localhost:8085/api/product", String.class));
+        String response = restTemplate.getForObject("http://localhost:8085/api/product/2", String.class);
+        System.out.println(response);
 
     }
 }
