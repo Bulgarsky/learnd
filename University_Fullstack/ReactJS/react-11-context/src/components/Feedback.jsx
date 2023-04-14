@@ -12,7 +12,7 @@ const Feedback = () => {
             <h2>Feedback us</h2>
         <form onSubmit={handleSubmit(onSubmit)}>
             <div className="input-group mb-3">
-                <span classNamgit e="input-group-text" id="inputGroup-sizing-default">Your name: </span>
+                <span className="input-group-text" id="inputGroup-sizing-default">Your name: </span>
                 <input {...register("name", {maxLength: 50, required:true})}
                        type="text" className="form-control" aria-label="name"
                        aria-describedby="inputName"

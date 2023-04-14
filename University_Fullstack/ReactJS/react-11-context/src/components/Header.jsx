@@ -6,7 +6,7 @@ import Navbar from 'react-bootstrap/Navbar';
 import Button from 'react-bootstrap/Button';
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 import Popover from "react-bootstrap/Popover";
-import {NavDropdown, Spinner} from "react-bootstrap";
+import {Spinner} from "react-bootstrap";
 import {Link} from 'react-router-dom';
 
 //rsc
@@ -21,24 +21,6 @@ const Header= () => {
                     </Navbar.Brand>
 
                     <Nav className="me-auto">
-                        {/*<NavDropdown*/}
-                        {/*    id="nav-dropdown-dark-example"*/}
-                        {/*    title="Documents"*/}
-                        {/*    menuVariant="dark">*/}
-                        {/*    <NavDropdown.Item>*/}
-                        {/*        <Link to={'/prices'}>Prices</Link>*/}
-                        {/*    </NavDropdown.Item>*/}
-                        {/*    <NavDropdown.Item>*/}
-                        {/*        <Link to={'/media'}>Media about us</Link>*/}
-                        {/*    </NavDropdown.Item>*/}
-                        {/*    <NavDropdown.Item>*/}
-                        {/*        <Link to={'/presentations'}>Presentations</Link>*/}
-                        {/*        </NavDropdown.Item>*/}
-                        {/*    <NavDropdown.Divider />*/}
-                        {/*    <NavDropdown.Item>*/}
-                        {/*        <Link to={'/documents'}>Founding documents</Link>*/}
-                        {/*    </NavDropdown.Item>*/}
-                        {/*</NavDropdown>*/}
 
                         <Nav.Link>
                             <Link to={'/feedback'}>Feedback us!</Link>  {' '}
@@ -78,7 +60,6 @@ const Header= () => {
 }
 const popup = (
     <Popover id="popover-basic">
-
         <Popover.Header as="h3">
             <Spinner animation="border" role="status" variant='danger' size="sm"/> {'  '}
             Personal account</Popover.Header>
