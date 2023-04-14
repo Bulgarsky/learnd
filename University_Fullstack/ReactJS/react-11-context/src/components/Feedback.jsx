@@ -1,23 +1,6 @@
 import React from 'react';
 import { useForm } from "react-hook-form";
 import Button from "react-bootstrap/Button";
-import 'leaflet/dist/leaflet.css';
-import {
-    CircleMarker, MapContainer, Marker, Polygon, Popup, TileLayer, Tooltip
-} from 'react-leaflet';
-
-//npm i react-leaflet leaflet
-const centerPolygon = [
-    [
-        [61.245111, 73.455368],
-        [61.242885, 73.420644],
-        [61.236281, 73.480578],
-        [61.243104, 73.471995]
-
-    ]
-];
-const colorOptions={color:'darkred'};
-const ourAddress=[61.243438, 73.393028];
 
 const Feedback = () => {
     const { register, handleSubmit, watch, formState: { errors } } = useForm();
@@ -29,7 +12,7 @@ const Feedback = () => {
             <h2>Feedback us</h2>
         <form onSubmit={handleSubmit(onSubmit)}>
             <div className="input-group mb-3">
-                <span className="input-group-text" id="inputGroup-sizing-default">Your name: </span>
+                <span classNamgit e="input-group-text" id="inputGroup-sizing-default">Your name: </span>
                 <input {...register("name", {maxLength: 50, required:true})}
                        type="text" className="form-control" aria-label="name"
                        aria-describedby="inputName"
@@ -80,27 +63,6 @@ const Feedback = () => {
                 Send feedback message
             </Button>
         </form>
-            <br/>
-            <div/>
-            <br/>
-            <MapContainer
-                center={ourAddress}
-                zoom={10} style={{width:'80vw',  height:'400px'}} >
-                <TileLayer
-                    url='https://api.maptiler.com/maps/basic-v2/256/{z}/{x}/{y}.png?key=PbYzGbTy9BYqNyYlnlfL'
-                    attribution='<a href="https://www.maptiler.com/copyright/" target="_blank">&copy; MapTiler</a> <a href="https://www.openstreetmap.org/copyright" target="_blank">&copy; OpenStreetMap contributors</a>'
-                />
-                <CircleMarker center={ourAddress} pathOptions={{color: 'black'}} radius={10}>
-                </CircleMarker>
-
-                <Marker position={ourAddress}>
-                    <Popup>We are here!</Popup>
-                    <Tooltip>Our address:</Tooltip>
-                </Marker>
-
-                <Polygon positions={centerPolygon} pathOptions={colorOptions} />
-
-            </MapContainer>
         </div>
     );
 
