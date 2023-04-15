@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import {Badge, Button} from "react-bootstrap";
 import {AppContext} from '../../App';
 
-const Item = (props) => {
+const CardItem = (props) => {
     console.log("-> рендер карточки товара");
 
     const context = React.useContext(AppContext);
@@ -21,7 +21,7 @@ const Item = (props) => {
         props.favoriteBtn({title, description, price, img, id, myId});
     }
 
-    const onClickBasket=()=>{
+    const onClickAdd=()=>{
         setAdded(!added);
         let id = props.id;
         let myId = props.myId;
@@ -63,7 +63,7 @@ const Item = (props) => {
                             </p>
 
                             <Button className='addBasket' variant='outline-dark'
-                                    onClick={onClickBasket}>
+                                    onClick={onClickAdd}>
                                 {context.isAdded(props.myId)
                                     ?
                                     <img width={13}
@@ -82,4 +82,4 @@ const Item = (props) => {
     );
 };
 
-export default Item;
+export default CardItem;

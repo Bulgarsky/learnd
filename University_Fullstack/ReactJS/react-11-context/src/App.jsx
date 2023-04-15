@@ -3,13 +3,13 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Header from "./components/Header";
 import Home from "./components/Home";
 import Feedback from "./components/Feedback";
-import Products from "./components/Products";
-import Favorites from "./components/Favorites";
-import Basket from "./components/basket/basket";
+import ProductList from "./components/ProductList";
+import Favorites from "./components/favorites/Favorites";
+import Basket from "./components/basket/Basket";
 import Footer from "./components/Footer";
 
 import React, {useState, useEffect} from "react";
-import axios from "axios";
+import axios from 'axios';
 import {Route, Routes, BrowserRouter as Router} from 'react-router-dom';
 
 import "./App.css";
@@ -58,17 +58,16 @@ function App() {
 
 
     const deleteItems=(id)=>{
-        // eslint-disable-next-line no-template-curly-in-string
-        axios.delete('https://64399fea90cd4ba563eae64a.mockapi.io/Cart/${id}');
+        axios.delete(`https://64399fea90cd4ba563eae64a.mockapi.io/Cart/${id}`);
         setOverlayItems((objDelete) => objDelete.filter(item => item.id !== id));
     }
 
     const isAdded=(myId) => {
-        return overlayItems.some((objIsAdded) => objIsAdded.myId === myId)
+        return overlayItems.some((objIsAdded) => objIsAdded.myId === myId);
     }
 
     const isFavorite=(myId) => {
-        return favorites.some((objIsFavorite) => objIsFavorite.myId === myId)
+        return favorites.some((objIsFavorite) => objIsFavorite.myId === myId);
     }
 
     return (
@@ -92,7 +91,7 @@ function App() {
                       <Route path='/' element={<Home />} />
                       <Route path='/feedback' element={<Feedback/>} />
                       <Route path='/products' element={
-                          <Products
+                          <ProductList
                               item={products}
                               overlayItems={overlayItems}
                               setOverlayItems={setOverlayItems}
@@ -112,6 +111,11 @@ function App() {
                       />
                       <Route path='/cart' element={
                           <Basket
+                              totalPrice={
+                                overlayItems.reduce((element = overlayItems.length, obj)=>
+                                    element+Number(obj.price), 0
+                                )
+                              }
                               overlayProps={overlayItems}
                               deleteItems={deleteItems}
                           />}

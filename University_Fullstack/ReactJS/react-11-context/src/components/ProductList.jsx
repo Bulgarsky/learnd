@@ -3,7 +3,7 @@ import ProductCard from "./cart/productCard";
 
 
 
-const Products = (props) => {
+const ProductList = (props) => {
     console.log("-> рендер продукты");
     return (
         <div >
@@ -18,4 +18,4 @@ const Products = (props) => {
     );
 };
 
-export default Products;
+export default ProductList;
