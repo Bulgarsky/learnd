@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Home page</title>
+    <link th:href="@{/css/style.css}"
+          type="text/css"
+          rel="stylesheet">
+
+</head>
+<body>
+<div id="block">
+    <fieldset>
+        <legend> Account </legend>
+        <div>
+            <h3>Spring Security App</h3>
+            <div>
+                some blocks
+            </div>
+            <br>
+            <form method="post" action="/logout">
+            <button type="submit">Logout from account</button>
+            </form>
+        </div>
+    </fieldset>
+</div>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Authentication</title>
+    <link th:href="@{/css/style.css}"
+          type="text/css"
+          rel="stylesheet">
+
+</head>
+<body>
+<div id="block">
+<fieldset>
+    <legend> Authentication </legend>
+    <form method="post" action="/process_login">
+        <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+        <br>
+        <label for="username"><strong>Login: </strong></label>
+        <input type="text" placeholder="Enter login" name="username" id="username"><br>
+        <br>
+        <label for="password"><strong>Password: </strong></label>
+        <input type="password" placeholder="Enter password" name="password" id="password"><br>
+        <br>
+        <button type="submit">Accept</button><br>
+        <br>
+    </form>
+    <br>
+    <div th:if="${param.error}" style="color: darkred">Incorrect login or password</div>
+    <br>
+    <a href="/reg">Registration</a>
+    <br>
+</fieldset>
+</div>
+</body>
+</html>

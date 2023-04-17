@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ADMIN TERMINAL</title>
+    <link th:href="@{/css/style.css}"
+          type="text/css"
+          rel="stylesheet">
+</head>
+<body>
+<div id="block">
+  <fieldset>
+    <legend>admin panel</legend>
+    <div>
+      <a href="admin/product/add">Add product</a>
+    </div>
+      <br>
+      <form method="post" action="/logout">
+          <button type="submit">exit admin panel</button>
+      </form>
+  </fieldset>
+</div>
+</body>
+</html>
