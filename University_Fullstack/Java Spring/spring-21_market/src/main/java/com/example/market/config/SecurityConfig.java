@@ -1,7 +1,7 @@
-package com.example.marketapp.config;
+package com.example.market.config;
 
 //import com.example.securityapp.security.AuthenticationProvider;
-import com.example.marketapp.services.PersonDetailsService;
+import com.example.market.services.PersonDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

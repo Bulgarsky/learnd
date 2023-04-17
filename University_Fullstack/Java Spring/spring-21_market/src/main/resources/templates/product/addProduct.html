@@ -11,13 +11,12 @@
 <div id="block">
     <fieldset>
         <legend>Add product</legend>
-        <form th:method="POST" th:action="@{admin/product/add}" th:object="${product}" enctype="multipart/form-data">
+        <form th:method="POST" th:action="@{/admin/product/add}" th:object="${product}" enctype="multipart/form-data">
             <br>
             <label for="title">
                 <strong>Title: </strong>
             </label>
                 <input type="text" th:field="*{title}" placeholder="Title" id="title"><br>
-            <br>
             <div style="color:darkred"
                  th:if="${#fields.hasErrors('title')}" th:errors="*{title}"></div>
             <br>
@@ -25,16 +24,13 @@
                 <strong>Price: </strong>
             </label>
             <input type="number" th:field="*{price}" placeholder="Price" id="price"><br>
-            <br>
             <div style="color:darkred"
                  th:if="${#fields.hasErrors('price')}" th:errors="*{price}"></div>
-            <br>
             <br>
             <label for="warehouse">
                 <strong>WH: </strong>
             </label>
             <input type="text" th:field="*{warehouse}" placeholder="Warehouse" id="warehouse"><br>
-            <br>
             <div style="color:darkred"
                  th:if="${#fields.hasErrors('warehouse')}" th:errors="*{warehouse}"></div>
             <br>
@@ -51,30 +47,27 @@
             <br>
             <span style="color: darkred">Макс.кол-во файлов: 5</span><br>
             <label>
-                <strong>Appload images</strong>
+                <strong>Upload images</strong>
             </label><br>
-            <input type="file" name="file_1"><br>
-            <input type="file" name="file_2"><br>
-            <input type="file" name="file_3"><br>
-            <input type="file" name="file_4"><br>
-            <input type="file" name="file_5"><br>
+            <label for="file_1"><input type="file" name="file_1" id="file_1"></label><br>
+            <label for="file_2"><input type="file" name="file_2" id="file_2"></label><br>
+            <label for="file_3"><input type="file" name="file_3" id="file_3"></label><br>
+            <label for="file_4"><input type="file" name="file_4" id="file_4"></label><br>
+            <label for="file_5"><input type="file" name="file_5" id="file_5"></label><br>
             <br>
             <label for="seller">
                 <strong>Seller: </strong>
             </label><br>
             <textarea th:field="*{seller}" placeholder="Seller" id="seller">
             </textarea><br>
-            <br>
             <div style="color:darkred"
                  th:if="${#fields.hasErrors('seller')}" th:errors="*{seller}"></div>
-            <br>
             <br>
             <label for="description">
                 <strong>Description: </strong>
             </label><br>
             <textarea th:field="*{description}" placeholder="Description" id="description">
             </textarea><br>
-            <br>
             <div style="color:darkred"
                  th:if="${#fields.hasErrors('description')}" th:errors="*{description}"></div>
             <br>

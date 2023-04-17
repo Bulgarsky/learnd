@@ -1,4 +1,4 @@
-package com.example.marketapp.controllers;
+package com.example.market.controllers;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,8 +11,5 @@ public class AuthenticationController {
     public String login(){
         return "auth";
     }
-
-
-
 
 }

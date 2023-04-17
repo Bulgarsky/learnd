@@ -1,6 +1,6 @@
-package com.example.marketapp.repositories;
+package com.example.market.repositories;
 
-import com.example.marketapp.models.Person;
+import com.example.market.models.Person;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

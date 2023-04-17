@@ -1,8 +1,8 @@
-package com.example.marketapp.services;
+package com.example.market.services;
 
-import com.example.marketapp.models.Person;
-import com.example.marketapp.repositories.PersonRepository;
-import com.example.marketapp.security.PersonDetails;
+import com.example.market.models.Person;
+import com.example.market.repositories.PersonRepository;
+import com.example.market.security.PersonDetails;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

@@ -1,7 +1,7 @@
-package com.example.marketapp.util;
+package com.example.market.util;
 
-import com.example.marketapp.models.Person;
-import com.example.marketapp.services.PersonService;
+import com.example.market.models.Person;
+import com.example.market.services.PersonService;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;

@@ -1,9 +1,9 @@
-package com.example.marketapp.controllers;
+package com.example.market.controllers;
 
-import com.example.marketapp.models.Person;
-import com.example.marketapp.security.PersonDetails;
-import com.example.marketapp.services.PersonService;
-import com.example.marketapp.util.PersonValidate;
+import com.example.market.models.Person;
+import com.example.market.security.PersonDetails;
+import com.example.market.services.PersonService;
+import com.example.market.util.PersonValidate;
 import jakarta.validation.Valid;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;

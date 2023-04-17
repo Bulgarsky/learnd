@@ -1,7 +1,7 @@
-package com.example.marketapp.services;
+package com.example.market.services;
 
-import com.example.marketapp.models.Person;
-import com.example.marketapp.repositories.PersonRepository;
+import com.example.market.models.Person;
+import com.example.market.repositories.PersonRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;

@@ -1,6 +1,6 @@
-package com.example.marketapp.security;
+package com.example.market.security;
 
-import com.example.marketapp.models.Person;
+import com.example.market.models.Person;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;

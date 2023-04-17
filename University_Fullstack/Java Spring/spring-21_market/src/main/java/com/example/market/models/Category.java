@@ -1,4 +1,4 @@
-package com.example.marketapp.models;
+package com.example.market.models;
 
 import jakarta.persistence.*;
 

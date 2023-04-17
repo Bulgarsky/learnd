@@ -1,9 +1,9 @@
-package com.example.marketapp.services;
+package com.example.market.services;
 
 
-import com.example.marketapp.models.Category;
-import com.example.marketapp.models.Product;
-import com.example.marketapp.repositories.ProductRepository;
+import com.example.market.models.Category;
+import com.example.market.models.Product;
+import com.example.market.repositories.ProductRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
