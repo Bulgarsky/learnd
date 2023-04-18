@@ -10,15 +10,33 @@
 <body>
 <div id="block">
   <fieldset>
-    <legend>admin panel</legend>
+    <legend>ADMIN PANEL</legend>
     <div>
       <a href="admin/product/add">Add product</a>
     </div>
       <br>
       <form method="post" action="/logout">
-          <button type="submit">exit admin panel</button>
+          <button type="submit">Выйти из админ кабинета</button>
       </form>
   </fieldset>
+    <br>
+    <div th:each="product : ${products}">
+        <fieldset>
+            <legend> PRODUCT </legend>
+            <br>
+            <strong>Наименование: </strong><span th:text="${product.getTitle()}">title</span><br>
+            <strong>Описание: </strong><span th:text="${product.getDescription()}">description</span><br>
+            <strong>Категория: </strong><span th:text="${product.getCategory().getTitle()}">category</span><br>
+            <strong>Продавец: </strong><span th:text="${product.getSeller()}">seller</span><br>
+            <strong>Склад: </strong><span th:text="${product.getWarehouse()}">warehouse</span><br>
+            <strong>Цена: </strong><span th:text="${product.getPrice()}">price</span><br>
+            <br>
+            <a th:href="@{/admin/product/edit/{id}(id=${product.getId()})}"> Редактировать товар </a><br>
+            <br>
+            <a th:href="@{/admin/product/delete/{id}(id=${product.getId()})}"> Удалить товар </a><br>
+            <br>
+            </fieldset>
+    </div>
 </div>
 </body>
 </html>

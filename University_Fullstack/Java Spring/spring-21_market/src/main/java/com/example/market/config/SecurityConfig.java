@@ -19,6 +19,7 @@ public class SecurityConfig{
         this.personDetailsService = personDetailsService;
     }
 
+
     //параметр позвол. не шифровать пароли (только для теста):
     /*
     @Bean
