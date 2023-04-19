@@ -13,12 +13,12 @@
     <fieldset>
         <legend> Account </legend>
         <div>
-            <h3>Spring Security App</h3>
+            <h3>Personal account</h3>
             <div>
                 some blocks
             </div>
             <br>
-            <form method="post" action="/logout">
+            <form method="post" th:action="@{/logout}">
                 <button type="submit">Выйти из личного кабинета</button>
             </form>
         </div>

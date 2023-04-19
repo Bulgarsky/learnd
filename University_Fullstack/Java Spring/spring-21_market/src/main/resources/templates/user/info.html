@@ -21,7 +21,7 @@
     <br>
     <div th:each="img : ${product.getImageList()}">
       <img
-              th:scr="'/img/' + ${img.getFileName()}"
+              th:src="'/img/' + ${img.getFileName()}"
               th:alt="'img #'+ ${img.getId()} +' for ' +${product.getTitle()}" >
     </div>
     <br>
