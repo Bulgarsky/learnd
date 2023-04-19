@@ -11,7 +11,7 @@
 <h3>List</h3>
 <div th:each="product: ${products}">
   <div id="product-item">
-    <img th:src="'/img/'+${product.imageList[0].getFileName()}" width="100px">
+    <img th:src="'/img/'+${product.imageList[0].getFileName()}" width="100px" th:alt="${product.getTitle()}">
     <br>
     <a th:href="@{/product/info/{id}(id=${product.getId()})}"
        th:text="${product.getTitle()}">title</a>

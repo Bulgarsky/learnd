@@ -20,7 +20,9 @@
         <strong>Цена: </strong><span th:text="${product.getPrice()}">price</span><br>
         <br>
         <div th:each="img : ${product.getImageList()}">
-            <img th:scr="'/img/' + ${img.getFileName()}" alt="img product">
+            <img
+                    th:scr="'/img/' + ${img.getFileName()}"
+                    th:alt="'img #'+ ${img.getId()} +' for ' +${product.getTitle()}" >
         </div>
         <br>
 
