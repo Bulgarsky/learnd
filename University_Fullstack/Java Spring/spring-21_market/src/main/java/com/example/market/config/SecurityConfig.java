@@ -19,14 +19,6 @@ public class SecurityConfig{
         this.personDetailsService = personDetailsService;
     }
 
-
-    //параметр позвол. не шифровать пароли (только для теста):
-    /*
-    @Bean
-    public PasswordEncoder getPasswordEncode(){
-        return NoOpPasswordEncoder.getInstance();
-    }
-     */
     @Bean
     public PasswordEncoder getPasswordEncode(){
         return new BCryptPasswordEncoder();
@@ -37,8 +29,6 @@ public class SecurityConfig{
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception{
         //конфиг работы Spring Security
 
-        //отключаем CSRF токены (защиту от межсайтовой подделки запросов) для тестов:
-        //http.csrf().disable()
         http
                 .authorizeHttpRequests() //указание что все старницы длж б защищеты Auth
                 //какие страницы доступны всем и на обьект ошибки
@@ -54,7 +44,7 @@ public class SecurityConfig{
                 //настрйока доступа к странице для роли ADMIN (префикс отбрасывается)
                 .requestMatchers("/admin").hasRole("ADMIN")
                 //настройка доступа страницам для других ролей
-                .requestMatchers("/auth", "/reg", "/error", "/resources/**", "/static/**", "/css/**", "js/**", "img/**").permitAll()
+                .requestMatchers("/auth", "/reg", "/error", "/resources/**", "/static/**", "/css/**", "js/**", "img/**", "/product", "/product/info/{id}").permitAll()
                 //настройка доступа к остальным страницам для ролей
                 .anyRequest().hasAnyRole("USER", "ADMIN")
 
@@ -64,7 +54,7 @@ public class SecurityConfig{
                 //на какой url будет отпр. данные с формы(не нужно создавать метов в контроллере и обрабатывать данные с формы. Задали default url  дял обработки формы Auth средствами Spring Security. Security будет ожидать obj и сверять лоигн и пароль в БД):
                 .loginProcessingUrl("/process_login")
                 //на какой url необходимо направить после успешной Auth. True - чтоы редирект был в любом случае после успеха Auth
-                .defaultSuccessUrl("/index", true)
+                .defaultSuccessUrl("/account", true)
                 //куда делать редирект после провала Auth. В запрос будет передан obj error, который  будет проверятся на форме и при наличии, будет выводтся сообщение
                 .failureUrl("/auth?error")
                 .and()

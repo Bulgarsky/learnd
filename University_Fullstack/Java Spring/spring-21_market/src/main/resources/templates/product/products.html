@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Product list</title>
+  <link th:href="@{/css/style.css}"
+        type="text/css"
+        rel="stylesheet">
+</head>
+<body>
+<h3>List</h3>
+<div th:each="product: ${products}">
+  <div id="product-item">
+    <img th:src="'/img/'+${product.imageList[0].getFileName()}" width="100px">
+    <br>
+    <a th:href="@{/product/info/{id}(id=${product.getId()})}"
+       th:text="${product.getTitle()}">title</a>
+    <br>
+    <strong>Price: </strong><span th:text="${product.getPrice()}">price</span>
+    <hr>
+  </div>
+</div>
+</body>
+</html>

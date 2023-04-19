@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Product card</title>
+  <link th:href="@{/css/style.css}"
+        type="text/css"
+        rel="stylesheet">
+</head>
+<body>
+<div id="block">
+    <fieldset>
+        <legend> PRODUCT </legend>
+        <br>
+        <strong>Наименование: </strong><span th:text="${product.getTitle()}">title</span><br>
+        <strong>Описание: </strong><span th:text="${product.getDescription()}">description</span><br>
+        <strong>Категория: </strong><span th:text="${product.getCategory().getTitle()}">category</span><br>
+        <strong>Продавец: </strong><span th:text="${product.getSeller()}">seller</span><br>
+        <strong>Склад: </strong><span th:text="${product.getWarehouse()}">warehouse</span><br>
+        <strong>Цена: </strong><span th:text="${product.getPrice()}">price</span><br>
+        <br>
+        <div th:each="img : ${product.getImageList()}">
+            <img th:scr="'/img/' + ${img.getFileName()}" alt="img product">
+        </div>
+        <br>
+
+    </fieldset>
+</div>
+</body>
+</html>
