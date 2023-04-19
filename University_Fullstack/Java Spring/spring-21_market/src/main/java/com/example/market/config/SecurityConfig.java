@@ -62,23 +62,12 @@ public class SecurityConfig{
                 .logout().logoutUrl("/logout").logoutSuccessUrl("/auth");
 
         return http.build();
-
-        //before login
-//        Idea-52a553a3=3865262a-b47a-4670-a33d-514f5a2f7457;
-//        JSESSIONID=3C3315A7A9C1CD16DB9612E646F03694
-
-        //Logout
-//        Idea-52a553a3=3865262a-b47a-4670-a33d-514f5a2f7457;
-//        JSESSIONID=1DA1FB46627AE73930DBC94E2AD1CE47
     }
 
 
     protected void configure(AuthenticationManagerBuilder authenticationManagerBuilder) throws Exception{
-
-        //так же будет ошибка, тк в БД ключ не зашифрованы бикрипт (нужно отключить )
-        //AuthenticationProvider (все что было в логике, вся проверка под копотом Spring Security) :
         authenticationManagerBuilder.userDetailsService(personDetailsService)
-                //вызываем метод хеширования
+
                 .passwordEncoder(getPasswordEncode());
     }
 }

@@ -31,7 +31,6 @@ public class AdminController {
     @GetMapping("/admin")
     public String admin(Model model){
         model.addAttribute("products", productService.getAllProduct());
-
         return "admin";
     }
 
@@ -127,7 +126,6 @@ public class AdminController {
         }
 
         productService.saveProduct(product, category_db);
-
         return "redirect:/admin";
     }
 
