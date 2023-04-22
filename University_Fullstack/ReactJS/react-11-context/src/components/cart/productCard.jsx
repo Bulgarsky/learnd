@@ -54,7 +54,7 @@ const ProductCard = (props) => {
 
                     favoriteBtn ={(favObj)=>onAddFavorite(favObj)}
 
-                    onBasket={(cartObj)=>onAddOverlay(cartObj)}
+                    onBasket ={(cartObj)=>onAddOverlay(cartObj)}
                     />
                 })
             }

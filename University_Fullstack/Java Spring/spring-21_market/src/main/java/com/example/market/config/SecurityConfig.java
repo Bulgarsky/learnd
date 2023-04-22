@@ -44,7 +44,7 @@ public class SecurityConfig{
                 //настрйока доступа к странице для роли ADMIN (префикс отбрасывается)
                 .requestMatchers("/admin").hasRole("ADMIN")
                 //настройка доступа страницам для других ролей
-                .requestMatchers("/auth", "/reg", "/error", "/resources/**", "/static/**", "/css/**", "/js/**", "/img/**", "/product", "/product/info/{id}").permitAll()
+                .requestMatchers("/auth", "/reg", "/error", "/resources/**", "/static/**", "/css/**", "/js/**", "/img/**", "/product", "/product/info/{id}", "/product/search").permitAll()
                 //настройка доступа к остальным страницам для ролей
                 .anyRequest().hasAnyRole("USER", "ADMIN")
 

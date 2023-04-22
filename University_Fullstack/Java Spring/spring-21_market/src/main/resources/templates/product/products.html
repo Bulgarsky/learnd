@@ -8,9 +8,65 @@
         rel="stylesheet">
 </head>
 <body>
+<br>
+<div class="block">
+<fieldset>
+  <legend>Сортировка, поиск, фильтрация</legend>
+  <form th:method="POST" th:action="@{/product/search}">
+    <h3>Выберите параметры: </h3>
+    <label for="search">Поиск по наименованию: </label>
+    <input type="text" id="search" name="search" th:value="*{value_search}"><br>
+    <br>
+    <span><strong>Цена: </strong></span><br>
+    <label for="priceFrom">От: </label>
+    <input type="text" id="priceFrom" name="priceFrom" th:value="*{value_priceFrom}">
+    <label for="priceTo"> До </label>
+    <input type="text" id="priceTo" name="priceTo" th:value="*{value_priceTo}"> <br>
+    <br>
+    <br>
+    <div>
+      <input type="radio" id="ascendingPrice" name="price" value="sort_by_asc_price">
+      <label for="ascendingPrice"> Отсортировать по возрастанию цены</label><br>
+      <input type="radio" id="descendingPrice" name="price" value="sort_by_desc_price">
+      <label for="descendingPrice"> Отсортировать по убыванию цены</label><br>
+      <br>
+      <span><strong>Категория товаров: </strong></span><br>
+      <input type="radio" id="furniture" name="searchcategory" value="furniture=">
+      <label for="furniture">Мебель</label>
+      <input type="radio" id="clothes" name="searchcategory" value="clothes">
+      <label for="clothes">Одежда</label>
+      <input type="radio" id="appliance" name="searchcategory" value="appliance">
+      <label for="appliance">Бытовая техника</label><br>
+      <br>
+      <input type="submit" value="Найти">
+    </div>
+  </form>
+</fieldset>
+</div>
+
+<hr>
+<div class="block">
+  <fieldset>
+    <legend>Результат поиска</legend>
+    <div th:each="product: ${search_product}">
+      <div class="card">
+        <img th:src="'/img/'+${product.imageList[0].getFileName()}" width="100px" th:alt="${product.getTitle()}">
+        <br>
+        <a th:href="@{/product/info/{id}(id=${product.getId()})}"
+           th:text="${product.getTitle()}">title</a>
+        <br>
+        <strong>Price: </strong><span th:text="${product.getPrice()}">price</span>
+        <hr>
+      </div>
+    </div>
+  </fieldset>
+</div>
+
+<br>
+
 <h3>List</h3>
 <div th:each="product: ${products}">
-  <div id="product-item">
+  <div class="card">
     <img th:src="'/img/'+${product.imageList[0].getFileName()}" width="100px" th:alt="${product.getTitle()}">
     <br>
     <a th:href="@{/product/info/{id}(id=${product.getId()})}"

@@ -1,7 +1,7 @@
 body {
     background-color: antiquewhite;
 }
-#block {
+.block {
     margin: 25px;
     padding: 20px;
     width: 330px;
@@ -10,7 +10,7 @@ body {
     box-shadow: 5px 5px 10px black;
 }
 
-#product-item {
+.card {
     margin: 25px;
     padding: 20px;
     width: 200px;
