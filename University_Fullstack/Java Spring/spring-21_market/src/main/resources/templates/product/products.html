@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Product list</title>
-  <link th:href="@{/css/style.css}"
+    <link th:href="@{/css/style.css}"
         type="text/css"
         rel="stylesheet">
 </head>
@@ -71,9 +71,9 @@
     <br>
     <a th:href="@{/product/info/{id}(id=${product.getId()})}"
        th:text="${product.getTitle()}">title</a>
-    <br>
-    <strong>Price: </strong><span th:text="${product.getPrice()}">price</span>
     <hr>
+    <strong>Price: </strong><span th:text="${product.getPrice()}">price</span>
+    <br>
   </div>
 </div>
 </body>

@@ -2,9 +2,30 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Cart</title>
+    <title>User cart</title>
+    <link th:href="@{/css/style.css}"
+          type="text/css"
+          rel="stylesheet">
 </head>
 <body>
+<fieldset>
+    <legend>Корзина товаров</legend>
+    <strong>Итоговая цена: </strong><span th:text="${total_price}"></span>
+    <hr>
+    <div th:each="product : ${cart_product}">
+        <div class="cart">
+            <img th:src="'/img/'+${product.imageList[0].getFileName()}" width="50px" th:alt="${product.getTitle()}">
+            <span> | </span>
+            <a th:href="@{/product/info/{id}(id=${product.getId()})}"
+               th:text="${product.getTitle()}">product title</a>
+            <span> | </span>
+            <strong>Price: </strong><span th:text="${product.getPrice()}">price</span>
+            <span> | </span>
+            <a th:href="@{/cart/delete/{id}(id=${product.getId()})}">Удалить</a>
+            <br>
+        </div>
+    </div>
 
+</fieldset>
 </body>
 </html>

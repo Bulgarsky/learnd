@@ -17,6 +17,9 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Controller
 public class MainController {
     private  final PersonValidate personValidate;
@@ -151,6 +154,49 @@ public class MainController {
         return "redirect:/cart";
     }
 
+    @GetMapping("/cart")
+    public String cart(Model model) {
+        //извлечь объект аутен.пользователя
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        // получаем person из объекта аут.пользователя
+        PersonDetails personDetails = (PersonDetails) authentication.getPrincipal();
+        //извлекаем id пользотваеля из объекта
+        int id_person = personDetails.getPerson().getId();
+
+        List<Cart> cartList = cartRepository.findByPersonId((id_person));
+        List<Product> productList = new ArrayList<>();
+        //переборка продуктов
+        for (Cart item: cartList) {
+            productList.add(productService.getProductId(item.getProductId()));
+        }
+        //итог корзины
+        float totalPrice= 0;
+        for (Product item: productList) {
+            totalPrice += item.getPrice();
+        }
+        model.addAttribute("total_price", totalPrice);
+        model.addAttribute("cart_product", productList);
+
+        return "/user/cart";
+    }
+
+    @GetMapping("/cart/delete/{id}")
+    public String deleteProductFromCart(Model model, @PathVariable("id") int id){
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        PersonDetails personDetails = (PersonDetails) authentication.getPrincipal();
+        int id_person = personDetails.getPerson().getId();
+
+        List<Cart> cartList = cartRepository.findByPersonId((id_person));
+        List<Product> productList = new ArrayList<>();
+
+        for (Cart item: cartList) {
+            productList.add(productService.getProductId(item.getProductId()));
+        }
+
+        cartRepository.deleteCartByProductId(id);
+
+        return "redirect:/cart";
+    }
 
 }
 
