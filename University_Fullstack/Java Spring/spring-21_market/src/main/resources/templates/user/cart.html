@@ -12,6 +12,8 @@
     <legend>Корзина товаров</legend>
     <strong>Итоговая цена: </strong><span th:text="${total_price}"></span>
     <hr>
+    <a href="/order/create">Оформить заказ</a>
+    <hr>
     <div th:each="product : ${cart_product}">
         <div class="cart">
             <img th:src="'/img/'+${product.imageList[0].getFileName()}" width="50px" th:alt="${product.getTitle()}">

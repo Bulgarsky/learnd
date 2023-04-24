@@ -1,9 +1,12 @@
 package com.example.market.controllers;
 
+import com.example.market.enumm.Status;
 import com.example.market.models.Cart;
+import com.example.market.models.Order;
 import com.example.market.models.Person;
 import com.example.market.models.Product;
 import com.example.market.repositories.CartRepository;
+import com.example.market.repositories.OrderRepository;
 import com.example.market.repositories.ProductRepository;
 import com.example.market.security.PersonDetails;
 import com.example.market.services.PersonService;
@@ -19,6 +22,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 @Controller
 public class MainController {
@@ -27,12 +31,14 @@ public class MainController {
     private final ProductService productService;
     private final ProductRepository productRepository;
     private final CartRepository cartRepository;
-    public MainController(PersonValidate personValidate, PersonService personService, ProductService productService, ProductRepository productRepository, CartRepository cartRepository) {
+    private final OrderRepository orderRepository;
+    public MainController(PersonValidate personValidate, PersonService personService, ProductService productService, ProductRepository productRepository, CartRepository cartRepository, OrderRepository orderRepository) {
         this.personValidate = personValidate;
         this.personService = personService;
         this.productService = productService;
         this.productRepository = productRepository;
         this.cartRepository = cartRepository;
+        this.orderRepository = orderRepository;
     }
 
     @GetMapping("/account")
@@ -196,6 +202,33 @@ public class MainController {
         cartRepository.deleteCartByProductId(id);
 
         return "redirect:/cart";
+    }
+
+    @GetMapping("/order/create")
+    public String order(){
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        PersonDetails personDetails = (PersonDetails) authentication.getPrincipal();
+        int id_person = personDetails.getPerson().getId();
+
+        List<Cart> cartList = cartRepository.findByPersonId((id_person));
+        List<Product> productList = new ArrayList<>();
+
+        for (Cart item: cartList) {
+            productList.add(productService.getProductId(item.getProductId()));
+        }
+
+        float totalPrice= 0;
+        for (Product item: productList) {
+            totalPrice += item.getPrice();
+        }
+
+        String uuid = UUID.randomUUID().toString();
+
+        for (Product product: productList) {
+            Order newOrder = new Order(uuid, product, personDetails.getPerson(), 1, product.getPrice(), Status.Принят);
+        }
+
+        return "";
     }
 
 }

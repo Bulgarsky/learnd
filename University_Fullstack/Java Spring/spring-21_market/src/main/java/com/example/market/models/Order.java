@@ -23,7 +23,7 @@ public class Order {
 
     private int count;
 
-    private float totalPrice;
+    private float price;
 
     private LocalDateTime dateTime;
 
@@ -34,13 +34,12 @@ public class Order {
         dateTime = LocalDateTime.now();
     }
 
-    public Order(String orderNo, Product product, Person person, int count, float totalPrice, LocalDateTime dateTime, Status status) {
+    public Order(String orderNo, Product product, Person person, int count, float price, Status status) {
         this.orderNo = orderNo;
         this.product = product;
         this.person = person;
         this.count = count;
-        this.totalPrice = totalPrice;
-        this.dateTime = dateTime;
+        this.price = price;
         this.status = status;
     }
 
@@ -62,8 +61,8 @@ public class Order {
     public int getCount() {
         return count;
     }
-    public float getTotalPrice() {
-        return totalPrice;
+    public float getPrice() {
+        return price;
     }
     public LocalDateTime getDateTime() {
         return dateTime;
@@ -89,8 +88,8 @@ public class Order {
     public void setCount(int count) {
         this.count = count;
     }
-    public void setTotalPrice(float totalPrice) {
-        this.totalPrice = totalPrice;
+    public void setPrice(float totalPrice) {
+        this.price = totalPrice;
     }
     public void setDateTime(LocalDateTime dateTime) {
         this.dateTime = dateTime;
