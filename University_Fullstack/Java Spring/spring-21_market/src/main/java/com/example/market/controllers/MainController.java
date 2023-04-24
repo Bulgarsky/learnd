@@ -1,6 +1,9 @@
 package com.example.market.controllers;
 
+import com.example.market.models.Cart;
 import com.example.market.models.Person;
+import com.example.market.models.Product;
+import com.example.market.repositories.CartRepository;
 import com.example.market.repositories.ProductRepository;
 import com.example.market.security.PersonDetails;
 import com.example.market.services.PersonService;
@@ -20,11 +23,13 @@ public class MainController {
     private final PersonService personService;
     private final ProductService productService;
     private final ProductRepository productRepository;
-    public MainController(PersonValidate personValidate, PersonService personService, ProductService productService, ProductRepository productRepository) {
+    private final CartRepository cartRepository;
+    public MainController(PersonValidate personValidate, PersonService personService, ProductService productService, ProductRepository productRepository, CartRepository cartRepository) {
         this.personValidate = personValidate;
         this.personService = personService;
         this.productService = productService;
         this.productRepository = productRepository;
+        this.cartRepository = cartRepository;
     }
 
     @GetMapping("/account")
@@ -123,6 +128,29 @@ public class MainController {
 
         return "user/index";
     }
+
+    //cart
+    @GetMapping("/cart/add/{id}")
+    public String addProductInCart(
+            @PathVariable("id")int id,
+            Model model){
+        //получить продукт по id
+        Product product = productService.getProductId(id);
+        //извлечь объект аутен.пользователя
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        // получаем person из объекта аут.пользователя
+        PersonDetails personDetails = (PersonDetails) authentication.getPrincipal();
+
+        //извлекаем id пользотваеля из объекта
+        int id_person = personDetails.getPerson().getId();
+        //формируем новую корзину
+        Cart cart = new Cart(id_person, product.getId());
+        //cохраняем корзину
+        cartRepository.save(cart);
+
+        return "redirect:/cart";
+    }
+
 
 }
 
