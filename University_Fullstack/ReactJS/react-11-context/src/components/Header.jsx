@@ -38,6 +38,10 @@ const Header= () => {
                         <Nav.Link>
                             <Link to={'/cart'}>Cart</Link>
                         </Nav.Link>
+
+                        <Nav.Link>
+                            <Link to={'/desc'}>Description</Link>
+                        </Nav.Link>
                     </Nav>
 
                     <Nav>

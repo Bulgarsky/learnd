@@ -1,0 +1,23 @@
+#company-desc {
+    font-size: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+;
+}
+
+#cotton-flo-div, #cotton-promo, #cotton-feature {
+    padding: 50px;
+    margin: 50px;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#cotton-features-text{
+    width: 500px;
+}
+
+#company-text{
+    width: 650px;
+}

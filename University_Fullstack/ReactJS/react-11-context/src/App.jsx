@@ -7,6 +7,7 @@ import ProductList from "./components/ProductList";
 import Favorites from "./components/favorites/Favorites";
 import Basket from "./components/basket/Basket";
 import Footer from "./components/Footer";
+import Description from "./components/Description";
 
 import React, {useState, useEffect} from "react";
 import axios from 'axios';
@@ -18,6 +19,7 @@ import "./App.css";
 //npm install
 //npm install react-bootstrap bootstrap
 //npm install -g react-devtools
+//npm install framer-motion
 
 //npm i axios
 //npm i react-router-dom
@@ -119,6 +121,10 @@ function App() {
                               overlayProps={overlayItems}
                               deleteItems={deleteItems}
                           />}
+                      />
+
+                      <Route path='/desc'
+                             element={<Description />}
                       />
                   </Routes>
                 <Footer/>
