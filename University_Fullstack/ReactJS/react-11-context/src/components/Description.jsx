@@ -60,7 +60,7 @@ const Description = () => {
                 <br/>
                 <motion.div id='company-text'
                             initial={{
-                                x: 5500,
+                                x: 2500,
                                 opacity: 0
                             }}
                             animate={{
@@ -119,7 +119,7 @@ const Description = () => {
                 <br/>
                 <motion.div id='cotton-features-text'
                             initial={{
-                                x: 5500,
+                                x: -500,
                                 opacity: 0
                             }}
                             animate={{
@@ -155,6 +155,24 @@ const Description = () => {
                     duration: 3,
                 }}
             >
+
+
+                <br/>
+                <br/>
+                <motion.div id='cotton-promo-text'>
+                    <motion.button className='btn btn-danger'
+                                   id='btn-promo'
+                                   whileHover={{
+                                       scale:1.5
+                                   }}
+                    >
+                        Акция!
+                    </motion.button>
+
+                    <p>As parents grow increasingly concerned over baby health and hygiene, and birth rates continue to rise in emerging economies, the baby care market is growing—and growing fast. In 2019, it was valued at $5.7 billion globally.</p>
+                </motion.div>
+                <br/>
+                <br/>
                 <motion.img
                     drag='x'
                     src='/img/cotton-circle.png'
@@ -162,11 +180,12 @@ const Description = () => {
                     className='cotton-one-flo'
                     width={150}
                     initial={{
+                        x: 100,
                         opacity: 0.6
                     }}
 
                     transition={{
-                        duration: 5
+                        duration: 2
                     }}
 
                     whileDrag={{
@@ -176,21 +195,6 @@ const Description = () => {
                         }
                     }}
                 />
-                <br/>
-                <div>
-                <p>Placeholder:  Some promo on site</p> {' '}
-                    Here need promo description<br/>
-                <strong>Promo!</strong> {' '}
-                    {' '}
-                </div>
-                <motion.button className='btn btn-danger'
-                               id='btn-promo'
-                               whileHover={{
-                                   scale:2
-                               }}
-                >
-                    Placeholder:  {' '} Акция!
-                </motion.button>
 
             </motion.div>
 
