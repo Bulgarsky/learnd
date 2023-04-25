@@ -226,9 +226,22 @@ public class MainController {
 
         for (Product product: productList) {
             Order newOrder = new Order(uuid, product, personDetails.getPerson(), 1, product.getPrice(), Status.Принят);
+            orderRepository.save(newOrder);
+            cartRepository.deleteCartByProductId(product.getId());
         }
 
-        return "";
+        return "redirect:/orders";
+    }
+
+    @GetMapping("/orders")
+    public String userOrder(Model model){
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        PersonDetails personDetails = (PersonDetails) authentication.getPrincipal();
+        List<Order> orderList = orderRepository.findByPerson(personDetails.getPerson());
+
+        model.addAttribute("orders", orderList);
+
+        return "user/orders";
     }
 
 }

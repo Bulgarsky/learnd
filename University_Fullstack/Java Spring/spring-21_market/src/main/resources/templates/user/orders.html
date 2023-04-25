@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>User orders</title>
+</head>
+<body>
+<div class="block">
+    <h3>Заказы</h3>
+    <div th:each="order : ${orders}">
+        <div>
+            <h4 th:text="'Заказ #' +  ${order.getOrderNo()}"></h4>
+            <hr>
+            <img
+                    th:src="'/img/' + ${order.getProduct().getImageList()[0].getFileName()}"
+                    alt=""
+                    width="100px"
+            >
+            <br>
+            <strong>Наименование: </strong><span th:text="${order.getProduct().getTitle()}">title</span><br>
+            <strong>Количество: </strong><span th:text="${order.getCount()}">count</span><br>
+            <strong>Цена: </strong><span th:text="${order.getProduct().getPrice()}">price</span><br>
+            <strong>Дата заказа: </strong><span th:text="${#temporals.format(order.getDateTime(), 'dd-MMM-yyyy')}">date</span>
+            <br>
+            <strong>Статус заказа: </strong><span th:text="${order.getStatus()}"></span>
+        </div>
+    </div>
+</div>
+</body>
+</html>
