@@ -27,7 +27,7 @@ public class PersonService {
 
     @Transactional
     public void register(Person person){
-        //херованный пароль:
+        //хешированный пароль:
         person.setPassword((passwordEncoder.encode(person.getPassword())));
         person.setRole("ROLE_USER"); //назначение всем роли USER
         personRepository.save(person);
