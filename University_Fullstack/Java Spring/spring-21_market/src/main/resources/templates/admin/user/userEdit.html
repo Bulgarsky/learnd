@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>User edit</title>
+    <link th:href="@{/css/style.css}"
+          type="text/css"
+          rel="stylesheet">
+</head>
+<body>
+<h3>User role edit: </h3>
+<div class="block">
+<form th:method="POST" th:action="@{/admin/user/edit/{id}(id=${user.getId()})}" th:object="${user}">
+  <strong>Login: </strong><span th:text="${user.getLogin()}"></span><br>
+    <strong>Role: </strong><span th:text="${user.getRole()}"></span><br>
+  <br>
+  <label for="role">select new role:</label>
+  <select id="role" th:field="*{role}">
+    <option
+            th:each="enumm : ${T(com.example.market.enumm.Role).values()}"
+            th:text="${enumm.getDisplayValue()}"
+            th:value="${enumm}" >
+    </option>
+  </select>
+
+    <button type="submit">Сохранить</button>
+</form>
+</div>
+<a href="/admin/users">Вернутся к Списку пользователей</a>
+</body>
+</html>

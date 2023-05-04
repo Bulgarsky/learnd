@@ -13,7 +13,6 @@
     <div th:each="user : ${users}">
         <a th:href="@{/user/info/{id}(id=${user.getId()})}"
            th:text="${user.getLogin()}"
-           target="_blank"
         >
             link to profile
         </a>

@@ -9,6 +9,7 @@ import com.example.market.repositories.CartRepository;
 import com.example.market.repositories.OrderRepository;
 import com.example.market.repositories.ProductRepository;
 import com.example.market.security.PersonDetails;
+import com.example.market.services.CartService;
 import com.example.market.services.PersonService;
 import com.example.market.services.ProductService;
 import com.example.market.util.PersonValidate;
@@ -22,6 +23,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 @Controller
@@ -30,14 +32,14 @@ public class MainController {
     private final PersonService personService;
     private final ProductService productService;
     private final ProductRepository productRepository;
-    private final CartRepository cartRepository;
+    private final CartService cartService;
     private final OrderRepository orderRepository;
-    public MainController(PersonValidate personValidate, PersonService personService, ProductService productService, ProductRepository productRepository, CartRepository cartRepository, OrderRepository orderRepository) {
+    public MainController(PersonValidate personValidate, PersonService personService, ProductService productService, ProductRepository productRepository, CartService cartService, OrderRepository orderRepository) {
         this.personValidate = personValidate;
         this.personService = personService;
         this.productService = productService;
         this.productRepository = productRepository;
-        this.cartRepository = cartRepository;
+        this.cartService = cartService;
         this.orderRepository = orderRepository;
     }
 
@@ -50,6 +52,12 @@ public class MainController {
         //получение роли
         String role = personDetails.getPerson().getRole().toString();
         if(role.equals("ROLE_ADMIN")) {
+            //данные для теста
+            System.out.println("user ID: "+personDetails.getPerson().getId());
+            System.out.println("user login: "+personDetails.getPerson().getLogin());
+            System.out.println("user password: "+personDetails.getPerson().getPassword());
+            System.out.println("user role: "+personDetails.getPerson().getRole());
+            System.out.println(personDetails);
             return "redirect:/admin";
         }
         //данные для теста
@@ -140,7 +148,7 @@ public class MainController {
         return "user/index";
     }
 
-    //cart
+    //Корзина - добавить в корзину
     @GetMapping("/cart/add/{id}")
     public String addProductInCart(
             @PathVariable("id")int id,
@@ -157,11 +165,13 @@ public class MainController {
         //формируем новую корзину
         Cart cart = new Cart(id_person, product.getId());
         //cохраняем корзину
-        cartRepository.save(cart);
+        //cartRepository.save(cart);
+        cartService.saveCart(cart);
 
         return "redirect:/account";
     }
 
+    //Корзина - формирование
     @GetMapping("/cart")
     public String cart(Model model) {
         //извлечь объект аутен.пользователя
@@ -171,7 +181,8 @@ public class MainController {
         //извлекаем id пользотваеля из объекта
         int id_person = personDetails.getPerson().getId();
 
-        List<Cart> cartList = cartRepository.findByPersonId((id_person));
+        //List<Cart> cartList = cartRepository.findByPersonId((id_person));
+        List<Cart> cartList = cartService.findByPersonId(id_person);
         List<Product> productList = new ArrayList<>();
         //переборка продуктов
         for (Cart item: cartList) {
@@ -188,37 +199,44 @@ public class MainController {
         return "/user/cart";
     }
 
+    //Корзина - удалить товары
     @GetMapping("/cart/delete/{id}")
     public String deleteProductFromCart(Model model, @PathVariable("id") int id){
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         PersonDetails personDetails = (PersonDetails) authentication.getPrincipal();
         int id_person = personDetails.getPerson().getId();
 
-        List<Cart> cartList = cartRepository.findByPersonId((id_person));
+        //List<Cart> cartList = cartRepository.findByPersonId((id_person));
+        List<Cart> cartList = cartService.findByPersonId(id_person);
         List<Product> productList = new ArrayList<>();
 
         for (Cart item: cartList) {
             productList.add(productService.getProductId(item.getProductId()));
         }
 
-        cartRepository.deleteCartByProductId(id);
+        //cartRepository.deleteCartByProductId(id);
+        cartService.deleteItemFromCart(id);
 
         return "redirect:/cart";
     }
 
+    //ЗАКАЗ: создать
     @GetMapping("/order/create")
     public String order(){
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         PersonDetails personDetails = (PersonDetails) authentication.getPrincipal();
         int id_person = personDetails.getPerson().getId();
 
-        List<Cart> cartList = cartRepository.findByPersonId((id_person));
+        //List<Cart> cartList = cartRepository.findByPersonId((id_person));
+        List<Cart> cartList = cartService.findByPersonId(id_person);
         List<Product> productList = new ArrayList<>();
 
+        //получить продукты из корзины по id товара
         for (Cart item: cartList) {
             productList.add(productService.getProductId(item.getProductId()));
         }
 
+        //итоговая цена заказа
         float totalPrice= 0;
         for (Product item: productList) {
             totalPrice += item.getPrice();
@@ -226,17 +244,19 @@ public class MainController {
 
         String uuid = UUID.randomUUID().toString();
 
+
         for (Product product: productList) {
             Order newOrder = new Order(uuid, product, personDetails.getPerson(), 1, product.getPrice(), Status.Принят);
             orderRepository.save(newOrder);
-            cartRepository.deleteCartByProductId(product.getId());
+            //cartRepository.deleteCartByProductId(product.getId());
+            cartService.deleteItemFromCart(product.getId());
         }
 
         return "redirect:/orders";
     }
 
 
-    //вывести заказы
+    //Пользователь: вывести все заказы
     @GetMapping("/orders")
     public String userOrder(Model model){
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();

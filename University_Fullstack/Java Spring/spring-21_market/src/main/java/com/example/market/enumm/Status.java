@@ -1,5 +1,8 @@
 package com.example.market.enumm;
 
 public enum Status {
-    Принят, Оформлен, Ожидает, Получен
+    Принят,
+    Оформлен,
+    Ожидает,
+    Получен
 }

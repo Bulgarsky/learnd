@@ -4,6 +4,7 @@ import com.example.market.models.Image;
 import com.example.market.models.Person;
 import com.example.market.models.Product;
 import com.example.market.repositories.CategoryRepository;
+import com.example.market.services.OrderService;
 import com.example.market.services.PersonService;
 import com.example.market.services.ProductService;
 import jakarta.validation.Valid;
@@ -26,11 +27,13 @@ public class AdminController {
 
     private final CategoryRepository categoryRepository;
     private final PersonService personService;
+    private final OrderService orderService;
 
-    public AdminController(ProductService productService, CategoryRepository categoryRepository, PersonService personService) {
+    public AdminController(ProductService productService, CategoryRepository categoryRepository, PersonService personService, OrderService orderService) {
         this.productService = productService;
         this.categoryRepository = categoryRepository;
         this.personService = personService;
+        this.orderService = orderService;
     }
     @GetMapping("/admin")
     public String admin(Model model){
@@ -171,40 +174,61 @@ public class AdminController {
     @GetMapping("/admin/users")
     public String getAllPerson(Model model){
         model.addAttribute("users", personService.getAllPerson());
+
         return "/admin/users";
     }
 
-    //получить информацию по пользователю
+    //получить информацию по пользователю (работает)
     @GetMapping("/user/info/{id}")
     public String personInfo(@PathVariable("id") int id, Model model){
         model.addAttribute("user", personService.getPersonId(id));
-        return "/admin/user/info";
+        System.out.println("Открыта информация о пользователе");
+
+        //положить в модель заказы, прописав в ордерсервис выборку по айти пользователя
+        //model.addAttribute("orders", orderService.findById(id));
+        return "/admin/user/userInfo";
     }
 
-    //получение пользователя по id для редактирования
+    //получение пользователя по id для редактирования (работает)
     @GetMapping("/admin/user/edit/{id}")
     public String personEdit(
             Model model,
             @PathVariable("id") int id) {
-        model.addAttribute("userEdit", personService.getPersonId(id));
-        //model.addAttribute("role", Role.values());
-        return "admin/user/edit";
+        model.addAttribute("user", personService.getPersonId(id));
+        System.out.println("Получен пользователь для редактирования");
+        return "admin/user/userEdit";
     }
 
     //обновление пользователя НЕ РАБОТАЕТ!
     @PostMapping("/admin/user/edit/{id}")
     public String personUpdate(
-            @ModelAttribute("userEdit")Person person,
-            @PathVariable("id") int id){
+            @ModelAttribute("user")
+            @Valid Person person,
+            BindingResult bindingResult,
+            @PathVariable("id") int id,
+            Model model){
+        if (bindingResult.hasErrors()){
+            System.out.println("Ошибка при редактировании пользования!");
+            return "admin/user/userEdit";
+        }
         personService.updatePerson(id, person);
         return "redirect:/admin/users";
     }
 
-    //удаление пользователя по id
+    //удаление пользователя по id (работает)
     @GetMapping("/admin/user/delete/{id}")
     public String personDelete(@PathVariable("id") int id){
         personService.deletePerson(id);
         return "redirect:/admin/users";
     }
 
+
+    //ЗАКАЗЫ
+    //вывести список всех заказов
+    @GetMapping("/admin/orders")
+    public String getAllOrder(Model model){
+        model.addAttribute("orders", orderService.getAllOrder());
+
+        return "/admin/orders";
+    }
 }

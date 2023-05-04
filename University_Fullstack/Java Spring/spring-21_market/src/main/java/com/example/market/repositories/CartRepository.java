@@ -19,4 +19,6 @@ public interface CartRepository extends JpaRepository<Cart, Integer> {
     @Query(value ="delete from product_cart where product_id = ?1", nativeQuery = true)
     void deleteCartByProductId(int id);
 
+
+
 }

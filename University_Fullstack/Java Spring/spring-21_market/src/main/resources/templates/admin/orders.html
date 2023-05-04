@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Order list</title>
+    <link th:href="@{/css/style.css}"
+          type="text/css"
+          rel="stylesheet">
+</head>
+<body>
+<div class="order">
+    <div th:each="order : ${orders}">
+        <a th:href="@{/admin/order/info/{id}(id=${order.getId()})}"
+           th:text="${order.getOrderNo()}"
+        >
+            Order information placeholder</a>
+        <br>
+    </div>
+</div>
+<a href="/admin"> Назад к терминалу</a>
+</body>
+</html>

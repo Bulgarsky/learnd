@@ -32,27 +32,29 @@ public class PersonService {
         //хешированный пароль:
         person.setPassword((passwordEncoder.encode(person.getPassword())));
         //Установить роль пользователя при регистрации!
-        person.setRole("ROLE_USER");
+        person.setRole("ROLE_USER"); //+
         personRepository.save(person);
     }
 
-    //получить список пользователей
+    //получить список пользователей (работает)
     public List<Person> getAllPerson(){
         return personRepository.findAll();
     }
 
-    //получить пользователя по id для редактирования
+    //получить пользователя по id для редактирования (работает)
     public Person getPersonId(int id){
         Optional<Person> optionalPerson = personRepository.findById(id);
         return optionalPerson.orElse(null);
     }
 
-    //обновить пользователя
+    //обновить пользователя (не работает)
+    @Transactional
     public void updatePerson(int id, Person person){
         person.setId(id);
+        //person.setRole(person.getRole());
         personRepository.save(person);
     }
-    //удалить пользователя из базы
+    //удалить пользователя из базы (работает)
     @Transactional
     public void deletePerson(int id){
         personRepository.deleteById(id);
