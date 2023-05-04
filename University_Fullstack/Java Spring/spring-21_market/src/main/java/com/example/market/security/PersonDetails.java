@@ -22,7 +22,7 @@ public class PersonDetails implements UserDetails {
     //возвращает роль пользователя
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return Collections.singletonList(new SimpleGrantedAuthority(person.getRole()));
+        return Collections.singletonList(new SimpleGrantedAuthority(person.getRole().toString()));
     }
 
     //

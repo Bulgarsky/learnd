@@ -29,12 +29,15 @@ public class Person {
     @Column(name="role")
     private String role;
 
+
     @ManyToMany()
     @JoinTable(name="product_cart", joinColumns = @JoinColumn(name="person_id"), inverseJoinColumns = @JoinColumn(name="product_id"))
     private List<Product> productList;
 
     @OneToMany(mappedBy="person", fetch = FetchType.EAGER)
     private List<Order> orderList;
+
+
 
     public int getId() {
         return id;
@@ -49,6 +52,7 @@ public class Person {
         return role;
     }
 
+
     public void setId(int id) {
         this.id = id;
     }
@@ -61,6 +65,7 @@ public class Person {
     public void setRole(String role) {
         this.role = role;
     }
+
 
     @Override
     public boolean equals(Object o) {

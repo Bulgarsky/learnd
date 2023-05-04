@@ -7,7 +7,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
-@RequestMapping("/product")
 public class ProductController {
     private final ProductService productService;
     private final ProductRepository productRepository;
@@ -17,19 +16,21 @@ public class ProductController {
         this.productRepository = productRepository;
     }
 
-    @GetMapping("")
+    //получение всех товаров
+    @GetMapping("/product")
     public String getAllProduct(Model model){
         model.addAttribute("products", productService.getAllProduct());
         return "/product/products";
     }
 
-    @GetMapping("/info/{id}")
+    //получить информацию о товаре по id
+    @GetMapping("/product/info/{id}")
     public String productInfo(@PathVariable("id") int id, Model model){
         model.addAttribute("product", productService.getProductId(id));
         return "/product/info";
     }
 
-    @PostMapping("/search")
+    @PostMapping("/product/search")
     public String productSearch(
         @RequestParam("search") String search,
         @RequestParam("priceFrom") String priceFrom,

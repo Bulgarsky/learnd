@@ -1,9 +1,10 @@
 package com.example.market.controllers;
-
 import com.example.market.models.Category;
 import com.example.market.models.Image;
+import com.example.market.models.Person;
 import com.example.market.models.Product;
 import com.example.market.repositories.CategoryRepository;
+import com.example.market.services.PersonService;
 import com.example.market.services.ProductService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Value;
@@ -24,9 +25,12 @@ public class AdminController {
     private String uploadPath;
 
     private final CategoryRepository categoryRepository;
-    public AdminController(ProductService productService, CategoryRepository categoryRepository) {
+    private final PersonService personService;
+
+    public AdminController(ProductService productService, CategoryRepository categoryRepository, PersonService personService) {
         this.productService = productService;
         this.categoryRepository = categoryRepository;
+        this.personService = personService;
     }
     @GetMapping("/admin")
     public String admin(Model model){
@@ -41,6 +45,7 @@ public class AdminController {
         return "product/addProduct";
     }
 
+    //добавление товара
     @PostMapping("/admin/product/add")
     public String addProduct(
             @ModelAttribute("product") @Valid Product product,
@@ -59,6 +64,7 @@ public class AdminController {
             model.addAttribute("category", categoryRepository.findAll());
             return "product/addProduct";
         }
+        //загрузка изобр и задание уник.имени
         if(file_1 != null) {
             File uploadDir = new File(uploadPath);
             if(!uploadDir.exists()){
@@ -128,13 +134,13 @@ public class AdminController {
         productService.saveProduct(product, category_db);
         return "redirect:/admin";
     }
-
-    @GetMapping("admin/product/delete/{id}")
+    //удаление товара по id
+    @GetMapping("/admin/product/delete/{id}")
     public String deleteProduct(@PathVariable("id") int id){
         productService.deleteProduct(id);
         return "redirect:/admin";
     }
-
+    //получение товара по id для редактирования
     @GetMapping("/admin/product/edit/{id}")
     public String editProduct(
             Model model,
@@ -144,6 +150,7 @@ public class AdminController {
         return "product/editProduct";
     }
 
+    //редактирование товара по id и update
     @PostMapping("/admin/product/edit/{id}")
     public String editProduct(
             @ModelAttribute("product")
@@ -159,6 +166,45 @@ public class AdminController {
         return "redirect:/admin";
     }
 
+    //USERS
+    //получить список пользователей
+    @GetMapping("/admin/users")
+    public String getAllPerson(Model model){
+        model.addAttribute("users", personService.getAllPerson());
+        return "/admin/users";
+    }
 
+    //получить информацию по пользователю
+    @GetMapping("/user/info/{id}")
+    public String personInfo(@PathVariable("id") int id, Model model){
+        model.addAttribute("user", personService.getPersonId(id));
+        return "/admin/user/info";
+    }
+
+    //получение пользователя по id для редактирования
+    @GetMapping("/admin/user/edit/{id}")
+    public String personEdit(
+            Model model,
+            @PathVariable("id") int id) {
+        model.addAttribute("userEdit", personService.getPersonId(id));
+        //model.addAttribute("role", Role.values());
+        return "admin/user/edit";
+    }
+
+    //обновление пользователя НЕ РАБОТАЕТ!
+    @PostMapping("/admin/user/edit/{id}")
+    public String personUpdate(
+            @ModelAttribute("userEdit")Person person,
+            @PathVariable("id") int id){
+        personService.updatePerson(id, person);
+        return "redirect:/admin/users";
+    }
+
+    //удаление пользователя по id
+    @GetMapping("/admin/user/delete/{id}")
+    public String personDelete(@PathVariable("id") int id){
+        personService.deletePerson(id);
+        return "redirect:/admin/users";
+    }
 
 }

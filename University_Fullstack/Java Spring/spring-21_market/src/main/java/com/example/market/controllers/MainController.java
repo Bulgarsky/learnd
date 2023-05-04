@@ -48,7 +48,7 @@ public class MainController {
         PersonDetails personDetails = (PersonDetails) authentication.getPrincipal();
         System.out.println(personDetails.getPerson());
         //получение роли
-        String role = personDetails.getPerson().getRole();
+        String role = personDetails.getPerson().getRole().toString();
         if(role.equals("ROLE_ADMIN")) {
             return "redirect:/admin";
         }
@@ -81,12 +81,14 @@ public class MainController {
         return "redirect:/account";
     }
 
+    //получение полной информации о товаре по id
     @GetMapping("/account/product/info/{id}")
     public String productInfo(@PathVariable("id") int id, Model model){
         model.addAttribute("product", productService.getProductId(id));
         return "/user/info";
     }
 
+    //поиск
     @PostMapping("/account/search")
     public String productSearch(
             @RequestParam("search") String search,
@@ -157,7 +159,7 @@ public class MainController {
         //cохраняем корзину
         cartRepository.save(cart);
 
-        return "redirect:/cart";
+        return "redirect:/account";
     }
 
     @GetMapping("/cart")
@@ -233,6 +235,8 @@ public class MainController {
         return "redirect:/orders";
     }
 
+
+    //вывести заказы
     @GetMapping("/orders")
     public String userOrder(Model model){
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();

@@ -19,17 +19,17 @@ public class ProductService {
         this.productRepository = productRepository;
     }
 
-    //m getback all products
+    //получить все товары
     public List<Product> getAllProduct(){
         return productRepository.findAll();
     }
-    //m getback product w/ id
+    //получить товар по id
     public Product getProductId(int id){
         Optional<Product> optionalProduct = productRepository.findById(id);
         return optionalProduct.orElse(null);
     }
 
-    //m save product w category
+    //сохранить товар с категорией
     @Transactional
     public void saveProduct(Product product, Category category){
         product.setCategory(category);

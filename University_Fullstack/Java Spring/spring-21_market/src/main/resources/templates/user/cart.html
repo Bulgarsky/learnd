@@ -9,17 +9,24 @@
 </head>
 <body>
 <fieldset>
-    <legend>Корзина товаров</legend>
-    <strong>Итоговая цена: </strong><span th:text="${total_price}"></span>
-    <hr>
-    <a href="/order/create">Оформить заказ</a>
+    <a href="/account">Вернутся на главную</a> |
+    <a href="/orders">Мои заказы</a> |
+    <a href="/favorites">Избранное</a>
+    <br>
+    <br>
+    <legend>Корзина </legend>
+    <strong>Итоговая цена: </strong><span th:text="${total_price}"></span> | <a href="/order/create">Оформить заказ</a>
     <hr>
     <div th:each="product : ${cart_product}">
         <div class="cart">
-            <img th:src="'/img/'+${product.imageList[0].getFileName()}" width="50px" th:alt="${product.getTitle()}">
+            <img class="img-small"
+                 th:src="'/img/'+${product.imageList[0].getFileName()}"
+                 th:alt="${product.getTitle()}">
             <span> | </span>
             <a th:href="@{/product/info/{id}(id=${product.getId()})}"
-               th:text="${product.getTitle()}">product title</a>
+               th:text="${product.getTitle()}"
+               target="_blank">
+                link: product title</a>
             <span> | </span>
             <strong>Price: </strong><span th:text="${product.getPrice()}">price</span>
             <span> | </span>

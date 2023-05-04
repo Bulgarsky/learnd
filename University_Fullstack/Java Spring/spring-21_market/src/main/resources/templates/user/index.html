@@ -28,15 +28,15 @@
         <br>
     </fieldset>
     <br>
-    <div class="block">
+    <div class="search">
         <fieldset>
             <legend>Сортировка, поиск, фильтрация</legend>
             <form th:method="POST" th:action="@{/account/search}">
                 <h3>Выберите параметры: </h3>
-                <label for="search">Поиск по наименованию: </label>
+                <label for="search"><strong>Поиск по наименованию: </strong></label>
                 <input type="text" id="search" name="search" th:value="*{value_search}"><br>
                 <br>
-                <span><strong>Цена: </strong></span><br>
+                <strong>Цена: </strong>
                 <label for="priceFrom">От: </label>
                 <input type="text" id="priceFrom" name="priceFrom" th:value="*{value_priceFrom}">
                 <label for="priceTo"> До </label>
@@ -44,12 +44,14 @@
                 <br>
                 <br>
                 <div>
+                    <strong>Отсортировать </strong>
                     <input type="radio" id="ascendingPrice" name="price" value="sort_by_asc_price">
-                    <label for="ascendingPrice"> Отсортировать по возрастанию цены</label><br>
+                    <label for="ascendingPrice"> по возрастанию цены</label>
+                    <span hidden> placeholder </span>
                     <input type="radio" id="descendingPrice" name="price" value="sort_by_desc_price">
-                    <label for="descendingPrice"> Отсортировать по убыванию цены</label><br>
-                    <br>
-                    <span><strong>Категория товаров: </strong></span><br>
+                    <label for="descendingPrice"> по убыванию цены</label><br>
+
+                    <span><strong>Категория товаров: </strong></span>
                     <input type="radio" id="furniture" name="searchcategory" value="furniture=">
                     <label for="furniture">Мебель</label>
                     <input type="radio" id="clothes" name="searchcategory" value="clothes">
@@ -72,7 +74,9 @@
                     <img th:src="'/img/'+${product.imageList[0].getFileName()}" width="100px" th:alt="${product.getTitle()}">
                     <br>
                     <a th:href="@{/product/info/{id}(id=${product.getId()})}"
-                       th:text="${product.getTitle()}">title</a>
+                       th:text="${product.getTitle()}"
+                       target="_blank">
+                        title</a>
                     <br>
                     <strong>Price: </strong><span th:text="${product.getPrice()}">price</span>
                     <hr>
@@ -93,7 +97,9 @@
                     th:alt="${product.getTitle()}">
             <br>
             <a th:href="@{/product/info/{id}(id=${product.getId()})}"
-               th:text="${product.getTitle()}">title</a>
+               th:text="${product.getTitle()}"
+               target="_blank">
+                title</a>
             <br>
             <strong>Price: </strong><span th:text="${product.getPrice()}">price</span>
             <hr>

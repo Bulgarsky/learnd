@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>User info</title>
+    <link th:href="@{/css/style.css}"
+        type="text/css"
+        rel="stylesheet">
+</head>
+<body>
+<div class="block">
+  <fieldset>
+    <legend>User info</legend>
+    <br>
+    <strong>user login: </strong><span th:text="${user.getLogin()}">login</span><br>
+    <strong>user role: </strong><span th:text="${user.getRole()}">role</span>
+    <br>
+    <a th:href="@{/admin/user/edit/{id}(id=${user.getId()})}"> Редактировать пользователя </a><br>
+    <br>
+    <a th:href="@{/admin/user/delete/{id}(id=${user.getId()})}"> Удалить пользователя </a><br>
+    <br>
+  </fieldset>
+  <br>
+  <a href="/admin/users">назад к Списку пользователей</a>
+</div>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Home page</title>
+    <link th:href="@{/css/style.css}"
+          type="text/css"
+          rel="stylesheet">
+
+</head>
+<body>
+<div id="block">
+    <a href="/auth">Авторизация</a> |
+    <a href="/reg">Регистрация</a>
+    <br>
+    <span>Search placeholder</span>
+    <br>
+        <h2>Товары</h2>
+        <div th:each="product: ${products}">
+            <div class="card">
+                <img
+                        th:src="'/img/'+${product.imageList[0].getFileName()}"
+                        width="100px"
+                        th:alt="${product.getTitle()}">
+                <br>
+                <a th:href="@{/product/info/{id}(id=${product.getId()})}"
+                   th:text="${product.getTitle()}"
+                   target="_blank">
+                    title</a>
+                <br>
+                <strong>Price: </strong><span th:text="${product.getPrice()}">price</span>
+
+            </div>
+        </div>
+
+</div>
+</body>
+</html>

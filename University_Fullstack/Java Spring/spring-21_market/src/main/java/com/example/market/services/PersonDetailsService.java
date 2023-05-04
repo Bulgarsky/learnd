@@ -23,7 +23,6 @@ public class PersonDetailsService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-
         //получаем пользователя из таблицы по логину с формы Auth
         Optional<Person> person = personRepository.findByLogin(username);
         //проверка: найден ли пользователь

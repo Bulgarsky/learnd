@@ -3,17 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <title>User orders</title>
+    <link th:href="@{/css/style.css}"
+          type="text/css"
+          rel="stylesheet">
 </head>
 <body>
-<div class="block">
-    <h3>Заказы</h3>
+<div>
+    <span>Заказы</span> | <a href="/account">Назад</a>
     <div th:each="order : ${orders}">
-        <div>
-            <h4 th:text="'Заказ #' +  ${order.getOrderNo()}"></h4>
-            <hr>
+        <div class="order">
+            <h4 th:text="'Заказ #' +  ${order.getOrderNo()}">orderNo</h4>
             <img
+                    class="img-small"
                     th:src="'/img/' + ${order.getProduct().getImageList()[0].getFileName()}"
-                    alt=""
+                    th:alt="${order.getProduct().getTitle()}"
                     width="100px"
             >
             <br>

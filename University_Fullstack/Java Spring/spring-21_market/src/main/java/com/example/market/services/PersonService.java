@@ -7,12 +7,14 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
 public class PersonService {
     private final PersonRepository personRepository;
     private final PasswordEncoder passwordEncoder;
+
 
     @Autowired
     public PersonService(PersonRepository personRepository, PasswordEncoder passwordEncoder) {
@@ -29,7 +31,31 @@ public class PersonService {
     public void register(Person person){
         //хешированный пароль:
         person.setPassword((passwordEncoder.encode(person.getPassword())));
-        person.setRole("ROLE_USER"); //назначение всем роли USER
+        //Установить роль пользователя при регистрации!
+        person.setRole("ROLE_USER");
         personRepository.save(person);
     }
+
+    //получить список пользователей
+    public List<Person> getAllPerson(){
+        return personRepository.findAll();
+    }
+
+    //получить пользователя по id для редактирования
+    public Person getPersonId(int id){
+        Optional<Person> optionalPerson = personRepository.findById(id);
+        return optionalPerson.orElse(null);
+    }
+
+    //обновить пользователя
+    public void updatePerson(int id, Person person){
+        person.setId(id);
+        personRepository.save(person);
+    }
+    //удалить пользователя из базы
+    @Transactional
+    public void deletePerson(int id){
+        personRepository.deleteById(id);
+    }
+
 }

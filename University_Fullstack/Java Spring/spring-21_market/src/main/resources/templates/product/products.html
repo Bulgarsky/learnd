@@ -70,7 +70,9 @@
     <img th:src="'/img/'+${product.imageList[0].getFileName()}" width="100px" th:alt="${product.getTitle()}">
     <br>
     <a th:href="@{/product/info/{id}(id=${product.getId()})}"
-       th:text="${product.getTitle()}">title</a>
+       th:text="${product.getTitle()}"
+       target="_blank">
+      link</a>
     <hr>
     <strong>Price: </strong><span th:text="${product.getPrice()}">price</span>
     <br>

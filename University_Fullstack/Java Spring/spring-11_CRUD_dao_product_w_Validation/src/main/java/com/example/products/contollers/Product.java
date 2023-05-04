@@ -58,6 +58,9 @@ public class Product {
             return "add_product";
         }
         daoProduct.addProduct(product);
+        System.out.println(product.getName());
+        System.out.println(product.getProvider());
+        System.out.println(product.getProvider().getClass());
         return "redirect:/product";
     }
 
