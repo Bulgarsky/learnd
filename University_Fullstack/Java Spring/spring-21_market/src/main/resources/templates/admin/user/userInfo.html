@@ -25,10 +25,11 @@
 
 </div>
 
-<span>Заказы</span> |
-<div th:each="order : ${orders}">
+<h2>Заказы</h2> |
+<div th:each="order : ${userOrderList}">
   <div class="order">
-    <h4 th:text="'Заказ #' +  ${order.getOrderNo()}">orderNo</h4>
+    <h3 th:text="'Заказ #' +  ${order.getOrderNo()}">orderNo</h3>
+    <hr>
     <img
             class="img-small"
             th:src="'/img/' + ${order.getProduct().getImageList()[0].getFileName()}"
@@ -41,6 +42,7 @@
     <strong>Цена: </strong><span th:text="${order.getProduct().getPrice()}">price</span><br>
     <strong>Дата заказа: </strong><span th:text="${#temporals.format(order.getDateTime(), 'dd-MMM-yyyy')}">date</span>
     <br>
+    <hr>
     <strong>Статус заказа: </strong><span th:text="${order.getStatus()}"></span>
   </div>
 </div>

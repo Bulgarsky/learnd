@@ -8,15 +8,24 @@
           rel="stylesheet">
 </head>
 <body>
-<div class="order">
-    <div th:each="order : ${orders}">
+<div>
+    <a href="/admin"> Назад к терминалу</a><br>
+    <h3>Список всех заказов</h3>
+    <div  class="order" th:each="order : ${allOrders}">
         <a th:href="@{/admin/order/info/{id}(id=${order.getId()})}"
-           th:text="${order.getOrderNo()}"
+           th:text="'Заказ'"
         >
-            Order information placeholder</a>
-        <br>
+            Заказ </a>
+        <span th:text="': '+${order.getOrderNo()}"></span><br>
+        <span th:text="'Статус: '+${order.getStatus()}"></span>
+        <span th:text="' | Цена: '+${order.getPrice()}"></span><br>
+        <span>Покупатель: </span>
+        <a th:href="@{/user/info/{id}(id=${order.getPerson().getId()})}"
+           th:text="${order.getPerson().getLogin()}">
+           user placeholder
+           </a><br>
     </div>
 </div>
-<a href="/admin"> Назад к терминалу</a>
+
 </body>
 </html>

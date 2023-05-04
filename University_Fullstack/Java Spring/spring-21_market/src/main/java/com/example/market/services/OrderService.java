@@ -15,14 +15,14 @@ public class OrderService {
         this.orderRepository = orderRepository;
     }
 
-    //вернуть всех заказы ???
+    //вернуть всех заказы для админа (работает)
     public List<Order> getAllOrder(){
         return orderRepository.findAll();
     }
-    //найти заказ по айди???
-    public Order findById(int id){
-        Optional<Order> order_db = orderRepository.findByPerson_Id(id);
-        return order_db.orElse(null);
+
+    //найти заказ по id пользователя ???
+    public List<Order> findByPersonId (int id){
+        return orderRepository.findByPerson_Id(id);
     }
 
 

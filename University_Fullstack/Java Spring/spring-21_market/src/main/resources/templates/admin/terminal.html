@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ADMIN TERMINAL</title>
+    <link th:href="@{/css/style.css}"
+          type="text/css"
+          rel="stylesheet">
+</head>
+<body>
+<div class="block">
+  <fieldset>
+    <legend>ADMIN PANEL</legend>
+      <h3>Пользователи</h3>
+      <div>
+          <a href="admin/users">Список всех пользователей</a><br>
+          <span>Поиск по пользователям</span><br>
+      </div>
+      <hr>
+      <h3>Заказы</h3>
+      <div>
+          <a href="admin/orders">Список всех заказов</a><br>
+          <span>Поиск по заказам</span><br>
+      </div>
+      <hr>
+      <h3>Товары</h3>
+      <div>
+          <span>Поиск по товарам</span><br>
+          <a href="admin/products">Список товаров</a><br>
+          <a href="admin/product/add">Добавить товар</a><br>
+      </div>
+      <br>
+      <form method="post" th:action="@{/logout}">
+          <button type="submit">Выйти из админ кабинета</button>
+      </form>
+  </fieldset>
+</div>
+
+<div>
+    <h3>Поиск по номеру заказа</h3>
+</div>
+</body>
+</html>

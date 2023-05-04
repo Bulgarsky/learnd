@@ -8,17 +8,19 @@
           rel="stylesheet">
 </head>
 <body>
+<a href="/admin">Назад к терминалу</a><br>
+<br>
 <h2>Пользователи: </h2>
-<div class="block">
-    <div th:each="user : ${users}">
+<div>
+    <div  class="block" th:each="user : ${userList}">
         <a th:href="@{/user/info/{id}(id=${user.getId()})}"
            th:text="${user.getLogin()}"
         >
             link to profile
         </a>
-        <br>
+        <span th:text="' | ' +${user.getRole()}"></span><br>
     </div>
 </div>
-<a href="/admin">Назад</a>
+
 </body>
 </html>

@@ -9,8 +9,10 @@
 </head>
 <body>
 <div>
+    <a href="user/index">Вернутся на главную</a>
+    <br>
     <span>Заказы</span> | <a href="/account">Назад</a>
-    <div th:each="order : ${orders}">
+    <div th:each="order : ${allOrders}">
         <div class="order">
             <h4 th:text="'Заказ #' +  ${order.getOrderNo()}">orderNo</h4>
             <img

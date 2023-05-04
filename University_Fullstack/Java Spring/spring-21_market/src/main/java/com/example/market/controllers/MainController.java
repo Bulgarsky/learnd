@@ -5,7 +5,6 @@ import com.example.market.models.Cart;
 import com.example.market.models.Order;
 import com.example.market.models.Person;
 import com.example.market.models.Product;
-import com.example.market.repositories.CartRepository;
 import com.example.market.repositories.OrderRepository;
 import com.example.market.repositories.ProductRepository;
 import com.example.market.security.PersonDetails;
@@ -28,7 +27,7 @@ import java.util.UUID;
 
 @Controller
 public class MainController {
-    private  final PersonValidate personValidate;
+    private final PersonValidate personValidate;
     private final PersonService personService;
     private final ProductService productService;
     private final ProductRepository productRepository;
@@ -48,24 +47,18 @@ public class MainController {
         //получаем obj Auth -> w/ SpringContextHolder обращаемся к контексту и на нем вызываем метод Auth. Из сессии получаемп obj, которйы был положен в данную сессию после аутен.пользователя
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         PersonDetails personDetails = (PersonDetails) authentication.getPrincipal();
-        System.out.println(personDetails.getPerson());
+        System.out.println("Проверка аккаунта после Auth");
         //получение роли
         String role = personDetails.getPerson().getRole().toString();
         if(role.equals("ROLE_ADMIN")) {
             //данные для теста
-            System.out.println("user ID: "+personDetails.getPerson().getId());
-            System.out.println("user login: "+personDetails.getPerson().getLogin());
-            System.out.println("user password: "+personDetails.getPerson().getPassword());
-            System.out.println("user role: "+personDetails.getPerson().getRole());
-            System.out.println(personDetails);
+            System.out.println("user login: " +personDetails.getPerson().getLogin());
+            System.out.println("user role: " + personDetails.getPerson().getRole());
             return "redirect:/admin";
         }
         //данные для теста
-        System.out.println("user ID: "+personDetails.getPerson().getId());
         System.out.println("user login: "+personDetails.getPerson().getLogin());
-        System.out.println("user password: "+personDetails.getPerson().getPassword());
         System.out.println("user role: "+personDetails.getPerson().getRole());
-        System.out.println(personDetails);
         //
         model.addAttribute("products", productService.getAllProduct());
         return "user/index";
@@ -181,7 +174,6 @@ public class MainController {
         //извлекаем id пользотваеля из объекта
         int id_person = personDetails.getPerson().getId();
 
-        //List<Cart> cartList = cartRepository.findByPersonId((id_person));
         List<Cart> cartList = cartService.findByPersonId(id_person);
         List<Product> productList = new ArrayList<>();
         //переборка продуктов
@@ -214,7 +206,6 @@ public class MainController {
             productList.add(productService.getProductId(item.getProductId()));
         }
 
-        //cartRepository.deleteCartByProductId(id);
         cartService.deleteItemFromCart(id);
 
         return "redirect:/cart";
@@ -227,7 +218,6 @@ public class MainController {
         PersonDetails personDetails = (PersonDetails) authentication.getPrincipal();
         int id_person = personDetails.getPerson().getId();
 
-        //List<Cart> cartList = cartRepository.findByPersonId((id_person));
         List<Cart> cartList = cartService.findByPersonId(id_person);
         List<Product> productList = new ArrayList<>();
 
@@ -248,7 +238,6 @@ public class MainController {
         for (Product product: productList) {
             Order newOrder = new Order(uuid, product, personDetails.getPerson(), 1, product.getPrice(), Status.Принят);
             orderRepository.save(newOrder);
-            //cartRepository.deleteCartByProductId(product.getId());
             cartService.deleteItemFromCart(product.getId());
         }
 
@@ -263,7 +252,7 @@ public class MainController {
         PersonDetails personDetails = (PersonDetails) authentication.getPrincipal();
         List<Order> orderList = orderRepository.findByPerson(personDetails.getPerson());
 
-        model.addAttribute("orders", orderList);
+        model.addAttribute("allOrders", orderList);
 
         return "user/orders";
     }

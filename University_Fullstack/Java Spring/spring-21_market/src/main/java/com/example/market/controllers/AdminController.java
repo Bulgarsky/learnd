@@ -36,9 +36,14 @@ public class AdminController {
         this.orderService = orderService;
     }
     @GetMapping("/admin")
-    public String admin(Model model){
+    public String admin(){
+        return "/admin/terminal";
+    }
+
+    @GetMapping("/admin/products")
+    public String products(Model model){
         model.addAttribute("products", productService.getAllProduct());
-        return "admin";
+        return "admin/products";
     }
 
     @GetMapping("/admin/product/add")
@@ -173,7 +178,7 @@ public class AdminController {
     //получить список пользователей
     @GetMapping("/admin/users")
     public String getAllPerson(Model model){
-        model.addAttribute("users", personService.getAllPerson());
+        model.addAttribute("userList", personService.getAllPerson());
 
         return "/admin/users";
     }
@@ -182,10 +187,9 @@ public class AdminController {
     @GetMapping("/user/info/{id}")
     public String personInfo(@PathVariable("id") int id, Model model){
         model.addAttribute("user", personService.getPersonId(id));
+        model.addAttribute("userOrderList", orderService.findByPersonId(id));
         System.out.println("Открыта информация о пользователе");
 
-        //положить в модель заказы, прописав в ордерсервис выборку по айти пользователя
-        //model.addAttribute("orders", orderService.findById(id));
         return "/admin/user/userInfo";
     }
 
@@ -227,8 +231,14 @@ public class AdminController {
     //вывести список всех заказов
     @GetMapping("/admin/orders")
     public String getAllOrder(Model model){
-        model.addAttribute("orders", orderService.getAllOrder());
+        model.addAttribute("allOrders", orderService.getAllOrder());
 
         return "/admin/orders";
+    }
+
+    //вывести заказы выбранного пользователя по id ???
+    public String getUserOrder(@PathVariable("id") int id, Model model){
+        model.addAttribute("userOrders", orderService.findByPersonId(id));
+        return "/admin/user/order";
     }
 }
