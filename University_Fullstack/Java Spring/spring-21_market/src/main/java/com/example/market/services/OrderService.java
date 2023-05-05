@@ -3,6 +3,7 @@ package com.example.market.services;
 import com.example.market.models.Order;
 import com.example.market.repositories.OrderRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -20,11 +21,22 @@ public class OrderService {
         return orderRepository.findAll();
     }
 
-    //найти заказ по id пользователя ???
+    //найти заказы по id пользователя (работает)
     public List<Order> findByPersonId (int id){
         return orderRepository.findByPerson_Id(id);
     }
 
+    //получить заказ по id
+    public Order findByOrderId(int id) {
+        Optional<Order> optionalOrder = orderRepository.findById(id);
+        return optionalOrder.orElse(null);
+    }
+    //обновить заказ
+    @Transactional
+    public void updateOrder(int id, Order order){
+        order.setId(id);
+        orderRepository.save(order);
+    }
 
 
 }

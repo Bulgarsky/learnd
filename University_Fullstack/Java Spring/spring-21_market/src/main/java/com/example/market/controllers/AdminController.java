@@ -1,8 +1,5 @@
 package com.example.market.controllers;
-import com.example.market.models.Category;
-import com.example.market.models.Image;
-import com.example.market.models.Person;
-import com.example.market.models.Product;
+import com.example.market.models.*;
 import com.example.market.repositories.CategoryRepository;
 import com.example.market.services.OrderService;
 import com.example.market.services.PersonService;
@@ -186,7 +183,10 @@ public class AdminController {
     //получить информацию по пользователю (работает)
     @GetMapping("/user/info/{id}")
     public String personInfo(@PathVariable("id") int id, Model model){
+        //получить информацию по пользователе по его id
         model.addAttribute("user", personService.getPersonId(id));
+
+        //получить заказы пользователя по его id
         model.addAttribute("userOrderList", orderService.findByPersonId(id));
         System.out.println("Открыта информация о пользователе");
 
@@ -228,7 +228,7 @@ public class AdminController {
 
 
     //ЗАКАЗЫ
-    //вывести список всех заказов
+    //вывести список всех заказов для администратора (работает)
     @GetMapping("/admin/orders")
     public String getAllOrder(Model model){
         model.addAttribute("allOrders", orderService.getAllOrder());
@@ -237,8 +237,32 @@ public class AdminController {
     }
 
     //вывести заказы выбранного пользователя по id ???
+    //не задействован
     public String getUserOrder(@PathVariable("id") int id, Model model){
         model.addAttribute("userOrders", orderService.findByPersonId(id));
+
         return "/admin/user/order";
+    }
+
+    //вывести информацию заказа по его id
+    @GetMapping("/admin/order/info/{id}")
+    public String getOrderInfo(@PathVariable("id") int id, Model model){
+        model.addAttribute("orderById", orderService.findByOrderId(id));
+        return "/admin/order/orderInfo";
+    }
+
+    //редактировать заказ получив его по id
+    @GetMapping("/admin/order/edit/{id}")
+    public String editOrder(Model model, @PathVariable("id") int id){
+        model.addAttribute("orderById", orderService.findByOrderId(id));
+        return "/admin/order/orderEdit";
+    }
+
+    //Сохранить заказ после изменения статуса
+
+    @PostMapping("/admin/order/edit/{id}")
+    public String saveOrderStatus(@PathVariable("id") int id, @ModelAttribute("order") Order order){
+        orderService.updateOrder(id, order);
+        return "redirect:/admin/order/orderInfo";
     }
 }

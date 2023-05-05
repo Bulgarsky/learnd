@@ -14,8 +14,8 @@
   <fieldset>
     <legend>User info</legend>
     <br>
-    <strong>user login: </strong><span th:text="${user.getLogin()}">login</span><br>
-    <strong>user role: </strong><span th:text="${user.getRole()}">role</span><br>
+    <strong>login: </strong><span th:text="${user.getLogin()}">login</span>
+    <span id="user-role" th:text="${user.getRole()}">role</span><br>
     <br>
     <a th:href="@{/admin/user/edit/{id}(id=${user.getId()})}"> Редактировать пользователя </a><br>
     <br>
@@ -25,26 +25,54 @@
 
 </div>
 
-<h2>Заказы</h2> |
-<div th:each="order : ${userOrderList}">
-  <div class="order">
-    <h3 th:text="'Заказ #' +  ${order.getOrderNo()}">orderNo</h3>
-    <hr>
-    <img
-            class="img-small"
-            th:src="'/img/' + ${order.getProduct().getImageList()[0].getFileName()}"
-            th:alt="${order.getProduct().getTitle()}"
-            width="100px"
-    >
-    <br>
-    <strong>Наименование: </strong><span th:text="${order.getProduct().getTitle()}">title</span><br>
-    <strong>Количество: </strong><span th:text="${order.getCount()}">count</span><br>
-    <strong>Цена: </strong><span th:text="${order.getProduct().getPrice()}">price</span><br>
-    <strong>Дата заказа: </strong><span th:text="${#temporals.format(order.getDateTime(), 'dd-MMM-yyyy')}">date</span>
-    <br>
-    <hr>
-    <strong>Статус заказа: </strong><span th:text="${order.getStatus()}"></span>
+<h2>Заказы пользователя <span th:text="${user.getLogin()}"></span>:</h2>
+<div class="order" th:each="order : ${userOrderList}">
+  <div class="order-caption">
+    <table class="order-item">
+      <tbody>
+      <tr>
+        <td id="order-item-caption-orderNo">
+          <a th:href="@{/admin/order/info/{id}(id=${order.getId()})}"
+             th:text="'Заказ от '+${#temporals.format(order.getDateTime(), 'dd MMM yyyy')}"></a><br>
+          <span th:text="${order.getOrderNo()}"></span>
+        </td>
+        <td id="order-item-caption-price">
+          <b><span th:text="'Оплочено: '+${order.getPrice()}"></span></b>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="3">
+          <hr>
+        </td>
+      </tr>
+
+      <tbody>
+    </table>
   </div>
+  <div>
+    <table class="order-item">
+      <tbody>
+      <tr>
+        <td colspan="2">
+          <br>
+          <span th:text="${order.getProduct().getTitle()}+ ', '+${order.getCount()}+' шт'"></span><br>
+          <br>
+          <span>Cтатус: </span>
+          <span id="order-status" th:text="${order.getStatus()}+' ( i ) '"></span><br>
+          <br>
+        </td>
+        <td>
+          <img
+                  class="img-small"
+                  th:src="'/img/' + ${order.getProduct().getImageList()[0].getFileName()}"
+                  th:alt="${order.getProduct().getTitle()}"
+          >
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+
 </div>
 
 </body>

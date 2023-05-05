@@ -252,7 +252,7 @@ public class MainController {
         PersonDetails personDetails = (PersonDetails) authentication.getPrincipal();
         List<Order> orderList = orderRepository.findByPerson(personDetails.getPerson());
 
-        model.addAttribute("allOrders", orderList);
+        model.addAttribute("userOrders", orderList);
 
         return "user/orders";
     }

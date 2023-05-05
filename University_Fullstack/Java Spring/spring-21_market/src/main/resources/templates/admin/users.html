@@ -14,11 +14,11 @@
 <div>
     <div  class="block" th:each="user : ${userList}">
         <a th:href="@{/user/info/{id}(id=${user.getId()})}"
-           th:text="${user.getLogin()}"
+           th:text="'Пользователь '+ ${user.getLogin()}"
         >
             link to profile
         </a>
-        <span th:text="' | ' +${user.getRole()}"></span><br>
+        <span id="user-role" th:text="${user.getRole()}"></span><br>
     </div>
 </div>
 
