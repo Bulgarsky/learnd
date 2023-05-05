@@ -37,9 +37,7 @@
                     <td>
                         <span th:text="${product.getPrice()}">price</span>
                     </td>
-                    <td>
-                        <a th:href="@{/cart/delete/{id}(id=${product.getId()})}">Удалить</a>
-                    </td>
+
                 </tr>
                 </tbody>
             </table>

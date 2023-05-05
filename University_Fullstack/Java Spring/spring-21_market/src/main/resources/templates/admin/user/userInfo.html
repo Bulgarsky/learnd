@@ -58,7 +58,9 @@
           <span th:text="${order.getProduct().getTitle()}+ ', '+${order.getCount()}+' шт'"></span><br>
           <br>
           <span>Cтатус: </span>
-          <span id="order-status" th:text="${order.getStatus()}+' ( i ) '"></span><br>
+          <span id="order-status" th:text="${order.getStatus()}+' ( i )'"></span><br>
+          <br>
+          <a th:href="@{/admin/order/edit/{id}(id=${order.getId()})}" th:text="'Изменисть статус'"></a>
           <br>
         </td>
         <td>

@@ -42,14 +42,16 @@
                         <br>
                         <span th:text="${order.getProduct().getTitle()}+ ', '+${order.getCount()}+' шт'"></span><br>
                         <br>
-                        <span>Cтатус: </span>
-                        <span id="order-status" th:text="${order.getStatus()}+' ( i ) '"></span><br>
-                        <br>
                         <span>Покупатель: </span>
                         <a th:href="@{/user/info/{id}(id=${order.getPerson().getId()})}"
                            th:text="${order.getPerson().getLogin()}">
                             user placeholder
                         </a><br>
+                        <br>
+                        <span>Cтатус: </span>
+                        <span id="order-status" th:text="${order.getStatus()}+' ( i ) '"></span><br>
+                        <br>
+                        <a th:href="@{/admin/order/edit/{id}(id=${order.getId()})}" th:text="'Изменисть статус'"></a>
                     </td>
                     <td>
                         <img

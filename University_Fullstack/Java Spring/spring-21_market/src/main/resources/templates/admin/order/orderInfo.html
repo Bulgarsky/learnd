@@ -15,6 +15,7 @@
 <hr>
 <h2 th:text="'Заказ № '+${orderById.getOrderNo()}"></h2>
 <h4 th:text="'от '+${#temporals.format(orderById.getDateTime(), 'dd MMM yyyy')}"></h4>
+<h4 th:text="'Покупатель: '+${orderById.getPerson().getLogin()}"></h4>
 <div class="order">
     <div class="order-caption">
         <table class="order-item">
@@ -54,9 +55,9 @@
                 </td>
                 <td>
                     <span>Cтатус: </span>
-                    <span id="order-status" th:text="${orderById.getStatus()}+' ( i ) '"></span><br>
+                    <span id="order-status" th:text="' '+ ${orderById.getStatus()}+' ( i ) '"></span><br>
                     <br>
-                    <a th:href="@{/admin/order/edit/{id}(id=${orderById.getId()})}">Редактировать</a>
+                    <a th:href="@{/admin/order/edit/{id}(id=${orderById.getId()})}" th:text="'Изменисть статус'"></a>
                 </td>
             </tr>
             </tbody>

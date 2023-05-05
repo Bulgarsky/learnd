@@ -18,6 +18,7 @@
         th:object="${orderById}">
   <h2 th:text="'Заказ № '+ *{orderNo}"></h2>
   <h4 th:text="'от '+*{#temporals.format(dateTime, 'dd MMM yyyy')}"></h4>
+    <h4 th:text="'Покупатель: '+*{person.getLogin()}"></h4>
   <div class="order">
     <div class="order-caption">
       <table class="order-item">
@@ -55,11 +56,11 @@
 
           </td>
           <td>
-            <span>Текущий статус: </span>
+            <span>Статус: </span>
             <span id="order-status" th:text="${orderById.getStatus()}+' ( i ) '"></span><br>
             <br>
 
-              <label for="status">Новый статус</label>
+              <label for="status">Изм. на: </label>
               <select id="status" th:field="*{status}">
                 <option th:each="enumm : ${T(com.example.market.enumm.Status).values()}"
                         th:text="${enumm.toString()}"
