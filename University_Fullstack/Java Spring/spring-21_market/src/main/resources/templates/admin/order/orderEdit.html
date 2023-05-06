@@ -14,21 +14,21 @@
   <a href="/admin/users">Список пользователей</a>
   <hr>
   <form th:method="POST"
-        th:action="@{/admin/order/edit/{id}(id=${orderById.getId()})}"
-        th:object="${orderById}">
-  <h2 th:text="'Заказ № '+ *{orderNo}"></h2>
-  <h4 th:text="'от '+*{#temporals.format(dateTime, 'dd MMM yyyy')}"></h4>
-    <h4 th:text="'Покупатель: '+*{person.getLogin()}"></h4>
+        th:action="@{/admin/order/edit/{id}(id=${orderEdit.getId()})}"
+        th:object="${orderEdit}">
+  <h2 th:text="'Заказ № '+ ${orderEdit.getOrderNo()}"></h2>
+  <h4 th:text="'от '+${#temporals.format(orderEdit.getDateTime(), 'dd MMM yyyy')}"></h4>
+    <h4 th:text="'Покупатель: '+${orderEdit.getPerson().getLogin()}"></h4>
   <div class="order">
     <div class="order-caption">
       <table class="order-item">
         <tbody>
         <tr>
           <td id="order-item-caption-orderNo">
-            <span th:text="*{count}"></span> шт <br>
+            <span th:text="${orderEdit.getCount()}"></span> шт <br>
           </td>
           <td id="order-item-caption-price">
-            <b><span th:text="'Оплочено: '+*{price}"></span></b>
+            <b><span th:text="'Оплочено: '+${orderEdit.getPrice()}"></span></b>
           </td>
         </tr>
         <tr>
@@ -47,24 +47,25 @@
           <td>
             <img
                     class="img-small"
-                    th:src="'/img/' + ${orderById.getProduct().getImageList()[0].getFileName()}"
-                    th:alt="${orderById.getProduct().getTitle()}"
+                    th:src="'/img/' + ${orderEdit.getProduct().getImageList()[0].getFileName()}"
+                    th:alt="${orderEdit.getProduct().getTitle()}"
             >
           </td>
           <td colspan="2">
-            <span th:text="*{product.title}"></span><br>
+            <span th:text="${orderEdit.getProduct().getTitle()}"></span><br>
 
           </td>
           <td>
             <span>Статус: </span>
-            <span id="order-status" th:text="${orderById.getStatus()}+' ( i ) '"></span><br>
+            <span id="order-status" th:text="${orderEdit.getStatus()}+' ( i ) '"></span><br>
             <br>
 
-              <label for="status">Изм. на: </label>
-              <select id="status" th:field="*{status}">
-                <option th:each="enumm : ${T(com.example.market.enumm.Status).values()}"
-                        th:text="${enumm.toString()}"
-                        th:value="${enumm}">
+              <label for="newStatus">Изм.: </label>
+              <select id="newStatus" value="set_New_Status" th:field="*{status}">
+                <option th:each="status : ${T(com.example.market.enumm.Status).values()}"
+                        th:text="${status.toString()}"
+                        th:value="${status}"
+                        >
                 </option>
               </select>
               <button type="submit">Сохранить</button>
@@ -76,6 +77,7 @@
       </table>
     </div>
   </div>
+
   </form>
 
 </body>

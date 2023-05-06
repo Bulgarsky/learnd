@@ -13,10 +13,10 @@
 <form th:method="POST"
       th:action="@{/admin/user/edit/{id}(id=${user.getId()})}"
       th:object="${user}">
-  <strong>Login: </strong><span th:text="${user.getLogin()}"></span><br>
-    <strong>Role: </strong><span th:text="${user.getRole()}"></span><br>
+  <strong>Login: </strong><span th:text="${user.getLogin()}+' '"></span>
+    <span id="user-role" th:text="${user.getRole()}"></span><br>
   <br>
-  <label for="role">select new role:</label>
+  <label for="role">Изм.:</label>
   <select id="role" th:field="*{role}">
     <option
             th:each="enumm : ${T(com.example.market.enumm.Role).values()}"

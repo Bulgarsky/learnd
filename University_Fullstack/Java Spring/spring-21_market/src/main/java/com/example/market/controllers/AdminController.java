@@ -12,6 +12,8 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.example.market.enumm.Status;
+
 import java.io.File;
 import java.io.IOException;
 import java.util.UUID;
@@ -43,6 +45,7 @@ public class AdminController {
         return "admin/products";
     }
 
+    //ТОВАР: добавление позиции
     @GetMapping("/admin/product/add")
     public String addProduct(Model model){
         model.addAttribute("product", new Product());
@@ -240,7 +243,6 @@ public class AdminController {
     //не задействован
     public String getUserOrder(@PathVariable("id") int id, Model model){
         model.addAttribute("userOrders", orderService.findByPersonId(id));
-
         return "/admin/user/order";
     }
 
@@ -254,15 +256,21 @@ public class AdminController {
     //редактировать заказ получив его по id
     @GetMapping("/admin/order/edit/{id}")
     public String editOrder(Model model, @PathVariable("id") int id){
-        model.addAttribute("orderById", orderService.findByOrderId(id));
+        model.addAttribute("orderEdit", orderService.findByOrderId(id));
+        model.addAttribute("newStatus", Status.values());
         return "/admin/order/orderEdit";
     }
 
-    //Сохранить заказ после изменения статуса
-
+    //Сохранить заказ после изменения статуса (не работает)
     @PostMapping("/admin/order/edit/{id}")
-    public String saveOrderStatus(@PathVariable("id") int id, @ModelAttribute("order") Order order){
-        orderService.updateOrder(id, order);
+    public String saveOrderStatus(@PathVariable("id") int id,
+                                  @ModelAttribute("orderEdit") Order order,
+                                  @RequestParam("set_New_Status") String newStatus,
+                                  Model model){
+        model.addAttribute("set_New_Status", newStatus);
+        model.addAttribute("orderEdit", order);
+        System.out.println("какой приходит статус при нажатии сохранить? " + newStatus);
+        orderService.updateOrder(id, newStatus, order);
         return "redirect:/admin/order/orderInfo";
     }
 }

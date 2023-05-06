@@ -8,6 +8,8 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 import java.util.Optional;
 
+import com.example.market.enumm.Status;
+
 @Service
 public class OrderService {
     private final OrderRepository orderRepository;
@@ -26,17 +28,33 @@ public class OrderService {
         return orderRepository.findByPerson_Id(id);
     }
 
+    //найти заказ по номеру заказа (не использован)
+    public Order findOrderByOrderNo(String orderNo){
+        Optional<Order> optionalOrder = orderRepository.findByOrderNo(orderNo);
+        return  optionalOrder.orElse(null);
+    }
+
+    //обновить заказ (не работает)
+
+    public void updateOrder(int id, String newStatus, Order order){
+
+        Order orderUpdate = findByOrderId(id);
+        orderUpdate.setOrderNo(order.getOrderNo());
+        orderUpdate.setId(order.getId());
+        orderUpdate.setCount(order.getCount());
+        orderUpdate.setProduct(order.getProduct());
+        orderUpdate.setDateTime(order.getDateTime());
+        orderUpdate.setPerson(order.getPerson());
+        orderUpdate.setPrice(order.getPrice());
+        orderUpdate.setStatus(Status.valueOf(newStatus));
+
+        orderRepository.save(order);
+    }
+
     //получить заказ по id
     public Order findByOrderId(int id) {
         Optional<Order> optionalOrder = orderRepository.findById(id);
         return optionalOrder.orElse(null);
     }
-    //обновить заказ
-    @Transactional
-    public void updateOrder(int id, Order order){
-        order.setId(id);
-        orderRepository.save(order);
-    }
-
 
 }
