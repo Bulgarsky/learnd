@@ -55,7 +55,7 @@
                 </td>
                 <td>
                     <span>Cтатус: </span>
-                    <span id="order-status" th:text="' '+ ${orderById.getStatus()}+' ( i ) '"></span><br>
+                    <span class="order-status" th:text="' '+ ${orderById.getStatus()}+' ( i ) '"></span><br>
                     <br>
                     <a th:href="@{/admin/order/edit/{id}(id=${orderById.getId()})}" th:text="'Изменисть статус'"></a>
                 </td>

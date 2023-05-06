@@ -10,18 +10,28 @@
 <body>
 <div>
     <a href="/admin"> Назад к терминалу</a><br>
-    <h3>Список всех заказов:</h3>
-    <div class="order" th:each="order : ${allOrders}">
+    <br>
+    <div class="order-search">
+        <form th:method="POST" th:action="@{/admin/order/search}">
+        <lable for="order_search"></lable>
+        <input type="text" id="order_search" name="order_search" th:value="*{value_order_search}">
+            <spam> </spam>
+            <button type="submit">Найти</button>
+        </form>
+        <br>
+    </div>
+<!--    вывод заказов по поиску-->
+    <div class="order" th:each="order : ${findOrders}">
         <div class="order-caption">
             <table class="order-item">
                 <tbody>
                 <tr>
-                    <td id="order-item-caption-orderNo">
+                    <td class="order-item-caption-orderNo">
                         <a th:href="@{/admin/order/info/{id}(id=${order.getId()})}"
-                              th:text="'Заказ от '+${#temporals.format(order.getDateTime(), 'dd MMM yyyy')}"></a><br>
-                            <span th:text="${order.getOrderNo()}"></span>
+                           th:text="'Заказ от '+${#temporals.format(order.getDateTime(), 'dd MMM yyyy')}"></a><br>
+                        <span th:text="${order.getOrderNo()}"></span>
                     </td>
-                    <td id="order-item-caption-price">
+                    <td class="order-item-caption-price">
                         <b><span th:text="'Оплочено: '+${order.getPrice()}"></span></b>
                     </td>
                 </tr>
@@ -49,7 +59,7 @@
                         </a><br>
                         <br>
                         <span>Cтатус: </span>
-                        <span id="order-status" th:text="${order.getStatus()}+' ( i ) '"></span><br>
+                        <span class="order-status" th:text="${order.getStatus()}+' ( i ) '"></span><br>
                         <br>
                         <a th:href="@{/admin/order/edit/{id}(id=${order.getId()})}" th:text="'Изменисть статус'"></a>
                     </td>
@@ -58,7 +68,67 @@
                                 class="img-small"
                                 th:src="'/img/' + ${order.getProduct().getImageList()[0].getFileName()}"
                                 th:alt="${order.getProduct().getTitle()}"
-                        >
+                        ><br>
+                        <span th:text="${order.getProduct().getSeller()}"></span>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <br>
+    <hr>
+    <br>
+
+    <h3>Список всех заказов:</h3>
+    <div class="order" th:each="order : ${allOrders}">
+        <div class="order-caption">
+            <table class="order-item">
+                <tbody>
+                <tr>
+                    <td class="order-item-caption-orderNo">
+                        <a th:href="@{/admin/order/info/{id}(id=${order.getId()})}"
+                              th:text="'Заказ от '+${#temporals.format(order.getDateTime(), 'dd MMM yyyy')}"></a><br>
+                            <span th:text="${order.getOrderNo()}"></span>
+                    </td>
+                    <td class="order-item-caption-price">
+                        <b><span th:text="'Оплочено: '+${order.getPrice()}"></span></b>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="3">
+                        <hr>
+                    </td>
+                </tr>
+                <tbody>
+            </table>
+        </div>
+        <div>
+            <table class="order-item">
+                <tbody>
+                <tr>
+                    <td colspan="2">
+                        <br>
+                        <span th:text="${order.getProduct().getTitle()}+ ', '+${order.getCount()}+' шт'"></span><br>
+                        <br>
+                        <span>Покупатель: </span>
+                        <a th:href="@{/user/info/{id}(id=${order.getPerson().getId()})}"
+                           th:text="${order.getPerson().getLogin()}">
+                            user placeholder
+                        </a><br>
+                        <br>
+                        <span>Cтатус: </span>
+                        <span class="order-status" th:text="${order.getStatus()}+' ( i ) '"></span><br>
+                        <br>
+                        <a th:href="@{/admin/order/edit/{id}(id=${order.getId()})}" th:text="'Изменисть статус'"></a>
+                    </td>
+                    <td>
+                        <img
+                                class="img-small"
+                                th:src="'/img/' + ${order.getProduct().getImageList()[0].getFileName()}"
+                                th:alt="${order.getProduct().getTitle()}"
+                        ><br>
+                        <span th:text="${order.getProduct().getSeller()}"></span>
                     </td>
                 </tr>
                 </tbody>

@@ -15,7 +15,7 @@
     <legend>User info</legend>
     <br>
     <strong>login: </strong><span th:text="${user.getLogin()}">login</span>
-    <span id="user-role" th:text="${user.getRole()}">role</span><br>
+    <span class="user-role" th:text="${user.getRole()}">role</span><br>
     <br>
     <a th:href="@{/admin/user/edit/{id}(id=${user.getId()})}"> Редактировать пользователя </a><br>
     <br>
@@ -58,7 +58,7 @@
           <span th:text="${order.getProduct().getTitle()}+ ', '+${order.getCount()}+' шт'"></span><br>
           <br>
           <span>Cтатус: </span>
-          <span id="order-status" th:text="${order.getStatus()}+' ( i )'"></span><br>
+          <span class="order-status" th:text="${order.getStatus()}+' ( i )'"></span><br>
           <br>
           <a th:href="@{/admin/order/edit/{id}(id=${order.getId()})}" th:text="'Изменисть статус'"></a>
           <br>
@@ -68,7 +68,8 @@
                   class="img-small"
                   th:src="'/img/' + ${order.getProduct().getImageList()[0].getFileName()}"
                   th:alt="${order.getProduct().getTitle()}"
-          >
+          ><br>
+          <span th:text="${order.getProduct().getSeller()}"></span>
         </td>
       </tr>
       </tbody>

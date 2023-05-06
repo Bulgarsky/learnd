@@ -16,23 +16,21 @@
     <span>Search placeholder</span>
     <br>
         <h2>Товары</h2>
-        <div th:each="product: ${products}">
-            <div class="card">
+    <div class="card-box">
+        <div class="card" th:each="product: ${products}">
                 <img
                         th:src="'/img/'+${product.imageList[0].getFileName()}"
                         width="100px"
                         th:alt="${product.getTitle()}">
-                <br>
+                <hr>
                 <a th:href="@{/product/info/{id}(id=${product.getId()})}"
                    th:text="${product.getTitle()}"
                    target="_blank">
-                    title</a>
+                    title</a><br>
                 <br>
-                <strong>Price: </strong><span th:text="${product.getPrice()}">price</span>
-
-            </div>
+                <strong><span th:text="${product.getPrice()}"></span></strong>
         </div>
-
+    </div>
 </div>
 </body>
 </html>

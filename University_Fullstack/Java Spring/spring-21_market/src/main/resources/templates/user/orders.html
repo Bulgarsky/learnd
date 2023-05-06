@@ -42,7 +42,7 @@
                     <td colspan="2">
                         <br>
                         <span>Cтатус: </span>
-                        <span id="order-status" th:text="${order.getStatus()}+' ( i ) '"></span><br>
+                        <span class="order-status" th:text="${order.getStatus()}+' ( i ) '"></span><br>
                         <br>
                         <span th:text="${order.getProduct().getTitle()}+ ', '+${order.getCount()}+' шт'"></span><br>
                     </td>
@@ -51,7 +51,8 @@
                                 class="img-small"
                                 th:src="'/img/' + ${order.getProduct().getImageList()[0].getFileName()}"
                                 th:alt="${order.getProduct().getTitle()}"
-                        >
+                        ><br>
+                        <span th:text="${order.getProduct().getSeller()}"></span>
                     </td>
                 </tr>
                 </tbody>

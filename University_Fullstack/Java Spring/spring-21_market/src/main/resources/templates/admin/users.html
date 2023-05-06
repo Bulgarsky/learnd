@@ -10,6 +10,10 @@
 <body>
 <a href="/admin">Назад к терминалу</a><br>
 <br>
+<div class="search">
+    <h3>Поиск по логину</h3>
+</div>
+<br>
 <h2>Пользователи: </h2>
 <div>
     <div  class="block" th:each="user : ${userList}">
@@ -18,7 +22,7 @@
         >
             link to profile
         </a>
-        <span id="user-role" th:text="${user.getRole()}"></span><br>
+        <span class="user-role" th:text="${user.getRole()}"></span><br>
     </div>
 </div>
 

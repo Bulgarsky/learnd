@@ -273,4 +273,20 @@ public class AdminController {
         orderService.updateOrder(id, newStatus, order);
         return "redirect:/admin/order/orderInfo";
     }
+
+    //поиск заказа
+    @PostMapping("/admin/order/search")
+    public String searchOrder(
+            @RequestParam("order_search") String orderSearch,
+            Model model
+    ){
+        if(!orderSearch.isEmpty()) {
+            model.addAttribute("findOrders", orderService.findOrderByOrderNo(orderSearch));
+        }
+        //вернуть все заказы через модель на страницу заказов
+        model.addAttribute("allOrders", orderService.getAllOrder());
+        //вернуть слово использованное для поиска в графу поиска
+        model.addAttribute("value_order_search", orderSearch);
+        return "/admin/orders";
+    }
 }

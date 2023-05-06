@@ -30,7 +30,7 @@
                         <a th:href="@{/product/info/{id}(id=${product.getId()})}"
                            th:text="${product.getTitle()}"
                            target="_blank">
-                            link: product title</a>
+                            link: product title</a><br>
                         <br>
                         <a th:href="@{/cart/delete/{id}(id=${product.getId()})}">Удалить</a>
                     </td>

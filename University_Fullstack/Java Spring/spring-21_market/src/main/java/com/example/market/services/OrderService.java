@@ -29,9 +29,9 @@ public class OrderService {
     }
 
     //найти заказ по номеру заказа (не использован)
-    public Order findOrderByOrderNo(String orderNo){
-        Optional<Order> optionalOrder = orderRepository.findByOrderNo(orderNo);
-        return  optionalOrder.orElse(null);
+       public List<Order> findOrderByOrderNo(String orderNo){
+        List<Order> optionalOrder = orderRepository.findByOrderNoContainingIgnoreCase(orderNo);
+        return optionalOrder;
     }
 
     //обновить заказ (не работает)

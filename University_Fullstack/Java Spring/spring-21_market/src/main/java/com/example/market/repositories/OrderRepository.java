@@ -18,8 +18,6 @@ public interface OrderRepository extends JpaRepository<Order, Integer> {
 
     List<Order> findByPerson(Person person);
 
-    //поиск по уникальному номеру заказа ???
-    Optional<Order> findByOrderNo(String OrderNo);
-
+    List<Order> findByOrderNoContainingIgnoreCase(String orderNo);
 
 }

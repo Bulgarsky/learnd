@@ -1,5 +1,5 @@
 body {
-    background-color: antiquewhite;
+    background-color: whitesmoke;
     padding: 25px;
 }
 .block {
@@ -21,13 +21,61 @@ body {
     box-shadow: 5px 5px 10px black;
 }
 
+.card-box {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: flex-start;
+    align-items: baseline;
+    align-content: space-between;
+    width: 1200px;
+}
 .card {
-    margin: 25px;
-    padding: 20px;
-    width: 200px;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    margin: 10px 5px 5px 20px;
+    padding: 25px;
+    width: 150px;
+    height: 220px;
     background-color: white;
     border-style: none;
+    box-shadow: 5px 5px 10px gray;
+    border-radius: 5px;
+}
+.card:hover {
     box-shadow: 5px 5px 10px black;
+}
+.card a{
+    text-decoration: none;
+    color: black;
+}
+.card a:hover{
+    text-decoration: underline;
+    color: darkblue;
+}
+.card button {
+    width: 100%;
+    height: 30px;
+    background-color: dodgerblue;
+    border-radius: 5px;
+    border-style: none;
+    border-color: dodgerblue;
+    color: white;
+}
+.card button:hover{
+    border-style: double;
+    border-radius: 5px;
+    background-color: dodgerblue;
+    filter: brightness(0.95);
+    color: white;
+}
+.card button:active{
+    border-style: ridge;
+    filter: brightness(0.95);
+    color: white;
+}
+.card img{
+    width: 75px;
 }
 .order {
     margin: 25px;
@@ -44,8 +92,11 @@ body {
     width: 500px;
     background-color: white;
     border-style: none;
-    box-shadow: 5px 5px 10px black;
+    box-shadow: 5px 5px 10px gray;
     border-radius: 5px;
+}
+.cart:hover {
+    box-shadow: 5px 5px 10px black;
 }
 .cart table{
     padding: 5px;
@@ -64,8 +115,11 @@ body {
     width: 550px;
     background-color: white;
     border-style: none;
-    box-shadow: 5px 5px 10px black;
+    box-shadow: 5px 5px 10px gray;
     border-radius: 5px;
+}
+.order:hover{
+    box-shadow: 5px 5px 10px black;
 }
 .order a {
     text-decoration: none;
@@ -81,26 +135,44 @@ body {
     border: none;
 }
 
-#order-item-caption-orderNo{
+.order-item-caption-orderNo{
     text-align: left;
     font-size: 16px;
 }
-#order-item-caption-price{
+.order-item-caption-price{
     text-align: right;
     font-size: 16px;
 }
 
 .order-caption{
 }
-#order-status {
+.order-status {
     background-color: dodgerblue;
     color: white;
     padding: 5px;
     border-radius: 5px;
 }
-#user-role {
+.user-role {
     background-color: dodgerblue;
     color: white;
     padding: 5px;
     border-radius: 5px;
+}
+
+.order-search{
+    margin: 25px;
+    width: 580px;
+    background-color: white;
+    border-style: none;
+    box-shadow: 5px 5px 10px black;
+    border-radius: 5px;
+    padding-left: 15px;
+    padding-top: 15px;
+}
+.order-search input{
+    width: 85%;
+    margin-right: 5px;
+}
+.order-search input:hover{
+    border-color: dodgerblue;
 }

@@ -14,7 +14,7 @@
       th:action="@{/admin/user/edit/{id}(id=${user.getId()})}"
       th:object="${user}">
   <strong>Login: </strong><span th:text="${user.getLogin()}+' '"></span>
-    <span id="user-role" th:text="${user.getRole()}"></span><br>
+    <span class="user-role" th:text="${user.getRole()}"></span><br>
   <br>
   <label for="role">Изм.:</label>
   <select id="role" th:field="*{role}">
