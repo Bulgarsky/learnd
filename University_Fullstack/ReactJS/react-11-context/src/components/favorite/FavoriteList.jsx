@@ -9,12 +9,12 @@ const FavoriteList = (props) => {
     const context = React.useContext(AppContext);
     const onAddOverlay = (obj) => {
         axios.post('https://64399fea90cd4ba563eae64a.mockapi.io/Cart', obj);
-        context.setOverlayItems([...props.overlayItems, obj]);
+        props.setOverlayItems([...props.overlayItems, obj]);
     }
 
     const onDeleteFavorite = (id) => {
         axios.delete(`https://64399fea90cd4ba563eae64a.mockapi.io/Favorites/${id}`);
-        context.setFavorites((favorites)=> favorites.filter(item => item.id !== id));
+        props.setFavorites((favorites)=> favorites.filter(item => item.id !== id));
     }
 
     console.log('рендер листа Избранное');

@@ -18,7 +18,7 @@ const ProductCard = (props) => {
         let description = props.description;
         let price = props.price;
         let img = props.img;
-        context.onAddFavorite({title, description, price, img, id, myId});
+        props.onAddFavorite({title, description, price, img, id, myId});
     }
 
     const onClickAdd=()=>{
@@ -29,7 +29,7 @@ const ProductCard = (props) => {
         let description = props.description;
         let price = props.price;
         let img = props.img;
-        context.onAddBasket({title, description, price, img, id, myId});
+        props.onAddBasket({title, description, price, img, id, myId});
     }
 
     console.log('карточки Product');

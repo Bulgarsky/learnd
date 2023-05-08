@@ -17,11 +17,11 @@ const FavoriteItem = (props) => {
         let description = props.description;
         let price = props.price;
         let img = props.img;
-        context.onAddBasket({title, description, price, img, id, myId});
+        props.onAddBasket({title, description, price, img, id, myId});
     }
 
     const  onDelete=()=> {
-        context.onDeleteFavorite(props.id)
+        props.onDeleteFavorite(props.id)
     }
     console.log('карточки Избранное');
 

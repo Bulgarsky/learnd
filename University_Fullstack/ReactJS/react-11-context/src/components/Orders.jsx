@@ -1,4 +1,5 @@
 import React from 'react';
+import OrderList from "./order/OrderList";
 
 const Orders = () => {
 
@@ -6,9 +7,12 @@ const Orders = () => {
 
     return (
         <div>
-            <h1>
+            <h2>
                 Компонент Orders
-            </h1>
+            </h2>
+            <div>
+                <OrderList/>
+            </div>
         </div>
     );
 };
