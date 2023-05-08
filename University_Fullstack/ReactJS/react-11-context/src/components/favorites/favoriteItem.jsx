@@ -22,46 +22,37 @@ const FavoriteItem = (props) => {
     }
 
     return (
-        <div>
-            <div className='container py-3'>
-                <div className='row row-cols-1 justify-content-evenly row-cols-md-3 row-cols-sm-2 text-center'>
-                    <div className='col px-3 ry-3'>
-                        <div className='md-6 rounded'>
-                            <div className='card py-3 px-3'>
-
-                                        <Button className='addFavorite' variant='warning'
-                                                onClick={onDelete}>
-                                            X
-                                        </Button>
-
-
-                                <h5>{props.title} {' '}
-                                    <Badge bg="dark">Новинка</Badge>
-                                </h5>
-                                <img alt="img 2" src={props.img} width={'100%'}/>
-
-                                <p>{props.description}</p>
-
-                                <p><strong>Цена: </strong> {props.price} {' '}
-                                    <Badge bg="danger" width={20}>Скидка за комплект!</Badge>
-                                </p>
-
-                                <Button className='addBasket' variant='outline-dark'
-                                        onClick={onClickAdd}>
-                                    {added
-                                        ?
-                                        <img width={13}
-                                             src={added ? '/img/icons/checked.png' : ''}
-                                             alt="" />
-                                        :
-                                        'Добавить в корзину'
-                                    }
-                                </Button>
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
+        <div className="card">
+            <div>
+                <Button className='addFavorite' variant='warning'
+                        onClick={onDelete}>
+                    X
+                </Button>
+                <br/>
+                <br/>
+                <h5>{props.title} {' '}
+                    {/*<Badge bg="dark">*/}
+                    {/*    <span className="card-badge-span">Новинка!</span>*/}
+                    {/*</Badge>*/}
+                </h5>
+                <img class="card-img" alt="img card" src={props.img} />
+                <p class="card-description">{props.description}</p>
+                <p><strong>Цена: </strong> {props.price} {' '}
+                    {/*<Badge bg="danger" width={20}>*/}
+                    {/*    <span className="card-badge-span">Скидка за комплект!</span>*/}
+                    {/*</Badge>*/}
+                </p>
+                <Button className='addBasket' variant='outline-dark'
+                        onClick={onClickAdd}>
+                    {added
+                        ?
+                        <img width={13}
+                             src={added ? '/img/icons/checked.png' : ''}
+                             alt="" />
+                        :
+                        'Добавить в корзину'
+                    }
+                </Button>
             </div>
         </div>
     );

@@ -18,9 +18,9 @@ const Favorites = (props) => {
     }
 
     return (
-        <div  style={{margin: "50px", padding: "50px"}}>
-            <h1>Favorites</h1>
-
+        <div className="card-container">
+        <h2>Your Favorites:</h2>
+        <div class="card-box" >
             {
                 props.favorites.map(obj => {
                     return (
@@ -40,6 +40,8 @@ const Favorites = (props) => {
                 )
                 })
             }
+
+        </div>
         </div>
     );
 };

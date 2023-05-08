@@ -1,11 +1,19 @@
 import React from 'react';
 import { useForm } from "react-hook-form";
 import Button from "react-bootstrap/Button";
+import axios from 'axios';
 
 const Feedback = () => {
     const { register, handleSubmit, watch, formState: { errors } } = useForm();
-    const onSubmit = data => console.log(data);
+    //const onSubmit = data => console.log(data);
     console.log("-> Обратная связь");
+
+    const onSubmit = (data) => {
+        axios.post('https://642ea6618ca0fe3352d53368.mockapi.io/feedback', data);
+        alert('Отправлено');
+        console.log('feedback data:'+ data);
+
+    }
 
     return (
         <div style={{margin: "50px", padding: "50px", width: "80%" }} >
@@ -37,12 +45,12 @@ const Feedback = () => {
             )
             }
             <br/>
-
-            <div className="input-group mb-3">
-                <input {...register("files")}
-                    type="file" className="form-control" id="inputGroupFile"/>
-                    <label className="input-group-text" htmlFor="inputGroupFile">Upload</label>
-            </div>
+            {/*для отправки файлов*/}
+            {/*<div className="input-group mb-3">*/}
+            {/*    <input {...register("files")}*/}
+            {/*        type="file" className="form-control" id="inputGroupFile"/>*/}
+            {/*        <label className="input-group-text" htmlFor="inputGroupFile">Upload</label>*/}
+            {/*</div>*/}
             <div className="mb-3">
                 <label htmlFor="exampleFormControlTextarea1" className="form-label">Your Message: </label>
                 <textarea {...register("message", {required:true, minLength: 10})}

@@ -2,6 +2,8 @@ import React from 'react';
 import CardItem from "./cardItem";
 import axios from 'axios';
 
+import "../../App.css"
+
 const ProductCard = (props) => {
     console.log("JSON -> CardInfo");
 
@@ -40,7 +42,9 @@ const ProductCard = (props) => {
     }
 
     return (
-        <div className='container py-3'>
+        <div class="card-container">
+            <h2>Our products:</h2>
+        <div class="card-box"  /*className='container py-3'*/>
             {
             props.item.map(obj => {
                 return <CardItem
@@ -58,6 +62,7 @@ const ProductCard = (props) => {
                     />
                 })
             }
+        </div>
         </div>
     );
 };
