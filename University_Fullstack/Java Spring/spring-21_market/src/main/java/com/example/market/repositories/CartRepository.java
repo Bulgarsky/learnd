@@ -13,8 +13,10 @@ import java.util.List;
 @Repository
 public interface CartRepository extends JpaRepository<Cart, Integer> {
 
+    //найти по id пользователя
     List<Cart> findByPersonId(int id);
 
+    //Корзина: удаление позиции товара по id
     @Modifying
     @Query(value ="delete from product_cart where product_id = ?1", nativeQuery = true)
     void deleteCartByProductId(int id);

@@ -13,10 +13,13 @@ public class AuthenticationController {
         this.productService = productService;
     }
 
+    //Аутентификация
     @GetMapping("/auth")
     public String login(){
         return "auth";
     }
+
+    //вывод товаров
     @GetMapping("/")
     public String index(Model model){
         model.addAttribute("products", productService.getAllProduct());

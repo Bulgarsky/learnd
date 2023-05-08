@@ -1,6 +1,8 @@
 package com.example.market.services;
 
 import com.example.market.models.Order;
+import com.example.market.models.Person;
+import com.example.market.models.Product;
 import com.example.market.repositories.OrderRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -18,24 +20,40 @@ public class OrderService {
         this.orderRepository = orderRepository;
     }
 
-    //вернуть всех заказы для админа (работает)
+    //ЗАКАЗЫ: вернуть все заказы для админа (работает)
     public List<Order> getAllOrder(){
         return orderRepository.findAll();
     }
 
-    //найти заказы по id пользователя (работает)
+    //ЗАКАЗЫ: найти заказы по id пользователя (работает)
     public List<Order> findByPersonId (int id){
         return orderRepository.findByPerson_Id(id);
     }
 
-    //найти заказ по номеру заказа (не использован)
-       public List<Order> findOrderByOrderNo(String orderNo){
+    //ЗАКАЗЫ: найти заказ по номеру заказа для админа (работает)
+    public List<Order> findOrderByOrderNo(String orderNo){
         List<Order> optionalOrder = orderRepository.findByOrderNoContainingIgnoreCase(orderNo);
         return optionalOrder;
     }
 
-    //обновить заказ (не работает)
+    //ЗАКАЗЫ: получить заказ по id
+    public Order findByOrderId(int id) {
+        Optional<Order> optionalOrder = orderRepository.findById(id);
+        return optionalOrder.orElse(null);
+    }
 
+    //Заказ: создать заказ
+    public void saveOrder(Order order){
+       orderRepository.save(order);
+    }
+
+    //ТОВАРЫ: найти товары по пользователю
+    public List<Order> findOrderByPerson(Person person){
+        List<Order> optionalOrder = orderRepository.findByPerson(person);
+        return optionalOrder;
+    }
+
+    //ЗАКАЗЫ: обновить заказ (не работает)
     public void updateOrder(int id, String newStatus, Order order){
 
         Order orderUpdate = findByOrderId(id);
@@ -49,12 +67,6 @@ public class OrderService {
         orderUpdate.setStatus(Status.valueOf(newStatus));
 
         orderRepository.save(order);
-    }
-
-    //получить заказ по id
-    public Order findByOrderId(int id) {
-        Optional<Order> optionalOrder = orderRepository.findById(id);
-        return optionalOrder.orElse(null);
     }
 
 }

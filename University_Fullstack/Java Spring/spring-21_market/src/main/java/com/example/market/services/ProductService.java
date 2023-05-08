@@ -19,29 +19,31 @@ public class ProductService {
         this.productRepository = productRepository;
     }
 
-    //получить все товары
+    //ТОВАРЫ: получить все товары
     public List<Product> getAllProduct(){
         return productRepository.findAll();
     }
-    //получить товар по id
+
+    //ТОВАРЫ: получить товар по id
     public Product getProductId(int id){
         Optional<Product> optionalProduct = productRepository.findById(id);
         return optionalProduct.orElse(null);
     }
 
-    //сохранить товар с категорией
+    //ТОВАРЫ: сохранить товар с категорией
     @Transactional
     public void saveProduct(Product product, Category category){
         product.setCategory(category);
         productRepository.save(product);
     }
 
-    //m update product info
+    //ТОВАРЫ: обновить товар по id
     public void updateProduct(int id, Product product){
         product.setId(id);
         productRepository.save(product);
     }
-    //m delete product w id
+
+    //ТОВАРЫ: удалить товар по id
     @Transactional
     public void deleteProduct(int id){
         productRepository.deleteById(id);

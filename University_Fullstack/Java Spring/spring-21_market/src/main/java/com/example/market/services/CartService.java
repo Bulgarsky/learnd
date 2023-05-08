@@ -15,18 +15,18 @@ public class CartService {
         this.cartRepository = cartRepository;
     }
 
-    //найти корзину по пользоватлю(id)
+    //КОРЗИНА: найти корзину пользователя (по id)
     public List<Cart> findByPersonId(int id){
        List<Cart> cart_db = cartRepository.findByPersonId(id);
        return cart_db;
     }
 
-    //сохранить корзину +
+    //КОРЗИНА: сохранить корзину
     public void saveCart(Cart cart){
         cartRepository.save(cart);
     }
 
-    //удалить товары из корзины +
+    //КОРЗИНА: удалить товары (по id) из корзины
     public void deleteItemFromCart(int id){
         cartRepository.deleteCartByProductId(id);
     }

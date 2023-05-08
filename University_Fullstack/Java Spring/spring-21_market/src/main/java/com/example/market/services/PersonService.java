@@ -15,18 +15,19 @@ public class PersonService {
     private final PersonRepository personRepository;
     private final PasswordEncoder passwordEncoder;
 
-
     @Autowired
     public PersonService(PersonRepository personRepository, PasswordEncoder passwordEncoder) {
         this.personRepository = personRepository;
         this.passwordEncoder = passwordEncoder;
     }
 
+    //найти пользователя по логину
     public Person findByLogin(Person person){
         Optional<Person> person_db = personRepository.findByLogin(person.getLogin());
         return person_db.orElse(null);
     }
 
+    //регистрация
     @Transactional
     public void register(Person person){
         //хешированный пароль:
@@ -36,25 +37,26 @@ public class PersonService {
         personRepository.save(person);
     }
 
-    //получить список пользователей (работает)
+    //получить список пользователей для админа (работает)
     public List<Person> getAllPerson(){
         return personRepository.findAll();
     }
 
-    //получить пользователя по id для редактирования (работает)
+    //получить пользователя по id для редактирования для админа (работает)
     public Person getPersonId(int id){
         Optional<Person> optionalPerson = personRepository.findById(id);
         return optionalPerson.orElse(null);
     }
 
-    //обновить пользователя (не работает)
+    //обновить пользователя для админа (не работает)
     @Transactional
     public void updatePerson(int id, Person person){
         person.setId(id);
         //person.setRole(person.getRole());
         personRepository.save(person);
     }
-    //удалить пользователя из базы (работает)
+
+    //удалить пользователя из базы для админа (работает)
     @Transactional
     public void deletePerson(int id){
         personRepository.deleteById(id);

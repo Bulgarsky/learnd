@@ -30,6 +30,7 @@ public class ProductController {
         return "/product/info";
     }
 
+    //поиск для товара
     @PostMapping("/product/search")
     public String productSearch(
         @RequestParam("search") String search,

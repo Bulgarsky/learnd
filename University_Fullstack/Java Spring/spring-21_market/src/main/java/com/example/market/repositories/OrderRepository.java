@@ -16,8 +16,15 @@ public interface OrderRepository extends JpaRepository<Order, Integer> {
     @Query(value="select * from order_list where person_id = ?1", nativeQuery = true)
     List<Order> findByPerson_Id(int id);
 
+    //найти заказы по пользователю
     List<Order> findByPerson(Person person);
 
+    //найти заказы по номеру заказа
     List<Order> findByOrderNoContainingIgnoreCase(String orderNo);
+
+
+    //найти заказ по номеру заказа и по id пользователя
+    @Query(value="select * from order_list where person_id = &1 and orderNo = ?2", nativeQuery = true)
+    List<Order> findByPerson_IdAndAndOrderNo(int personId, String orderNo);
 
 }

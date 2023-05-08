@@ -17,32 +17,46 @@ const Header= () => {
             <Navbar bg="dark" variant="dark">
                 <Container>
                     <Navbar.Brand>
-                        <Link to={'/'}>COTTON DELUXE</Link>
+                        <Link to={'/'}>
+                            COTTON DELUXE
+                        </Link>
                     </Navbar.Brand>
 
                     <Nav className="me-auto">
                         <Nav.Link>
-                            <Link to={'/about'}>About Us</Link>
+                            <Link to={'/about'}>About Us
+                            </Link>
                         </Nav.Link>
 
                         <Nav.Link>
-                            <Link to={'/feedback'}>Feedback us!</Link>  {' '}
+                            <Link to={'/feedback'}>
+                                Feedback us
+                            </Link>
                             <Spinner animation="grow" role="status" variant='warning' size="sm"/>
                         </Nav.Link>
 
                         <Nav.Link>
-                            <Link to={'/products'}>Products</Link>
+                            <Link to={'/products'}>
+                                Products
+                            </Link>
                         </Nav.Link>
 
                         <Nav.Link>
-                            <Link to={'/favorites'}>Favorites</Link>
+                            <Link to={'/favorites'}>
+                                Favorites
+                            </Link>
                         </Nav.Link>
 
                         <Nav.Link>
-                            <Link to={'/basket'}>Basket</Link>
+                            <Link to={'/basket'}>
+                                Basket
+                            </Link>
                         </Nav.Link>
+
                         <Nav.Link>
-                            <Link to={'/orders'}>Orders</Link>
+                            <Link to={'/orders'}>
+                                Orders
+                            </Link>
                         </Nav.Link>
 
                     </Nav>
@@ -50,14 +64,14 @@ const Header= () => {
                     <Nav>
                         <OverlayTrigger trigger="click" placement="bottom" overlay={popup}>
                             <Button className='enter' variant={"outline-primary"} >
-                            Sign in
+                                Sign in
                             </Button>
                         </OverlayTrigger>
                         {'  '}
                         <div>
-                        <Button className='reg' variant={"outline-secondary"} >
-                            Registration
-                        </Button>
+                            <Button className='reg' variant={"outline-secondary"} >
+                                Registration
+                            </Button>
                         </div>
                     </Nav>
                 </Container>
@@ -69,7 +83,8 @@ const popup = (
     <Popover id="popover-basic">
         <Popover.Header as="h3">
             <Spinner animation="border" role="status" variant='danger' size="sm"/> {'  '}
-            Personal account</Popover.Header>
+            Personal account
+        </Popover.Header>
         <Popover.Body>
             This <strong>functionality</strong> has not yet been implemented.
         </Popover.Body>

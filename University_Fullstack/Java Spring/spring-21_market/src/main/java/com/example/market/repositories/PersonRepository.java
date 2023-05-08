@@ -10,7 +10,11 @@ import java.util.Optional;
 @Repository
 public interface PersonRepository  extends JpaRepository <Person, Integer>{
 
+    //найти пользователя по логину
     Optional<Person> findByLogin(String login);
+
+    //найти пользователей по части логина
+    Optional<Person> findByLoginContainingIgnoreCase(String login);
 
 
 }

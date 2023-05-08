@@ -9,6 +9,7 @@ import com.example.market.repositories.OrderRepository;
 import com.example.market.repositories.ProductRepository;
 import com.example.market.security.PersonDetails;
 import com.example.market.services.CartService;
+import com.example.market.services.OrderService;
 import com.example.market.services.PersonService;
 import com.example.market.services.ProductService;
 import com.example.market.util.PersonValidate;
@@ -33,18 +34,21 @@ public class MainController {
     private final ProductRepository productRepository;
     private final CartService cartService;
     private final OrderRepository orderRepository;
-    public MainController(PersonValidate personValidate, PersonService personService, ProductService productService, ProductRepository productRepository, CartService cartService, OrderRepository orderRepository) {
+    private final OrderService orderService;
+    public MainController(PersonValidate personValidate, PersonService personService, ProductService productService, ProductRepository productRepository, CartService cartService, OrderRepository orderRepository, OrderService orderService) {
         this.personValidate = personValidate;
         this.personService = personService;
         this.productService = productService;
         this.productRepository = productRepository;
         this.cartService = cartService;
         this.orderRepository = orderRepository;
+        this.orderService = orderService;
     }
 
     @GetMapping("/account")
     public String index(Model model){
-        //получаем obj Auth -> w/ SpringContextHolder обращаемся к контексту и на нем вызываем метод Auth. Из сессии получаемп obj, которйы был положен в данную сессию после аутен.пользователя
+        //Получаем объект Аутентификациис помощью SpringContextHolder, обращаемся к контексту и на нем вызываем метод Auth.
+        //Из сессии получаем объект, который был положен в данную сессию после аутенификации пользователя
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         PersonDetails personDetails = (PersonDetails) authentication.getPrincipal();
         System.out.println("Проверка аккаунта после Auth");
@@ -64,11 +68,12 @@ public class MainController {
         return "user/index";
     }
 
-    //регистрация
+    //Регистрация get
     @GetMapping("/reg")
     public String registration(@ModelAttribute("person") Person person){
         return "reg";
     }
+    //Регистрация post
     @PostMapping("/reg")
     public String registrationResult(
             @ModelAttribute("person")@Valid Person person,
@@ -141,7 +146,7 @@ public class MainController {
         return "user/index";
     }
 
-    //Корзина - добавить в корзину
+    //Корзина: добавить товар в корзину
     @GetMapping("/cart/add/{id}")
     public String addProductInCart(
             @PathVariable("id")int id,
@@ -153,18 +158,17 @@ public class MainController {
         // получаем person из объекта аут.пользователя
         PersonDetails personDetails = (PersonDetails) authentication.getPrincipal();
 
-        //извлекаем id пользотваеля из объекта
+        //извлекаем id пользователя из объекта
         int id_person = personDetails.getPerson().getId();
         //формируем новую корзину
         Cart cart = new Cart(id_person, product.getId());
         //cохраняем корзину
-        //cartRepository.save(cart);
         cartService.saveCart(cart);
 
         return "redirect:/account";
     }
 
-    //Корзина - формирование
+    //Корзина: формирование
     @GetMapping("/cart")
     public String cart(Model model) {
         //извлечь объект аутен.пользователя
@@ -176,7 +180,8 @@ public class MainController {
 
         List<Cart> cartList = cartService.findByPersonId(id_person);
         List<Product> productList = new ArrayList<>();
-        //переборка продуктов
+
+        //переборка элементов корзина
         for (Cart item: cartList) {
             productList.add(productService.getProductId(item.getProductId()));
         }
@@ -191,17 +196,17 @@ public class MainController {
         return "/user/cart";
     }
 
-    //Корзина - удалить товары
+    //КОРЗИНА: удалить товары по id
     @GetMapping("/cart/delete/{id}")
     public String deleteProductFromCart(Model model, @PathVariable("id") int id){
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         PersonDetails personDetails = (PersonDetails) authentication.getPrincipal();
         int id_person = personDetails.getPerson().getId();
 
-        //List<Cart> cartList = cartRepository.findByPersonId((id_person));
         List<Cart> cartList = cartService.findByPersonId(id_person);
         List<Product> productList = new ArrayList<>();
 
+        //получить продукты из корзины по id товара
         for (Cart item: cartList) {
             productList.add(productService.getProductId(item.getProductId()));
         }
@@ -231,13 +236,15 @@ public class MainController {
         for (Product item: productList) {
             totalPrice += item.getPrice();
         }
-
+        //добавить соли
         String uuid = UUID.randomUUID().toString();
-
 
         for (Product product: productList) {
             Order newOrder = new Order(uuid, product, personDetails.getPerson(), 1, product.getPrice(), Status.Принят);
-            orderRepository.save(newOrder);
+            orderService.saveOrder(newOrder);
+            //orderRepository.save(newOrder);
+
+            //очистить корзину
             cartService.deleteItemFromCart(product.getId());
         }
 
@@ -250,7 +257,9 @@ public class MainController {
     public String userOrder(Model model){
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         PersonDetails personDetails = (PersonDetails) authentication.getPrincipal();
-        List<Order> orderList = orderRepository.findByPerson(personDetails.getPerson());
+        List<Order> orderList = orderService.findOrderByPerson(personDetails.getPerson());
+
+        //List<Order> orderList = orderRepository.findByPerson(personDetails.getPerson());
 
         model.addAttribute("userOrders", orderList);
 

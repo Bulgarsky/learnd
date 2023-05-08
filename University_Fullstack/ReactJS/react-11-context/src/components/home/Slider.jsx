@@ -2,7 +2,7 @@ import Carousel from 'react-bootstrap/Carousel';
 import React from 'react';
 import {Badge} from "react-bootstrap";
 
-import "../../css/Slider.css"
+import "../../css/slider.css"
 
 function Slider() {
     console.log("-> рендер Slider");
