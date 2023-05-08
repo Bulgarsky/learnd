@@ -1,7 +1,9 @@
 import React from 'react';
 import {motion} from 'framer-motion';
-import "../css/for_motion.css"
-const Description = () => {
+import "../../css/for_motion.css"
+const About = () => {
+    console.log('Компонент "О нас"');
+
     return (
         <div>
             <motion.div id='company-desc'
@@ -197,4 +199,4 @@ const Description = () => {
     );
 };
 
-export default Description;
+export default About;

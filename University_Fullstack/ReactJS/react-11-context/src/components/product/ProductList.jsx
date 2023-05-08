@@ -1,10 +1,11 @@
 import React from 'react';
-import CardItem from "./cardItem";
+import ProductCard from "./ProductCard";
 import axios from 'axios';
 
-import "../../App.css"
+import "../../css/card.css"
+import {AppContext} from "../../App";
 
-const ProductCard = (props) => {
+const ProductList = (props) => {
     console.log("JSON -> CardInfo");
 
     const onAddOverlay = async (obj) => {
@@ -24,6 +25,8 @@ const ProductCard = (props) => {
         }
     }
 
+    console.log('рендер листа Products');
+
     const onAddFavorite = async  (obj) => {
         try{
             const findFavorites = props.favorites.find(objFav => objFav.myId === obj.myId);
@@ -41,13 +44,15 @@ const ProductCard = (props) => {
         }
     }
 
+    console.log(' -> рендер Продукт лист');
+
     return (
         <div class="card-container">
-            <h2>Our products:</h2>
+            <h3>Our products:</h3>
         <div class="card-box">
             {
             props.item.map(obj => {
-                return <CardItem
+                return <ProductCard
                     key={obj.id}
                     id={obj.id}
                     myId={obj.myId}
@@ -56,9 +61,9 @@ const ProductCard = (props) => {
                     price={obj.price}
                     img={obj.img}
 
-                    favoriteBtn ={(favObj)=>onAddFavorite(favObj)}
+                    onAddFavorite ={(favObj)=>onAddFavorite(favObj)}
 
-                    onBasket ={(cartObj)=>onAddOverlay(cartObj)}
+                    onAddBasket ={(cartObj)=>onAddOverlay(cartObj)}
                     />
                 })
             }
@@ -67,4 +72,4 @@ const ProductCard = (props) => {
     );
 };
 
-export default ProductCard;
+export default ProductList;

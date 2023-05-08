@@ -1,20 +1,22 @@
 import React from "react";
-import ItemBasket from "./ItemBasket"
+import BasketItem from "./BasketItem"
 import {useForm} from "react-hook-form";
 import axios from "axios";
 
+import "../../css/basket.css";
 
-const Basket = (props) => {
+const BasketList = (props) => {
     const {register, handleSubmit, watch, formState} = useForm();
-        console.log("-> рендер Корзина");
 
-        const onSubmit = (data) => {
-            axios.post('https://6458d9b88badff578efca99e.mockapi.io/Orders', data);
-        }
+    const onSubmit = (data) => {
+        axios.post('https://6458d9b88badff578efca99e.mockapi.io/Orders', data);
+    }
+
+    console.log("-> рендер лист Корзины");
 
     return (
-        <div>
-            <div class="card-container">
+        <div class="basket-card-container">
+            <div>
                 {props.overlayProps.length >0 ?
                     <div>
                         <form onSubmit={handleSubmit(onSubmit)}>
@@ -27,11 +29,11 @@ const Basket = (props) => {
                                 <h3>Корзина:</h3>
                             </div>
                         </div>
-                        <div class="card-box">
+                        <div class="basket-card-box">
                             {props.overlayProps.map(obj => {
                                 // ВЗЯТЬ ДАННЫЕ КАЖДОГО ТОВАРА И ПЕРЕДАТЬ В ФОРМУ
                                  return (
-                                    <ItemBasket
+                                    <BasketItem
                                         key={obj.id}
                                         id={obj.id}
                                         myId={obj.myId}
@@ -61,4 +63,4 @@ const Basket = (props) => {
     );
 };
 
-export default Basket;
+export default BasketList;

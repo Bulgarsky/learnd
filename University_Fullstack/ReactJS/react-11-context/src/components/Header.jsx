@@ -21,6 +21,9 @@ const Header= () => {
                     </Navbar.Brand>
 
                     <Nav className="me-auto">
+                        <Nav.Link>
+                            <Link to={'/about'}>About Us</Link>
+                        </Nav.Link>
 
                         <Nav.Link>
                             <Link to={'/feedback'}>Feedback us!</Link>  {' '}
@@ -36,12 +39,12 @@ const Header= () => {
                         </Nav.Link>
 
                         <Nav.Link>
-                            <Link to={'/cart'}>Cart</Link>
+                            <Link to={'/basket'}>Basket</Link>
+                        </Nav.Link>
+                        <Nav.Link>
+                            <Link to={'/orders'}>Orders</Link>
                         </Nav.Link>
 
-                        <Nav.Link>
-                            <Link to={'/desc'}>Description</Link>
-                        </Nav.Link>
                     </Nav>
 
                     <Nav>

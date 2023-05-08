@@ -1,0 +1,60 @@
+/*basket product card */
+.basket-card-container{
+    margin: 25px;
+    padding: 5px;
+}
+.basket-card-box {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: flex-start;
+    align-items: baseline;
+    align-content: space-between;
+    width: 1200px;
+    height: auto;
+}
+.basket-card {
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    margin: 10px 5px 5px 20px;
+    padding: 25px;
+    width: 200px;
+    height: 310px;
+    background-color: white;
+
+    border-color: black;
+    box-shadow: 5px 5px 10px gray;
+    border-radius: 10px;
+}
+
+.basket-card Button{
+    width: 100%;
+}
+.basket-card .card-badge-span{
+    font-size: 12px;
+}
+.basket-card-description {
+    font-size: 12px;
+}
+
+.basket-card-img-box {
+    width: 150px;
+    height: 100px;
+}
+
+.basket-card-img{
+    width: 100%;
+    border-radius: 5px;
+}
+
+.basket-card:hover {
+    box-shadow: 5px 5px 10px black;
+}
+.basket-card a{
+    text-decoration: none;
+    color: black;
+}
+.basket-card a:hover{
+    text-decoration: underline;
+    color: darkblue;
+}

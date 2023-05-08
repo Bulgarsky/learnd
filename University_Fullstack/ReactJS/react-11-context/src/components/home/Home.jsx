@@ -1,10 +1,10 @@
-
 import React from 'react';
-import ProductCard from "./cart/productCard";
 import Slider from "./Slider";
 
 const Home = () => {
-    console.log("-> HOME Slider");
+
+    console.log("компонент Home");
+
     return (
         <div>
            <Slider/>

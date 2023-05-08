@@ -1,13 +1,14 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 import Header from "./components/Header";
-import Home from "./components/Home";
-import Feedback from "./components/Feedback";
-import ProductList from "./components/ProductList";
-import Favorites from "./components/favorites/Favorites";
-import Basket from "./components/basket/Basket";
+import Home from "./components/home/Home";
+import About from "./components/About/About";
+import Feedback from "./components/feedback/Feedback";
+import Products from "./components/Products";
+import Favorites from "./components/Favorites";
+import Basket from "./components/Basket";
+import Orders from "./components/Orders";
 import Footer from "./components/Footer";
-import Description from "./components/Description";
 
 import React, {useState, useEffect} from "react";
 import axios from 'axios';
@@ -30,7 +31,6 @@ import "./App.css";
 export const AppContext = React.createContext({});
 
 function App() {
-    console.log("-> APP.JSX Start");
     //для хранения товаров
     const [products, setProducts] = useState([]);
     //для хранения избранного
@@ -72,6 +72,7 @@ function App() {
         return favorites.some((objIsFavorite) => objIsFavorite.myId === myId);
     }
 
+    console.log('app.jsx');
     return (
         <AppContext.Provider
             value={
@@ -91,9 +92,10 @@ function App() {
                   <Header/>
                   <Routes>
                       <Route path='/' element={<Home />} />
+                      <Route path='/about' element={<About />} />
                       <Route path='/feedback' element={<Feedback/>} />
                       <Route path='/products' element={
-                          <ProductList
+                          <Products
                               item={products}
                               overlayItems={overlayItems}
                               setOverlayItems={setOverlayItems}
@@ -111,7 +113,7 @@ function App() {
                               setOverlayItems={setOverlayItems}
                           />}
                       />
-                      <Route path='/cart' element={
+                      <Route path='/basket' element={
                           <Basket
                               totalPrice={
                                 overlayItems.reduce((element = overlayItems.length, obj)=>
@@ -123,9 +125,12 @@ function App() {
                           />}
                       />
 
-                      <Route path='/desc'
-                             element={<Description />}
+                      <Route path='/orders' element={
+                          <Orders
+
+                          />}
                       />
+
                   </Routes>
                 <Footer/>
               </Router>

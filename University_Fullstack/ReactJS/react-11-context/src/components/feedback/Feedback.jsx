@@ -5,15 +5,14 @@ import axios from 'axios';
 
 const Feedback = () => {
     const { register, handleSubmit, watch, formState: { errors } } = useForm();
-    //const onSubmit = data => console.log(data);
-    console.log("-> Обратная связь");
 
     const onSubmit = (data) => {
         axios.post('https://642ea6618ca0fe3352d53368.mockapi.io/feedback', data);
         alert('Отправлено');
         console.log(watch(data));
-
     }
+
+    console.log('Компонент "Обратная связь"');
 
     return (
         <div  class="feedback-form" >

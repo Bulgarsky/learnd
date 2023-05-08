@@ -1,13 +1,13 @@
 import React from 'react';
-import ProductCard from "./cart/productCard";
+import ProductList from "./product/ProductList";
 
+const Products = (props) => {
 
+    console.log("компонент Products");
 
-const ProductList = (props) => {
-    console.log("-> рендер продукты");
     return (
         <div >
-           <ProductCard
+           <ProductList
                item={props.item}
                overalayItems={props.overlayItems}
                setOverlayItems={props.setOverlayItems}
@@ -18,4 +18,4 @@ const ProductList = (props) => {
     );
 };
 
-export default ProductList;
+export default Products;

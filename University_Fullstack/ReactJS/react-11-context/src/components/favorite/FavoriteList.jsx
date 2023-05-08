@@ -1,11 +1,11 @@
 import React from 'react';
 import axios from "axios";
 import {AppContext} from "../../App"
-import FavoriteItem from "./favoriteItem";
+import FavoriteItem from "./FavoriteItem";
 
-const Favorites = (props) => {
-    console.log("->рендер избранное");
+import "../../css/card.css"
 
+const FavoriteList = (props) => {
     const context = React.useContext(AppContext);
     const onAddOverlay = (obj) => {
         axios.post('https://64399fea90cd4ba563eae64a.mockapi.io/Cart', obj);
@@ -14,8 +14,10 @@ const Favorites = (props) => {
 
     const onDeleteFavorite = (id) => {
         axios.delete(`https://64399fea90cd4ba563eae64a.mockapi.io/Favorites/${id}`);
-        props.setFavorites((favorites)=> favorites.filter(item => item.id !== id));
+        context.setFavorites((favorites)=> favorites.filter(item => item.id !== id));
     }
+
+    console.log('рендер листа Избранное');
 
     return (
         <div className="card-container">
@@ -35,7 +37,7 @@ const Favorites = (props) => {
 
                         onDeleteFavorite={(id)=> {onDeleteFavorite(id)}}
 
-                        onBasket={(cartObj) => {onAddOverlay(cartObj)}}
+                        onAddBasket={(cartObj) => {onAddOverlay(cartObj)}}
                     />
                 )
                 })
@@ -46,4 +48,4 @@ const Favorites = (props) => {
     );
 };
 
-export default Favorites;
+export default FavoriteList;

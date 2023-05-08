@@ -1,9 +1,12 @@
 import React, {useState} from 'react';
+import {Button} from "react-bootstrap";
+
+import "../../css/card.css"
 import {AppContext} from "../../App";
-import {Badge, Button} from "react-bootstrap";
 
 const FavoriteItem = (props) => {
-    //const context = React.useContext(AppContext);
+
+    const context = React.useContext(AppContext);
     const [added, setAdded] = useState(false);
 
     const onClickAdd=()=>{
@@ -14,12 +17,13 @@ const FavoriteItem = (props) => {
         let description = props.description;
         let price = props.price;
         let img = props.img;
-        props.onBasket({title, description, price, img, id, myId});
+        context.onAddBasket({title, description, price, img, id, myId});
     }
 
     const  onDelete=()=> {
-        props.onDeleteFavorite(props.id)
+        context.onDeleteFavorite(props.id)
     }
+    console.log('карточки Избранное');
 
     return (
         <div className="card">
@@ -30,17 +34,17 @@ const FavoriteItem = (props) => {
                 </Button>
                 <br/>
                 <br/>
-                <h5>{props.title} {' '}
-                    {/*<Badge bg="dark">*/}
-                    {/*    <span className="card-badge-span">Новинка!</span>*/}
-                    {/*</Badge>*/}
-                </h5>
-                <img class="card-img" alt="img card" src={props.img} />
-                <p class="card-description">{props.description}</p>
-                <p><strong>Цена: </strong> {props.price} {' '}
-                    {/*<Badge bg="danger" width={20}>*/}
-                    {/*    <span className="card-badge-span">Скидка за комплект!</span>*/}
-                    {/*</Badge>*/}
+                <h5>{props.title} {' '}</h5>
+                <div class="card-img-box">
+                    <img class="card-img"
+                         alt="fav img card"
+                         src={props.img}/>
+                </div>
+                <p class="card-description">
+                    {props.description}
+                </p>
+                <p>
+                    <strong>Цена: </strong> {props.price} {' '}
                 </p>
                 <Button className='addBasket' variant='outline-dark'
                         onClick={onClickAdd}>
@@ -48,7 +52,7 @@ const FavoriteItem = (props) => {
                         ?
                         <img width={13}
                              src={added ? '/img/icons/checked.png' : ''}
-                             alt="" />
+                             alt="fav img" />
                         :
                         'Добавить в корзину'
                     }
