@@ -5,7 +5,7 @@ const ItemBasket = (props) => {
     return (
         <div class="card card-basket">
             <div>
-            <h5>{props.title}</h5>
+            <h5> {props.title}</h5>
             <img class="card-img"
                  src={props.img}/>
             <br/>

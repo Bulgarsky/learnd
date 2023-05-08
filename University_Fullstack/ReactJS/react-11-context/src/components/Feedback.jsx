@@ -11,13 +11,14 @@ const Feedback = () => {
     const onSubmit = (data) => {
         axios.post('https://642ea6618ca0fe3352d53368.mockapi.io/feedback', data);
         alert('Отправлено');
-        console.log('feedback data:'+ data);
+        console.log(watch(data));
 
     }
 
     return (
-        <div style={{margin: "50px", padding: "50px", width: "80%" }} >
+        <div  class="feedback-form" >
             <h2>Feedback us</h2>
+            <br/>
         <form onSubmit={handleSubmit(onSubmit)}>
             <div className="input-group mb-3">
                 <span className="input-group-text" id="inputGroup-sizing-default">Your name: </span>

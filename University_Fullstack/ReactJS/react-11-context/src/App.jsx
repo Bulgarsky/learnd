@@ -86,7 +86,7 @@ function App() {
                         isFavorite
                     }
                 }>
-          <div>
+          <div class="app">
               <Router>
                   <Header/>
                   <Routes>

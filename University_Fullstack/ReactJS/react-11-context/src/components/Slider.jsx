@@ -5,11 +5,10 @@ import {Badge} from "react-bootstrap";
 function Slider() {
     console.log("-> рендер слайдера");
     return (
-        <div>
+        <div class="slider">
         <Carousel>
             <Carousel.Item interval={1000}>
                 <img
-                    className="d-block w-100"
                     src="./img/surgut/1.jpg"
                     alt="First slide"
                 />
@@ -22,8 +21,7 @@ function Slider() {
                 </Carousel.Caption>
             </Carousel.Item>
             <Carousel.Item interval={5000}>
-                <img  height={800}
-                    className="d-block w-100"
+                <img
                     src="./img/surgut/2.jpg"
                     alt="Second slide"
                 />
@@ -33,8 +31,7 @@ function Slider() {
                 </Carousel.Caption>
             </Carousel.Item>
             <Carousel.Item interval={5000}>
-                <img height={800}
-                    className="d-block w-100"
+                <img
                     src="./img/surgut/3.jpg"
                     alt="Third slide"
                 />
@@ -46,8 +43,7 @@ function Slider() {
                 </Carousel.Caption>
             </Carousel.Item>
             <Carousel.Item interval={5000}>
-                <img height={800}
-                    className="d-block w-100"
+                <img
                     src="./img/surgut/4.jpg"
                     alt="Four slide"
                 />
@@ -59,8 +55,7 @@ function Slider() {
                 </Carousel.Caption>
             </Carousel.Item>
             <Carousel.Item interval={5000}>
-                <img height={800}
-                     className="d-block w-100"
+                <img
                      src="./img/surgut/5.jpg"
                      alt="Four slide"
                 />

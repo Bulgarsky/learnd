@@ -44,7 +44,7 @@ const ProductCard = (props) => {
     return (
         <div class="card-container">
             <h2>Our products:</h2>
-        <div class="card-box"  /*className='container py-3'*/>
+        <div class="card-box">
             {
             props.item.map(obj => {
                 return <CardItem
