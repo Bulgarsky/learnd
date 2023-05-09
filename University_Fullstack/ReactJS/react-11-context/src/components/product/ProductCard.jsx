@@ -37,7 +37,6 @@ const ProductCard = (props) => {
     return (
 
     <div class="card">
-        <div>
         {
             context.isFavorite(props.myId) === true ?
                 <Button className='addFavorite' variant='warning'
@@ -51,9 +50,7 @@ const ProductCard = (props) => {
                 </Button>
         }
         <br/>
-            <br/>
-        <h5>{props.title} {' '}
-        </h5>
+        <h5>{props.title} {' '}</h5>
             <div class="card-img-box">
                 <img className="card-img" alt="img card" src={props.img}/>
             </div>
@@ -73,7 +70,7 @@ const ProductCard = (props) => {
                 'Добавить в корзину'
             }
         </Button>
-        </div>
+
     </div>
 
 
