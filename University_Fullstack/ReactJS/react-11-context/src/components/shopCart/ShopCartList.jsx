@@ -1,11 +1,11 @@
 import React from "react";
-import BasketItem from "./BasketItem"
+import ShopCartItem from "./ShopCartItem"
 import {useForm} from "react-hook-form";
 import axios from "axios";
 
 import "../../css/basket.css";
 
-const BasketList = (props) => {
+const ShopCartList = (props) => {
     const {register, handleSubmit, watch, formState} = useForm();
 
     const onSubmit = (data) => {
@@ -36,7 +36,7 @@ const BasketList = (props) => {
                             {props.overlayProps.map(obj => {
                                 // ВЗЯТЬ ДАННЫЕ КАЖДОГО ТОВАРА И ПЕРЕДАТЬ В ФОРМУ
                                  return (
-                                    <BasketItem
+                                    <ShopCartItem
                                         key={obj.id}
                                         id={obj.id}
                                         myId={obj.myId}
@@ -66,4 +66,4 @@ const BasketList = (props) => {
     );
 };
 
-export default BasketList;
+export default ShopCartList;

@@ -1,11 +1,11 @@
 import React from 'react';
-import BasketList from "./basket/BasketList";
+import ShopCartList from "./shopCart/ShopCartList";
 
-const Basket = (props) => {
+const ShoppingCart = (props) => {
     console.log('Компонент Корзина');
     return (
         <div>
-            <BasketList
+            <ShopCartList
                 totalPrice={props.totalPrice}
                 overlayProps={props.overlayProps}
                 deleteItems={props.deleteItems}
@@ -14,4 +14,4 @@ const Basket = (props) => {
     );
 };
 
-export default Basket;
+export default ShoppingCart;

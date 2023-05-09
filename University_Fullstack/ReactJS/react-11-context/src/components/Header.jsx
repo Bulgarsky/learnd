@@ -32,6 +32,7 @@ const Header= () => {
                             <Link to={'/feedback'}>
                                 Feedback us
                             </Link>
+                            {' '}
                             <Spinner animation="grow" role="status" variant='warning' size="sm"/>
                         </Nav.Link>
 
@@ -48,8 +49,8 @@ const Header= () => {
                         </Nav.Link>
 
                         <Nav.Link>
-                            <Link to={'/basket'}>
-                                Basket
+                            <Link to={'/cart'}>
+                                Shopping cart
                             </Link>
                         </Nav.Link>
 

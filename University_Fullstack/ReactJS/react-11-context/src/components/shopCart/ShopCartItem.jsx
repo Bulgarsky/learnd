@@ -3,7 +3,7 @@ import {Button} from "react-bootstrap";
 
 import "../../css/basket.css"
 
-const BasketItem = (props) => {
+const ShopCartItem = (props) => {
 
     console.log('карточки Корзины');
 
@@ -28,4 +28,4 @@ const BasketItem = (props) => {
     );
 };
 
-export default BasketItem;
+export default ShopCartItem;
