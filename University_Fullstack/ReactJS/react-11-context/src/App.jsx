@@ -16,7 +16,6 @@ import {Route, Routes, BrowserRouter as Router} from 'react-router-dom';
 
 import "./App.css";
 
-
 //npm install
 //npm install react-bootstrap bootstrap
 //npm install -g react-devtools

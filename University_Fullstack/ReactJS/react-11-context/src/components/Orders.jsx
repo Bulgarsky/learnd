@@ -7,9 +7,6 @@ const Orders = () => {
 
     return (
         <div>
-            <h2>
-                Компонент Orders
-            </h2>
             <div>
                 <OrderList/>
             </div>

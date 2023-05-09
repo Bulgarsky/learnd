@@ -25,7 +25,10 @@ const BasketList = (props) => {
                                 <h4>Информация о заказе:</h4>
                                 <p>Итого: {props.totalPrice}</p>
                                 <button type='submit' className='w-30 btn btn-lg btn-primary'>Оформить заказ</button>
-                            <hr/>
+                                <br/>
+                                <br/>
+                                <hr/>
+                                <br/>
                                 <h3>Корзина:</h3>
                             </div>
                         </div>

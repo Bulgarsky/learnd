@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {Button} from "react-bootstrap";
 
-import "../../css/card.css"
+import "../../css/product_card.css"
 import {AppContext} from "../../App";
 
 const FavoriteItem = (props) => {

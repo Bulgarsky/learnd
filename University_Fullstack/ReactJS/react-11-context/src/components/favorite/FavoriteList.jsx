@@ -3,7 +3,7 @@ import axios from "axios";
 import {AppContext} from "../../App"
 import FavoriteItem from "./FavoriteItem";
 
-import "../../css/card.css"
+import "../../css/product_card.css"
 
 const FavoriteList = (props) => {
     const context = React.useContext(AppContext);

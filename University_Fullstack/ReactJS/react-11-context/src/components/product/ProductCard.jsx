@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import {Button} from "react-bootstrap";
 import {AppContext} from '../../App';
 
-import "../../css/card.css"
+import "../../css/product_card.css"
 
 const ProductCard = (props) => {
     const context = React.useContext(AppContext);

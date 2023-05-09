@@ -2,7 +2,7 @@ import React from 'react';
 import ProductCard from "./ProductCard";
 import axios from 'axios';
 
-import "../../css/card.css"
+import "../../css/product_card.css"
 import {AppContext} from "../../App";
 
 const ProductList = (props) => {

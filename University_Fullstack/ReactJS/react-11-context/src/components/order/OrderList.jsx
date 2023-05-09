@@ -1,12 +1,15 @@
 import React from 'react';
 import OrderItem from "./OrderItem";
 
+import "../../css/order.css"
+
 const OrderList = () => {
     return (
         <div>
-            <h3>Order List</h3>
-            <div>
-                <OrderItem/>
+            <div class="order-container">
+                <div class="order-box">
+                    <OrderItem/>
+                </div>
             </div>
         </div>
     );
