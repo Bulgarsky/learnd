@@ -22,7 +22,7 @@ const FavoriteList = (props) => {
     return (
         <div className="card-container">
         <h2>Your Favorites:</h2>
-        <div class="card-box" >
+        <div className="card-box" >
             {
                 props.favorites.map(obj => {
                     return (

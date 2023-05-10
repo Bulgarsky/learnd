@@ -47,9 +47,9 @@ const ProductList = (props) => {
     console.log(' -> рендер Продукт лист');
 
     return (
-        <div class="card-container">
+        <div className="card-container">
             <h3>Our products:</h3>
-        <div class="card-box">
+        <div className="card-box">
             {
             props.item.map(obj => {
                 return <ProductCard

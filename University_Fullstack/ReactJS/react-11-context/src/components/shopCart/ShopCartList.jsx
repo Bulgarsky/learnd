@@ -15,7 +15,7 @@ const ShopCartList = (props) => {
     console.log("-> рендер лист Корзины");
 
     return (
-        <div class="basket-card-container">
+        <div className="basket-card-container">
             <div>
                 {props.overlayProps.length >0 ?
                     <div>

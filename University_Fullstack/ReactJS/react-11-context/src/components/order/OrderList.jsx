@@ -6,8 +6,8 @@ import "../../css/order.css"
 const OrderList = () => {
     return (
         <div>
-            <div class="order-container">
-                <div class="order-box">
+            <div className="order-container">
+                <div className="order-box">
                     <OrderItem/>
                 </div>
             </div>

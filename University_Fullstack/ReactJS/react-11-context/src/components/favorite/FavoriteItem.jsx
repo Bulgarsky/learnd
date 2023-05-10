@@ -35,12 +35,12 @@ const FavoriteItem = (props) => {
                 <br/>
                 <br/>
                 <h5>{props.title} {' '}</h5>
-                <div class="card-img-box">
-                    <img class="card-img"
+                <div className="card-img-box">
+                    <img className="card-img"
                          alt="fav img card"
                          src={props.img}/>
                 </div>
-                <p class="card-description">
+                <p className="card-description">
                     {props.description}
                 </p>
                 <p>

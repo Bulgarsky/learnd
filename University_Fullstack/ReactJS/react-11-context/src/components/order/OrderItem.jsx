@@ -18,7 +18,7 @@ const OrderItem = () => {
                         <div className="order-product-box-column">
                             <div className="order-product-box-row" id="order-no">
                                 <h5>Заказ от: день месяц год</h5>
-                                <h7>номер заказа (ссылка)</h7>
+                                <h6>номер заказа (ссылка)</h6>
                             </div>
                             <div className="order-product-box-row" id="order-body">
                                 {/*маппинг*/}

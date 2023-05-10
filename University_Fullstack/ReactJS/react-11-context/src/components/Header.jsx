@@ -13,7 +13,7 @@ import {Link} from 'react-router-dom';
 const Header= () => {
     console.log("-> рендер HEADER");
     return (
-        <div class="header">
+        <div className="header">
             <Navbar bg="dark" variant="dark">
                 <Container>
                     <Navbar.Brand>
