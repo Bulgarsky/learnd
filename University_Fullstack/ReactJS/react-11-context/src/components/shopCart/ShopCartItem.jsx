@@ -1,21 +1,21 @@
 import React from 'react';
 import {Button} from "react-bootstrap";
 
-import "../../css/basket.css"
+import "../../css/ShopCart.css"
 
 const ShopCartItem = (props) => {
 
     console.log('карточки Корзины');
 
     return (
-        <div class="basket-card">
+        <div className="basket-card">
             <h5> {props.title}</h5>
-                <div class="basket-img-box">
-                    <img class="basket-card-img"
+                <div className="basket-img-box">
+                    <img className="basket-card-img"
                          alt="basket card img"
                          src={props.img}/>
                 </div>
-                <p class="basket-card-description">{props.description}</p>
+                <p className="basket-card-description">{props.description}</p>
                 <p>
                     <strong>Цена: </strong> {props.price}
                 </p>

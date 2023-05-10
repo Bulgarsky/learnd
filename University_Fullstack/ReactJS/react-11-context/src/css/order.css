@@ -54,7 +54,9 @@
 /* строки */
 .order-product-box-row{
     flex: 0 1 auto;
-
+}
+.order-product-box-row hr{
+    margin: 0;
 }
 /* номер заказа */
 #order-no{
@@ -83,9 +85,13 @@
 /*карточка товара*/
 .order-product-card{
     display: flex;
-    width: 100%;
     height: auto;
     background-color: ghostwhite;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+.order-product-card:hover{
+    background-color: whitesmoke;
 }
 .order-product-card-item{
     height: 100%;

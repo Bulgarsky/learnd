@@ -3,7 +3,7 @@ import ShopCartItem from "./ShopCartItem"
 import {useForm} from "react-hook-form";
 import axios from "axios";
 
-import "../../css/basket.css";
+import "../../css/ShopCart.css";
 
 const ShopCartList = (props) => {
     const {register, handleSubmit, watch, formState} = useForm();
@@ -30,26 +30,27 @@ const ShopCartList = (props) => {
                                 <hr/>
                                 <br/>
                                 <h3>Корзина:</h3>
+                                <div className="basket-card-box">
+                                    {props.overlayProps.map(obj => {
+                                        // ВЗЯТЬ ДАННЫЕ КАЖДОГО ТОВАРА И ПЕРЕДАТЬ В ФОРМУ
+                                        return (
+                                            <ShopCartItem
+                                                key={obj.id}
+                                                id={obj.id}
+                                                myId={obj.myId}
+                                                title={obj.title}
+                                                description={obj.description}
+                                                price={obj.price}
+                                                img={obj.img}
+                                                deleteItems={props.deleteItems}
+                                            />
+                                        )
+                                    })
+                                    }
+                                </div>
                             </div>
                         </div>
-                        <div class="basket-card-box">
-                            {props.overlayProps.map(obj => {
-                                // ВЗЯТЬ ДАННЫЕ КАЖДОГО ТОВАРА И ПЕРЕДАТЬ В ФОРМУ
-                                 return (
-                                    <ShopCartItem
-                                        key={obj.id}
-                                        id={obj.id}
-                                        myId={obj.myId}
-                                        title={obj.title}
-                                        description={obj.description}
-                                        price={obj.price}
-                                        img={obj.img}
-                                        deleteItems={props.deleteItems}
-                                    />
-                                )
-                            })
-                            }
-                        </div>
+
                         </form>
 
                     </div>
