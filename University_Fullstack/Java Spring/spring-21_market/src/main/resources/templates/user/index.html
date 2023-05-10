@@ -29,44 +29,37 @@
     </fieldset>
     <br>
     <div class="search">
-        <fieldset>
-            <legend>Сортировка, поиск, фильтрация</legend>
             <form th:method="POST" th:action="@{/account/search}">
-                <h3>Выберите параметры: </h3>
-                <label for="search"><strong>Поиск по наименованию: </strong></label>
-                <input type="text" id="search" name="search" th:value="*{value_search}"><br>
+                <label for="titleRequest"><strong>Наименование </strong></label>
+                <input type="text" id="titleRequest" name="titleRequest" th:value="*{value_titleTyped}"><br>
                 <br>
-                <strong>Цена: </strong>
-                <label for="priceFrom">От: </label>
+                <strong>Цена, </strong>
+                <label for="priceFrom">oт </label>
                 <input type="text" id="priceFrom" name="priceFrom" th:value="*{value_priceFrom}">
-                <label for="priceTo"> До </label>
+                <label for="priceTo"> до </label>
                 <input type="text" id="priceTo" name="priceTo" th:value="*{value_priceTo}"> <br>
-                <br>
-                <br>
                 <div>
-                    <strong>Отсортировать </strong>
-                    <input type="radio" id="ascendingPrice" name="price" value="sort_by_asc_price">
-                    <label for="ascendingPrice"> по возрастанию цены</label>
+                    <input type="radio" id="ascendingPrice" name="priceSort" value="priceSortByASC">
+                    <label for="ascendingPrice"> по возрастанию </label>
                     <span hidden> placeholder </span>
-                    <input type="radio" id="descendingPrice" name="price" value="sort_by_desc_price">
+                    <input type="radio" id="descendingPrice" name="priceSort" value="priceSortByDESC">
                     <label for="descendingPrice"> по убыванию цены</label><br>
-
-                    <span><strong>Категория товаров: </strong></span>
-                    <input type="radio" id="furniture" name="searchcategory" value="furniture=">
+                    <span><strong>Категория </strong></span>
+                    <br>
+                    <input type="radio" id="furniture" name="categorySelect" value="furniture">
                     <label for="furniture">Мебель</label>
-                    <input type="radio" id="clothes" name="searchcategory" value="clothes">
+                    <input type="radio" id="clothes" name="categorySelect" value="clothes">
                     <label for="clothes">Одежда</label>
-                    <input type="radio" id="appliance" name="searchcategory" value="appliance">
+                    <input type="radio" id="appliance" name="categorySelect" value="appliance">
                     <label for="appliance">Бытовая техника</label><br>
                     <br>
                     <input type="submit" value="Найти">
                 </div>
             </form>
-        </fieldset>
     </div>
 
     <div>
-            <div th:each="product: ${search_product}">
+            <div th:each="product: ${productFound}">
                 <div class="card">
                     <img th:src="'/img/'+${product.imageList[0].getFileName()}"
                          th:alt="${product.getTitle()}">

@@ -1,11 +1,7 @@
 package com.example.market.controllers;
 
 import com.example.market.enumm.Status;
-import com.example.market.models.Cart;
-import com.example.market.models.Order;
-import com.example.market.models.Person;
-import com.example.market.models.Product;
-import com.example.market.repositories.OrderRepository;
+import com.example.market.models.*;
 import com.example.market.repositories.ProductRepository;
 import com.example.market.security.PersonDetails;
 import com.example.market.services.CartService;
@@ -23,7 +19,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 import java.util.UUID;
 
 @Controller
@@ -33,15 +28,13 @@ public class MainController {
     private final ProductService productService;
     private final ProductRepository productRepository;
     private final CartService cartService;
-    private final OrderRepository orderRepository;
     private final OrderService orderService;
-    public MainController(PersonValidate personValidate, PersonService personService, ProductService productService, ProductRepository productRepository, CartService cartService, OrderRepository orderRepository, OrderService orderService) {
+    public MainController(PersonValidate personValidate, PersonService personService, ProductService productService, ProductRepository productRepository, CartService cartService, OrderService orderService) {
         this.personValidate = personValidate;
         this.personService = personService;
         this.productService = productService;
         this.productRepository = productRepository;
         this.cartService = cartService;
-        this.orderRepository = orderRepository;
         this.orderService = orderService;
     }
 
@@ -53,7 +46,7 @@ public class MainController {
         PersonDetails personDetails = (PersonDetails) authentication.getPrincipal();
         System.out.println("Проверка аккаунта после Auth");
         //получение роли
-        String role = personDetails.getPerson().getRole().toString();
+        String role = personDetails.getPerson().getRole();
         if(role.equals("ROLE_ADMIN")) {
             //данные для теста
             System.out.println("user login: " +personDetails.getPerson().getLogin());
@@ -94,63 +87,11 @@ public class MainController {
         return "/user/info";
     }
 
-    //поиск
-    @PostMapping("/account/search")
-    public String productSearch(
-            @RequestParam("search") String search,
-            @RequestParam("priceFrom") String priceFrom,
-            @RequestParam("priceTo") String priceTo,
-            @RequestParam(value="price", required = false, defaultValue = "") String price,
-            @RequestParam(value="searchcategory", required = false, defaultValue = "") String searchcategory,
-            Model model){
-        model.addAttribute("products", productService.getAllProduct());
-
-        if(!priceFrom.isEmpty() & !priceTo.isEmpty()) {
-            if (!price.isEmpty()) {
-                if (price.equals("sort_by_asc_price")) {
-                    if (!searchcategory.isEmpty()) {
-                        if (searchcategory.equals("furniture")) {
-                            model.addAttribute("search_product", productRepository.findByTitleAndCategoryOrderByPriceAsc(search.toLowerCase(), Float.parseFloat(priceFrom), Float.parseFloat(priceTo), 1));
-                        } else if (searchcategory.equals("appliance")) {
-                            model.addAttribute("search_product", productRepository.findByTitleAndCategoryOrderByPriceAsc(search.toLowerCase(), Float.parseFloat(priceFrom), Float.parseFloat(priceTo), 3));
-                        } else if (searchcategory.equals("clothes")) {
-                            model.addAttribute("search_product", productRepository.findByTitleAndCategoryOrderByPriceAsc(search.toLowerCase(), Float.parseFloat(priceFrom), Float.parseFloat(priceTo), 2));
-                        }
-                    } else {
-                        model.addAttribute("search_product", productRepository.findByTitleOrderByPriceAsc(search.toLowerCase(), Float.parseFloat(priceFrom), Float.parseFloat(priceTo)));
-                    }
-                } else if (price.equals("sort_by_desc_price")) {
-                    if (!searchcategory.isEmpty()) {
-                        if (searchcategory.equals("furniture")) {
-                            model.addAttribute("search_product", productRepository.findByTitleAndCategoryOrderByPriceDesc(search.toLowerCase(), Float.parseFloat(priceFrom), Float.parseFloat(priceTo), 1));
-                        } else if (searchcategory.equals("appliance")) {
-                            model.addAttribute("search_product", productRepository.findByTitleAndCategoryOrderByPriceDesc(search.toLowerCase(), Float.parseFloat(priceFrom), Float.parseFloat(priceTo), 3));
-                        } else if (searchcategory.equals("clothes")) {
-                            model.addAttribute("search_product", productRepository.findByTitleAndCategoryOrderByPriceDesc(search.toLowerCase(), Float.parseFloat(priceFrom), Float.parseFloat(priceTo), 2));
-                        }
-                    } else {
-                        model.addAttribute("search_product", productRepository.findByTitleOrderByPriceDesc(search.toLowerCase(), Float.parseFloat(priceFrom), Float.parseFloat(priceTo)));
-                    }
-                }
-            } else {
-                model.addAttribute("search_product", productRepository.findByTitleAndPriceGreaterThanEqualAndPriceLessThanEqual(search.toLowerCase(), Float.parseFloat(priceFrom), Float.parseFloat(priceTo)));
-            }
-        } else {
-            model.addAttribute("search_product", productRepository.findByTitleContainingIgnoreCase(search));
-        }
-
-        model.addAttribute("value_search", search);
-        model.addAttribute("value_priceFrom", priceFrom);
-        model.addAttribute("value_priceTo", priceTo);
-
-        return "user/index";
-    }
 
     //Корзина: добавить товар в корзину
     @GetMapping("/cart/add/{id}")
     public String addProductInCart(
-            @PathVariable("id")int id,
-            Model model){
+            @PathVariable("id")int id){
         //получить продукт по id
         Product product = productService.getProductId(id);
         //извлечь объект аутен.пользователя
@@ -198,7 +139,7 @@ public class MainController {
 
     //КОРЗИНА: удалить товары по id
     @GetMapping("/cart/delete/{id}")
-    public String deleteProductFromCart(Model model, @PathVariable("id") int id){
+    public String deleteProductFromCart(@PathVariable("id") int id){
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         PersonDetails personDetails = (PersonDetails) authentication.getPrincipal();
         int id_person = personDetails.getPerson().getId();
@@ -232,7 +173,7 @@ public class MainController {
         }
 
         //итоговая цена заказа
-        float totalPrice= 0;
+        float totalPrice = 0;
         for (Product item: productList) {
             totalPrice += item.getPrice();
         }
@@ -264,6 +205,157 @@ public class MainController {
         model.addAttribute("userOrders", orderList);
 
         return "user/orders";
+    }
+
+
+    //поиск товаров
+    @PostMapping("/account/search")
+    public String productSearch(
+            @RequestParam("titleRequest") String titleRequest,
+            @RequestParam("priceFrom") String priceFrom,
+            @RequestParam("priceTo") String priceTo,
+            @RequestParam(value="priceSort", required = false, defaultValue = "") String priceSort,
+            @RequestParam(value="categorySelect", required = false, defaultValue = "") String categorySelect,
+            Model model){
+        model.addAttribute("products", productService.getAllProduct());
+
+        //ГАВНО ПОИСК:
+        //3
+        //по части названия, цене "от и до", категория или без нее, с сортировкой
+        if(!titleRequest.isEmpty()) {
+            if (!priceFrom.isEmpty() & !priceTo.isEmpty()) {
+                if (priceSort.equals("priceSortByASC")) {
+                    if (!categorySelect.isEmpty()) {
+                        switch (categorySelect) {
+                            case "furniture" ->
+                                model.addAttribute("productFound", productRepository.findByTitleAndCategoryOrderByPriceAsc(titleRequest, Float.parseFloat(priceFrom), Float.parseFloat(priceTo), 1));
+                            case "clothes" ->
+                                    model.addAttribute("productFound", productRepository.findByTitleAndCategoryOrderByPriceAsc(titleRequest, Float.parseFloat(priceFrom), Float.parseFloat(priceTo), 2));
+                            case "appliance" ->
+                                    model.addAttribute("productFound", productRepository.findByTitleAndCategoryOrderByPriceAsc(titleRequest, Float.parseFloat(priceFrom), Float.parseFloat(priceTo), 3));
+                        }
+                    } else {
+                        model.addAttribute("productFound", productRepository.findByTitleOrderByPriceAsc(titleRequest, Float.parseFloat(priceFrom), Float.parseFloat(priceTo)));
+                    }
+                } else {
+                    //desc
+                    if (!categorySelect.isEmpty()) {
+                        switch (categorySelect) {
+                            case "furniture" ->
+                                    model.addAttribute("productFound", productRepository.findByTitleAndCategoryOrderByPriceDesc(titleRequest, Float.parseFloat(priceFrom), Float.parseFloat(priceTo), 1));
+                            case "clothes" ->
+                                    model.addAttribute("productFound", productRepository.findByTitleAndCategoryOrderByPriceDesc(titleRequest, Float.parseFloat(priceFrom), Float.parseFloat(priceTo), 2));
+                            case "appliance" ->
+                                    model.addAttribute("productFound", productRepository.findByTitleAndCategoryOrderByPriceDesc(titleRequest, Float.parseFloat(priceFrom), Float.parseFloat(priceTo), 3));
+                        }
+                    } else {
+                        model.addAttribute("productFound", productRepository.findByTitleOrderByPriceDesc(titleRequest, Float.parseFloat(priceFrom), Float.parseFloat(priceTo)));
+                    }
+                }
+            }
+        }
+
+
+        //2
+        //по части названия, категории, и сортировка по цене
+        if(!titleRequest.isEmpty()) {
+            if(!categorySelect.isEmpty()) {
+                if(priceSort.isEmpty() || priceSort.equals("priceSortByASC")) {
+                    switch (categorySelect) {
+                        case "furniture" ->
+                                model.addAttribute("productFound", productRepository.findByTitleContainingIgnoreCaseAndCategoryOrderByPriceAsc(titleRequest, 1));
+                        case "clothes" ->
+                                model.addAttribute("productFound", productRepository.findByTitleContainingIgnoreCaseAndCategoryOrderByPriceAsc(titleRequest,2));
+                        case "appliance" ->
+                                model.addAttribute("productFound", productRepository.findByTitleContainingIgnoreCaseAndCategoryOrderByPriceAsc(titleRequest,3));
+                    }
+                } else {
+                    switch (categorySelect) {
+                        case "furniture" ->
+                                model.addAttribute("productFound", productRepository.findByTitleContainingIgnoreCaseAndCategoryOrderByPriceDesc(titleRequest, 1));
+                        case "clothes" ->
+                                model.addAttribute("productFound", productRepository.findByTitleContainingIgnoreCaseAndCategoryOrderByPriceDesc(titleRequest,2));
+                        case "appliance" ->
+                                model.addAttribute("productFound", productRepository.findByTitleContainingIgnoreCaseAndCategoryOrderByPriceDesc(titleRequest,3));
+                    }
+                }
+            } else {
+                model.addAttribute("productFound", productRepository.findByTitleContainingIgnoreCase(titleRequest));
+            }
+        }
+
+        //1
+        //по части названия и сортировка по цене
+        if(!titleRequest.isEmpty() & (priceSort.isEmpty() || priceSort.equals("priceSortByASC"))) {
+           model.addAttribute("productFound", productRepository.findByTitleContainingIgnoreCaseOrderByPriceAsc(titleRequest));
+        } else
+            if (!titleRequest.isEmpty() & priceSort.equals("priceSortByDESC")) {
+            model.addAttribute("productFound", productRepository.findByTitleContainingIgnoreCaseOrderByPriceDesc(titleRequest));
+        }
+
+        //1
+        //по категории (остальные графы пустые) и сортировка по цене
+        if(!categorySelect.isEmpty()
+                //& priceFrom.isEmpty() &priceTo.isEmpty() & titleRequest.isEmpty()
+                & (priceSort.equals("priceSortByASC") || priceSort.isEmpty())
+            ){
+            switch (categorySelect) {
+                case "furniture" ->
+                        model.addAttribute("productFound", productRepository.findByCategoryAndOrderByPriceAsc(1));
+                case "clothes" ->
+                        model.addAttribute("productFound", productRepository.findByCategoryAndOrderByPriceAsc(2));
+                case "appliance" ->
+                        model.addAttribute("productFound", productRepository.findByCategoryAndOrderByPriceAsc(3));
+            }
+        } else if (!categorySelect.isEmpty()
+                //& titleRequest.isEmpty() & priceFrom.isEmpty() &priceTo.isEmpty()
+                & priceSort.equals("priceSortByDESC")
+                ){
+            switch (categorySelect) {
+                case "furniture" ->
+                        model.addAttribute("productFound", productRepository.findByCategoryAndOrderByPriceDesc(1));
+                case "clothes" ->
+                        model.addAttribute("productFound", productRepository.findByCategoryAndOrderByPriceDesc(2));
+                case "appliance" ->
+                        model.addAttribute("productFound", productRepository.findByCategoryAndOrderByPriceDesc(3));
+            }
+        }
+
+        //2
+        //по цене "от и до", категории и сортировка по цене
+        if(!priceFrom.isEmpty() & !priceTo.isEmpty() & (priceSort.equals("priceSortByASC") || priceSort.isEmpty())
+            ){
+            switch(categorySelect){
+                case "furniture" ->
+                    model.addAttribute("productFound", productRepository.findProductByPriceBetweenAndOrderByPriceAsc(Float.parseFloat(priceFrom), Float.parseFloat(priceTo), 1));
+                case "clothes" ->
+                        model.addAttribute("productFound", productRepository.findProductByPriceBetweenAndOrderByPriceAsc(Float.parseFloat(priceFrom), Float.parseFloat(priceTo), 2));
+                case "appliance" ->
+                        model.addAttribute("productFound", productRepository.findProductByPriceBetweenAndOrderByPriceAsc(Float.parseFloat(priceFrom), Float.parseFloat(priceTo), 3));
+            }
+        } else if(!priceFrom.isEmpty() & !priceTo.isEmpty() & priceSort.equals("priceSortByDESC")) {
+            switch (categorySelect) {
+                case "furniture" ->
+                        model.addAttribute("productFound", productRepository.findProductByPriceBetweenAndOrderByPriceDesc(Float.parseFloat(priceFrom), Float.parseFloat(priceTo), 1));
+                case "clothes" ->
+                        model.addAttribute("productFound", productRepository.findProductByPriceBetweenAndOrderByPriceDesc(Float.parseFloat(priceFrom), Float.parseFloat(priceTo), 2));
+                case "appliance" ->
+                        model.addAttribute("productFound", productRepository.findProductByPriceBetweenAndOrderByPriceDesc(Float.parseFloat(priceFrom), Float.parseFloat(priceTo), 3));
+            }
+        }
+
+        //1
+        //по цене "от и до" и сортировка по цене
+
+
+
+
+        model.addAttribute("value_priceSort", priceSort);
+        model.addAttribute("value_titleTyped", titleRequest);
+        model.addAttribute("value_priceFrom", priceFrom);
+        model.addAttribute("value_priceTo", priceTo);
+
+        return "user/index";
     }
 
 }
