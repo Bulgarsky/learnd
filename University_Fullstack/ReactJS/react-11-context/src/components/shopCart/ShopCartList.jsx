@@ -6,11 +6,18 @@ import axios from "axios";
 import "../../css/ShopCart.css";
 
 const ShopCartList = (props) => {
-    const {register, handleSubmit, watch, formState} = useForm();
+    const {
+        register,
+        handleSubmit,
+        watch,
+        formState} = useForm();
 
+    //отправить данные в Orders
     const onSubmit = (data) => {
         axios.post('https://6458d9b88badff578efca99e.mockapi.io/Orders', data);
     }
+
+    //Методы обработки данных ?
 
     console.log("-> рендер лист Корзины");
 
@@ -25,14 +32,12 @@ const ShopCartList = (props) => {
                                 <h4>Информация о заказе:</h4>
                                 <p>Итого: {props.totalPrice}</p>
                                 <button type='submit' className='w-30 btn btn-lg btn-primary'>Оформить заказ</button>
-                                <br/>
-                                <br/>
-                                <hr/>
+                                <br/><br/><hr/>
                                 <br/>
                                 <h3>Корзина:</h3>
                                 <div className="basket-card-box">
                                     {props.overlayProps.map(obj => {
-                                        // ВЗЯТЬ ДАННЫЕ КАЖДОГО ТОВАРА И ПЕРЕДАТЬ В ФОРМУ
+                                        // методы получения данных с каждого элемента ?
                                         return (
                                             <ShopCartItem
                                                 key={obj.id}
@@ -50,7 +55,6 @@ const ShopCartList = (props) => {
                                 </div>
                             </div>
                         </div>
-
                         </form>
 
                     </div>
