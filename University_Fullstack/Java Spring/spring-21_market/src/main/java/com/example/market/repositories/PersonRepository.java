@@ -16,5 +16,4 @@ public interface PersonRepository  extends JpaRepository <Person, Integer>{
     //найти пользователей по части логина
     Optional<Person> findByLoginContainingIgnoreCase(String login);
 
-
 }

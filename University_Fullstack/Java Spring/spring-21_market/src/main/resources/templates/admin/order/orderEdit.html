@@ -61,7 +61,7 @@
             <br>
 
               <label for="newStatus">Изм.: </label>
-              <select id="newStatus" value="set_New_Status" th:field="*{status}">
+              <select id="newStatus" name="newStatus" >
                 <option th:each="status : ${T(com.example.market.enumm.Status).values()}"
                         th:text="${status.toString()}"
                         th:value="${status}"
@@ -69,8 +69,6 @@
                 </option>
               </select>
               <button type="submit">Сохранить</button>
-
-
           </td>
         </tr>
         </tbody>

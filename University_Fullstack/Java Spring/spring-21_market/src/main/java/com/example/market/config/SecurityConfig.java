@@ -41,12 +41,12 @@ public class SecurityConfig{
                  */
 
                 //ПОСЛЕ ДОБАВЛЕНИЯ РОЛЕЙ
-                //настрйока доступа к странице для роли ADMIN (префикс отбрасывается)
+                //настрйока доступа к странице для роли ADMIN (префикс ROLE_ отбрасывается)
                 .requestMatchers("/admin","/admin/terminal", "/admin/users", "/admin/orders", "/admin/products").hasRole("ADMIN")
                 //настройка доступа страницам для других ролей
-                .requestMatchers("/","/auth", "/reg", "/error", "/resources/**", "/static/**", "/css/**", "/js/**", "/img/**", "/product", "/product/info/{id}", "/product/search").permitAll()
+                .requestMatchers("/", "/index", "/index/search", "/auth", "/reg", "/error", "/resources/**", "/static/**", "/css/**", "/js/**", "/img/**", "/product", "/product/info/{id}").permitAll()
                 //настройка доступа к остальным страницам для ролей
-                .anyRequest().hasAnyRole("USER", "ADMIN")
+                .anyRequest().hasAnyRole("USER", "ADMIN", "SELLER")
                 .and() //соединить компоненты в рамках одного кофнигаб дальше идет аутент
                 //на какой url -> будет оптравляться запрос при входе на защищ.стр.
                 .formLogin().loginPage("/auth")

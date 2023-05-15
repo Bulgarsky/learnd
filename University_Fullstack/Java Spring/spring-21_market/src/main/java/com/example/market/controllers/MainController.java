@@ -38,12 +38,14 @@ public class MainController {
         this.orderService = orderService;
     }
 
+    //Открыть главную страницу после авторизации
     @GetMapping("/account")
     public String index(Model model){
         //Получаем объект Аутентификациис помощью SpringContextHolder, обращаемся к контексту и на нем вызываем метод Auth.
         //Из сессии получаем объект, который был положен в данную сессию после аутенификации пользователя
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         PersonDetails personDetails = (PersonDetails) authentication.getPrincipal();
+
         System.out.println("Проверка аккаунта после Auth");
         //получение роли
         String role = personDetails.getPerson().getRole();
@@ -58,7 +60,9 @@ public class MainController {
         System.out.println("user role: "+personDetails.getPerson().getRole());
         //
         model.addAttribute("products", productService.getAllProduct());
-        return "user/index";
+        //пооложить объект из authentication для вывода на экран
+        model.addAttribute("userAuth", personDetails.getPerson());
+        return "/user/userIndex";
     }
 
     //Регистрация get
@@ -112,11 +116,11 @@ public class MainController {
     //Корзина: формирование
     @GetMapping("/cart")
     public String cart(Model model) {
-        //извлечь объект аутен.пользователя
+        //извлечь объект аутен. пользователя
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        // получаем person из объекта аут.пользователя
+        // получаем person из объекта аут. пользователя
         PersonDetails personDetails = (PersonDetails) authentication.getPrincipal();
-        //извлекаем id пользотваеля из объекта
+        //извлекаем id пользователя из объекта
         int id_person = personDetails.getPerson().getId();
 
         List<Cart> cartList = cartService.findByPersonId(id_person);
@@ -193,24 +197,24 @@ public class MainController {
     }
 
 
-    //Пользователь: вывести все заказы
-    @GetMapping("/orders")
-    public String userOrder(Model model){
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        PersonDetails personDetails = (PersonDetails) authentication.getPrincipal();
-        List<Order> orderList = orderService.findOrderByPerson(personDetails.getPerson());
+//    //Пользователь: вывести все заказы
+//    @GetMapping("/orders")
+//    public String userOrder(Model model){
+//        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+//        PersonDetails personDetails = (PersonDetails) authentication.getPrincipal();
+//        List<Order> orderList = orderService.findOrderByPerson(personDetails.getPerson());
+//
+//        //List<Order> orderList = orderRepository.findByPerson(personDetails.getPerson());
+//
+//        model.addAttribute("userOrders", orderList);
+//        model.addAttribute("userAuth", personDetails.getPerson());
+//        return "user/orders";
+//    }
 
-        //List<Order> orderList = orderRepository.findByPerson(personDetails.getPerson());
 
-        model.addAttribute("userOrders", orderList);
-
-        return "user/orders";
-    }
-
-
-    //поиск товаров
-    @PostMapping("/account/search")
-    public String productSearch(
+    //поиск товаров для user (работает)
+    @PostMapping("/user/search")
+    public String userProductSearch(
             @RequestParam("titleRequest") String titleRequest,
             @RequestParam("priceFrom") String priceFrom,
             @RequestParam("priceTo") String priceTo,
@@ -218,8 +222,10 @@ public class MainController {
             @RequestParam(value="categorySelect", required = false, defaultValue = "") String categorySelect,
             Model model){
         model.addAttribute("products", productService.getAllProduct());
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        PersonDetails personDetails = (PersonDetails) authentication.getPrincipal();
+        model.addAttribute("userAuth", personDetails.getPerson());
 
-        //ГАВНО ПОИСК:
         //3
         //по части названия, цене "от и до", категория или без нее, с сортировкой
         if(!titleRequest.isEmpty()) {
@@ -255,7 +261,6 @@ public class MainController {
             }
         }
 
-
         //2
         //по части названия, категории, и сортировка по цене
         if(!titleRequest.isEmpty()) {
@@ -282,23 +287,46 @@ public class MainController {
             } else {
                 model.addAttribute("productFound", productRepository.findByTitleContainingIgnoreCase(titleRequest));
             }
+        } else
+
+        //2
+        //по цене "от и до", категории и сортировка по цене -
+        if(!priceFrom.isEmpty() & !priceTo.isEmpty() & !categorySelect.isEmpty() & (priceSort.equals("priceSortByASC") || priceSort.isEmpty())
+            ){
+            switch(categorySelect){
+                case "furniture" ->
+                    model.addAttribute("productFound", productRepository.findByCategoryAndPriceAndOrderByPriceAsc(Float.parseFloat(priceFrom), Float.parseFloat(priceTo), 1));
+                case "clothes" ->
+                        model.addAttribute("productFound", productRepository.findByCategoryAndPriceAndOrderByPriceAsc(Float.parseFloat(priceFrom), Float.parseFloat(priceTo), 2));
+                case "appliance" ->
+                        model.addAttribute("productFound", productRepository.findByCategoryAndPriceAndOrderByPriceAsc(Float.parseFloat(priceFrom), Float.parseFloat(priceTo), 3));
+            }
+        } else if(!priceFrom.isEmpty() & !priceTo.isEmpty() & !categorySelect.isEmpty() & priceSort.equals("priceSortByDESC")) {
+            switch (categorySelect) {
+                case "furniture" ->
+                        model.addAttribute("productFound", productRepository.findByCategoryAndPriceAndOrderByPriceDesc(Float.parseFloat(priceFrom), Float.parseFloat(priceTo), 1));
+                case "clothes" ->
+                        model.addAttribute("productFound", productRepository.findByCategoryAndPriceAndOrderByPriceDesc(Float.parseFloat(priceFrom), Float.parseFloat(priceTo), 2));
+                case "appliance" ->
+                        model.addAttribute("productFound", productRepository.findByCategoryAndPriceAndOrderByPriceDesc(Float.parseFloat(priceFrom), Float.parseFloat(priceTo), 3));
+            }
         }
 
         //1
-        //по части названия и сортировка по цене
+        //по части названия и сортировка по цене +
         if(!titleRequest.isEmpty() & (priceSort.isEmpty() || priceSort.equals("priceSortByASC"))) {
-           model.addAttribute("productFound", productRepository.findByTitleContainingIgnoreCaseOrderByPriceAsc(titleRequest));
+            model.addAttribute("productFound", productRepository.findByTitleContainingIgnoreCaseOrderByPriceAsc(titleRequest));
         } else
-            if (!titleRequest.isEmpty() & priceSort.equals("priceSortByDESC")) {
+        if (!titleRequest.isEmpty() & priceSort.equals("priceSortByDESC")) {
             model.addAttribute("productFound", productRepository.findByTitleContainingIgnoreCaseOrderByPriceDesc(titleRequest));
         }
 
         //1
-        //по категории (остальные графы пустые) и сортировка по цене
+        //по категории (остальные графы пустые) и сортировка по цене +
         if(!categorySelect.isEmpty()
                 //& priceFrom.isEmpty() &priceTo.isEmpty() & titleRequest.isEmpty()
                 & (priceSort.equals("priceSortByASC") || priceSort.isEmpty())
-            ){
+        ){
             switch (categorySelect) {
                 case "furniture" ->
                         model.addAttribute("productFound", productRepository.findByCategoryAndOrderByPriceAsc(1));
@@ -310,7 +338,7 @@ public class MainController {
         } else if (!categorySelect.isEmpty()
                 //& titleRequest.isEmpty() & priceFrom.isEmpty() &priceTo.isEmpty()
                 & priceSort.equals("priceSortByDESC")
-                ){
+        ){
             switch (categorySelect) {
                 case "furniture" ->
                         model.addAttribute("productFound", productRepository.findByCategoryAndOrderByPriceDesc(1));
@@ -321,42 +349,25 @@ public class MainController {
             }
         }
 
-        //2
-        //по цене "от и до", категории и сортировка по цене
+        //1
+        //по цене "от и до" и сортировка по цене +
         if(!priceFrom.isEmpty() & !priceTo.isEmpty() & (priceSort.equals("priceSortByASC") || priceSort.isEmpty())
             ){
-            switch(categorySelect){
-                case "furniture" ->
-                    model.addAttribute("productFound", productRepository.findProductByPriceBetweenAndOrderByPriceAsc(Float.parseFloat(priceFrom), Float.parseFloat(priceTo), 1));
-                case "clothes" ->
-                        model.addAttribute("productFound", productRepository.findProductByPriceBetweenAndOrderByPriceAsc(Float.parseFloat(priceFrom), Float.parseFloat(priceTo), 2));
-                case "appliance" ->
-                        model.addAttribute("productFound", productRepository.findProductByPriceBetweenAndOrderByPriceAsc(Float.parseFloat(priceFrom), Float.parseFloat(priceTo), 3));
-            }
-        } else if(!priceFrom.isEmpty() & !priceTo.isEmpty() & priceSort.equals("priceSortByDESC")) {
-            switch (categorySelect) {
-                case "furniture" ->
-                        model.addAttribute("productFound", productRepository.findProductByPriceBetweenAndOrderByPriceDesc(Float.parseFloat(priceFrom), Float.parseFloat(priceTo), 1));
-                case "clothes" ->
-                        model.addAttribute("productFound", productRepository.findProductByPriceBetweenAndOrderByPriceDesc(Float.parseFloat(priceFrom), Float.parseFloat(priceTo), 2));
-                case "appliance" ->
-                        model.addAttribute("productFound", productRepository.findProductByPriceBetweenAndOrderByPriceDesc(Float.parseFloat(priceFrom), Float.parseFloat(priceTo), 3));
-            }
+            model.addAttribute("productFound", productRepository.findByPriceAndOrderByPriceAsc(Float.parseFloat(priceFrom), Float.parseFloat(priceTo)));
+        } else if (!priceFrom.isEmpty() & !priceTo.isEmpty() & (priceSort.equals("priceSortByDESC"))
+        ){
+            model.addAttribute("productFound", productRepository.findByPriceAndOrderByPriceDesc(Float.parseFloat(priceFrom), Float.parseFloat(priceTo)));
         }
-
-        //1
-        //по цене "от и до" и сортировка по цене
-
-
-
 
         model.addAttribute("value_priceSort", priceSort);
         model.addAttribute("value_titleTyped", titleRequest);
         model.addAttribute("value_priceFrom", priceFrom);
         model.addAttribute("value_priceTo", priceTo);
 
-        return "user/index";
+        return "/user/userIndex";
     }
+
+
 
 }
 

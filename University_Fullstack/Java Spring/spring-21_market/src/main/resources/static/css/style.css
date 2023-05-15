@@ -24,36 +24,57 @@ body {
 .card-box {
     display: flex;
     flex-flow: row wrap;
+
     justify-content: flex-start;
     align-items: baseline;
     align-content: space-between;
-    width: 1200px;
+    width: auto;
 }
-.card {
-    align-items: center;
+.productCard{
+    flex: 0 1 auto;
+    margin:10px;
+
+}
+.productCard-column {
+    display: flex;
+    flex-flow: column nowrap;
     justify-content: center;
-    text-align: center;
-    margin: 10px 5px 5px 20px;
-    padding: 25px;
-    width: 150px;
-    height: 220px;
+    align-items: center;
+
+    padding: 5px;
     background-color: white;
     border-style: none;
     box-shadow: 5px 5px 10px gray;
     border-radius: 5px;
+
+    height: 310px;
 }
-.card:hover {
+.productCard-column-element{
+    display: flex;
+    width: 180px;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+
+    flex-direction: row;
+}
+.productCard-column:hover {
     box-shadow: 5px 5px 10px black;
 }
-.card a{
+.productCard-column-element:nth-child(3) a{
+    height: 48px;
+}
+.productCard-column-element a{
     text-decoration: none;
     color: black;
 }
-.card a:hover{
-    text-decoration: underline;
+
+
+.productCard a:hover{
+    text-decoration: none;
     color: darkblue;
 }
-.card button {
+.productCard button {
     width: 100%;
     height: 30px;
     background-color: dodgerblue;
@@ -62,21 +83,35 @@ body {
     border-color: dodgerblue;
     color: white;
 }
-.card button:hover{
+.productCard button:hover{
     border-style: double;
     border-radius: 5px;
     background-color: dodgerblue;
     filter: brightness(0.95);
     color: white;
 }
-.card button:active{
+.productCard button:active{
     border-style: ridge;
     filter: brightness(0.95);
     color: white;
 }
-.card img{
+.productCard .imgbox {
+    width: 75px;
+    height: 100px;
+}
+.productCard img{
     width: 75px;
 }
+.productCard h6{
+    font-size: 12px;
+}
+.productCard hr{
+    margin:1px;
+}
+.productCard-title{
+    font-size: 12px;
+}
+
 .order {
     margin: 25px;
     padding: 20px;
@@ -175,4 +210,220 @@ body {
 }
 .order-search input:hover{
     border-color: dodgerblue;
+}
+
+/*войти или зарегистрироваться*/
+.auth-box {
+    margin: 25px;
+    padding: 20px;
+    width: 340px;
+    background-color: white;
+    border-style: none;
+    box-shadow: 5px 5px 10px black;
+    border-radius: 5px;
+}
+.auth-box button {
+    width: 175px;
+}
+
+.auth-box span {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+
+/**/
+/**/
+/*ADMIN PRODUCT CARDS*/
+.productCard{
+    width: auto;
+    height: auto;
+}
+.adminProductCard-column{
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: flex-start;
+    width: 100%;
+    margin: 5px;
+    padding: 5px
+}
+
+.adminProductCard-row {
+    display: flex;
+    align-items: flex-start;
+    width: 500px;
+    padding: 5px;
+    background-color: white;
+    border-style: none;
+    box-shadow: 5px 5px 10px gray;
+    border-radius: 5px;
+}
+.adminProductCard-row-element{
+    margin: 5px;
+    padding: 5px;
+    flex: 0 1 auto;
+    align-self: flex-start;
+}
+.adminProductCard-row-element img{
+   width: 75px;
+}
+
+.adminProductCard-row-element:nth-child(3) a{
+    width: 200px;
+}
+.adminProductCard-row-element a{
+    text-decoration: none;
+    color: black;
+}
+
+
+.adminProductCard-row-element a:hover{
+    text-decoration: none;
+    color: darkblue;
+}
+
+
+/*NEW ADMIN PRODUCT LIST*/
+.product-container {
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: baseline;
+    width: auto;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    flex-direction: row;
+}
+
+.product-container-row{
+    margin: 5px;
+    padding: 5px;
+    flex: 0 1 auto;
+
+}
+
+.product-card-box-twoline {
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: flex-start;
+    width: 100%;
+    border-style: none;
+    box-shadow: 5px 5px 10px gray;
+
+    border-radius: 5px;
+}
+.product-card-box-rows{
+    flex: 0 1 auto;
+}
+.product-card-box-rows:first-child{
+
+}
+.product-card-head {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    background-color: lightgray;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    font-size: 20px;
+    font-weight: 400;
+}
+.product-card-head-title{
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: flex-start;
+}
+.product-card-head-title-rows{
+    margin: 5px;
+    padding: 5px;
+    flex: 0 1 auto;
+}
+
+.product-card-head-blocks{
+    margin: 5px;
+    padding: 5px;
+    flex: 0 1 auto;
+}
+.product-card-head-blocks:first-child span {
+    padding-left: 10px;
+}
+
+.product-card-body {
+    display: flex;
+    align-items: flex-start;
+    align-content: flex-start;
+}
+.product-card-body-blocks{
+    margin: 5px;
+    padding: 5px;
+    flex: 0 1 auto;
+}
+.product-card-head-button-block{
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: flex-start;
+    align-content: flex-start;
+    flex-direction: row-reverse;
+}
+.product-card-head-button-rows{
+    margin: 5px;
+    padding: 5px;
+    flex: 0 1 auto;
+}
+
+
+.product-card-head-blocks:nth-child(1), .product-card-body-blocks:nth-child(1){
+    /*айди , картинка*/
+    width: 125px;
+}
+.product-card-head-blocks:nth-child(2), .product-card-body-blocks:nth-child(2),
+.product-card-head-blocks:nth-child(4), .product-card-body-blocks:nth-child(4){
+    /*пустышка*/
+    width: 15px;
+}
+.product-card-head-blocks:nth-child(3), .product-card-body-blocks:nth-child(3){
+    /*название в оглавлении*/
+    width: 500px;
+}
+.product-card-head-blocks:nth-child(5), .product-card-body-blocks:nth-child(5){
+    width: 130px;
+}
+.product-card-body-blocks img{
+    width: 100%;
+    border-radius: 5px;
+    box-shadow: 1px 1px 3px gray;
+}
+.product-card-body-desc{
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: flex-start;
+    align-content: flex-start;
+}
+.product-card-body-desc small{
+    font-size: 70%;
+    font-weight: 400;
+}
+.product-card-body-desc-rows{
+    margin: 5px;
+    padding: 5px;
+    flex: 0 1 auto;
+}
+
+.product-card-body-button-block{
+    display: flex;
+    flex-flow: column nowrap;
+    align-items: flex-start;
+    align-content: flex-start;
+
+}
+.product-card-body-button-rows{
+    margin: 5px;
+    padding: 5px;
+    flex: 0 1 auto;
+}
+.product-card-body-button-rows a {
+    width: 100px;
+}
+
+.product-card-head-button-rows a {
+    width: 38px;
 }

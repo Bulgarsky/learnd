@@ -24,6 +24,7 @@ public class ProductService {
         return productRepository.findAll();
     }
 
+
     //ТОВАРЫ: получить товар по id
     public Product getProductId(int id){
         Optional<Product> optionalProduct = productRepository.findById(id);

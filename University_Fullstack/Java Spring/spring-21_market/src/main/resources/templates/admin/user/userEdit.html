@@ -10,14 +10,16 @@
 <body>
 <h3>User role edit: </h3>
 <div class="block">
+
 <form th:method="POST"
       th:action="@{/admin/user/edit/{id}(id=${user.getId()})}"
       th:object="${user}">
-  <strong>Login: </strong><span th:text="${user.getLogin()}+' '"></span>
-    <span class="user-role" th:text="${user.getRole()}"></span><br>
+    <strong>login: </strong><span th:text="${user.getLogin()}">login</span>
+    <span class="user-role" th:text="${user.getRole()}">role</span><br>
+    <br>
   <br>
-  <label for="role">Изм.:</label>
-  <select id="role" th:field="*{role}">
+  <label for="newRole">Изм.:</label>
+  <select id="newRole" name="newRole">
     <option
             th:each="enumm : ${T(com.example.market.enumm.Role).values()}"
             th:text="${enumm.getDisplayValue()}"

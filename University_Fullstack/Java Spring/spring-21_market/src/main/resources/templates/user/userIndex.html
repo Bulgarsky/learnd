@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Home page</title>
+    <link th:href="@{/css/style.css}"
+          type="text/css"
+          rel="stylesheet">
+    <!--    bootstrap-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+</head>
+<body>
+<div>
+    <h3>Здравствуйте, <span th:text="${userAuth.getLogin()}">userName</span></h3>
+            <form method="post" th:action="@{/logout}">
+            <button type="submit" >Выйти из личного кабинета</button>
+        </form>
+        <br>
+        <form method="get" th:action="@{/cart}">
+            <button type="submit">Корзина</button>
+        </form>
+        <br>
+
+        <form method="get" th:action="@{/orders}">
+            <button type="submit">Заказы</button>
+        </form>
+        <br>
+
+<!--    БЛОК ПОИСКА-->
+    <br>
+    <div class="search">
+            <form th:method="POST" th:action="@{/user/search}">
+                <label for="titleRequest"><strong>Наименование </strong></label>
+                <input type="text" id="titleRequest" name="titleRequest" th:value="*{value_titleTyped}"><br>
+                <br>
+                <strong>Цена, </strong>
+                <label for="priceFrom">oт </label>
+                <input type="text" id="priceFrom" name="priceFrom" th:value="*{value_priceFrom}">
+                <label for="priceTo"> до </label>
+                <input type="text" id="priceTo" name="priceTo" th:value="*{value_priceTo}"> <br>
+                <div>
+                    <input type="radio" id="ascendingPrice" name="priceSort" value="priceSortByASC">
+                    <label for="ascendingPrice"> по возрастанию </label>
+                    <span hidden> placeholder </span>
+                    <input type="radio" id="descendingPrice" name="priceSort" value="priceSortByDESC">
+                    <label for="descendingPrice"> по убыванию цены</label><br>
+                    <span><strong>Категория </strong></span>
+                    <br>
+                    <input type="radio" id="furniture" name="categorySelect" value="furniture">
+                    <label for="furniture">Мебель</label>
+                    <input type="radio" id="clothes" name="categorySelect" value="clothes">
+                    <label for="clothes">Одежда</label>
+                    <input type="radio" id="appliance" name="categorySelect" value="appliance">
+                    <label for="appliance">Бытовая техника</label><br>
+                    <br>
+                    <input type="submit" value="Найти">
+                </div>
+            </form>
+    </div>
+<!--    результат поиска-->
+    <div class="card-box">
+        <div class="productCard" th:each="product: ${productFound}">
+            <div class="productCard-column">
+                <div class="productCard-column-element">
+                    <img
+                            th:src="'/img/'+${product.imageList[0].getFileName()}"
+                            th:alt="${product.getTitle()}">
+                </div>
+                <div class="productCard-column-element">
+                    <br>
+                </div>
+                <div class="productCard-column-element">
+                    <a th:href="@{/product/info/{id}(id=${product.getId()})}"
+                       th:text="${product.getTitle()}"
+                       target="_blank">
+                        product title</a>
+                </div>
+
+                <div class="productCard-column-element">
+                    <strong><span th:text="${product.getPrice()}">price</span></strong>
+                </div>
+                <div class="productCard-column-element">
+                    <br>
+                </div>
+                <div class="productCard-column-element">
+                    <a class="btn btn-primary"
+                       th:href="@{/cart/add/{id}(id=${product.getId()})}">
+                        Добавить в корзину
+                    </a>
+                </div>
+                <div class="productCard-column-element">
+                    <span class="productCard-title text-muted" th:text="${product.getCategory().getTitle()}+', '+${product.getSeller()}">product category</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br>
+    <hr>
+
+<!--  БЛОК доступные товары или блок со случайными товарами-->
+    <div class="card-box">
+        <div class="productCard" th:each="product: ${products}">
+            <div class="productCard-column">
+                <div class="productCard-column-element">
+                    <img
+                            th:src="'/img/'+${product.imageList[0].getFileName()}"
+                            th:alt="${product.getTitle()}">
+                </div>
+                <div class="productCard-column-element">
+                    <br>
+                </div>
+                <div class="productCard-column-element">
+                    <a th:href="@{/product/info/{id}(id=${product.getId()})}"
+                       th:text="${product.getTitle()}"
+                       target="_blank">
+                        product title</a>
+                </div>
+
+                <div class="productCard-column-element">
+                    <strong><span th:text="${product.getPrice()}">price</span></strong>
+                </div>
+                <div class="productCard-column-element">
+                    <br>
+                </div>
+                <div class="productCard-column-element">
+                    <a class="btn btn-primary"
+                       th:href="@{/cart/add/{id}(id=${product.getId()})}">
+                        Добавить в корзину
+                    </a>
+                </div>
+                <div class="productCard-column-element">
+                    <span class="productCard-title text-muted" th:text="${product.getCategory().getTitle()}+', '+${product.getSeller()}">product category</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <!--bootstrap js-->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</div>
+</body>
+</html>

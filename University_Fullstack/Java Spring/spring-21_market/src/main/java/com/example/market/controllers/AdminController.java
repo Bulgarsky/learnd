@@ -1,11 +1,16 @@
 package com.example.market.controllers;
+import com.example.market.enumm.Role;
 import com.example.market.models.*;
 import com.example.market.repositories.CategoryRepository;
+import com.example.market.repositories.ProductRepository;
+import com.example.market.security.PersonDetails;
 import com.example.market.services.OrderService;
 import com.example.market.services.PersonService;
 import com.example.market.services.ProductService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -28,20 +33,28 @@ public class AdminController {
     private final PersonService personService;
     private final OrderService orderService;
 
-    public AdminController(ProductService productService, CategoryRepository categoryRepository, PersonService personService, OrderService orderService) {
+    private final ProductRepository productRepository;
+
+    public AdminController(ProductService productService, CategoryRepository categoryRepository, PersonService personService, OrderService orderService, ProductRepository productRepository) {
         this.productService = productService;
         this.categoryRepository = categoryRepository;
         this.personService = personService;
         this.orderService = orderService;
+        this.productRepository = productRepository;
     }
     @GetMapping("/admin")
     public String admin(){
-        return "/admin/terminal";
+        return "admin/terminal";
     }
 
     @GetMapping("/admin/products")
     public String products(Model model){
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        PersonDetails personDetails = (PersonDetails) authentication.getPrincipal();
+
         model.addAttribute("products", productService.getAllProduct());
+        model.addAttribute("userAuth", personDetails.getPerson());
+
         return "admin/products";
     }
 
@@ -142,11 +155,12 @@ public class AdminController {
         productService.saveProduct(product, category_db);
         return "redirect:/admin";
     }
+
     //удаление товара по id
     @GetMapping("/admin/product/delete/{id}")
     public String deleteProduct(@PathVariable("id") int id){
         productService.deleteProduct(id);
-        return "redirect:/admin";
+        return "redirect:/admin/products";
     }
     //получение товара по id для редактирования
     @GetMapping("/admin/product/edit/{id}")
@@ -171,7 +185,8 @@ public class AdminController {
             return "product/editProduct";
         }
         productService.updateProduct(id, product);
-        return "redirect:/admin";
+
+        return "redirect:admin/products";
     }
 
     //USERS
@@ -192,6 +207,8 @@ public class AdminController {
         //получить заказы пользователя по его id
         model.addAttribute("userOrderList", orderService.findByPersonId(id));
         System.out.println("Открыта информация о пользователе");
+        Person person = personService.getPersonId(id);
+        System.out.println("person: "+person + ", login: "+person.getLogin()+", current role: "+person.getRole());
 
         return "/admin/user/userInfo";
     }
@@ -202,24 +219,32 @@ public class AdminController {
             Model model,
             @PathVariable("id") int id) {
         model.addAttribute("user", personService.getPersonId(id));
-        System.out.println("Получен пользователь для редактирования");
+        //данные для теста +
+        System.out.println("Получен пользователь для редактирования:");
+        System.out.println("логин: "+personService.getPersonId(id).getLogin());
+        System.out.println("роль: "+personService.getPersonId(id).getRole());
+
         return "admin/user/userEdit";
     }
 
-    //обновление пользователя НЕ РАБОТАЕТ!
+    //обновление пользователя (работает)
     @PostMapping("/admin/user/edit/{id}")
     public String personUpdate(
-            @ModelAttribute("user")
-            @Valid Person person,
-            BindingResult bindingResult,
             @PathVariable("id") int id,
+            @RequestParam("newRole") Role newRole,
             Model model){
-        if (bindingResult.hasErrors()){
-            System.out.println("Ошибка при редактировании пользования!");
-            return "admin/user/userEdit";
-        }
-        personService.updatePerson(id, person);
-        return "redirect:/admin/users";
+        //запросить пользователя по id cо страницы редактирования
+        Person person = personService.getPersonId(id);
+        //тестовые данные
+        System.out.println("новая роль: "+ newRole);
+        System.out.println("person: "+person + ", login: "+person.getLogin()+", current role: "+person.getRole());
+
+        //отправить id, person, newRole в метод
+        personService.setPersonNewRole(id, person, newRole);
+        //положить в модель пользователя, для вывода на страницу после редактирования
+        model.addAttribute("user", personService.getPersonId(id));
+
+        return "redirect:/admin/user/edit/{id}";
     }
 
     //удаление пользователя по id (работает)
@@ -235,11 +260,10 @@ public class AdminController {
     @GetMapping("/admin/orders")
     public String getAllOrder(Model model){
         model.addAttribute("allOrders", orderService.getAllOrder());
-
         return "/admin/orders";
     }
 
-    //вывести заказы выбранного пользователя по id ???
+    //вывести заказы выбранного пользователя (id) ???
     //не задействован
     public String getUserOrder(@PathVariable("id") int id, Model model){
         model.addAttribute("userOrders", orderService.findByPersonId(id));
@@ -253,28 +277,31 @@ public class AdminController {
         return "/admin/order/orderInfo";
     }
 
-    //редактировать заказ получив его по id
+    //получить заказ по id для редактирования
     @GetMapping("/admin/order/edit/{id}")
-    public String editOrder(Model model, @PathVariable("id") int id){
+    public String editOrder(
+            Model model,
+            @PathVariable("id") int id){
         model.addAttribute("orderEdit", orderService.findByOrderId(id));
-        model.addAttribute("newStatus", Status.values());
+        model.addAttribute("newStatus", Status.values()); // ??
         return "/admin/order/orderEdit";
     }
 
-    //Сохранить заказ после изменения статуса (не работает)
+    //Сохранить заказ после изменения статуса (работает)
     @PostMapping("/admin/order/edit/{id}")
     public String saveOrderStatus(@PathVariable("id") int id,
-                                  @ModelAttribute("orderEdit") Order order,
-                                  @RequestParam("set_New_Status") String newStatus,
+                                  @RequestParam("newStatus") Status newStatus,
                                   Model model){
-        model.addAttribute("set_New_Status", newStatus);
-        model.addAttribute("orderEdit", order);
+        Order order = orderService.findByOrderId(id);
         System.out.println("какой приходит статус при нажатии сохранить? " + newStatus);
-        orderService.updateOrder(id, newStatus, order);
-        return "redirect:/admin/order/orderInfo";
+
+        orderService.orderStatusUpdate(id, order, newStatus);
+
+        model.addAttribute("order", orderService.findByOrderId(id));
+        return "redirect:/admin/order/edit/{id}";
     }
 
-    //поиск заказа
+    //поиск заказа для админа
     @PostMapping("/admin/order/search")
     public String searchOrder(
             @RequestParam("order_search") String orderSearch,
@@ -288,5 +315,161 @@ public class AdminController {
         //вернуть слово использованное для поиска в графу поиска
         model.addAttribute("value_order_search", orderSearch);
         return "/admin/orders";
+    }
+
+    @PostMapping("/admin/search")
+    public String userProductSearch(
+            @RequestParam("titleRequest") String titleRequest,
+            @RequestParam("priceFrom") String priceFrom,
+            @RequestParam("priceTo") String priceTo,
+            @RequestParam(value="priceSort", required = false, defaultValue = "") String priceSort,
+            @RequestParam(value="categorySelect", required = false, defaultValue = "") String categorySelect,
+            Model model){
+        model.addAttribute("products", productService.getAllProduct());
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        PersonDetails personDetails = (PersonDetails) authentication.getPrincipal();
+        model.addAttribute("userAuth", personDetails.getPerson());
+
+        //3
+        //по части названия, цене "от и до", категория или без нее, с сортировкой
+        if(!titleRequest.isEmpty()) {
+            if (!priceFrom.isEmpty() & !priceTo.isEmpty()) {
+                if (priceSort.equals("priceSortByASC")) {
+                    if (!categorySelect.isEmpty()) {
+                        switch (categorySelect) {
+                            case "furniture" ->
+                                    model.addAttribute("productFound", productRepository.findByTitleAndCategoryOrderByPriceAsc(titleRequest, Float.parseFloat(priceFrom), Float.parseFloat(priceTo), 1));
+                            case "clothes" ->
+                                    model.addAttribute("productFound", productRepository.findByTitleAndCategoryOrderByPriceAsc(titleRequest, Float.parseFloat(priceFrom), Float.parseFloat(priceTo), 2));
+                            case "appliance" ->
+                                    model.addAttribute("productFound", productRepository.findByTitleAndCategoryOrderByPriceAsc(titleRequest, Float.parseFloat(priceFrom), Float.parseFloat(priceTo), 3));
+                        }
+                    } else {
+                        model.addAttribute("productFound", productRepository.findByTitleOrderByPriceAsc(titleRequest, Float.parseFloat(priceFrom), Float.parseFloat(priceTo)));
+                    }
+                } else {
+                    //desc
+                    if (!categorySelect.isEmpty()) {
+                        switch (categorySelect) {
+                            case "furniture" ->
+                                    model.addAttribute("productFound", productRepository.findByTitleAndCategoryOrderByPriceDesc(titleRequest, Float.parseFloat(priceFrom), Float.parseFloat(priceTo), 1));
+                            case "clothes" ->
+                                    model.addAttribute("productFound", productRepository.findByTitleAndCategoryOrderByPriceDesc(titleRequest, Float.parseFloat(priceFrom), Float.parseFloat(priceTo), 2));
+                            case "appliance" ->
+                                    model.addAttribute("productFound", productRepository.findByTitleAndCategoryOrderByPriceDesc(titleRequest, Float.parseFloat(priceFrom), Float.parseFloat(priceTo), 3));
+                        }
+                    } else {
+                        model.addAttribute("productFound", productRepository.findByTitleOrderByPriceDesc(titleRequest, Float.parseFloat(priceFrom), Float.parseFloat(priceTo)));
+                    }
+                }
+            }
+        }
+
+        //2
+        //по части названия, категории, и сортировка по цене
+        if(!titleRequest.isEmpty()) {
+            if(!categorySelect.isEmpty()) {
+                if(priceSort.isEmpty() || priceSort.equals("priceSortByASC")) {
+                    switch (categorySelect) {
+                        case "furniture" ->
+                                model.addAttribute("productFound", productRepository.findByTitleContainingIgnoreCaseAndCategoryOrderByPriceAsc(titleRequest, 1));
+                        case "clothes" ->
+                                model.addAttribute("productFound", productRepository.findByTitleContainingIgnoreCaseAndCategoryOrderByPriceAsc(titleRequest,2));
+                        case "appliance" ->
+                                model.addAttribute("productFound", productRepository.findByTitleContainingIgnoreCaseAndCategoryOrderByPriceAsc(titleRequest,3));
+                    }
+                } else {
+                    switch (categorySelect) {
+                        case "furniture" ->
+                                model.addAttribute("productFound", productRepository.findByTitleContainingIgnoreCaseAndCategoryOrderByPriceDesc(titleRequest, 1));
+                        case "clothes" ->
+                                model.addAttribute("productFound", productRepository.findByTitleContainingIgnoreCaseAndCategoryOrderByPriceDesc(titleRequest,2));
+                        case "appliance" ->
+                                model.addAttribute("productFound", productRepository.findByTitleContainingIgnoreCaseAndCategoryOrderByPriceDesc(titleRequest,3));
+                    }
+                }
+            } else {
+                model.addAttribute("productFound", productRepository.findByTitleContainingIgnoreCase(titleRequest));
+            }
+        } else
+
+            //2
+            //по цене "от и до", категории и сортировка по цене -
+            if(!priceFrom.isEmpty() & !priceTo.isEmpty() & !categorySelect.isEmpty() & (priceSort.equals("priceSortByASC") || priceSort.isEmpty())
+            ){
+                switch(categorySelect){
+                    case "furniture" ->
+                            model.addAttribute("productFound", productRepository.findByCategoryAndPriceAndOrderByPriceAsc(Float.parseFloat(priceFrom), Float.parseFloat(priceTo), 1));
+                    case "clothes" ->
+                            model.addAttribute("productFound", productRepository.findByCategoryAndPriceAndOrderByPriceAsc(Float.parseFloat(priceFrom), Float.parseFloat(priceTo), 2));
+                    case "appliance" ->
+                            model.addAttribute("productFound", productRepository.findByCategoryAndPriceAndOrderByPriceAsc(Float.parseFloat(priceFrom), Float.parseFloat(priceTo), 3));
+                }
+            } else if(!priceFrom.isEmpty() & !priceTo.isEmpty() & !categorySelect.isEmpty() & priceSort.equals("priceSortByDESC")) {
+                switch (categorySelect) {
+                    case "furniture" ->
+                            model.addAttribute("productFound", productRepository.findByCategoryAndPriceAndOrderByPriceDesc(Float.parseFloat(priceFrom), Float.parseFloat(priceTo), 1));
+                    case "clothes" ->
+                            model.addAttribute("productFound", productRepository.findByCategoryAndPriceAndOrderByPriceDesc(Float.parseFloat(priceFrom), Float.parseFloat(priceTo), 2));
+                    case "appliance" ->
+                            model.addAttribute("productFound", productRepository.findByCategoryAndPriceAndOrderByPriceDesc(Float.parseFloat(priceFrom), Float.parseFloat(priceTo), 3));
+                }
+            }
+
+        //1
+        //по части названия и сортировка по цене +
+        if(!titleRequest.isEmpty() & (priceSort.isEmpty() || priceSort.equals("priceSortByASC"))) {
+            model.addAttribute("productFound", productRepository.findByTitleContainingIgnoreCaseOrderByPriceAsc(titleRequest));
+        } else
+        if (!titleRequest.isEmpty() & priceSort.equals("priceSortByDESC")) {
+            model.addAttribute("productFound", productRepository.findByTitleContainingIgnoreCaseOrderByPriceDesc(titleRequest));
+        }
+
+        //1
+        //по категории (остальные графы пустые) и сортировка по цене +
+        if(!categorySelect.isEmpty()
+                //& priceFrom.isEmpty() &priceTo.isEmpty() & titleRequest.isEmpty()
+                & (priceSort.equals("priceSortByASC") || priceSort.isEmpty())
+        ){
+            switch (categorySelect) {
+                case "furniture" ->
+                        model.addAttribute("productFound", productRepository.findByCategoryAndOrderByPriceAsc(1));
+                case "clothes" ->
+                        model.addAttribute("productFound", productRepository.findByCategoryAndOrderByPriceAsc(2));
+                case "appliance" ->
+                        model.addAttribute("productFound", productRepository.findByCategoryAndOrderByPriceAsc(3));
+            }
+        } else if (!categorySelect.isEmpty()
+                //& titleRequest.isEmpty() & priceFrom.isEmpty() &priceTo.isEmpty()
+                & priceSort.equals("priceSortByDESC")
+        ){
+            switch (categorySelect) {
+                case "furniture" ->
+                        model.addAttribute("productFound", productRepository.findByCategoryAndOrderByPriceDesc(1));
+                case "clothes" ->
+                        model.addAttribute("productFound", productRepository.findByCategoryAndOrderByPriceDesc(2));
+                case "appliance" ->
+                        model.addAttribute("productFound", productRepository.findByCategoryAndOrderByPriceDesc(3));
+            }
+        }
+
+        //1
+        //по цене "от и до" и сортировка по цене +
+        if(!priceFrom.isEmpty() & !priceTo.isEmpty() & (priceSort.equals("priceSortByASC") || priceSort.isEmpty())
+        ){
+            model.addAttribute("productFound", productRepository.findByPriceAndOrderByPriceAsc(Float.parseFloat(priceFrom), Float.parseFloat(priceTo)));
+        } else if (!priceFrom.isEmpty() & !priceTo.isEmpty() & (priceSort.equals("priceSortByDESC"))
+        ){
+            model.addAttribute("productFound", productRepository.findByPriceAndOrderByPriceDesc(Float.parseFloat(priceFrom), Float.parseFloat(priceTo)));
+        }
+
+
+
+        model.addAttribute("value_priceSort", priceSort);
+        model.addAttribute("value_titleTyped", titleRequest);
+        model.addAttribute("value_priceFrom", priceFrom);
+        model.addAttribute("value_priceTo", priceTo);
+
+        return "/admin/products";
     }
 }

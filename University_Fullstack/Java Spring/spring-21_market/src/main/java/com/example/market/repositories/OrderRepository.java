@@ -24,7 +24,14 @@ public interface OrderRepository extends JpaRepository<Order, Integer> {
 
 
     //найти заказ по номеру заказа и по id пользователя
-    @Query(value="select * from order_list where person_id = &1 and orderNo = ?2", nativeQuery = true)
+    @Query(value="select * from order_list where person_id = ?1 and orderNo = ?2", nativeQuery = true)
     List<Order> findByPerson_IdAndAndOrderNo(int personId, String orderNo);
+
+
+    //История заказов: отобрать все заказы пользователя с принятым статусом
+    @Query(value="select * from order_list where person_id = ?1 and status= ?2", nativeQuery = true)
+    List<Order> findByPersonAndStatus(int personId, String statusReceived);
+
+    Order findOrderById(int id);
 
 }

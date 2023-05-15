@@ -25,5 +25,11 @@ public class AuthenticationController {
         model.addAttribute("products", productService.getAllProduct());
         return "index";
     }
+    @GetMapping("/index")
+    public String index2(Model model){
+        model.addAttribute("products", productService.getAllProduct());
+        return "index";
+    }
+
 
 }

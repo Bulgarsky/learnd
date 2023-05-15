@@ -1,8 +1,10 @@
 package com.example.market.services;
 
+import com.example.market.enumm.Role;
 import com.example.market.models.Person;
 import com.example.market.repositories.PersonRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -49,11 +51,12 @@ public class PersonService {
     }
 
     //обновить пользователя для админа (не работает)
-    @Transactional
-    public void updatePerson(int id, Person person){
-        person.setId(id);
-        //person.setRole(person.getRole());
-        personRepository.save(person);
+    public void setPersonNewRole(int id, Person person, Role newRole){
+        Person personUpdate = getPersonId(id);
+        personUpdate.setLogin(person.getLogin());
+        personUpdate.setPassword(person.getPassword());
+        personUpdate.setRole(newRole.toString());
+        personRepository.save(personUpdate);
     }
 
     //удалить пользователя из базы для админа (работает)

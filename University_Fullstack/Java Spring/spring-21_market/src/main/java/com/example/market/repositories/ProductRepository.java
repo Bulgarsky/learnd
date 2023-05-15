@@ -65,13 +65,13 @@ public interface ProductRepository extends JpaRepository<Product, Integer> {
     List<Product> findByCategoryAndOrderByPriceDesc(int category);
 
     //1
-    //Найти все товары, цена "от и до", без категории, отсортировать по цене
+    //Найти все товары, цена "от и до", отсортировать по цене
     // (по возрастанию)
     @Query(value = "select * from product where (price >= ?1 and price <=?2) order by price asc", nativeQuery = true)
-    List<Product> findAllLookingPriceAndOrderByPriceAsc(float priceFrom, float priceTo);
+    List<Product> findByPriceAndOrderByPriceAsc(float priceFrom, float priceTo);
     //По убыванию
-    @Query(value = "select * from product where (price >= ?1 and price <=?2) order by price asc", nativeQuery = true)
-    List<Product> findAllLookingPriceAndOrderByPriceDesc(float priceFrom, float priceTo);
+    @Query(value = "select * from product where (price >= ?1 and price <=?2) order by price desc", nativeQuery = true)
+    List<Product> findByPriceAndOrderByPriceDesc(float priceFrom, float priceTo);
 
 
     //Найти все товары, без категории отсортировать цену
@@ -86,11 +86,11 @@ public interface ProductRepository extends JpaRepository<Product, Integer> {
     //2
     //Найти все товары, цена "от и до", с категорией, сортировать
     //по возрастанию
-    @Query(value = "select * from product where (categoty_id = ?3) and (price >= ?1 and price <=?2) order by price asc", nativeQuery = true)
-    List<Product> findProductByPriceBetweenAndOrderByPriceAsc(float priceFrom, float priceTo, int category);
+    @Query(value = "select * from product where category_id = ?3 and (price >= ?1 and price <=?2) order by price asc", nativeQuery = true)
+    List<Product> findByCategoryAndPriceAndOrderByPriceAsc(float priceFrom, float priceTo, int category);
     //по убыванию
-    @Query(value = "select * from product where (categoty_id = ?3) and (price >= ?1 and price <=?2) order by price desc", nativeQuery = true)
-    List<Product> findProductByPriceBetweenAndOrderByPriceDesc(float priceFrom, float priceTo, int category);
+    @Query(value = "select * from product where category_id = ?3 and (price >= ?1 and price <=?2) order by price desc", nativeQuery = true)
+    List<Product> findByCategoryAndPriceAndOrderByPriceDesc(float priceFrom, float priceTo, int category);
 
 
 }
