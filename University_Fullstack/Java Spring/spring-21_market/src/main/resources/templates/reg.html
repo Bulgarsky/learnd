@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Registration</title>
-    <link th:href="@{/css/style.css}"
+    <title>Регистрация</title>
+    <link th:href="@{/css/auth.css}"
         type="text/css"
         rel="stylesheet">
 
@@ -14,38 +14,36 @@
 </head>
 <body>
 <div class="auth-box">
-  <a href="/auth">Войти</a> или <span>Зарегистрироваться:</span><br>
-    <br>
-    <form method="post" th:action="@{/reg}" th:object="${person}">
+    <form class="form-signin" method="post" th:action="@{/reg}" th:object="${person}">
         <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
 
-        <div class="form-group">
-            <label for="login">
-                <small class="form-text text-muted">Придумайте логин:</small>
-            </label>
+        <div class="text-center mb-4">
+            <img class="mb-4" th:src="@{/svg/mp_logo.svg}"
+                 alt="bulgarsky marketplace logo" width="72" height="72">
+            <h1 class="h3 mb-3 font-weight-normal">Bulgarsky Marketplace</h1>
+            <hr>
+            <small id="title_desc">Every customer is very important to us</small>
+        </div>
+        <div class="text-center">
+            <a href="/auth">Войти</a> или <strong>Зарегистрироваться</strong><br>
+        </div>
+        <br>
+
+        <div class="form-label-group">
             <input class="form-control" type="text" th:field="*{login}" id="login">
+            <label for="login">Придумайте логин</label>
             <div style="color: darkred" th:if="${#fields.hasErrors('login')}" th:errors="*{login}"></div>
         </div>
-        <div class="form-group">
-            <label for="password">
-                <small class="form-text text-muted">Придумайте пароль:</small>
-            </label>
+
+        <div class="form-label-group">
             <input class="form-control" type="password" th:field="*{password}" id="password">
+            <label for="login">Придумайте пароль</label>
             <div style="color: darkred" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></div>
         </div>
-       <!--
-      <br>
-      <label for="login"><strong>Login: </strong></label>
-      <input type="text" th:field="*{login}" id="login">
-      <div style="color: darkred" th:if="${#fields.hasErrors('login')}" th:errors="*{login}"></div>
-      <br>
-      <label for="password"><strong>Password: </strong></label>
-      <input type="password" th:field="*{password}" id="password"><br>
-      <br>
-      <div style="color: darkred" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></div>
-      <br>
-      -->
-      <button type="submit" class="btn btn-primary">Зарегистрироваться</button>
+        <button type="submit" class="btn btn-lg btn-primary btn-block">Зарегистрироваться</button>
+        <p class="mt-5 mb-3 text-muted text-center">
+            &copy; 2023 Bulgarsky
+        </p>
     </form>
 </div>
 
