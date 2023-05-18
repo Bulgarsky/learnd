@@ -1,0 +1,19 @@
+/*#svg-search:hover, #svg-smail:hover, #svg-package:hover, #svg-fav:hover, #svg-cart:hover, #svg-exit:hover{*/
+/*    color: dodgerblue;*/
+/*}*/
+
+svg{
+    fill: dodgerblue;
+}
+svg:hover{
+    fill: royalblue;
+}
+#svg-search, #svg-search:hover{
+    fill: white;
+}
+#svg-exit {
+    fill: crimson;
+}
+#svg-exit:hover {
+    fill: darkred;
+}
