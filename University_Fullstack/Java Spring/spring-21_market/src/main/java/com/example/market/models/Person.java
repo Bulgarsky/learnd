@@ -37,6 +37,8 @@ public class Person {
     @OneToMany(mappedBy="person", fetch = FetchType.EAGER)
     private List<Order> orderList;
 
+    @OneToMany(mappedBy = "person", fetch = FetchType.EAGER)
+    private List<ShippingAddress> shippingAddressList;
 
 
     public int getId() {

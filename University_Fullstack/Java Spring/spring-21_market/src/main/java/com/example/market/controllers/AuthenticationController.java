@@ -23,6 +23,8 @@ public class AuthenticationController {
     @GetMapping("/")
     public String index(Model model){
         model.addAttribute("products", productService.getAllProduct());
+        //вернуть рекламу
+        //вернуть категории
         return "index";
     }
     @GetMapping("/index")

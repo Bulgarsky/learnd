@@ -12,8 +12,30 @@ svg:hover{
     fill: white;
 }
 #svg-exit {
-    fill: crimson;
+    fill: green;
 }
 #svg-exit:hover {
     fill: darkred;
+}
+#svg-delete{
+    fill: orangered;
+}
+#svg-color-success{
+    fill: green;
+}
+#svg-color-secondary{
+    fill: dodgerblue;
+}
+
+.svg-bulgarsky-colors {
+    --color-cloud:dodgerblue;
+    --color-sun:gold;
+}
+
+.svg-bulgarsky-color:hover {
+    --color-cloud:#3949AB;
+    --color-sun:#FFBB00;
+}
+span #blg, span #blg-sky {
+   font-size: 24px;
 }

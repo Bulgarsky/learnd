@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Ваши адреса</title>
+    <link th:href="@{/css/style.css}"
+          type="text/css"
+          rel="stylesheet">
+    <link th:href="@{/css/navbar.css}"
+          type="text/css"
+          rel="stylesheet">
+    <link th:href="@{/css/btn-close.css}"
+          type="text/css"
+          rel="stylesheet">
+
+    <!--    bootstrap-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+<!--    &lt;!&ndash;    font awesome&ndash;&gt;-->
+<!--    &lt;!&ndash;    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">&ndash;&gt;-->
+<!--    <link th:href="@{/css/font-awesome.min.css}"-->
+<!--          type="text/css"-->
+<!--          rel="stylesheet">-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+
+</head>
+<body>
+<a href="/my">Назад на главную страницу</a>
+<hr>
+
+<br>
+<div class="text-dark fs-2 mb-3">
+    <i class="bi bi-houses"></i>
+    <span> Ваши адреса</span>
+</div>
+<br>
+<a href="/shipping/address/add" class="fs-4 mb-3">
+    <svg class="bi bi-house-add"
+            xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor"
+         viewBox="0 0 16 16">
+        <path d="M8.707 1.5a1 1 0 0 0-1.414 0L.646 8.146a.5.5 0 0 0 .708.708L2 8.207V13.5A1.5 1.5 0 0 0 3.5 15h4a.5.5 0 1 0 0-1h-4a.5.5 0 0 1-.5-.5V7.207l5-5 6.646 6.647a.5.5 0 0 0 .708-.708L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.707 1.5Z"/>
+        <path d="M16 12.5a3.5 3.5 0 1 1-7 0 3.5 3.5 0 0 1 7 0Zm-3.5-2a.5.5 0 0 0-.5.5v1h-1a.5.5 0 0 0 0 1h1v1a.5.5 0 1 0 1 0v-1h1a.5.5 0 1 0 0-1h-1v-1a.5.5 0 0 0-.5-.5Z"/>
+    </svg>
+    Добавить новый</a> | <br>
+<br>
+<div class="container" >
+    <div class="row gutter">
+
+        <div class="card col-md-4 min-width-380"
+             style="margin: 5px; padding: 5px"
+             th:each="address : ${userAddressesList}">
+            <div>
+                <div class="card-title">
+                    <span>
+                        <a th:href="@{/user/address/default/{id}(id=${address.getId()})}">
+                             <i class="bi bi-layout-sidebar-inset-reverse text-secondary"></i>
+                        </a>
+
+                        <span class style="color: rgb(112, 127, 141);"
+                           th:text="${address.getAddressStatus().getDisplayValue()}">
+                            статус
+                        </span>
+                    </span>
+                </div>
+
+                <div class="card-body">
+                    <span class="card-text"
+                          th:text="${address.getZip()}+', '+
+                            ${address.getCountry()}+', '+
+                            ${address.getState()}+', '+
+                            ${address.getCity()}+', '+
+                            ${address.getStreet()}+', '+
+                            ${address.getBuilding()}+', '+
+                            ${address.getApartment()}">
+                     адрес
+                    </span>
+                    <a th:href="@{/user/address/edit/{id}(id=${address.getId()})}" class="text-success">
+                        <i class="bi bi-pencil-fill fa-1x"></i>
+                    </a>
+                </div>
+
+                <div class="card-footer">
+                    <span style="color: rgb(58, 194, 103);">
+                        <small>Данный адрес подходит для доставки курьером</small>
+                    </span>
+                </div>
+
+
+                <div class="card-text d-flex flex-start">
+                    <div class="flex-fill" style="width: 75%;"></div>
+
+                    <div class="flex-fill flex-end">
+                        <a th:href="@{/user/address/delete/{id}(id=${address.getId()})}" class="text-danger">
+                            <i class="bi bi-trash3 fa-1x"></i>
+                            <span> Удалить</span>
+                        </a>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+
+
+</div>
+
+
+<!--    FOOTER-->
+<!--    FOOTER-->
+<nav class="navbar fixed-bottom navbar-outline-secondary bg-light">
+    <div>
+        <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" fill="currentColor" class="bi bi-cloud-sun" viewBox="0 0 16 16">
+            <symbol id="svg-bulgarsky">
+                <path id="svg-cloud" fill="var(--color-cloud)" d="M7 8a3.5 3.5 0 0 1 3.5 3.555.5.5 0 0 0 .624.492A1.503 1.503 0 0 1 13 13.5a1.5 1.5 0 0 1-1.5 1.5H3a2 2 0 1 1 .1-3.998.5.5 0 0 0 .51-.375A3.502 3.502 0 0 1 7 8zm4.473 3a4.5 4.5 0 0 0-8.72-.99A3 3 0 0 0 3 16h8.5a2.5 2.5 0 0 0 0-5h-.027z"/>
+                <path id="svg-sun" fill="var(--color-sun)" d="M10.5 1.5a.5.5 0 0 0-1 0v1a.5.5 0 0 0 1 0v-1zm3.743 1.964a.5.5 0 1 0-.707-.707l-.708.707a.5.5 0 0 0 .708.708l.707-.708zm-7.779-.707a.5.5 0 0 0-.707.707l.707.708a.5.5 0 1 0 .708-.708l-.708-.707zm1.734 3.374a2 2 0 1 1 3.296 2.198c.199.281.372.582.516.898a3 3 0 1 0-4.84-3.225c.352.011.696.055 1.028.129zm4.484 4.074c.6.215 1.125.59 1.522 1.072a.5.5 0 0 0 .039-.742l-.707-.707a.5.5 0 0 0-.854.377zM14.5 6.5a.5.5 0 0 0 0 1h1a.5.5 0 0 0 0-1h-1z"/>
+            </symbol>
+            <svg class="svg-bulgarsky-colors">
+                <use  xlink:href="#svg-bulgarsky" />
+            </svg>
+        </svg>
+        <a class="navbar-brand" href="https://github.com/Bulgarsky">
+            <span class="text-secondary">BULGAR</span>
+            <span class="text-primary">SKY</span>
+        </a><br>
+    </div>
+    <small>STACK: Backend (Spring (Boot, Valid, Security), Thymeleaf; </small>
+    <small>STACK: Frontend (html, css, bootstrap, fontawesome) </small>
+</nav>
+
+<!--Font Awesome-->
+<script src="https://kit.fontawesome.com/2585fe198d.js" crossorigin="anonymous"></script>
+<!--bootstrap js-->
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+</body>
+</html>

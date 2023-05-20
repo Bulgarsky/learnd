@@ -1,25 +1,68 @@
 package com.example.market.controllers;
 
 import com.example.market.enumm.Status;
+import com.example.market.models.Cart;
 import com.example.market.models.Order;
+import com.example.market.models.Product;
 import com.example.market.security.PersonDetails;
+import com.example.market.services.CartService;
 import com.example.market.services.OrderService;
+import com.example.market.services.ProductService;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 @Controller
 public class UserOrderController {
+    private final ProductService productService;
+    private final CartService cartService;
     private final OrderService orderService;
 
-    public UserOrderController(OrderService orderService) {
+    public UserOrderController(ProductService productService, CartService cartService, OrderService orderService) {
+        this.productService = productService;
+        this.cartService = cartService;
         this.orderService = orderService;
     }
 
+    //ЗАКАЗ: создать
+    @GetMapping("/order/create")
+    public String orderCreate(){
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        PersonDetails personDetails = (PersonDetails) authentication.getPrincipal();
+        int id_person = personDetails.getPerson().getId();
+
+        List<Cart> cartList = cartService.findByPersonId(id_person);
+        List<Product> productList = new ArrayList<>();
+
+        //получить продукты из корзины по id товара
+        for (Cart item: cartList) {
+            productList.add(productService.getProductId(item.getProductId()));
+        }
+
+        //итоговая цена заказа
+        float totalPrice = 0;
+        for (Product item: productList) {
+            totalPrice += item.getPrice();
+        }
+        //добавить соли
+        String uuid = UUID.randomUUID().toString();
+
+        for (Product product: productList) {
+            Order newOrder = new Order(uuid, product, personDetails.getPerson(), 1, product.getPrice(), Status.Принят);
+            orderService.saveOrder(newOrder);
+
+            //очистить корзину
+            cartService.deleteItemFromCart(product.getId());
+        }
+
+        return "redirect:/orders";
+    }
 
     //Пользователь: вывести все заказы
     @GetMapping("/orders")
@@ -27,8 +70,6 @@ public class UserOrderController {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         PersonDetails personDetails = (PersonDetails) authentication.getPrincipal();
         List<Order> orderList = orderService.findOrderByPerson(personDetails.getPerson());
-
-        //List<Order> orderList = orderRepository.findByPerson(personDetails.getPerson());
 
         model.addAttribute("userOrders", orderList);
         model.addAttribute("userAuth", personDetails.getPerson());
