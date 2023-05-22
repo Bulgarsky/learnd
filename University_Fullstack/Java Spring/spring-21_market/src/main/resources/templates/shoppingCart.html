@@ -6,43 +6,114 @@
     <link th:href="@{/css/style.css}"
           type="text/css"
           rel="stylesheet">
+    <link th:href="@{/css/navbar.css}"
+          type="text/css"
+          rel="stylesheet">
+    <link th:href="@{/css/btn-close.css}"
+          type="text/css"
+          rel="stylesheet">
+
+    <!--    bootstrap-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+
 </head>
 <body>
-<fieldset>
-    <a href="/my">Вернутся на главную</a> |
-    <a href="/orders">Мои заказы</a> |
-    <a href="/favorites">Избранное</a>
-    <br>
-    <br>
-    <legend>Корзина </legend>
-    <strong>Итоговая цена: </strong><span th:text="${total_price}"></span> | <a href="/order/create">Оформить заказ</a>
-    <hr>
-    <div class="cart" th:each="product : ${cart_product}">
-            <table>
-                <tbody>
-                <tr>
-                    <td>
-                        <img class="img-small"
-                             th:src="'/img/'+${product.imageList[0].getFileName()}"
-                             th:alt="${product.getTitle()}">
-                    </td>
-                    <td>
-                        <a th:href="@{/product/info/{id}(id=${product.getId()})}"
-                           th:text="${product.getTitle()}"
-                           target="_blank">
-                            link: product title</a><br>
-                        <br>
-                        <a th:href="@{/cart/delete/{id}(id=${product.getId()})}">Удалить</a>
-                    </td>
-                    <td>
-                        <span th:text="${product.getPrice()}">price</span>
-                    </td>
 
-                </tr>
-                </tbody>
-            </table>
+    <div>
+        <a href="/my">Вернутся на главную</a> |
+        <a href="/orders">Мои заказы</a> |
+        <a href="/favorites">Избранное</a>
     </div>
 
-</fieldset>
+    <hr>
+
+    <div class="container">
+        <div class="row">
+            <!-- товары -->
+            <div class="col-md-7">
+                <div class="row" th:each="product : ${cart_product}">
+                    <div class="card col-md-12 border border-secondary p-2 m-2">
+                        <!-- Карточка товара-->
+                        <div class="row no-gutters">
+                            <div class="col-md-2">
+                                <img class="img-small"
+                                             th:src="'/img/'+${product.imageList[0].getFileName()}"
+                                             th:alt="${product.getTitle()}"
+                                             width="100px">
+                            </div>
+                            <div class="col-md-8 text-left">
+                                <a th:href="@{/product/info/{id}(id=${product.getId()})}"
+                                               th:text="${product.getTitle()}"
+                                               target="_blank">
+                                                link: product title</a><br>
+                                <small class="text-muted" th:text="'Продавец: '+${product.getSeller()}"></small><br>
+                                <small class="text-muted" th:text="'Склад: '+${product.getWarehouse()}"></small><br>
+                            </div>
+                            <div class="col-md-2 text-left">
+                                    <span th:text="${product.getPrice()}+' руб'">price</span>
+                                    <small class="text-muted">1 шт</small><br>
+                                    <a th:href="@{/cart/delete/{id}(id=${product.getId()})}">Удалить</a>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-1">
+                <!--разделитель-->
+            </div>
+            <!-- блок оформить -->
+            <div class="col-md-4">
+                <div class="row">
+                    <div class="card col-md-12  border border-secondary">
+                        <div class="d-flex flex-column align-items-center text-center p-2 m-2">
+                            <button type="button" class="btn btn-success btn-block">Перейти к оформлению</button>
+                            <small class="text-muted">Доступные способы и время доставки можно выбрать при оформлении заказа</small>
+                            <hr>
+                            <div class="row text-left">
+                                <div class="col-md">
+                                    <div class="d-flex flex-column ">
+                                        <span class="lead">Ваша корзина: </span><br>
+                                        <span>Товары (<span th:text="${products_count}"></span>)</span>
+                                    </div>
+                                </div>
+                                <div class="col-md">
+                                    <div class="d-flex flex-column">
+                                        <span class="text-muted text-left" th:text="${products_count}+' товаров, вес:'+${products_count}+' кг'"></span>
+                                        <span class="text-muted" th:text="${total_price}"></span>
+                                    </div>
+                                </div>
+
+
+                            </div>
+                            <p>К оплате: <span class="text-right text-success lead font-weight-bold" th:text="${total_price}"></span> </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+        <!--Font Awesome-->
+        <script src="https://kit.fontawesome.com/2585fe198d.js" crossorigin="anonymous"></script>
+        <!--bootstrap js-->
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
 </body>
 </html>
