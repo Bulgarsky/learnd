@@ -60,7 +60,7 @@ public class MainController {
         System.out.println("user role: " + personDetails.getPerson().getRole());
         switch (role) {
             case "ROLE_USER" -> {
-                return "/user/userIndex";
+                return "/user/main";
             }
             case "ROLE_ADMIN" -> {
                 return "/admin/terminal";
@@ -100,7 +100,14 @@ public class MainController {
         return "/user/info";
     }
 
+    @GetMapping("/favorites")
+    public String fav(){
+        return "fav";
+    }
 
-
+    @GetMapping("/order/confirm")
+    public String orderConfirm(){
+        return "404";
+    }
 }
 

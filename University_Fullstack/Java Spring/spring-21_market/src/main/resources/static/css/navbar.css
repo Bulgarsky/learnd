@@ -39,3 +39,10 @@ svg:hover{
 span #blg, span #blg-sky {
    font-size: 24px;
 }
+
+#svg-current {
+    fill: gray;
+}
+#svg-current {
+    fill: dimgray;
+}
