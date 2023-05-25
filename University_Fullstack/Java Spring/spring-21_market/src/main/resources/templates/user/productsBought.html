@@ -2,13 +2,14 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Избранное</title>
+    <title>Купленные товары</title>
     <link th:href="@{/css/style.css}" type="text/css" rel="stylesheet">
     <link th:href="@{/css/navbar.css}" type="text/css" rel="stylesheet">
 
     <!--    bootstrap-->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+
 
 </head>
 <body>
@@ -27,7 +28,7 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
             <li class="nav-item active">
-                <span  class="text-muted">/ Избранное </span>
+                <span  class="text-muted">/ Купленные товары</span>
             </li>
             <li class="nav-item">
                 <span>
@@ -66,7 +67,7 @@
             <li class="nav-item">
                 <a class="nav-link" href="/my">
                     <!-- профиль - смайл-->
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" width="32" height="32" viewBox="0 0 24 24">
+                    <svg id="svg-current" xmlns="http://www.w3.org/2000/svg" fill="currentColor" width="32" height="32" viewBox="0 0 24 24">
                         <path d="M8 11a1 1 0 1 1-2 0 1 1 0 0 1 2 0Zm10 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0Zm-8.3 4.286c.016.015.185.165.5.323.376.187.971.391 1.8.391.829 0 1.425-.204 1.8-.391.175-.088.355-.19.5-.323a1 1 0 0 1 1.407 1.421C15.587 16.827 14.357 18 12 18c-2.358 0-3.587-1.173-3.707-1.293A1 1 0 0 1 9.7 15.286Z"></path>
                         <path d="M11 2a1 1 0 0 1 1-1c6.075 0 11 4.925 11 11s-4.925 11-11 11S1 18.075 1 12a11 11 0 0 1 6.23-9.914 1 1 0 0 1 1.36.524c.292.72.69 1.565 1.362 2.233C10.592 5.481 11.524 6 13 6a1 1 0 1 1 0 2c-2.024 0-3.458-.743-4.459-1.74-.6-.596-1.027-1.267-1.34-1.875A9 9 0 1 0 12 3a1 1 0 0 1-1.001-1Z"></path>
                     </svg>
@@ -82,9 +83,9 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a id="svg-current" class="nav-link" href="/favorites">
+                <a class="nav-link" href="/favorites">
                     <!-- избранное  -->
-                    <svg id="svg-current" xmlns="http://www.w3.org/2000/svg" fill="currentColor" width="32" height="32" viewBox="0 0 24 24">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" width="32" height="32" viewBox="0 0 24 24">
                         <path d="M7 5a4 4 0 0 0-4 4c0 3.552 2.218 6.296 4.621 8.22A21.525 21.525 0 0 0 12 19.91a21.58 21.58 0 0 0 4.377-2.69C18.78 15.294 21 12.551 21 9a4 4 0 0 0-4-4c-1.957 0-3.652 1.396-4.02 3.2a1 1 0 0 1-1.96 0C10.652 6.396 8.957 5 7 5Zm5 17c-.316-.02-.56-.147-.848-.278a23.542 23.542 0 0 1-4.781-2.942C3.777 16.705 1 13.449 1 9a6 6 0 0 1 6-6 6.183 6.183 0 0 1 5 2.568A6.183 6.183 0 0 1 17 3a6 6 0 0 1 6 6c0 4.448-2.78 7.705-5.375 9.78a23.599 23.599 0 0 1-4.78 2.942c-.543.249-.732.278-.845.278Z"></path>
                     </svg>
                 </a>
@@ -101,8 +102,6 @@
     </div>
 </nav>
 <hr>
-
-
 <!--Основной блок-->
 <div class="container-fluid ">
     <div class="row">
@@ -115,22 +114,22 @@
                     <path d="M11 2a1 1 0 0 1 1-1c6.075 0 11 4.925 11 11s-4.925 11-11 11S1 18.075 1 12a11 11 0 0 1 6.23-9.914 1 1 0 0 1 1.36.524c.292.72.69 1.565 1.362 2.233C10.592 5.481 11.524 6 13 6a1 1 0 1 1 0 2c-2.024 0-3.458-.743-4.459-1.74-.6-.596-1.027-1.267-1.34-1.875A9 9 0 1 0 12 3a1 1 0 0 1-1.001-1Z"></path>
                 </svg>
             </div>
-            <div class="mb-2">
-<!--                <strong th:text="${userAuth.getLogin()}">-->
+            <div class="mb-2 text-center">
+                <strong th:text="${userAuth.getLogin()}">
                 </strong>
             </div>
             <div>
                 <hr>
             </div>
             <div class="mb-2">
-                <span>
+                <span class="text-muted">
                     <strong>
                         Личная информация
                     </strong>
                 </span>
             </div>
             <div class="mb-2">
-                <a class="active" href="/my">
+                <a href="/index">
                     Главная
                 </a>
             </div>
@@ -169,7 +168,7 @@
                   </span>
             </div>
             <div class="mb-2">
-                <a th:href="@{/user/product/bought}">Купленные товары</a>
+                <a class="text-muted active" th:href="@{/user/product/bought}">Купленные товары</a>
             </div>
             <div class="mb-2">
                   <span>
@@ -227,14 +226,60 @@
             </div>
         </div>
 
-        <div class="orderbox col-10">
-            <h1> Favorites ... </h1>
+        <!-- вывод купленных товаров -->
+        <div class="col-8 m-1 p-1">
+            <div>
+                <h3> Купленные товары
+                    <sup class="text-top text-muted" th:text="' '+${userProductBoughtCount}+' ед.'"></sup>
+                </h3>
+                <hr>
+            </div>
+            <div class="row m-3 p-3">
+                <div class="productCard " th:each="product: ${userProductsBought}">
+                    <div class="productCard-column">
+                        <div class="productCard-column-element">
+                            <img
+                                    th:src="'/img/'+${product.imageList[0].getFileName()}"
+                                    th:alt="${product.getTitle()}">
+                        </div>
+                        <div class="productCard-column-element">
+                            <br>
+                        </div>
+                        <div class="productCard-column-element">
+                            <a th:href="@{/product/info/{id}(id=${product.getId()})}"
+                               th:text="${product.getTitle()}"
+                               target="_blank">
+                                product title</a>
+                        </div>
+
+                        <div class="productCard-column-element">
+                            <strong><span th:text="${product.getPrice()}">price</span></strong>
+                        </div>
+                        <div class="productCard-column-element">
+                            <br>
+                        </div>
+                        <div class="productCard-column-element">
+                            <a class="btn btn-primary"
+                               th:href="@{/cart/add/{id}(id=${product.getId()})}">
+                                Добавить в корзину
+                            </a>
+                        </div>
+                        <div class="productCard-column-element">
+                            <span class="productCard-title text-muted" th:text="${product.getCategory().getTitle()}+', '+${product.getSeller()}">product category</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
+
+
 
 
 
     </div>
 </div>
+
+
 
 
 

@@ -29,10 +29,21 @@ public class ShippingAddressService {
         return shippingAddressRepository.findAll();
     }
 
+    //найти адреса конкретного пользователя
     public List<ShippingAddress> findAddressesByPerson(Person person){
         List<ShippingAddress> shippingAddressList = shippingAddressRepository.findByPerson(person);
         return shippingAddressList;
     }
+    //найти адрес по умолчанию
+    public ShippingAddress findDefaultAddress(int person_id){
+        Optional<ShippingAddress> DefaultUserAddress = shippingAddressRepository.findByPersonDefaultAddress(person_id);
+
+        return DefaultUserAddress.orElse(null);
+    }
+
+
+
+
     //найти конкретный адрес по айди
     public  ShippingAddress getAddressById(int id){
         Optional<ShippingAddress> optionalShippingAddress = shippingAddressRepository.findById(id);
@@ -50,9 +61,13 @@ public class ShippingAddressService {
         newAddress.setStreet(address.getStreet());
         newAddress.setBuilding(address.getBuilding());
         newAddress.setApartment(address.getApartment());
-        newAddress.setAddressStatus(ADDRESS_STATUS);
+        //Проверка, если в базе нет адресов, тогда установить адрес по умолчанию, иначе задать обычный статус
+        if (shippingAddressRepository.findByPerson(person).isEmpty()) {
+            newAddress.setAddressStatus(DEFAULT_ADDRESS_STATUS);
+        }else {
+            newAddress.setAddressStatus(ADDRESS_STATUS);
+        }
         newAddress.setPerson(person);
-
         shippingAddressRepository.save(newAddress);
     }
     //обновить адрес
@@ -77,6 +92,7 @@ public class ShippingAddressService {
         shippingAddressRepository.deleteById(id);
     }
 
+    //установить статус адреса
     public void setDefault(int addressId, int personId, ShippingAddress currentAddress){
         Person person = personService.getPersonId(personId);
         List<ShippingAddress> addressList = shippingAddressRepository.findByPerson(person);
@@ -88,6 +104,7 @@ public class ShippingAddressService {
 
         ShippingAddressStatus newStatus = DEFAULT_ADDRESS_STATUS;
         updateAddress(addressId, currentAddress, newStatus, personId);
-
     }
+
+
 }

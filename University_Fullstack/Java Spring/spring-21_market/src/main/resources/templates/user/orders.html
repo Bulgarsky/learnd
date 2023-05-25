@@ -104,10 +104,10 @@
 </nav>
 <hr>
 
-<div class="container-fluid ">
+<div class="container-fluid max-width-1500">
     <div class="row">
         <!-- меню слева -->
-        <div class="col-2 fixed-width w-210 bg-light text-left">
+        <div class="col-2 fixed-width max-width-220 bg-light text-left">
 <!--        style="margin-top: 85px"-->
             <div class="align-item-center p-2 m-2">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" width="80" height="80" viewBox="0 0 24 24">
@@ -169,9 +169,7 @@
                   </span>
             </div>
             <div class="mb-2">
-                  <span>
-                     Купленные товары
-                  </span>
+                <a  th:href="@{/user/product/bought}">Купленные товары</a>
             </div>
             <div class="mb-2">
                   <span>
@@ -231,7 +229,7 @@
         </div>
 
         <!-- блок заказов -->
-        <div class="orderbox col-10">
+        <div class="orderbox col-10 max-width-1175">
             <!-- вкладки -->
             <div class="orderbox-header">
                 <ul class="nav nav-tabs card-header-tabs text-center">

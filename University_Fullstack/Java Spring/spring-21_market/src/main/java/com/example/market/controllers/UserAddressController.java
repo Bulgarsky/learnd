@@ -59,7 +59,6 @@ public class UserAddressController {
 
         ShippingAddress newAddress = new ShippingAddress(zip, country, state, city, street, building, apartment, ADDRESS_STATUS, personDetails.getPerson());
         shippingAddressService.saveAddress(newAddress, personId);
-//        shippingAddressService.saveAddress(shippingAddress, personId);
         return "redirect:/user/addresses";
     }
 
@@ -110,5 +109,7 @@ public class UserAddressController {
 
         return "redirect:/user/addresses";
     }
+
+
 
 }

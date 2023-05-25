@@ -7,6 +7,7 @@ import com.example.market.security.PersonDetails;
 import com.example.market.services.OrderService;
 import com.example.market.services.PersonService;
 import com.example.market.services.ProductService;
+import com.example.market.services.ShippingAddressService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.Authentication;
@@ -32,14 +33,16 @@ public class AdminController {
     private final CategoryRepository categoryRepository;
     private final PersonService personService;
     private final OrderService orderService;
+    private final ShippingAddressService shippingAddressService;
 
     private final ProductRepository productRepository;
 
-    public AdminController(ProductService productService, CategoryRepository categoryRepository, PersonService personService, OrderService orderService, ProductRepository productRepository) {
+    public AdminController(ProductService productService, CategoryRepository categoryRepository, PersonService personService, OrderService orderService, ShippingAddressService shippingAddressService, ProductRepository productRepository) {
         this.productService = productService;
         this.categoryRepository = categoryRepository;
         this.personService = personService;
         this.orderService = orderService;
+        this.shippingAddressService = shippingAddressService;
         this.productRepository = productRepository;
     }
     @GetMapping("/admin")
@@ -206,7 +209,18 @@ public class AdminController {
 
         //получить заказы пользователя по его id
         model.addAttribute("userOrderList", orderService.findByPersonId(id));
-        System.out.println("Открыта информация о пользователе");
+        //получить адрес по умолчанию
+
+        if (shippingAddressService.findDefaultAddress(id) != null) {
+            ShippingAddress userDefaultAddress = shippingAddressService.findDefaultAddress(id);
+            StringBuilder userDefaultAddressString = new StringBuilder(userDefaultAddress.getZip() + ", " + userDefaultAddress.getCountry()+ ", " +userDefaultAddress.getState()+ ", "+ userDefaultAddress.getCity()+ ", " + userDefaultAddress.getStreet()+", "+userDefaultAddress.getBuilding()+", "+userDefaultAddress.getApartment());
+            model.addAttribute("userDefaultAddress", userDefaultAddressString);
+        } else{
+            StringBuilder userDefaultAddressNotSet = new StringBuilder("пользователь не выбрал адрес доставки по умолчанию");
+            model.addAttribute("userDefaultAddress", userDefaultAddressNotSet);
+        }
+
+
         Person person = personService.getPersonId(id);
         System.out.println("person: "+person + ", login: "+person.getLogin()+", current role: "+person.getRole());
 
@@ -463,8 +477,7 @@ public class AdminController {
             model.addAttribute("productFound", productRepository.findByPriceAndOrderByPriceDesc(Float.parseFloat(priceFrom), Float.parseFloat(priceTo)));
         }
 
-
-
+        
         model.addAttribute("value_priceSort", priceSort);
         model.addAttribute("value_titleTyped", titleRequest);
         model.addAttribute("value_priceFrom", priceFrom);

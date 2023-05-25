@@ -17,6 +17,8 @@
     <strong>login: </strong><span th:text="${user.getLogin()}">login</span>
     <span class="user-role" th:text="${user.getRole()}">role</span><br>
     <br>
+    <span><strong>Адрес доставки:</strong></span><span th:text="' '+${userDefaultAddress}"></span>
+    <br>
     <a th:href="@{/admin/user/edit/{id}(id=${user.getId()})}"> Редактировать пользователя </a><br>
     <br>
     <a th:href="@{/admin/user/delete/{id}(id=${user.getId()})}"> Удалить пользователя </a><br>
@@ -29,12 +31,14 @@
 <div class="order" th:each="order : ${userOrderList}">
   <div class="order-caption">
     <table class="order-item">
+
       <tbody>
       <tr>
         <td id="order-item-caption-orderNo">
           <a th:href="@{/admin/order/info/{id}(id=${order.getId()})}"
              th:text="'Заказ от '+${#temporals.format(order.getDateTime(), 'dd MMM yyyy')}"></a><br>
-          <span th:text="${order.getOrderNo()}"></span>
+          <span th:text="${order.getOrderNo()}"></span><br>
+
         </td>
         <td id="order-item-caption-price">
           <b><span th:text="'Оплочено: '+${order.getPrice()}"></span></b>
@@ -46,7 +50,8 @@
         </td>
       </tr>
 
-      <tbody>
+      </tbody>
+
     </table>
   </div>
   <div>
@@ -73,6 +78,12 @@
         </td>
       </tr>
       </tbody>
+      <tfoot>
+      <tr>
+        <span><strong>Адрес:</strong></span>
+        <span th:text="' '+${userDefaultAddress}"></span>
+      </tr>
+      </tfoot>
     </table>
   </div>
 

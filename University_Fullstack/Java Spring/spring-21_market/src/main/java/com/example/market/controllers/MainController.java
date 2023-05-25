@@ -51,7 +51,7 @@ public class MainController {
 
         System.out.println("Проверка аккаунта после Auth");
 
-        model.addAttribute("products", productService.getAllProduct());
+//        model.addAttribute("products", productService.getAllProduct());
         model.addAttribute("userAuth", personDetails.getPerson());
 
         //получение роли
@@ -66,7 +66,7 @@ public class MainController {
                 return "/admin/terminal";
             }
             case "ROLE_SELLER" -> {
-                return "/seller";
+                return "/404";
             }
         }
 

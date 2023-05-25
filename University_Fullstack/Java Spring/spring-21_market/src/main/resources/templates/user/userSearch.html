@@ -53,9 +53,9 @@
                         <input type="text" id="byTitleRequest" name="byTitleRequest" th:value="*{titleTyped}"
                                class="form-control outline-primary" placeholder="Искать на маркетплейсе" aria-label="search" aria-describedby="basic-addon2">
                         <div class="input-group-append">
-                            <button class="btn btn-primary" type="submit">
+                            <button class="btn btn-secondary" type="submit">
 <!--                              поиск-->
-                                <svg id="svg-current" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="white" viewBox="0 0 24 24">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="white" viewBox="0 0 24 24">
                                     <path fill="currentColor" d="M11 5a6 6 0 1 0 0 12 6 6 0 0 0 0-12Zm-8 6a8 8 0 1 1 14.281 4.955l4.419 4.33a1 1 0 1 1-1.4 1.43l-4.444-4.357A8 8 0 0 1 3 11Z"></path>
                                 </svg>
                             </button>
@@ -106,124 +106,100 @@
     </div>
 
 </nav>
-
+<hr>
 
 <!--Большой поиск-->
 
-    <br>
-    <div class="search">
-            <form th:method="POST" th:action="@{/search/}">
-                <label for="titleRequestF"><strong>Наименование </strong></label>
-                <input type="text" id="titleRequestF" name="titleRequest" th:value="*{value_titleTyped}"><br>
-                <br>
-                <strong>Цена, </strong>
-                <label for="priceFrom">oт </label>
-                <input type="text" id="priceFrom" name="priceFrom" th:value="*{value_priceFrom}">
-                <label for="priceTo"> до </label>
-                <input type="text" id="priceTo" name="priceTo" th:value="*{value_priceTo}"> <br>
-                <div>
-                    <input type="radio" id="ascendingPrice" name="priceSort" value="priceSortByASC">
-                    <label for="ascendingPrice"> по возрастанию </label>
-                    <span hidden> placeholder </span>
-                    <input type="radio" id="descendingPrice" name="priceSort" value="priceSortByDESC">
-                    <label for="descendingPrice"> по убыванию цены</label><br>
-                    <span><strong>Категория </strong></span>
+<!--Основной блок-->
+<div class="container-fluid ">
+    <div class="row">
+        <!-- меню слева -->
+        <div class="col-2 bg-light text-left">
+            <form class="col-md-12" th:method="POST" th:action="@{/search/}">
+                    <label for="titleRequestF"><strong>Наименование </strong></label><br>
+                    <input type="text" id="titleRequestF" name="titleRequest" th:value="*{value_titleTyped}"><br>
                     <br>
-                    <input type="radio" id="furniture" name="categorySelect" value="furniture">
-                    <label for="furniture">Мебель</label>
-                    <input type="radio" id="clothes" name="categorySelect" value="clothes">
-                    <label for="clothes">Одежда</label>
-                    <input type="radio" id="appliance" name="categorySelect" value="appliance">
-                    <label for="appliance">Бытовая техника</label><br>
-                    <br>
-                    <input type="submit" value="Найти">
-                </div>
-            </form>
-    </div>
+                    <strong>Цена</strong><br>
+                    <label for="priceFrom">oт </label>
+                    <input type="text" id="priceFrom" name="priceFrom" th:value="*{value_priceFrom}"><br>
+                    <label for="priceTo"> до </label>
+                    <input type="text" id="priceTo" name="priceTo" th:value="*{value_priceTo}"> <br>
+
+                        <input type="radio" id="ascendingPrice" name="priceSort" value="priceSortByASC">
+                        <label for="ascendingPrice"> по возрастанию </label><br>
+                        <span hidden> placeholder </span>
+                        <input type="radio" id="descendingPrice" name="priceSort" value="priceSortByDESC">
+                        <label for="descendingPrice"> по убыванию цены</label><br>
+                        <span><strong>Категория </strong></span>
+                        <br>
+                        <input type="radio" id="furniture" name="categorySelect" value="furniture">
+                        <label for="furniture">Мебель</label><br>
+                        <input type="radio" id="clothes" name="categorySelect" value="clothes">
+                        <label for="clothes">Одежда</label><br>
+                        <input type="radio" id="appliance" name="categorySelect" value="appliance">
+                        <label for="appliance">Бытовая техника</label><br>
+                        <br>
+                    <button class="btn btn-primary" type="submit">Найти</button>
+                </form>
 
 
-<hr>
-<!--БЛОК ВЫВОДА ПОИСКА-->
-<div class="card-box">
-    <div class="productCard" th:each="product: ${productFound}">
-        <div class="productCard-column">
-            <div class="productCard-column-element">
-                <img
-                        th:src="'/img/'+${product.imageList[0].getFileName()}"
-                        th:alt="${product.getTitle()}">
-            </div>
-            <div class="productCard-column-element">
-                <br>
-            </div>
-            <div class="productCard-column-element">
-                <a th:href="@{/product/info/{id}(id=${product.getId()})}"
-                   th:text="${product.getTitle()}"
-                   target="_blank">
-                    product title</a>
-            </div>
-
-            <div class="productCard-column-element">
-                <strong><span th:text="${product.getPrice()}">price</span></strong>
-            </div>
-            <div class="productCard-column-element">
-                <br>
-            </div>
-            <div class="productCard-column-element">
-                <a class="btn btn-primary"
-                   th:href="@{/cart/add/{id}(id=${product.getId()})}">
-                    Добавить в корзину
-                </a>
-            </div>
-            <div class="productCard-column-element">
-                <span class="productCard-title text-muted" th:text="${product.getCategory().getTitle()}+', '+${product.getSeller()}">product category</span>
-            </div>
         </div>
+
+
+        <!-- результат поиска -->
+        <div class="orderbox col-8">
+            <!--БЛОК ВЫВОДА ПОИСКА-->
+            <div class="card-box">
+                <div class="productCard" th:each="product: ${productFound}">
+                    <div class="productCard-column">
+                        <div class="productCard-column-element">
+                            <img
+                                    th:src="'/img/'+${product.imageList[0].getFileName()}"
+                                    th:alt="${product.getTitle()}">
+                        </div>
+                        <div class="productCard-column-element">
+                            <br>
+                        </div>
+                        <div class="productCard-column-element">
+                            <a th:href="@{/product/info/{id}(id=${product.getId()})}"
+                               th:text="${product.getTitle()}"
+                               target="_blank">
+                                product title</a>
+                        </div>
+
+                        <div class="productCard-column-element">
+                            <strong><span th:text="${product.getPrice()}">price</span></strong>
+                        </div>
+                        <div class="productCard-column-element">
+                            <br>
+                        </div>
+                        <div class="productCard-column-element">
+                            <a class="btn btn-primary"
+                               th:href="@{/cart/add/{id}(id=${product.getId()})}">
+                                Добавить в корзину
+                            </a>
+                        </div>
+                        <div class="productCard-column-element">
+                            <span class="productCard-title text-muted" th:text="${product.getCategory().getTitle()}+', '+${product.getSeller()}">product category</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+
     </div>
 </div>
-<br>
 
 
-<!--    результат поиска-->
-<!--
-    <div class="card-box">
-        <div class="productCard" th:each="product: ${productFound}">
-            <div class="productCard-column">
-                <div class="productCard-column-element">
-                    <img
-                            th:src="'/img/'+${product.imageList[0].getFileName()}"
-                            th:alt="${product.getTitle()}">
-                </div>
-                <div class="productCard-column-element">
-                    <br>
-                </div>
-                <div class="productCard-column-element">
-                    <a th:href="@{/product/info/{id}(id=${product.getId()})}"
-                       th:text="${product.getTitle()}"
-                       target="_blank">
-                        product title</a>
-                </div>
 
-                <div class="productCard-column-element">
-                    <strong><span th:text="${product.getPrice()}">price</span></strong>
-                </div>
-                <div class="productCard-column-element">
-                    <br>
-                </div>
-                <div class="productCard-column-element">
-                    <a class="btn btn-primary"
-                       th:href="@{/cart/add/{id}(id=${product.getId()})}">
-                        Добавить в корзину
-                    </a>
-                </div>
-                <div class="productCard-column-element">
-                    <span class="productCard-title text-muted" th:text="${product.getCategory().getTitle()}+', '+${product.getSeller()}">product category</span>
-                </div>
-            </div>
-        </div>
-    </div>
-    <br>
-    <hr>
--->
+
+
+
+
+
+
 
 
 
