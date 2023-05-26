@@ -13,6 +13,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 import static com.example.market.enumm.ShippingAddressStatus.ADDRESS_STATUS;
 
 
@@ -32,7 +34,16 @@ public class UserAddressController {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         PersonDetails personDetails = (PersonDetails) authentication.getPrincipal();
 
-        model.addAttribute("userAddressesList", shippingAddressService.findAddressesByPerson(personDetails.getPerson()));
+        List<ShippingAddress> userAddressList = shippingAddressService.findAddressesByPerson(personDetails.getPerson());
+
+        int addressCount=0;
+        for (ShippingAddress address: userAddressList) {
+            addressCount+=1;
+        }
+
+        model.addAttribute("userAuth", personDetails.getPerson());
+        model.addAttribute("userAddressesList", userAddressList);
+        model.addAttribute("userAddressCount", addressCount);
         return "/user/userAddresses";
     }
 

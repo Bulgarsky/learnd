@@ -22,6 +22,7 @@ import com.example.market.enumm.Status;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 import java.util.UUID;
 
 @Controller
@@ -54,9 +55,10 @@ public class AdminController {
     public String products(Model model){
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         PersonDetails personDetails = (PersonDetails) authentication.getPrincipal();
-
+        Person currentPerson = personDetails.getPerson();
+        model.addAttribute("userAuth", currentPerson);
         model.addAttribute("products", productService.getAllProduct());
-        model.addAttribute("userAuth", personDetails.getPerson());
+
 
         return "admin/products";
     }
@@ -64,6 +66,11 @@ public class AdminController {
     //ТОВАР: добавление позиции
     @GetMapping("/admin/product/add")
     public String addProduct(Model model){
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        PersonDetails personDetails = (PersonDetails) authentication.getPrincipal();
+        Person currentPerson = personDetails.getPerson();
+        model.addAttribute("userAuth", currentPerson);
+
         model.addAttribute("product", new Product());
         model.addAttribute("category", categoryRepository.findAll());
         return "product/addProduct";
@@ -183,6 +190,7 @@ public class AdminController {
             BindingResult bindingResult,
             @PathVariable("id") int id,
             Model model){
+
         if (bindingResult.hasErrors()){
             model.addAttribute("category", categoryRepository.findAll());
             return "product/editProduct";
@@ -196,7 +204,17 @@ public class AdminController {
     //получить список пользователей
     @GetMapping("/admin/users")
     public String getAllPerson(Model model){
-        model.addAttribute("userList", personService.getAllPerson());
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        PersonDetails personDetails = (PersonDetails) authentication.getPrincipal();
+        Person currentPerson = personDetails.getPerson();
+        model.addAttribute("userAuth", currentPerson);
+        int userCount = 0;
+        List<Person> userList = personService.getAllPerson();
+        for (Person person: userList) {
+            userCount+=1;
+        }
+        model.addAttribute("userCount", userCount);
+        model.addAttribute("userList", userList);
 
         return "/admin/users";
     }
@@ -204,6 +222,11 @@ public class AdminController {
     //получить информацию по пользователю (работает)
     @GetMapping("/user/info/{id}")
     public String personInfo(@PathVariable("id") int id, Model model){
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        PersonDetails personDetails = (PersonDetails) authentication.getPrincipal();
+        Person currentPerson = personDetails.getPerson();
+        model.addAttribute("userAuth", currentPerson);
+
         //получить информацию по пользователе по его id
         model.addAttribute("user", personService.getPersonId(id));
 
@@ -232,6 +255,11 @@ public class AdminController {
     public String personEdit(
             Model model,
             @PathVariable("id") int id) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        PersonDetails personDetails = (PersonDetails) authentication.getPrincipal();
+        Person currentPerson = personDetails.getPerson();
+        model.addAttribute("userAuth", currentPerson);
+
         model.addAttribute("user", personService.getPersonId(id));
         //данные для теста +
         System.out.println("Получен пользователь для редактирования:");
@@ -273,6 +301,11 @@ public class AdminController {
     //вывести список всех заказов для администратора (работает)
     @GetMapping("/admin/orders")
     public String getAllOrder(Model model){
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        PersonDetails personDetails = (PersonDetails) authentication.getPrincipal();
+        Person currentPerson = personDetails.getPerson();
+        model.addAttribute("userAuth", currentPerson);
+
         model.addAttribute("allOrders", orderService.getAllOrder());
         return "/admin/orders";
     }
@@ -287,6 +320,22 @@ public class AdminController {
     //вывести информацию заказа по его id
     @GetMapping("/admin/order/info/{id}")
     public String getOrderInfo(@PathVariable("id") int id, Model model){
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        PersonDetails personDetails = (PersonDetails) authentication.getPrincipal();
+        Person currentPerson = personDetails.getPerson();
+        model.addAttribute("userAuth", currentPerson);
+
+        int person_id = orderService.findByOrderId(id).getPerson().getId();
+        if (shippingAddressService.findDefaultAddress(person_id) != null) {
+            ShippingAddress userDefaultAddress = shippingAddressService.findDefaultAddress(person_id);
+            StringBuilder userDefaultAddressString = new StringBuilder(userDefaultAddress.getZip() + ", " + userDefaultAddress.getCountry()+ ", " +userDefaultAddress.getState()+ ", "+ userDefaultAddress.getCity()+ ", " + userDefaultAddress.getStreet()+", "+userDefaultAddress.getBuilding()+", "+userDefaultAddress.getApartment());
+            model.addAttribute("userDefaultAddress", userDefaultAddressString);
+        } else{
+            StringBuilder userDefaultAddressNotSet = new StringBuilder("пользователь не выбрал адрес доставки по умолчанию");
+            model.addAttribute("userDefaultAddress", userDefaultAddressNotSet);
+        }
+
+
         model.addAttribute("orderById", orderService.findByOrderId(id));
         return "/admin/order/orderInfo";
     }
@@ -296,6 +345,11 @@ public class AdminController {
     public String editOrder(
             Model model,
             @PathVariable("id") int id){
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        PersonDetails personDetails = (PersonDetails) authentication.getPrincipal();
+        Person currentPerson = personDetails.getPerson();
+        model.addAttribute("userAuth", currentPerson);
+
         model.addAttribute("orderEdit", orderService.findByOrderId(id));
         model.addAttribute("newStatus", Status.values()); // ??
         return "/admin/order/orderEdit";
@@ -308,27 +362,50 @@ public class AdminController {
                                   Model model){
         Order order = orderService.findByOrderId(id);
         System.out.println("какой приходит статус при нажатии сохранить? " + newStatus);
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        PersonDetails personDetails = (PersonDetails) authentication.getPrincipal();
+        Person currentPerson = personDetails.getPerson();
+        model.addAttribute("userAuth", currentPerson);
 
         orderService.orderStatusUpdate(id, order, newStatus);
 
         model.addAttribute("order", orderService.findByOrderId(id));
         return "redirect:/admin/order/edit/{id}";
     }
-
+    //поиск заказа для админа
+    @GetMapping("/admin/order/search")
+    public String searchOrder(Model model){
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        PersonDetails personDetails = (PersonDetails) authentication.getPrincipal();
+        Person currentPerson = personDetails.getPerson();
+        model.addAttribute("userAuth", currentPerson);
+        return "/admin/order/orderSearch";
+    }
     //поиск заказа для админа
     @PostMapping("/admin/order/search")
     public String searchOrder(
             @RequestParam("order_search") String orderSearch,
             Model model
     ){
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        PersonDetails personDetails = (PersonDetails) authentication.getPrincipal();
+        Person currentPerson = personDetails.getPerson();
+        model.addAttribute("userAuth", currentPerson);
+        List<Order> ordersFound = orderService.findOrderByOrderNo(orderSearch);
         if(!orderSearch.isEmpty()) {
-            model.addAttribute("findOrders", orderService.findOrderByOrderNo(orderSearch));
+            model.addAttribute("findOrders", ordersFound);
         }
+
+        int ordersFoundCount = 0;
+        for (Order order: ordersFound) {
+            ordersFoundCount+=1;
+        }
+        model.addAttribute("ordersFoundCount", ordersFoundCount);
         //вернуть все заказы через модель на страницу заказов
-        model.addAttribute("allOrders", orderService.getAllOrder());
+        //model.addAttribute("allOrders", orderService.getAllOrder());
         //вернуть слово использованное для поиска в графу поиска
         model.addAttribute("value_order_search", orderSearch);
-        return "/admin/orders";
+        return "/admin/order/orderSearch";
     }
 
     @PostMapping("/admin/search")

@@ -43,6 +43,20 @@ span #blg, span #blg-sky {
 #svg-current {
     fill: gray;
 }
-#svg-current {
+#svg-current:hover {
     fill: dimgray;
 }
+
+#svg-admin{
+    fill: red;
+}
+#svg-admin:hover {
+    fill: darkred;
+}
+#svg-update{
+    fill: limegreen;
+}
+#svg-update:hover{
+    fill: green;
+}
+

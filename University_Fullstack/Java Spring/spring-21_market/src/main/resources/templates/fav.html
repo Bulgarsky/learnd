@@ -130,17 +130,17 @@
                 </span>
             </div>
             <div class="mb-2">
-                <a class="active" href="/my">
+                <a class="text-dark" href="/my">
                     Главная
                 </a>
             </div>
             <div class="mb-2">
-                  <span>
+                  <span class="text-muted">
                      Сохраненные карты
                   </span>
             </div>
             <div class="mb-2">
-                <a href="/user/addresses">Мои адреса</a>
+                <a class="text-dark" href="/user/addresses">Мои адреса</a>
             </div>
 
             <div>
@@ -148,31 +148,31 @@
             </div>
 
             <div class="mb-2">
-                <span>
+                <span class="text-dark">
                     <strong>
                         Заказы
                     </strong>
                 </span>
             </div>
             <div class="mb-2">
-                <a th:href="@{/orders}">Мои заказы</a>
+                <a class="text-dark" th:href="@{/orders}">Мои заказы</a>
             </div>
             <div class="mb-2">
-                <a th:href="@{/user/order/active}">Активные заказы</a>
+                <a class="text-dark" th:href="@{/user/order/active}">Активные заказы</a>
             </div>
             <div class="mb-2">
-                <a th:href="@{/user/order/history}">История заказов</a>
+                <a class="text-dark" th:href="@{/user/order/history}">История заказов</a>
             </div>
             <div class="mb-2">
-                  <span>
+                  <span class="text-muted">
                      Мои возвраты
                   </span>
             </div>
             <div class="mb-2">
-                <a th:href="@{/user/product/bought}">Купленные товары</a>
+                <a class="text-dark" th:href="@{/user/product/bought}">Купленные товары</a>
             </div>
             <div class="mb-2">
-                  <span>
+                  <span class="text-muted">
                      Электронные чеки
                   </span>
             </div>
@@ -180,19 +180,19 @@
                 <hr>
             </div>
             <div class="mb-2">
-                <span>
+                <span class="text-dark">
                     <strong>
-                        Подписки
+                        Отзывы и вопросы
                     </strong>
                 </span>
             </div>
             <div class="mb-2">
-                  <span>
+                  <span class="text-muted">
                      Мои отзывы
                   </span>
             </div>
             <div class="mb-2">
-                  <span>
+                  <span class="text-muted">
                      Мои вопросы
                   </span>
             </div>
@@ -201,16 +201,16 @@
             </div>
 
             <div class="mb-2">
-                <span>
+                <span class="text-muted">
                     <strong>
                         Подписки
                     </strong>
                 </span>
             </div>
             <div>
-                <span  class="text-muted">
-                    Избранные товары
-                </span>
+                <a class="text-primary" href="/favorites">
+                    <i class="bi bi-dot"></i>
+                    Избранные товары</a>
             </div>
             <div>
                 <span class="text-muted">
@@ -222,7 +222,7 @@
             </div>
             <div>
                 <form method="post" th:action="@{/logout}">
-                    <button class="btn btn-block btn-danger">Выйти из аккаунта</button>
+                    <button class="btn btn-block btn-outline-danger">Выйти из аккаунта</button>
                 </form>
             </div>
         </div>

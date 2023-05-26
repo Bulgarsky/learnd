@@ -32,6 +32,7 @@ public class ShippingAddressService {
     //найти адреса конкретного пользователя
     public List<ShippingAddress> findAddressesByPerson(Person person){
         List<ShippingAddress> shippingAddressList = shippingAddressRepository.findByPerson(person);
+
         return shippingAddressList;
     }
     //найти адрес по умолчанию
