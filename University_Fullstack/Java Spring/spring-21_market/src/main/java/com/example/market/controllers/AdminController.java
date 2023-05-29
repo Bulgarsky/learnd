@@ -163,7 +163,13 @@ public class AdminController {
         }
 
         productService.saveProduct(product, category_db);
-        return "redirect:/admin";
+
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        PersonDetails personDetails = (PersonDetails) authentication.getPrincipal();
+        Person currentPerson = personDetails.getPerson();
+        model.addAttribute("userAuth", currentPerson);
+
+        return "redirect:/admin/products";
     }
 
     //удаление товара по id

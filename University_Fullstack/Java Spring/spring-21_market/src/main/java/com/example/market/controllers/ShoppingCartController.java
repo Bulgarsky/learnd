@@ -42,7 +42,7 @@ public class ShoppingCartController {
         //cохраняем корзину
         cartService.saveCart(cart);
 
-        return "redirect:/my";
+        return "redirect:/index";
     }
 
     //Корзина: формирование
@@ -90,7 +90,7 @@ public class ShoppingCartController {
 
         cartService.deleteItemFromCart(id);
 
-        return "redirect:/shoppingCart";
+        return "redirect:/cart";
     }
 
 }

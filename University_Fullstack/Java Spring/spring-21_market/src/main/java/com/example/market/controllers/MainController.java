@@ -96,6 +96,10 @@ public class MainController {
     //получение полной информации о товаре по id. убрать в другое место
     @GetMapping("/account/product/info/{id}")
     public String productInfo(@PathVariable("id") int id, Model model){
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        PersonDetails personDetails = (PersonDetails) authentication.getPrincipal();
+        Person person = personDetails.getPerson();
+        model.addAttribute("userAuth", person);
         model.addAttribute("product", productService.getProductId(id));
         return "/user/info";
     }
@@ -107,6 +111,10 @@ public class MainController {
 
     @GetMapping("/order/confirm")
     public String orderConfirm(){
+        return "404";
+    }
+    @GetMapping("/admin/category")
+    public String category(){
         return "404";
     }
 }

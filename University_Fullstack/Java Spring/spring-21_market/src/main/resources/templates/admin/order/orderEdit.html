@@ -337,7 +337,7 @@
                         </span><br>
                       <br>
 
-                      <label for="newStatus"></label>
+                      <label for="newStatus">Изм.: </label>
                       <select id="newStatus" name="newStatus" >
                         <option th:each="status : ${T(com.example.market.enumm.Status).values()}"
                                 th:text="${status.toString()}"

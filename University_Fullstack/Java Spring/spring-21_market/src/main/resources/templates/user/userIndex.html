@@ -24,7 +24,7 @@
 
 <!--    NAVBAR-->
     <nav class="navbar sticky-top navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="/">
+        <a class="navbar-brand" href="/index">
             <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="dodgerblue" class="bi bi-shop" viewBox="0 0 16 16">
                 <path d="M2.97 1.35A1 1 0 0 1 3.73 1h8.54a1 1 0 0 1 .76.35l2.609 3.044A1.5 1.5 0 0 1 16 5.37v.255a2.375 2.375 0 0 1-4.25 1.458A2.371 2.371 0 0 1 9.875 8 2.37 2.37 0 0 1 8 7.083 2.37 2.37 0 0 1 6.125 8a2.37 2.37 0 0 1-1.875-.917A2.375 2.375 0 0 1 0 5.625V5.37a1.5 1.5 0 0 1 .361-.976l2.61-3.045zm1.78 4.275a1.375 1.375 0 0 0 2.75 0 .5.5 0 0 1 1 0 1.375 1.375 0 0 0 2.75 0 .5.5 0 0 1 1 0 1.375 1.375 0 1 0 2.75 0V5.37a.5.5 0 0 0-.12-.325L12.27 2H3.73L1.12 5.045A.5.5 0 0 0 1 5.37v.255a1.375 1.375 0 0 0 2.75 0 .5.5 0 0 1 1 0zM1.5 8.5A.5.5 0 0 1 2 9v6h1v-5a1 1 0 0 1 1-1h3a1 1 0 0 1 1 1v5h6V9a.5.5 0 0 1 1 0v6h.5a.5.5 0 0 1 0 1H.5a.5.5 0 0 1 0-1H1V9a.5.5 0 0 1 .5-.5zM4 15h3v-5H4v5zm5-5a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1h-2a1 1 0 0 1-1-1v-3zm3 0h-2v3h2v-3z"/>
             </svg>
@@ -52,9 +52,11 @@
                 <li class="nav-item">
                     <form class="form-inline mr-auto" th:method="POST" th:action="@{/search/title}">
                         <div class="input-group mb-6">
+                            <!-- поиск -->
                             <input type="text" id="titleRequest" name="byTitleRequest"
-                                   <!-- поиск -->
-                                   class="form-control outline-primary" placeholder="Искать на маркетплейсе" aria-label="search" aria-describedby="basic-addon2">
+                                   class="form-control outline-primary"
+                                   placeholder="Искать на маркетплейсе"
+                                   aria-label="search" aria-describedby="basic-addon2">
 <!--                            th:value="*{value_titleTyped}"-->
                             <div class="input-group-append">
                                 <button class="btn btn-primary" type="submit">
@@ -123,8 +125,38 @@
 <!--       <p>text</p>-->
     </nav>
     <hr>
-
-
+<!--    разделы-->
+    <div>
+        <div class="row bg-light align-item-center p-1 m-1">
+            <div class="card col-md-3 border-outline-primary p-3 m-2 mr-3">
+                <h5>Мебель</h5>
+                <p>Описание раздела</p>
+                <img src="#" alt="картинка раздела">
+                <a class="btn btn-primary" href="#">Перейти</a>
+            </div>
+            <div class="card col-md-3 border-outline-success p-3 m-2 mr-3">
+                <h5>Бытовая техника</h5>
+                <p>Описание раздела</p>
+                <img src="#" alt="картинка раздела">
+                <a class="btn btn-success" href="#">Перейти</a>
+            </div>
+            <div class="card col-md-3 border-outline-danger p-3 m-2">
+                <h5>Одежда</h5>
+                <p>Описание раздела</p>
+                <img src="#" alt="картинка раздела">
+                <a class="btn btn-danger" href="#">Перейти</a>
+            </div>
+        </div>
+        <hr>
+    </div>
+<!--   реклама -->
+    <div>
+        <div class="card row bg-secondary p-1 m-1">
+            <span class="text-white">
+                <i class="bi bi-badge-ad"></i>
+                рекламная полоса</span>
+        </div>
+    </div>
 <!--  БЛОК доступные товары или блок со случайными товарами-->
     <div class="card-box">
         <div class="productCard" th:each="product: ${products}">
@@ -166,6 +198,58 @@
         <a class="navbar-brand" href="#">FOOTER</a>
     </nav>
 
+
+<!--    рекламные блоки-->
+<div>
+    <div class="row bg-light align-item-center p-1 m-1">
+        <div class="card col-md-2 bg-secondary p-3 m-2">
+            <img src="#" alt="картинка рекламы">
+            <span class="text-white">
+                <i class="bi bi-badge-ad"></i>
+               Реклама</span>
+            <p class="text-white text-center">
+               ADD placeholder
+            </p>
+        </div>
+        <div class="card col-md-2 bg-secondary p-3 m-2">
+            <img src="#" alt="картинка рекламы">
+            <span class="text-white">
+                <i class="bi bi-badge-ad"></i>
+                Реклама</span>
+            <p class="text-white text-center">
+                ADD placeholder
+            </p>
+        </div>
+        <div class="card col-md-2 bg-secondary p-3 m-2">
+            <img src="#" alt="картинка рекламы">
+            <span class="text-white">
+                <i class="bi bi-badge-ad"></i>
+                Реклама</span>
+            <p class="text-white text-center">
+                ADD placeholder
+            </p>
+        </div>
+        <div class="card col-md-2 bg-secondary p-3 m-2">
+            <img src="#" alt="картинка рекламы">
+            <span class="text-white">
+                <i class="bi bi-badge-ad"></i>
+                Реклама </span>
+            <p class="text-white text-center">
+                ADD placeholder
+            </p>
+        </div>
+        <div class="card col-md-2 bg-secondary p-3 m-2">
+            <img src="#" alt="картинка рекламы">
+            <span class="text-white">
+                <i class="bi bi-badge-ad"></i>
+               Реклама </span>
+            <p class="text-white text-center">
+                ADD placeholder
+            </p>
+        </div>
+    </div>
+    <hr>
+</div>
 
 <!--    FOOTER-->
     <nav class="navbar fixed-bottom navbar-outline-secondary bg-light">
