@@ -31,20 +31,25 @@ public class AuthenticationController {
         String role = personDetails.getPerson().getRole();
         model.addAttribute("userAuth", personDetails.getPerson());
         model.addAttribute("products", productService.getAllProduct());
-        switch (role) {
-            case "ROLE_USER" -> {
-                return "user/userIndex";
-            }
-            case "ROLE_ADMIN" -> {
-                return "/admin/terminal";
-            }
-            case "ROLE_SELLER" -> {
-                return "/404";
+        if (role.isEmpty()) {
+            return "/NotAuthIndex";
+        } else {
+            switch (role) {
+                case "ROLE_USER" -> {
+                    return "user/userIndex";
+                }
+                case "ROLE_ADMIN" -> {
+                    return "/admin/terminal";
+                }
+                case "ROLE_SELLER" -> {
+                    return "/404";
+                }
             }
         }
+
         //вернуть рекламу
         //вернуть категории
-        return "/NotAuthIndex";
+        return "/404";
     }
     @GetMapping("/")
     public String defaultIndex(Model model){

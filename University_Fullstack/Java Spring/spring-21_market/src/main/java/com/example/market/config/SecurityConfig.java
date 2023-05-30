@@ -37,7 +37,7 @@ public class SecurityConfig{
                 .requestMatchers("/", "/notauth", "/notauth/**","notauth/search/**", "/index", "/index/search", "/auth", "/reg", "/error", "/resources/**", "/static/**", "/css/**","/svg/**", "/js/**", "/img/**", "/product", "/product/info/{id}", "/search/**", "/404", "/404/**").permitAll()
                 //настройка доступа к остальным страницам для ролей
                 .anyRequest().hasAnyRole("USER", "ADMIN", "SELLER")
-                .and() //соединить компоненты в рамках одного кофнигаб дальше идет аутент
+                .and() //соединить компоненты в рамках одного кофнига, дальше идет аутент
                 //на какой url -> будет оптравляться запрос при входе на защищ.стр.
                 .formLogin().loginPage("/auth")
                 //на какой url будет отпр. данные с формы(не нужно создавать метов в контроллере и обрабатывать данные с формы. Задали default url для обработки формы Auth средствами Spring Security. Security будет ожидать obj и сверять логин и пароль в БД):
