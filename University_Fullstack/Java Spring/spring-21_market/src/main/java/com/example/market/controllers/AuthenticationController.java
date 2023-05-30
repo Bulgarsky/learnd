@@ -44,12 +44,12 @@ public class AuthenticationController {
         }
         //вернуть рекламу
         //вернуть категории
-        return "/index";
+        return "/NotAuthIndex";
     }
     @GetMapping("/")
     public String defaultIndex(Model model){
         model.addAttribute("products", productService.getAllProduct());
-        return "index";
+        return "/NotAuthIndex";
     }
 
 

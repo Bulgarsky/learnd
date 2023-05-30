@@ -81,7 +81,6 @@ public class UserAddressController {
         PersonDetails personDetails = (PersonDetails) authentication.getPrincipal();
 
         model.addAttribute("user", shippingAddressService.getAddressById(id).getPerson());
-//        model.addAttribute("status", shippingAddressService.getAddressById(id).getAddressStatus());
         model.addAttribute("editAddress", shippingAddressService.getAddressById(id));
         return "/shipping/editShipping";
     }
@@ -89,7 +88,6 @@ public class UserAddressController {
     @PostMapping("/user/address/edit/{id}")
     public String saveShippingAddress(
             @ModelAttribute("editAddress") ShippingAddress updatedAddress,
-//            @ModelAttribute("user") Person person,
             @PathVariable("id")int id,
             Model model
     ){
@@ -97,7 +95,6 @@ public class UserAddressController {
         Person tempPerson = shippingAddressService.getAddressById(id).getPerson();
         int personId = tempPerson.getId();
         shippingAddressService.updateAddress(id, updatedAddress, currentStatus, personId);
-
 
         return "redirect:/user/addresses";
     }
