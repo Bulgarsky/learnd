@@ -2,82 +2,122 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Edit product</title>
-    <link th:href="@{/css/style.css}"
+    <title>Обновление товара</title>
+    <link th:href="@{/css/auth.css}"
           type="text/css"
           rel="stylesheet">
+
+    <!--    bootstrap-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+
 </head>
-<body>
-<div class="block">
-    <fieldset>
-        <legend>Edit product</legend>
-        <form th:method="POST"
-              th:action="@{/admin/product/edit/{id}(id=${product.getId()})}"
-              th:object="${product}"
-              enctype="multipart/form-data">
-            <br>
-            <label for="title">
-                <strong>Title: </strong>
-            </label>
-            <input type="text" th:field="*{title}" placeholder="Title" id="title"><br>
-            <div style="color:darkred"
-                 th:if="${#fields.hasErrors('title')}" th:errors="*{title}"></div>
-            <br>
-            <label for="price">
-                <strong>Price: </strong>
-            </label>
-            <input type="number" th:field="*{price}" placeholder="Price" id="price"><br>
-            <div style="color:darkred"
-                 th:if="${#fields.hasErrors('price')}" th:errors="*{price}"></div>
-            <br>
-            <label for="warehouse">
-                <strong>WH: </strong>
-            </label>
-            <input type="text" th:field="*{warehouse}" placeholder="Warehouse" id="warehouse"><br>
-            <div style="color:darkred"
-                 th:if="${#fields.hasErrors('warehouse')}" th:errors="*{warehouse}"></div>
-            <br>
-            <label for="category">
-                <strong>Category: </strong>
-            </label>
-            <select name="category" th:field="*{category}" id="category">
-                <div th:each="element : ${category}">
-                    <option th:text="${element.getTitle()}" th:value="${element.getId()}"></option>
-                </div>
-            </select>
-            <br>
-            <div style="color:darkred" th:if="${#fields.hasErrors('category')}" th:errors="*{category}"></div>
-            <br>
-<!--            <span style="color: darkred">Макс.кол-во файлов: 5</span><br>-->
-<!--            <label>-->
-<!--                <strong>Upload images</strong>-->
-<!--            </label><br>-->
-<!--            <label for="file_1"><input type="file" name="file_1" id="file_1"></label><br>-->
-<!--            <label for="file_2"><input type="file" name="file_2" id="file_2"></label><br>-->
-<!--            <label for="file_3"><input type="file" name="file_3" id="file_3"></label><br>-->
-<!--            <label for="file_4"><input type="file" name="file_4" id="file_4"></label><br>-->
-<!--            <label for="file_5"><input type="file" name="file_5" id="file_5"></label><br>-->
-<!--            <br>-->
-            <label for="seller">
-                <strong>Seller: </strong>
-            </label><br>
-            <textarea th:field="*{seller}" placeholder="Seller" id="seller">
-            </textarea><br>
-            <div style="color:darkred"
-                 th:if="${#fields.hasErrors('seller')}" th:errors="*{seller}"></div>
-            <br>
-            <label for="description">
-                <strong>Description: </strong>
-            </label><br>
-            <textarea th:field="*{description}" placeholder="Description" id="description">
-            </textarea><br>
-            <div style="color:darkred"
-                 th:if="${#fields.hasErrors('description')}" th:errors="*{description}"></div>
-            <br>
-            <input type="submit" value="Редактировать">
-            <br>
-        </form>
-    </fieldset>
-</div>
+<form class="form-signin"
+      th:method="POST"
+      th:action="@{/admin/product/edit/{id}(id=${product.getId()})}"
+      th:object="${product}"
+      enctype="multipart/form-data">
+
+    <div class="text-center text-primary mb-4">
+        <h3 class="h3 mb-3 font-weight-normal">
+            <i class="bi bi-pencil-square"></i> Обновление товара</h3>
+    </div>
+
+    <div class="form-label-group">
+        <input class="form-control" type="text" th:field="*{title}" placeholder="Название" id="title">
+        <label for="title">НАЗВАНИЕ</label>
+        <div style="color:darkred"
+             th:if="${#fields.hasErrors('title')}" th:errors="*{title}"></div>
+    </div>
+    <div class="form-label-group">
+        <input class="form-control" type="number" th:field="*{price}" placeholder="Цена" id="price">
+        <label for="price">ЦЕНА</label>
+        <div style="color:darkred"
+             th:if="${#fields.hasErrors('price')}" th:errors="*{price}"></div>
+    </div>
+    <div class="form-label-group">
+        <input class="form-control" type="text" th:field="*{warehouse}" placeholder="Склад" id="warehouse">
+        <label for="warehouse">СКЛАД</label>
+        <div style="color:darkred"
+             th:if="${#fields.hasErrors('warehouse')}" th:errors="*{warehouse}"></div>
+    </div>
+    <div class="form-label-group">
+        <label for="category">Категория</label><br>
+        <br>
+        <select class="form-control" name="category" th:field="*{category}" id="category">
+            <div th:each="element : ${category}">
+                <option th:text="${element.getTitle()}" th:value="${element.getId()}"></option>
+            </div>
+        </select>
+        <div style="color:darkred" th:if="${#fields.hasErrors('category')}" th:errors="*{category}"></div>
+    </div>
+    <div class="form-label-group">
+        <input class="form-control" th:field="*{seller}" placeholder="Продавец" id="seller">
+        <label for="seller">ПРОДАВЕЦ</label>
+        <div style="color:darkred"
+             th:if="${#fields.hasErrors('seller')}" th:errors="*{seller}"></div>
+    </div>
+    <div class="form-label-group">
+        <label for="description">Описание товара</label><br>
+        <br>
+        <textarea class="form-control"
+                  th:field="*{description}" placeholder="Описание" id="description">
+            </textarea>
+        <div style="color:darkred"
+             th:if="${#fields.hasErrors('description')}" th:errors="*{description}"></div>
+    </div>
+    <div class="form-label-group">
+        <div class="row">
+            <div class="col-md-4">
+                <img class="img-small p-1" th:src="'/img/' + ${product.getImageList().get(0).getFileName()}">
+            </div>
+            <div class="col-md-7">
+                <label for="file_1"></label>
+                <input class="form-control-file" type="file" name="file_1" id="file_1">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <img class="img-small p-2" th:src="'/img/' + ${product.getImageList().get(1).getFileName()}">
+            </div>
+            <div class="col-md-7">
+                <label for="file_1"></label>
+                <input class="form-control-file" type="file" name="file_2" id="file_2">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <img class="img-small p-1" th:src="'/img/' + ${product.getImageList().get(2).getFileName()}">
+            </div>
+            <div class="col-md-7">
+                <label for="file_1"></label>
+                <input class="form-control-file" type="file" name="file_3" id="file_3">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <img class="img-small p-1" th:src="'/img/' + ${product.getImageList().get(3).getFileName()}">
+            </div>
+            <div class="col-md-7">
+                <label for="file_4"></label>
+                <input class="form-control-file" type="file" name="file_4" id="file_4">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <img class="img-small p-1" th:src="'/img/' + ${product.getImageList().get(4).getFileName()}">
+            </div>
+            <div class="col-md-7">
+                <label for="file_5"></label>
+                <input class="form-control-file" type="file" name="file_5" id="file_5">
+            </div>
+        </div>
+
+    </div>
+    <button type="submit" class="btn btn-success btn-block">Сохранить изменения</button>
+</form>
+
+
+
 </body>
 </html>

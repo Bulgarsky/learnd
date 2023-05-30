@@ -89,3 +89,7 @@ small #title_desc{
     font-size: 70%;
     font-weight: 500;
 }
+
+.img-small{
+    width: 75px;
+}

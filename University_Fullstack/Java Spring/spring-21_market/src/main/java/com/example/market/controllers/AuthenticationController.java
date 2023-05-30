@@ -29,10 +29,10 @@ public class AuthenticationController {
         PersonDetails personDetails = (PersonDetails) authentication.getPrincipal();
         //получение роли
         String role = personDetails.getPerson().getRole();
+        model.addAttribute("userAuth", personDetails.getPerson());
         model.addAttribute("products", productService.getAllProduct());
         switch (role) {
             case "ROLE_USER" -> {
-
                 return "user/userIndex";
             }
             case "ROLE_ADMIN" -> {
@@ -44,7 +44,7 @@ public class AuthenticationController {
         }
         //вернуть рекламу
         //вернуть категории
-        return "404";
+        return "/index";
     }
     @GetMapping("/")
     public String defaultIndex(Model model){

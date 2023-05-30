@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Home page</title>
+    <title>Поиск</title>
     <link th:href="@{/css/style.css}"
           type="text/css"
           rel="stylesheet">
@@ -15,22 +15,19 @@
     <!--    bootstrap-->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <!--    font awesome-->
-    <!--    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">-->
     <link th:href="@{/css/font-awesome.min.css}"
           type="text/css"
           rel="stylesheet">
 </head>
 <body>
-
 <!--    NAVBAR-->
 <nav class="navbar sticky-top navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="/">
-        <!--            <img th:src="@{/svg/mp_logo.svg}" width="30" height="30" alt="">-->
-        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="dodgerblue" class="bi bi-shop" viewBox="0 0 16 16">
+    <a class="navbar-brand danger" href="/my">
+        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="currentColor" class="bi bi-shop" viewBox="0 0 16 16">
             <path d="M2.97 1.35A1 1 0 0 1 3.73 1h8.54a1 1 0 0 1 .76.35l2.609 3.044A1.5 1.5 0 0 1 16 5.37v.255a2.375 2.375 0 0 1-4.25 1.458A2.371 2.371 0 0 1 9.875 8 2.37 2.37 0 0 1 8 7.083 2.37 2.37 0 0 1 6.125 8a2.37 2.37 0 0 1-1.875-.917A2.375 2.375 0 0 1 0 5.625V5.37a1.5 1.5 0 0 1 .361-.976l2.61-3.045zm1.78 4.275a1.375 1.375 0 0 0 2.75 0 .5.5 0 0 1 1 0 1.375 1.375 0 0 0 2.75 0 .5.5 0 0 1 1 0 1.375 1.375 0 1 0 2.75 0V5.37a.5.5 0 0 0-.12-.325L12.27 2H3.73L1.12 5.045A.5.5 0 0 0 1 5.37v.255a1.375 1.375 0 0 0 2.75 0 .5.5 0 0 1 1 0zM1.5 8.5A.5.5 0 0 1 2 9v6h1v-5a1 1 0 0 1 1-1h3a1 1 0 0 1 1 1v5h6V9a.5.5 0 0 1 1 0v6h.5a.5.5 0 0 1 0 1H.5a.5.5 0 0 1 0-1H1V9a.5.5 0 0 1 .5-.5zM4 15h3v-5H4v5zm5-5a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1h-2a1 1 0 0 1-1-1v-3zm3 0h-2v3h2v-3z"/>
         </svg>
     </a>
-    <a class="navbar-brand" href="#">Marketplace</a>
+    <a class="navbar-brand text-danger" href="/my">Администратор</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon primary"></span>
     </button>
@@ -38,29 +35,31 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
             <li class="nav-item active">
-                <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                <span  class="text-muted">/ Поиск товара</span>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/">Link</a>
+                <span>
+
+                </span>
             </li>
             <li class="nav-item">
-                <a class="nav-link disabled" href="#">
-                    <small th:text="'>_ '+${userAuth.getLogin()}"></small>
-                </a>
+                <span>
+
+                </span>
+
             </li>
         </ul>
         <ul class="navbar-nav mr-auto mt-2 mt-lg-1">
             <li class="nav-item">
-                <form class="form-inline mr-auto" th:method="POST" th:action="@{/admin/search/title}">
+                <form class="form-inline mr-auto" th:method="POST" th:action="@{/search/title}">
                     <div class="input-group mb-6">
-                        <input type="text" id="titleRequest" name="titleRequest" th:value="*{titleTyped}"
+                        <input type="text" id="titleRequest" name="byTitleRequest"
+
                                class="form-control outline-primary" placeholder="Искать на маркетплейсе" aria-label="search" aria-describedby="basic-addon2">
+
                         <div class="input-group-append">
-                            <button class="btn btn-primary" type="submit">
-                                <!--                                    <svg id="svg-search"  xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="white" class="bi bi-search" viewBox="0 0 16 16">-->
-                                <!--                                        <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>-->
-                                <!--                                    </svg>-->
-                                <!--                                    озон-->
+                            <button class="btn btn-secondary" type="submit">
+                                <!-- кнопка поиск -->
                                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="white" viewBox="0 0 24 24">
                                     <path fill="currentColor" d="M11 5a6 6 0 1 0 0 12 6 6 0 0 0 0-12Zm-8 6a8 8 0 1 1 14.281 4.955l4.419 4.33a1 1 0 1 1-1.4 1.43l-4.444-4.357A8 8 0 0 1 3 11Z"></path>
                                 </svg>
@@ -73,116 +72,139 @@
 
         <ul class="navbar-nav nav-primary mr-auto mt-2 mt-lg-1">
             <li class="nav-item">
-                <a class="nav-link" href="/account">
-                    <!--                        <svg id="svg-smail" xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-emoji-smile" viewBox="0 0 16 16">-->
-                    <!--                            <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>-->
-                    <!--                            <path d="M4.285 9.567a.5.5 0 0 1 .683.183A3.498 3.498 0 0 0 8 11.5a3.498 3.498 0 0 0 3.032-1.75.5.5 0 1 1 .866.5A4.498 4.498 0 0 1 8 12.5a4.498 4.498 0 0 1-3.898-2.25.5.5 0 0 1 .183-.683zM7 6.5C7 7.328 6.552 8 6 8s-1-.672-1-1.5S5.448 5 6 5s1 .672 1 1.5zm4 0c0 .828-.448 1.5-1 1.5s-1-.672-1-1.5S9.448 5 10 5s1 .672 1 1.5z"/>-->
-                    <!--                        </svg>-->
-                    <!--                        озон-->
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" width="32" height="32" viewBox="0 0 24 24">
-                        <path d="M8 11a1 1 0 1 1-2 0 1 1 0 0 1 2 0Zm10 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0Zm-8.3 4.286c.016.015.185.165.5.323.376.187.971.391 1.8.391.829 0 1.425-.204 1.8-.391.175-.088.355-.19.5-.323a1 1 0 0 1 1.407 1.421C15.587 16.827 14.357 18 12 18c-2.358 0-3.587-1.173-3.707-1.293A1 1 0 0 1 9.7 15.286Z"></path>
-                        <path d="M11 2a1 1 0 0 1 1-1c6.075 0 11 4.925 11 11s-4.925 11-11 11S1 18.075 1 12a11 11 0 0 1 6.23-9.914 1 1 0 0 1 1.36.524c.292.72.69 1.565 1.362 2.233C10.592 5.481 11.524 6 13 6a1 1 0 1 1 0 2c-2.024 0-3.458-.743-4.459-1.74-.6-.596-1.027-1.267-1.34-1.875A9 9 0 1 0 12 3a1 1 0 0 1-1.001-1Z"></path>
+                <a class="nav-link" href="/my">
+                    <!-- профиль - терминал-->
+                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-terminal" viewBox="0 0 16 16">
+                        <path d="M6 9a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1h-3A.5.5 0 0 1 6 9zM3.854 4.146a.5.5 0 1 0-.708.708L4.793 6.5 3.146 8.146a.5.5 0 1 0 .708.708l2-2a.5.5 0 0 0 0-.708l-2-2z"/>
+                        <path d="M2 1a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2H2zm12 1a1 1 0 0 1 1 1v10a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V3a1 1 0 0 1 1-1h12z"/>
                     </svg>
 
                 </a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/orders">
-                    <i class="bi bi-box-seam"></i>
-                    <!--                        <svg id="svg-package" xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-box-seam primary" viewBox="0 0 16 16">-->
-                    <!--                            <path d="M8.186 1.113a.5.5 0 0 0-.372 0L1.846 3.5l2.404.961L10.404 2l-2.218-.887zm3.564 1.426L5.596 5 8 5.961 14.154 3.5l-2.404-.961zm3.25 1.7-6.5 2.6v7.922l6.5-2.6V4.24zM7.5 14.762V6.838L1 4.239v7.923l6.5 2.6zM7.443.184a1.5 1.5 0 0 1 1.114 0l7.129 2.852A.5.5 0 0 1 16 3.5v8.662a1 1 0 0 1-.629.928l-7.185 2.874a.5.5 0 0 1-.372 0L.63 13.09a1 1 0 0 1-.63-.928V3.5a.5.5 0 0 1 .314-.464L7.443.184z"/>-->
-                    <!--                        </svg>-->
-                    <!--                        <img id="svg-package" th:src="@{/svg/package.svg}" width="35" height="35" alt="package svg">-->
-                    <!--                        озон-->
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" width="32" height="32" viewBox="0 0 24 24">
-                        <path d="M12.486 1.126a1 1 0 0 0-.972 0l-9 5A1 1 0 0 0 2 7v9.98a1.003 1.003 0 0 0 .515.894l9 5a1 1 0 0 0 .989-.01l8.982-4.99A1 1 0 0 0 22 17V7a1 1 0 0 0-.514-.874l-9-5ZM11 20.3l-7-3.888V8.7l2 1.11V13a1 1 0 1 0 2 0v-2.078l3 1.666v7.713ZM7.5 8.356 5.06 7 12 3.144 14.441 4.5l-6.94 3.856ZM9.56 9.5l6.94-3.856L18.941 7l-6.94 3.856L9.558 9.5ZM13 20.3v-7.712L20 8.7v7.712L13 20.3Z"></path>
+            <li class="nav-item currentColor-secondary">
+                <a class="nav-link" href="/admin/orders">
+                    <!-- заказы -->
+                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-box2" viewBox="0 0 16 16">
+                        <path d="M2.95.4a1 1 0 0 1 .8-.4h8.5a1 1 0 0 1 .8.4l2.85 3.8a.5.5 0 0 1 .1.3V15a1 1 0 0 1-1 1H1a1 1 0 0 1-1-1V4.5a.5.5 0 0 1 .1-.3L2.95.4ZM7.5 1H3.75L1.5 4h6V1Zm1 0v3h6l-2.25-3H8.5ZM15 5H1v10h14V5Z"/>
                     </svg>
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/favorites">
-                    <!--                        <svg id="svg-fav" xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-heart primary" viewBox="0 0 16 16">-->
-                    <!--                            <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01L8 2.748zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143c.06.055.119.112.176.171a3.12 3.12 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15z"/>-->
-                    <!--                        </svg>-->
-                    <!--                        <img th:src="@{/svg/heart.svg}" width="35" height="35" alt="heart svg">-->
-                    <!--                        озон-->
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" width="32" height="32" viewBox="0 0 24 24">
-                        <path d="M7 5a4 4 0 0 0-4 4c0 3.552 2.218 6.296 4.621 8.22A21.525 21.525 0 0 0 12 19.91a21.58 21.58 0 0 0 4.377-2.69C18.78 15.294 21 12.551 21 9a4 4 0 0 0-4-4c-1.957 0-3.652 1.396-4.02 3.2a1 1 0 0 1-1.96 0C10.652 6.396 8.957 5 7 5Zm5 17c-.316-.02-.56-.147-.848-.278a23.542 23.542 0 0 1-4.781-2.942C3.777 16.705 1 13.449 1 9a6 6 0 0 1 6-6 6.183 6.183 0 0 1 5 2.568A6.183 6.183 0 0 1 17 3a6 6 0 0 1 6 6c0 4.448-2.78 7.705-5.375 9.78a23.599 23.599 0 0 1-4.78 2.942c-.543.249-.732.278-.845.278Z"></path>
+                <a class="nav-link" href="/admin/users">
+                    <!-- Пользователи  -->
+                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-people" viewBox="0 0 16 16">
+                        <path d="M15 14s1 0 1-1-1-4-5-4-5 3-5 4 1 1 1 1h8Zm-7.978-1A.261.261 0 0 1 7 12.996c.001-.264.167-1.03.76-1.72C8.312 10.629 9.282 10 11 10c1.717 0 2.687.63 3.24 1.276.593.69.758 1.457.76 1.72l-.008.002a.274.274 0 0 1-.014.002H7.022ZM11 7a2 2 0 1 0 0-4 2 2 0 0 0 0 4Zm3-2a3 3 0 1 1-6 0 3 3 0 0 1 6 0ZM6.936 9.28a5.88 5.88 0 0 0-1.23-.247A7.35 7.35 0 0 0 5 9c-4 0-5 3-5 4 0 .667.333 1 1 1h4.216A2.238 2.238 0 0 1 5 13c0-1.01.377-2.042 1.09-2.904.243-.294.526-.569.846-.816ZM4.92 10A5.493 5.493 0 0 0 4 13H1c0-.26.164-1.03.76-1.724.545-.636 1.492-1.256 3.16-1.275ZM1.5 5.5a3 3 0 1 1 6 0 3 3 0 0 1-6 0Zm3-2a2 2 0 1 0 0 4 2 2 0 0 0 0-4Z"/>
                     </svg>
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/cart">
-                    <!--                        <svg id="svg-cart" xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-bag primary" viewBox="0 0 16 16">-->
-                    <!--                            <path d="M8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1zm3.5 3v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4h-3.5zM2 5h12v9a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V5z"/>-->
-                    <!--                        </svg>-->
-                    <!--                        <img th:src="@{/svg/shopping-cart.svg}" width="35" height="35" alt="shopping-cart svg">-->
-                    <!--                        озон-->
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" width="32" height="32" viewBox="0 0 24 24">
-                        <path  d="M6 6a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v2h4a1 1 0 0 1 .986 1.164l-1.582 9.494A4 4 0 0 1 17.46 22H6.54a4 4 0 0 1-3.945-3.342L1.014 9.164A1 1 0 0 1 2 8h4V6Zm2 2h5a1 1 0 1 1 0 2H3.18l1.389 8.329A2 2 0 0 0 6.54 20h10.92a2 2 0 0 0 1.972-1.671L20.82 10H17a1 1 0 0 1-1-1V6a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2Z"></path>
+                <a class="nav-link" href="/admin/products">
+                    <!-- Категории  -->
+                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-collection" viewBox="0 0 16 16">
+                        <path d="M2.5 3.5a.5.5 0 0 1 0-1h11a.5.5 0 0 1 0 1h-11zm2-2a.5.5 0 0 1 0-1h7a.5.5 0 0 1 0 1h-7zM0 13a1.5 1.5 0 0 0 1.5 1.5h13A1.5 1.5 0 0 0 16 13V6a1.5 1.5 0 0 0-1.5-1.5h-13A1.5 1.5 0 0 0 0 6v7zm1.5.5A.5.5 0 0 1 1 13V6a.5.5 0 0 1 .5-.5h13a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-.5.5h-13z"/>
                     </svg>
                 </a>
             </li>
             <li class="nav-item">
-                <form method="post" th:action="@{/logout}">
-                    <button type="submit" class="close" aria-label="Close">
-                        <!--                        <button class="btn btn-outline-primary" type="submit">-->
-                        <!--                            <span aria-hidden="true">-->
-                        <svg id="svg-exit" xmlns="http://www.w3.org/2000/svg" fill="currentColor" width="32" height="32" viewBox="0 0 24 24" class="bi bi-door-open" >
-                            <path d="M8.5 10c-.276 0-.5-.448-.5-1s.224-1 .5-1 .5.448.5 1-.224 1-.5 1z"/>
-                            <path d="M10.828.122A.5.5 0 0 1 11 .5V1h.5A1.5 1.5 0 0 1 13 2.5V15h1.5a.5.5 0 0 1 0 1h-13a.5.5 0 0 1 0-1H3V1.5a.5.5 0 0 1 .43-.495l7-1a.5.5 0 0 1 .398.117zM11.5 2H11v13h1V2.5a.5.5 0 0 0-.5-.5zM4 1.934V15h6V1.077l-6 .857z"/>
-                        </svg>
-                        <!--                                &times;-->
-                        <!--                            </span>-->
-                    </button>
-                </form>
+                <a class="nav-link" href="/admin/category">
+                    <!-- корзина  -->
+                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-tags" viewBox="0 0 16 16">
+                        <path d="M3 2v4.586l7 7L14.586 9l-7-7H3zM2 2a1 1 0 0 1 1-1h4.586a1 1 0 0 1 .707.293l7 7a1 1 0 0 1 0 1.414l-4.586 4.586a1 1 0 0 1-1.414 0l-7-7A1 1 0 0 1 2 6.586V2z"/>
+                        <path d="M5.5 5a.5.5 0 1 1 0-1 .5.5 0 0 1 0 1zm0 1a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3zM1 7.086a1 1 0 0 0 .293.707L8.75 15.25l-.043.043a1 1 0 0 1-1.414 0l-7-7A1 1 0 0 1 0 7.586V3a1 1 0 0 1 1-1v5.086z"/>
+                    </svg>
+                </a>
             </li>
         </ul>
     </div>
-    <!--       <p>text</p>-->
 </nav>
 <hr>
 
-<hr>
-<!--БЛОК ВЫВОДА ПОИСКА-->
-<div class="card-box">
-    <div class="productCard" th:each="product: ${productFound}">
-        <div class="productCard-column">
-            <div class="productCard-column-element">
-                <img
-                        th:src="'/img/'+${product.imageList[0].getFileName()}"
-                        th:alt="${product.getTitle()}">
-            </div>
-            <div class="productCard-column-element">
+<!--Большой поиск-->
+
+<!--Основной блок-->
+<div class="container-fluid ">
+    <div class="row">
+        <!-- меню слева -->
+        <div class="col-3 bg-light text-left">
+            <form class="col-md-12" th:method="POST" th:action="@{/search/}">
+                <label for="titleRequestF"><strong>Наименование </strong></label><br>
+                <input type="text" id="titleRequestF" name="titleRequest" th:value="*{value_titleTyped}"><br>
                 <br>
+                <strong>Цена</strong><br>
+                <label for="priceFrom">oт </label>
+                <input type="text" id="priceFrom" name="priceFrom" th:value="*{value_priceFrom}"><br>
+                <label for="priceTo"> до </label>
+                <input type="text" id="priceTo" name="priceTo" th:value="*{value_priceTo}"> <br>
+
+                <input type="radio" id="ascendingPrice" name="priceSort" value="priceSortByASC">
+                <label for="ascendingPrice"> по возрастанию </label><br>
+                <span hidden> placeholder </span>
+                <input type="radio" id="descendingPrice" name="priceSort" value="priceSortByDESC">
+                <label for="descendingPrice"> по убыванию цены</label><br>
+                <span><strong>Категория </strong></span>
+                <br>
+                <input type="radio" id="furniture" name="categorySelect" value="furniture">
+                <label for="furniture">Мебель</label><br>
+                <input type="radio" id="clothes" name="categorySelect" value="clothes">
+                <label for="clothes">Одежда</label><br>
+                <input type="radio" id="appliance" name="categorySelect" value="appliance">
+                <label for="appliance">Бытовая техника</label><br>
+                <br>
+                <button class="btn btn-primary" type="submit">Найти</button>
+            </form>
+
+
+        </div>
+
+
+        <!-- результат поиска -->
+        <div class="orderbox col-8">
+            <div class="row">
+                <h3>Найдено <sup class="text-top text-muted" th:text="${foundCount}"></sup></h3>
             </div>
-            <div class="productCard-column-element">
-                <a th:href="@{/product/info/{id}(id=${product.getId()})}"
-                   th:text="${product.getTitle()}"
-                   target="_blank">
-                    product title</a>
+            <!--БЛОК ВЫВОДА ПОИСКА-->
+            <div class="card-box">
+                <div class="productCard" th:each="product: ${productFoundList}">
+                    <div class="productCard-column">
+                        <div class="productCard-column-element">
+                            <img
+                                    th:src="'/img/'+${product.imageList[0].getFileName()}"
+                                    th:alt="${product.getTitle()}">
+                        </div>
+                        <div class="productCard-column-element">
+                            <br>
+                        </div>
+                        <div class="productCard-column-element">
+                            <a th:href="@{/product/info/{id}(id=${product.getId()})}"
+                               th:text="${product.getTitle()}"
+                               target="_blank">
+                                product title</a>
+                        </div>
+
+                        <div class="productCard-column-element">
+                            <strong><span th:text="${product.getPrice()}">price</span></strong>
+                        </div>
+                        <div class="productCard-column-element">
+                            <br>
+                        </div>
+                        <div class="productCard-column-element">
+                            <a class="btn btn-primary"
+                               th:href="@{/cart/add/{id}(id=${product.getId()})}">
+                                Добавить в корзину
+                            </a>
+                        </div>
+                        <div class="productCard-column-element">
+                            <span class="productCard-title text-muted" th:text="${product.getCategory().getTitle()}+', '+${product.getSeller()}">product category</span>
+                        </div>
+                    </div>
+                </div>
             </div>
 
-            <div class="productCard-column-element">
-                <strong><span th:text="${product.getPrice()}">price</span></strong>
-            </div>
-            <div class="productCard-column-element">
-                <br>
-            </div>
-            <div class="productCard-column-element">
-                <a class="btn btn-primary"
-                   th:href="@{/cart/add/{id}(id=${product.getId()})}">
-                    Добавить в корзину
-                </a>
-            </div>
-            <div class="productCard-column-element">
-                <span class="productCard-title text-muted" th:text="${product.getCategory().getTitle()}+', '+${product.getSeller()}">product category</span>
-            </div>
         </div>
+
+
     </div>
 </div>
-<br>
-<hr>
 
 
 

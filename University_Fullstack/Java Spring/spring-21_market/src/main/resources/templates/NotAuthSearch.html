@@ -15,20 +15,21 @@
     <!--    bootstrap-->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <!--    font awesome-->
+    <!--    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">-->
     <link th:href="@{/css/font-awesome.min.css}"
           type="text/css"
           rel="stylesheet">
 </head>
 <body>
-
+<!--ПОЛЬЗОВАТЕЛЬ БЕЗ АУТЕНТИФИКАЦИИ-->
 <!--    NAVBAR-->
 <nav class="navbar sticky-top navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="/index">
+    <a class="navbar-brand" href="/home">
         <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="dodgerblue" class="bi bi-shop" viewBox="0 0 16 16">
             <path d="M2.97 1.35A1 1 0 0 1 3.73 1h8.54a1 1 0 0 1 .76.35l2.609 3.044A1.5 1.5 0 0 1 16 5.37v.255a2.375 2.375 0 0 1-4.25 1.458A2.371 2.371 0 0 1 9.875 8 2.37 2.37 0 0 1 8 7.083 2.37 2.37 0 0 1 6.125 8a2.37 2.37 0 0 1-1.875-.917A2.375 2.375 0 0 1 0 5.625V5.37a1.5 1.5 0 0 1 .361-.976l2.61-3.045zm1.78 4.275a1.375 1.375 0 0 0 2.75 0 .5.5 0 0 1 1 0 1.375 1.375 0 0 0 2.75 0 .5.5 0 0 1 1 0 1.375 1.375 0 1 0 2.75 0V5.37a.5.5 0 0 0-.12-.325L12.27 2H3.73L1.12 5.045A.5.5 0 0 0 1 5.37v.255a1.375 1.375 0 0 0 2.75 0 .5.5 0 0 1 1 0zM1.5 8.5A.5.5 0 0 1 2 9v6h1v-5a1 1 0 0 1 1-1h3a1 1 0 0 1 1 1v5h6V9a.5.5 0 0 1 1 0v6h.5a.5.5 0 0 1 0 1H.5a.5.5 0 0 1 0-1H1V9a.5.5 0 0 1 .5-.5zM4 15h3v-5H4v5zm5-5a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1h-2a1 1 0 0 1-1-1v-3zm3 0h-2v3h2v-3z"/>
         </svg>
     </a>
-    <a class="navbar-brand" href="/index">Marketplace</a>
+    <a class="navbar-brand" href="/home">Marketplace</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon primary"></span>
     </button>
@@ -36,24 +37,31 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
             <li class="nav-item active">
-                <span class="text-muted">/ Поиск </span>
+                <span  class="text-muted">/ Главная</span>
             </li>
             <li class="nav-item">
-                <span></span>
+                <span>
+
+                </span>
             </li>
             <li class="nav-item">
-                <span></span>
+                <span>
+
+                </span>
+
             </li>
         </ul>
         <ul class="navbar-nav mr-auto mt-2 mt-lg-1">
             <li class="nav-item">
-                <form class="form-inline mr-auto" th:method="POST" th:action="@{/search/title}">
+                <form class="form-inline mr-auto" th:method="POST" th:action="@{/notauth/search/title}">
                     <div class="input-group mb-6">
-                        <input type="text" id="byTitleRequest" name="byTitleRequest" th:value="*{titleTyped}"
+                        <input type="text" id="titleRequest" name="byTitleRequest"
+
                                class="form-control outline-primary" placeholder="Искать на маркетплейсе" aria-label="search" aria-describedby="basic-addon2">
+                        <!--                            th:value="*{value_titleTyped}"-->
                         <div class="input-group-append">
                             <button class="btn btn-secondary" type="submit">
-<!--                              поиск-->
+                                <!-- кнопка поиск -->
                                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="white" viewBox="0 0 24 24">
                                     <path fill="currentColor" d="M11 5a6 6 0 1 0 0 12 6 6 0 0 0 0-12Zm-8 6a8 8 0 1 1 14.281 4.955l4.419 4.33a1 1 0 1 1-1.4 1.43l-4.444-4.357A8 8 0 0 1 3 11Z"></path>
                                 </svg>
@@ -66,44 +74,19 @@
 
         <ul class="navbar-nav nav-primary mr-auto mt-2 mt-lg-1">
             <li class="nav-item">
-                <a class="nav-link" href="/my">
-<!--                    профиль - смайл-->
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" width="32" height="32" viewBox="0 0 24 24">
-                        <path d="M8 11a1 1 0 1 1-2 0 1 1 0 0 1 2 0Zm10 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0Zm-8.3 4.286c.016.015.185.165.5.323.376.187.971.391 1.8.391.829 0 1.425-.204 1.8-.391.175-.088.355-.19.5-.323a1 1 0 0 1 1.407 1.421C15.587 16.827 14.357 18 12 18c-2.358 0-3.587-1.173-3.707-1.293A1 1 0 0 1 9.7 15.286Z"></path>
-                        <path d="M11 2a1 1 0 0 1 1-1c6.075 0 11 4.925 11 11s-4.925 11-11 11S1 18.075 1 12a11 11 0 0 1 6.23-9.914 1 1 0 0 1 1.36.524c.292.72.69 1.565 1.362 2.233C10.592 5.481 11.524 6 13 6a1 1 0 1 1 0 2c-2.024 0-3.458-.743-4.459-1.74-.6-.596-1.027-1.267-1.34-1.875A9 9 0 1 0 12 3a1 1 0 0 1-1.001-1Z"></path>
-                    </svg>
+                <a href="/auth">Авторизация</a>
+            </li>
+            <li class="nav-item currentColor-secondary">
+                <span class="m-2 p-1">  |  </span>
+            </li>
+            <li class="nav-item">
+                <a href="/reg">Регистрация</a>
+            </li>
+            <li class="nav-item">
 
-                </a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/orders">
-                    <i class="bi bi-box-seam"></i>
-<!--                   Заказы-->
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" width="32" height="32" viewBox="0 0 24 24">
-                        <path d="M12.486 1.126a1 1 0 0 0-.972 0l-9 5A1 1 0 0 0 2 7v9.98a1.003 1.003 0 0 0 .515.894l9 5a1 1 0 0 0 .989-.01l8.982-4.99A1 1 0 0 0 22 17V7a1 1 0 0 0-.514-.874l-9-5ZM11 20.3l-7-3.888V8.7l2 1.11V13a1 1 0 1 0 2 0v-2.078l3 1.666v7.713ZM7.5 8.356 5.06 7 12 3.144 14.441 4.5l-6.94 3.856ZM9.56 9.5l6.94-3.856L18.941 7l-6.94 3.856L9.558 9.5ZM13 20.3v-7.712L20 8.7v7.712L13 20.3Z"></path>
-                    </svg>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/favorites">
-<!--                    избранное-->
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" width="32" height="32" viewBox="0 0 24 24">
-                        <path d="M7 5a4 4 0 0 0-4 4c0 3.552 2.218 6.296 4.621 8.22A21.525 21.525 0 0 0 12 19.91a21.58 21.58 0 0 0 4.377-2.69C18.78 15.294 21 12.551 21 9a4 4 0 0 0-4-4c-1.957 0-3.652 1.396-4.02 3.2a1 1 0 0 1-1.96 0C10.652 6.396 8.957 5 7 5Zm5 17c-.316-.02-.56-.147-.848-.278a23.542 23.542 0 0 1-4.781-2.942C3.777 16.705 1 13.449 1 9a6 6 0 0 1 6-6 6.183 6.183 0 0 1 5 2.568A6.183 6.183 0 0 1 17 3a6 6 0 0 1 6 6c0 4.448-2.78 7.705-5.375 9.78a23.599 23.599 0 0 1-4.78 2.942c-.543.249-.732.278-.845.278Z"></path>
-                    </svg>
-                </a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/cart">
-<!--                   корзина-->
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" width="32" height="32" viewBox="0 0 24 24">
-                        <path  d="M6 6a4 4 0 0 1 4-4h4a4 4 0 0 1 4 4v2h4a1 1 0 0 1 .986 1.164l-1.582 9.494A4 4 0 0 1 17.46 22H6.54a4 4 0 0 1-3.945-3.342L1.014 9.164A1 1 0 0 1 2 8h4V6Zm2 2h5a1 1 0 1 1 0 2H3.18l1.389 8.329A2 2 0 0 0 6.54 20h10.92a2 2 0 0 0 1.972-1.671L20.82 10H17a1 1 0 0 1-1-1V6a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2Z"></path>
-                    </svg>
-                </a>
-            </li>
-
         </ul>
     </div>
-
 </nav>
 <hr>
 
@@ -114,32 +97,32 @@
     <div class="row">
         <!-- меню слева -->
         <div class="col-3 bg-light text-left">
-            <form class="col-md-12" th:method="POST" th:action="@{/search/}">
-                    <label for="titleRequestF"><strong>Наименование </strong></label><br>
-                    <input type="text" id="titleRequestF" name="titleRequest" th:value="*{value_titleTyped}"><br>
-                    <br>
-                    <strong>Цена</strong><br>
-                    <label for="priceFrom">oт </label>
-                    <input type="text" id="priceFrom" name="priceFrom" th:value="*{value_priceFrom}"><br>
-                    <label for="priceTo"> до </label>
-                    <input type="text" id="priceTo" name="priceTo" th:value="*{value_priceTo}"> <br>
+            <form class="col-md-12" th:method="POST" th:action="@{/notauth/search}">
+                <label for="titleRequestF"><strong>Наименование </strong></label><br>
+                <input type="text" id="titleRequestF" name="titleRequest" th:value="*{value_titleTyped}"><br>
+                <br>
+                <strong>Цена</strong><br>
+                <label for="priceFrom">oт </label>
+                <input type="text" id="priceFrom" name="priceFrom" th:value="*{value_priceFrom}"><br>
+                <label for="priceTo"> до </label>
+                <input type="text" id="priceTo" name="priceTo" th:value="*{value_priceTo}"> <br>
 
-                        <input type="radio" id="ascendingPrice" name="priceSort" value="priceSortByASC">
-                        <label for="ascendingPrice"> по возрастанию </label><br>
-                        <span hidden> placeholder </span>
-                        <input type="radio" id="descendingPrice" name="priceSort" value="priceSortByDESC">
-                        <label for="descendingPrice"> по убыванию цены</label><br>
-                        <span><strong>Категория </strong></span>
-                        <br>
-                        <input type="radio" id="furniture" name="categorySelect" value="furniture">
-                        <label for="furniture">Мебель</label><br>
-                        <input type="radio" id="clothes" name="categorySelect" value="clothes">
-                        <label for="clothes">Одежда</label><br>
-                        <input type="radio" id="appliance" name="categorySelect" value="appliance">
-                        <label for="appliance">Бытовая техника</label><br>
-                        <br>
-                    <button class="btn btn-primary" type="submit">Найти</button>
-                </form>
+                <input type="radio" id="ascendingPrice" name="priceSort" value="priceSortByASC">
+                <label for="ascendingPrice"> по возрастанию </label><br>
+                <span hidden> placeholder </span>
+                <input type="radio" id="descendingPrice" name="priceSort" value="priceSortByDESC">
+                <label for="descendingPrice"> по убыванию цены</label><br>
+                <span><strong>Категория </strong></span>
+                <br>
+                <input type="radio" id="furniture" name="categorySelect" value="furniture">
+                <label for="furniture">Мебель</label><br>
+                <input type="radio" id="clothes" name="categorySelect" value="clothes">
+                <label for="clothes">Одежда</label><br>
+                <input type="radio" id="appliance" name="categorySelect" value="appliance">
+                <label for="appliance">Бытовая техника</label><br>
+                <br>
+                <button class="btn btn-primary" type="submit">Найти</button>
+            </form>
 
 
         </div>
@@ -152,6 +135,7 @@
             </div>
             <!--БЛОК ВЫВОДА ПОИСКА-->
             <div class="card-box">
+
                 <div class="productCard" th:each="product: ${productFoundList}">
                     <div class="productCard-column">
                         <div class="productCard-column-element">
@@ -193,16 +177,6 @@
 
     </div>
 </div>
-
-
-
-
-
-
-
-
-
-
 
 
 

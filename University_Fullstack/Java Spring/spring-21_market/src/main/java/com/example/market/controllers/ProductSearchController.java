@@ -34,8 +34,7 @@ public class ProductSearchController {
 
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         PersonDetails personDetails = (PersonDetails) authentication.getPrincipal();
-        List<Product> productFound = new ArrayList<>();
-
+        List<Product> productFoundList = new ArrayList<>();
         //3
         //по части названия, цене "от и до", категория или без нее, с сортировкой
         if(!titleRequest.isEmpty()) {
@@ -44,28 +43,28 @@ public class ProductSearchController {
                     if (!categorySelect.isEmpty()) {
                         switch (categorySelect) {
                             case "furniture" ->
-                                    productFound = productRepository.findByTitleAndCategoryOrderByPriceAsc(titleRequest, Float.parseFloat(priceFrom), Float.parseFloat(priceTo), 1);
+                                    productFoundList = productRepository.findByTitleAndCategoryOrderByPriceAsc(titleRequest, Float.parseFloat(priceFrom), Float.parseFloat(priceTo), 1);
                             case "clothes" ->
-                                    productFound = productRepository.findByTitleAndCategoryOrderByPriceAsc(titleRequest, Float.parseFloat(priceFrom), Float.parseFloat(priceTo), 2);
+                                    productFoundList = productRepository.findByTitleAndCategoryOrderByPriceAsc(titleRequest, Float.parseFloat(priceFrom), Float.parseFloat(priceTo), 2);
                             case "appliance" ->
-                                    productFound = productRepository.findByTitleAndCategoryOrderByPriceAsc(titleRequest, Float.parseFloat(priceFrom), Float.parseFloat(priceTo), 3);
+                                    productFoundList = productRepository.findByTitleAndCategoryOrderByPriceAsc(titleRequest, Float.parseFloat(priceFrom), Float.parseFloat(priceTo), 3);
                         }
                     } else {
-                        productFound = productRepository.findByTitleOrderByPriceAsc(titleRequest, Float.parseFloat(priceFrom), Float.parseFloat(priceTo));
+                        productFoundList = productRepository.findByTitleOrderByPriceAsc(titleRequest, Float.parseFloat(priceFrom), Float.parseFloat(priceTo));
                     }
                 } else {
                     //desc
                     if (!categorySelect.isEmpty()) {
                         switch (categorySelect) {
                             case "furniture" ->
-                                    productFound = productRepository.findByTitleAndCategoryOrderByPriceDesc(titleRequest, Float.parseFloat(priceFrom), Float.parseFloat(priceTo), 1);
+                                    productFoundList = productRepository.findByTitleAndCategoryOrderByPriceDesc(titleRequest, Float.parseFloat(priceFrom), Float.parseFloat(priceTo), 1);
                             case "clothes" ->
-                                    productFound = productRepository.findByTitleAndCategoryOrderByPriceDesc(titleRequest, Float.parseFloat(priceFrom), Float.parseFloat(priceTo), 2);
+                                    productFoundList = productRepository.findByTitleAndCategoryOrderByPriceDesc(titleRequest, Float.parseFloat(priceFrom), Float.parseFloat(priceTo), 2);
                             case "appliance" ->
-                                    productFound = productRepository.findByTitleAndCategoryOrderByPriceDesc(titleRequest, Float.parseFloat(priceFrom), Float.parseFloat(priceTo), 3);
+                                    productFoundList = productRepository.findByTitleAndCategoryOrderByPriceDesc(titleRequest, Float.parseFloat(priceFrom), Float.parseFloat(priceTo), 3);
                         }
                     } else {
-                        productFound = productRepository.findByTitleOrderByPriceDesc(titleRequest, Float.parseFloat(priceFrom), Float.parseFloat(priceTo));
+                        productFoundList = productRepository.findByTitleOrderByPriceDesc(titleRequest, Float.parseFloat(priceFrom), Float.parseFloat(priceTo));
                     }
                 }
             }
@@ -78,104 +77,99 @@ public class ProductSearchController {
                 if(priceSort.isEmpty() || priceSort.equals("priceSortByASC")) {
                     switch (categorySelect) {
                         case "furniture" ->
-                                productFound = productRepository.findByTitleContainingIgnoreCaseAndCategoryOrderByPriceAsc(titleRequest, 1);
+                                productFoundList = productRepository.findByTitleContainingIgnoreCaseAndCategoryOrderByPriceAsc(titleRequest, 1);
                         case "clothes" ->
-                                productFound = productRepository.findByTitleContainingIgnoreCaseAndCategoryOrderByPriceAsc(titleRequest,2);
+                                productFoundList = productRepository.findByTitleContainingIgnoreCaseAndCategoryOrderByPriceAsc(titleRequest,2);
                         case "appliance" ->
-                                productFound = productRepository.findByTitleContainingIgnoreCaseAndCategoryOrderByPriceAsc(titleRequest,3);
+                                productFoundList = productRepository.findByTitleContainingIgnoreCaseAndCategoryOrderByPriceAsc(titleRequest,3);
                     }
                 } else {
                     switch (categorySelect) {
                         case "furniture" ->
-                                model.addAttribute("productFound", productRepository.findByTitleContainingIgnoreCaseAndCategoryOrderByPriceDesc(titleRequest, 1));
+                                productFoundList = productRepository.findByTitleContainingIgnoreCaseAndCategoryOrderByPriceDesc(titleRequest, 1);
                         case "clothes" ->
-                                model.addAttribute("productFound", productRepository.findByTitleContainingIgnoreCaseAndCategoryOrderByPriceDesc(titleRequest,2));
+                                productFoundList = productRepository.findByTitleContainingIgnoreCaseAndCategoryOrderByPriceDesc(titleRequest,2);
                         case "appliance" ->
-                                model.addAttribute("productFound", productRepository.findByTitleContainingIgnoreCaseAndCategoryOrderByPriceDesc(titleRequest,3));
+                                productFoundList = productRepository.findByTitleContainingIgnoreCaseAndCategoryOrderByPriceDesc(titleRequest,3);
                     }
                 }
             } else {
-                model.addAttribute("productFound", productRepository.findByTitleContainingIgnoreCase(titleRequest));
+                productFoundList = productRepository.findByTitleContainingIgnoreCase(titleRequest);
             }
-        } else
-
-        //2
-        // по цене "от и до", категории и сортировка по цене -
-
-       if(!priceFrom.isEmpty() & !priceTo.isEmpty() & !categorySelect.isEmpty() & (priceSort.equals("priceSortByASC") || priceSort.isEmpty())){
-                switch(categorySelect){
-                    case "furniture" ->
-                            productFound = productRepository.findByCategoryAndPriceAndOrderByPriceAsc(Float.parseFloat(priceFrom), Float.parseFloat(priceTo), 1);
-                    case "clothes" ->
-                            productFound = productRepository.findByCategoryAndPriceAndOrderByPriceAsc(Float.parseFloat(priceFrom), Float.parseFloat(priceTo), 2);
-                    case "appliance" ->
-                            productFound = productRepository.findByCategoryAndPriceAndOrderByPriceAsc(Float.parseFloat(priceFrom), Float.parseFloat(priceTo), 3);
-                }
-            } else if(!priceFrom.isEmpty() & !priceTo.isEmpty() & !categorySelect.isEmpty() & priceSort.equals("priceSortByDESC")) {
-                switch (categorySelect) {
-                    case "furniture" ->
-                            productFound = productRepository.findByCategoryAndPriceAndOrderByPriceDesc(Float.parseFloat(priceFrom), Float.parseFloat(priceTo), 1);
-                    case "clothes" ->
-                            productFound = productRepository.findByCategoryAndPriceAndOrderByPriceDesc(Float.parseFloat(priceFrom), Float.parseFloat(priceTo), 2);
-                    case "appliance" ->
-                            productFound = productRepository.findByCategoryAndPriceAndOrderByPriceDesc(Float.parseFloat(priceFrom), Float.parseFloat(priceTo), 3);
-                }
-            }
+        }
 
         //1
-        //по части названия и сортировка по цене +
+        //по части названия и сортировка по цене
         if(!titleRequest.isEmpty() & (priceSort.isEmpty() || priceSort.equals("priceSortByASC"))) {
-            productFound = productRepository.findByTitleContainingIgnoreCaseOrderByPriceAsc(titleRequest);
+            productFoundList = productRepository.findByTitleContainingIgnoreCaseOrderByPriceAsc(titleRequest);
         } else
         if (!titleRequest.isEmpty() & priceSort.equals("priceSortByDESC")) {
-            productFound = productRepository.findByTitleContainingIgnoreCaseOrderByPriceDesc(titleRequest);
+            productFoundList = productRepository.findByTitleContainingIgnoreCaseOrderByPriceDesc(titleRequest);
         }
 
         //1
-        //по категории (остальные графы пустые) и сортировка по цене +
-
-        if(!categorySelect.isEmpty()
-                //& priceFrom.isEmpty() &priceTo.isEmpty() & titleRequest.isEmpty()
-                & (priceSort.equals("priceSortByASC") || priceSort.isEmpty())){
+        //по категории (остальные графы пустые) и сортировка по цене
+        if(!categorySelect.isEmpty() & (priceSort.equals("priceSortByASC") || priceSort.isEmpty())){
             switch (categorySelect) {
                 case "furniture" ->
-                        productFound = productRepository.findByCategoryAndOrderByPriceAsc(1);
+                        productFoundList = productRepository.findByCategoryAndOrderByPriceAsc(1);
                 case "clothes" ->
-                        productFound = productRepository.findByCategoryAndOrderByPriceAsc(2);
+                        productFoundList = productRepository.findByCategoryAndOrderByPriceAsc(2);
                 case "appliance" ->
-                        productFound = productRepository.findByCategoryAndOrderByPriceAsc(3);
+                        productFoundList = productRepository.findByCategoryAndOrderByPriceAsc(3);
             }
-        } else if (!categorySelect.isEmpty()
-                //& titleRequest.isEmpty() & priceFrom.isEmpty() &priceTo.isEmpty()
-                & priceSort.equals("priceSortByDESC")
-        ){
+        } else if (!categorySelect.isEmpty() & priceSort.equals("priceSortByDESC")){
             switch (categorySelect) {
                 case "furniture" ->
-                        productFound =  productRepository.findByCategoryAndOrderByPriceDesc(1);
+                        productFoundList = productRepository.findByCategoryAndOrderByPriceDesc(1);
                 case "clothes" ->
-                        productFound = productRepository.findByCategoryAndOrderByPriceDesc(2);
+                        productFoundList = productRepository.findByCategoryAndOrderByPriceDesc(2);
                 case "appliance" ->
-                        productFound = productRepository.findByCategoryAndOrderByPriceDesc(3);
+                        productFoundList = productRepository.findByCategoryAndOrderByPriceDesc(3);
+            }
+        }
+
+        //2
+        //по цене "от и до", категории и сортировка по цене
+        if(!priceFrom.isEmpty() & !priceTo.isEmpty() & !categorySelect.isEmpty() & (priceSort.equals("priceSortByASC") || priceSort.isEmpty())){
+            switch(categorySelect){
+                case "furniture" ->
+                        productFoundList = productRepository.findByCategoryAndPriceAndOrderByPriceAsc(Float.parseFloat(priceFrom), Float.parseFloat(priceTo), 1);
+                case "clothes" ->
+                        productFoundList = productRepository.findByCategoryAndPriceAndOrderByPriceAsc(Float.parseFloat(priceFrom), Float.parseFloat(priceTo), 2);
+                case "appliance" ->
+                        productFoundList = productRepository.findByCategoryAndPriceAndOrderByPriceAsc(Float.parseFloat(priceFrom), Float.parseFloat(priceTo), 3);
+            }
+        } else if(!priceFrom.isEmpty() & !priceTo.isEmpty() & !categorySelect.isEmpty() & priceSort.equals("priceSortByDESC")) {
+            switch (categorySelect) {
+                case "furniture" ->
+                        productFoundList = productRepository.findByCategoryAndPriceAndOrderByPriceDesc(Float.parseFloat(priceFrom), Float.parseFloat(priceTo), 1);
+                case "clothes" ->
+                        productFoundList = productRepository.findByCategoryAndPriceAndOrderByPriceDesc(Float.parseFloat(priceFrom), Float.parseFloat(priceTo), 2);
+                case "appliance" ->
+                        productFoundList = productRepository.findByCategoryAndPriceAndOrderByPriceDesc(Float.parseFloat(priceFrom), Float.parseFloat(priceTo), 3);
             }
         }
 
         //1
-        //по цене "от и до" и сортировка по цене +
-
-        if(!priceFrom.isEmpty() & !priceTo.isEmpty() & (priceSort.equals("priceSortByASC") || priceSort.isEmpty())
-        ){
-            productFound = productRepository.findByPriceAndOrderByPriceAsc(Float.parseFloat(priceFrom), Float.parseFloat(priceTo));
-        } else if (!priceFrom.isEmpty() & !priceTo.isEmpty() & (priceSort.equals("priceSortByDESC"))
-        ){
-            productFound = productRepository.findByPriceAndOrderByPriceDesc(Float.parseFloat(priceFrom), Float.parseFloat(priceTo));
+        //по цене "от и до" и сортировка по цене
+        if(!priceFrom.isEmpty() & !priceTo.isEmpty() & (priceSort.equals("priceSortByASC") || priceSort.isEmpty())){
+            productFoundList = productRepository.findByPriceAndOrderByPriceAsc(Float.parseFloat(priceFrom), Float.parseFloat(priceTo));
+        } else if (!priceFrom.isEmpty() & !priceTo.isEmpty() & (priceSort.equals("priceSortByDESC"))){
+            productFoundList = productRepository.findByPriceAndOrderByPriceDesc(Float.parseFloat(priceFrom), Float.parseFloat(priceTo));
         }
 
+        int foundCount=0;
+        for (Product product: productFoundList){
+            foundCount+=1;
+        }
+
+        model.addAttribute("foundCount", foundCount);
+        model.addAttribute("productFoundList", productFoundList);
         model.addAttribute("value_priceSort", priceSort);
         model.addAttribute("value_titleTyped", titleRequest);
         model.addAttribute("value_priceFrom", priceFrom);
         model.addAttribute("value_priceTo", priceTo);
-        model.addAttribute("userAuth", personDetails.getPerson());
-        model.addAttribute("productFound", productFound);
 
         switch (personDetails.getPerson().getRole()) {
             case "ROLE_USER" -> {
@@ -230,10 +224,15 @@ public class ProductSearchController {
         if (!byTitleRequest.isEmpty()){
             productFoundByTitle = productRepository.findByTitleContainingIgnoreCaseOrderByPriceAsc(byTitleRequest);
             }
+        int foundCount=0;
+        for (Product product: productFoundByTitle){
+            foundCount+=1;
+        }
 
         model.addAttribute("userAuth", personDetails.getPerson());
+        model.addAttribute("foundCount", foundCount);
         model.addAttribute("titleTyped", byTitleRequest);
-        model.addAttribute("productFound", productFoundByTitle);
+        model.addAttribute("productFoundList", productFoundByTitle);
 
         switch (personDetails.getPerson().getRole()) {
             case "ROLE_USER" -> {
@@ -244,6 +243,185 @@ public class ProductSearchController {
             }
         }
         return "/404";
+    }
+
+
+    //поиск по заголовку для NOT AUTH
+    @GetMapping("/notauth/search/title")
+    public String NotAuthSearch(Model model){
+        return "/NotAuthSearch";
+    }
+    @PostMapping("/notauth/search/title")
+    public String NotAuthSearchByTitle(
+            @RequestParam("byTitleRequest") String byTitleRequest,
+            Model model
+    ){
+       List<Product> productFoundByTitle = new ArrayList<>();
+
+        if (!byTitleRequest.isEmpty()){
+            productFoundByTitle = productRepository.findByTitleContainingIgnoreCaseOrderByPriceAsc(byTitleRequest);
+        }
+
+        int foundCount=0;
+        for (Product product: productFoundByTitle){
+            foundCount+=1;
+        }
+
+        model.addAttribute("foundCount", foundCount);
+        model.addAttribute("titleTyped", byTitleRequest);
+        model.addAttribute("productFoundList", productFoundByTitle);
+
+
+        return "/NotAuthSearch";
+    }
+
+    //поиск для товара  для NOT AUTH
+    @PostMapping("/notauth/search")
+    public String NotAuthSearch(
+            @RequestParam("titleRequest") String titleRequest,
+            @RequestParam("priceFrom") String priceFrom,
+            @RequestParam("priceTo") String priceTo,
+            @RequestParam(value="priceSort", required = false, defaultValue = "") String priceSort,
+            @RequestParam(value="categorySelect", required = false, defaultValue = "") String categorySelect,
+            Model model){
+        List<Product> productFoundList = new ArrayList<>();
+        //3
+        //по части названия, цене "от и до", категория или без нее, с сортировкой
+        if(!titleRequest.isEmpty()) {
+            if (!priceFrom.isEmpty() & !priceTo.isEmpty()) {
+                if (priceSort.equals("priceSortByASC")) {
+                    if (!categorySelect.isEmpty()) {
+                        switch (categorySelect) {
+                            case "furniture" ->
+                                    productFoundList = productRepository.findByTitleAndCategoryOrderByPriceAsc(titleRequest, Float.parseFloat(priceFrom), Float.parseFloat(priceTo), 1);
+                            case "clothes" ->
+                                    productFoundList = productRepository.findByTitleAndCategoryOrderByPriceAsc(titleRequest, Float.parseFloat(priceFrom), Float.parseFloat(priceTo), 2);
+                            case "appliance" ->
+                                    productFoundList = productRepository.findByTitleAndCategoryOrderByPriceAsc(titleRequest, Float.parseFloat(priceFrom), Float.parseFloat(priceTo), 3);
+                        }
+                    } else {
+                        productFoundList = productRepository.findByTitleOrderByPriceAsc(titleRequest, Float.parseFloat(priceFrom), Float.parseFloat(priceTo));
+                    }
+                } else {
+                    //desc
+                    if (!categorySelect.isEmpty()) {
+                        switch (categorySelect) {
+                            case "furniture" ->
+                                    productFoundList = productRepository.findByTitleAndCategoryOrderByPriceDesc(titleRequest, Float.parseFloat(priceFrom), Float.parseFloat(priceTo), 1);
+                            case "clothes" ->
+                                    productFoundList = productRepository.findByTitleAndCategoryOrderByPriceDesc(titleRequest, Float.parseFloat(priceFrom), Float.parseFloat(priceTo), 2);
+                            case "appliance" ->
+                                    productFoundList = productRepository.findByTitleAndCategoryOrderByPriceDesc(titleRequest, Float.parseFloat(priceFrom), Float.parseFloat(priceTo), 3);
+                        }
+                    } else {
+                        productFoundList = productRepository.findByTitleOrderByPriceDesc(titleRequest, Float.parseFloat(priceFrom), Float.parseFloat(priceTo));
+                    }
+                }
+            }
+        }
+
+        //2
+        //по части названия, категории, и сортировка по цене
+        if(!titleRequest.isEmpty()) {
+            if(!categorySelect.isEmpty()) {
+                if(priceSort.isEmpty() || priceSort.equals("priceSortByASC")) {
+                    switch (categorySelect) {
+                        case "furniture" ->
+                                productFoundList = productRepository.findByTitleContainingIgnoreCaseAndCategoryOrderByPriceAsc(titleRequest, 1);
+                        case "clothes" ->
+                                productFoundList = productRepository.findByTitleContainingIgnoreCaseAndCategoryOrderByPriceAsc(titleRequest,2);
+                        case "appliance" ->
+                                productFoundList = productRepository.findByTitleContainingIgnoreCaseAndCategoryOrderByPriceAsc(titleRequest,3);
+                    }
+                } else {
+                    switch (categorySelect) {
+                        case "furniture" ->
+                                productFoundList = productRepository.findByTitleContainingIgnoreCaseAndCategoryOrderByPriceDesc(titleRequest, 1);
+                        case "clothes" ->
+                                productFoundList = productRepository.findByTitleContainingIgnoreCaseAndCategoryOrderByPriceDesc(titleRequest,2);
+                        case "appliance" ->
+                                productFoundList = productRepository.findByTitleContainingIgnoreCaseAndCategoryOrderByPriceDesc(titleRequest,3);
+                    }
+                }
+            } else {
+                productFoundList = productRepository.findByTitleContainingIgnoreCase(titleRequest);
+            }
+        }
+
+        //1
+        //по части названия и сортировка по цене
+        if(!titleRequest.isEmpty() & (priceSort.isEmpty() || priceSort.equals("priceSortByASC"))) {
+            productFoundList = productRepository.findByTitleContainingIgnoreCaseOrderByPriceAsc(titleRequest);
+        } else
+        if (!titleRequest.isEmpty() & priceSort.equals("priceSortByDESC")) {
+            productFoundList = productRepository.findByTitleContainingIgnoreCaseOrderByPriceDesc(titleRequest);
+        }
+
+        //1
+        //по категории (остальные графы пустые) и сортировка по цене
+        if(!categorySelect.isEmpty() & (priceSort.equals("priceSortByASC") || priceSort.isEmpty())){
+            switch (categorySelect) {
+                case "furniture" ->
+                        productFoundList = productRepository.findByCategoryAndOrderByPriceAsc(1);
+                case "clothes" ->
+                        productFoundList = productRepository.findByCategoryAndOrderByPriceAsc(2);
+                case "appliance" ->
+                        productFoundList = productRepository.findByCategoryAndOrderByPriceAsc(3);
+            }
+        } else if (!categorySelect.isEmpty() & priceSort.equals("priceSortByDESC")){
+            switch (categorySelect) {
+                case "furniture" ->
+                        productFoundList = productRepository.findByCategoryAndOrderByPriceDesc(1);
+                case "clothes" ->
+                        productFoundList = productRepository.findByCategoryAndOrderByPriceDesc(2);
+                case "appliance" ->
+                        productFoundList = productRepository.findByCategoryAndOrderByPriceDesc(3);
+            }
+        }
+
+        //2
+        //по цене "от и до", категории и сортировка по цене
+        if(!priceFrom.isEmpty() & !priceTo.isEmpty() & !categorySelect.isEmpty() & (priceSort.equals("priceSortByASC") || priceSort.isEmpty())){
+            switch(categorySelect){
+                case "furniture" ->
+                        productFoundList = productRepository.findByCategoryAndPriceAndOrderByPriceAsc(Float.parseFloat(priceFrom), Float.parseFloat(priceTo), 1);
+                case "clothes" ->
+                        productFoundList = productRepository.findByCategoryAndPriceAndOrderByPriceAsc(Float.parseFloat(priceFrom), Float.parseFloat(priceTo), 2);
+                case "appliance" ->
+                        productFoundList = productRepository.findByCategoryAndPriceAndOrderByPriceAsc(Float.parseFloat(priceFrom), Float.parseFloat(priceTo), 3);
+            }
+        } else if(!priceFrom.isEmpty() & !priceTo.isEmpty() & !categorySelect.isEmpty() & priceSort.equals("priceSortByDESC")) {
+            switch (categorySelect) {
+                case "furniture" ->
+                        productFoundList = productRepository.findByCategoryAndPriceAndOrderByPriceDesc(Float.parseFloat(priceFrom), Float.parseFloat(priceTo), 1);
+                case "clothes" ->
+                        productFoundList = productRepository.findByCategoryAndPriceAndOrderByPriceDesc(Float.parseFloat(priceFrom), Float.parseFloat(priceTo), 2);
+                case "appliance" ->
+                        productFoundList = productRepository.findByCategoryAndPriceAndOrderByPriceDesc(Float.parseFloat(priceFrom), Float.parseFloat(priceTo), 3);
+            }
+        }
+
+        //1
+        //по цене "от и до" и сортировка по цене
+        if(!priceFrom.isEmpty() & !priceTo.isEmpty() & (priceSort.equals("priceSortByASC") || priceSort.isEmpty())){
+            productFoundList = productRepository.findByPriceAndOrderByPriceAsc(Float.parseFloat(priceFrom), Float.parseFloat(priceTo));
+        } else if (!priceFrom.isEmpty() & !priceTo.isEmpty() & (priceSort.equals("priceSortByDESC"))){
+            productFoundList = productRepository.findByPriceAndOrderByPriceDesc(Float.parseFloat(priceFrom), Float.parseFloat(priceTo));
+        }
+
+        int foundCount=0;
+        for (Product product: productFoundList){
+            foundCount+=1;
+        }
+
+        model.addAttribute("foundCount", foundCount);
+        model.addAttribute("productFoundList", productFoundList);
+        model.addAttribute("value_priceSort", priceSort);
+        model.addAttribute("value_titleTyped", titleRequest);
+        model.addAttribute("value_priceFrom", priceFrom);
+        model.addAttribute("value_priceTo", priceTo);
+
+        return "/NotAuthSearch";
     }
 
 }

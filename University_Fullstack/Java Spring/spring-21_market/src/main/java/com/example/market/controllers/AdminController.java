@@ -4,10 +4,7 @@ import com.example.market.models.*;
 import com.example.market.repositories.CategoryRepository;
 import com.example.market.repositories.ProductRepository;
 import com.example.market.security.PersonDetails;
-import com.example.market.services.OrderService;
-import com.example.market.services.PersonService;
-import com.example.market.services.ProductService;
-import com.example.market.services.ShippingAddressService;
+import com.example.market.services.*;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.Authentication;
@@ -37,14 +34,16 @@ public class AdminController {
     private final ShippingAddressService shippingAddressService;
 
     private final ProductRepository productRepository;
+    private final ImageService imageService;
 
-    public AdminController(ProductService productService, CategoryRepository categoryRepository, PersonService personService, OrderService orderService, ShippingAddressService shippingAddressService, ProductRepository productRepository) {
+    public AdminController(ProductService productService, CategoryRepository categoryRepository, PersonService personService, OrderService orderService, ShippingAddressService shippingAddressService, ProductRepository productRepository, ImageService imageService) {
         this.productService = productService;
         this.categoryRepository = categoryRepository;
         this.personService = personService;
         this.orderService = orderService;
         this.shippingAddressService = shippingAddressService;
         this.productRepository = productRepository;
+        this.imageService = imageService;
     }
     @GetMapping("/admin")
     public String admin(){
@@ -185,6 +184,7 @@ public class AdminController {
             @PathVariable("id")int id) {
         model.addAttribute("product", productService.getProductId(id));
         model.addAttribute("category", categoryRepository.findAll());
+        //model.addAttribute("imageList", productService.getProductId(id).getImageList());
         return "product/editProduct";
     }
 
@@ -195,15 +195,131 @@ public class AdminController {
             @Valid Product product,
             BindingResult bindingResult,
             @PathVariable("id") int id,
-            Model model){
-
+            @RequestParam("file_1")MultipartFile file_1,
+            @RequestParam("file_2")MultipartFile file_2,
+            @RequestParam("file_3")MultipartFile file_3,
+            @RequestParam("file_4")MultipartFile file_4,
+            @RequestParam("file_5")MultipartFile file_5,
+            Model model) throws IOException {
         if (bindingResult.hasErrors()){
             model.addAttribute("category", categoryRepository.findAll());
             return "product/editProduct";
         }
-        productService.updateProduct(id, product);
+        int old_image_id;
+        List<Image> old_images = imageService.findImagesByProductId(id);
+        Image tempImage = new Image();
 
-        return "redirect:admin/products";
+        if(!file_1.isEmpty()) {
+            File uploadDir = new File(uploadPath);
+            if(!uploadDir.exists()){
+                uploadDir.mkdir();
+            }
+            old_image_id = old_images.get(0).getId();
+            String uuidFile = UUID.randomUUID().toString();
+            String resultFileName = uuidFile + "." + file_1.getOriginalFilename();
+            file_1.transferTo(new File(uploadPath+"/"+resultFileName));
+
+            tempImage.setId(old_image_id);
+            tempImage.setProduct(product);
+            tempImage.setFileName(resultFileName);
+            product.addImageToProduct(tempImage);
+        } else{
+            tempImage.setId(old_images.get(0).getId());
+            tempImage.setProduct(product);
+            tempImage.setFileName(old_images.get(0).getFileName());
+            product.addImageToProduct(tempImage);
+        }
+        if(!file_2.isEmpty()) {
+            File uploadDir = new File(uploadPath);
+            if(!uploadDir.exists()){
+                uploadDir.mkdir();
+            }
+            old_image_id = old_images.get(1).getId();
+
+            String uuidFile = UUID.randomUUID().toString();
+            String resultFileName = uuidFile + "." + file_2.getOriginalFilename();
+            file_2.transferTo(new File(uploadPath+"/"+resultFileName));
+
+            tempImage.setId(old_image_id);
+            tempImage.setProduct(product);
+            tempImage.setFileName(resultFileName);
+            product.addImageToProduct(tempImage);
+        } else{
+            tempImage.setId(old_images.get(1).getId());
+            tempImage.setProduct(product);
+            tempImage.setFileName(old_images.get(1).getFileName());
+            product.addImageToProduct(tempImage);
+        }
+        if(!file_3.isEmpty()) {
+            File uploadDir = new File(uploadPath);
+            if(!uploadDir.exists()){
+                uploadDir.mkdir();
+            }
+            old_image_id = old_images.get(2).getId();
+
+            String uuidFile = UUID.randomUUID().toString();
+            String resultFileName = uuidFile + "." + file_3.getOriginalFilename();
+            file_3.transferTo(new File(uploadPath+"/"+resultFileName));
+
+            tempImage.setId(old_image_id);
+            tempImage.setProduct(product);
+            tempImage.setFileName(resultFileName);
+            product.addImageToProduct(tempImage);
+        } else{
+            tempImage.setId(old_images.get(2).getId());
+            tempImage.setProduct(product);
+            tempImage.setFileName(old_images.get(2).getFileName());
+            product.addImageToProduct(tempImage);
+        }
+        if(!file_4.isEmpty()) {
+            File uploadDir = new File(uploadPath);
+            if(!uploadDir.exists()){
+                uploadDir.mkdir();
+            }
+            old_image_id = old_images.get(3).getId();
+
+            String uuidFile = UUID.randomUUID().toString();
+            String resultFileName = uuidFile + "." + file_4.getOriginalFilename();
+            file_4.transferTo(new File(uploadPath+"/"+resultFileName));
+
+            tempImage.setId(old_image_id);
+            tempImage.setProduct(product);
+            tempImage.setFileName(resultFileName);
+            product.addImageToProduct(tempImage);
+        } else{
+            tempImage.setId(old_images.get(3).getId());
+            tempImage.setProduct(product);
+            tempImage.setFileName(old_images.get(3).getFileName());
+            product.addImageToProduct(tempImage);
+        }
+        if(!file_5.isEmpty()) {
+            File uploadDir = new File(uploadPath);
+            if(!uploadDir.exists()){
+                uploadDir.mkdir();
+            }
+            old_image_id = old_images.get(4).getId();
+
+            String uuidFile = UUID.randomUUID().toString();
+            String resultFileName = uuidFile + "." + file_5.getOriginalFilename();
+            file_5.transferTo(new File(uploadPath+"/"+resultFileName));
+
+            tempImage.setId(old_image_id);
+            tempImage.setProduct(product);
+            tempImage.setFileName(resultFileName);
+            product.addImageToProduct(tempImage);
+        } else{
+            tempImage.setId(old_images.get(4).getId());
+            tempImage.setProduct(product);
+            tempImage.setFileName(old_images.get(4).getFileName());
+            product.addImageToProduct(tempImage);
+        }
+
+        productService.updateProduct(id, product);
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        PersonDetails personDetails = (PersonDetails) authentication.getPrincipal();
+        Person currentPerson = personDetails.getPerson();
+        model.addAttribute("userAuth", currentPerson);
+        return "redirect:/admin/products";
     }
 
     //USERS
