@@ -31,9 +31,7 @@ public class ShippingAddressService {
 
     //найти адреса конкретного пользователя
     public List<ShippingAddress> findAddressesByPerson(Person person){
-        List<ShippingAddress> shippingAddressList = shippingAddressRepository.findByPerson(person);
-
-        return shippingAddressList;
+        return shippingAddressRepository.findByPerson(person);
     }
     //найти адрес по умолчанию
     public ShippingAddress findDefaultAddress(int person_id){
@@ -45,7 +43,7 @@ public class ShippingAddressService {
 
 
 
-    //найти конкретный адрес по айди
+    //найти конкретный адрес по id
     public  ShippingAddress getAddressById(int id){
         Optional<ShippingAddress> optionalShippingAddress = shippingAddressRepository.findById(id);
         return optionalShippingAddress.orElse(null);

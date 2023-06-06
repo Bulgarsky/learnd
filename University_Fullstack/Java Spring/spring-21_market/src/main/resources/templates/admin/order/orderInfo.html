@@ -281,6 +281,10 @@
             <div class="text-dark fs-2 mb-3">
                 <a href="/admin/users">к Списку пользователей<i class="bi bi-people-fill"></i></a>
             </div>
+            <div class="text-dark fs-2 mb-3">
+                <a th:href="@{/user/info/{id}(id=${orderById.getPerson().getId()})}"
+                   th:text="'К пользователю - '+${orderById.getPerson().getLogin()}"></a>
+            </div>
             <hr>
             <div class="d-flex flex-column bg-light">
                 <div class="p-2">
@@ -291,7 +295,8 @@
 
                 </div>
                 <div class="p-2">
-                    <span><strong>Покупатель: </strong></span><span th:text="${orderById.getPerson().getLogin()}"></span>
+                    <span><strong>Покупатель: </strong></span> <a th:href="@{/user/info/{id}(id=${orderById.getPerson().getId()})}"
+                                                                  th:text="${orderById.getPerson().getLogin()}"></a>
                 </div>
                 <div class="p-2">
                     <span>

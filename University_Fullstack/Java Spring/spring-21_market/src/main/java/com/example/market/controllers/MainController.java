@@ -43,7 +43,7 @@ public class MainController {
         return "/404";
     }
 
-    //Открыть главную страницу после авторизации
+    //личный кабинет после авторизации
     @GetMapping("/my")
     public String index(Model model){
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
@@ -93,16 +93,6 @@ public class MainController {
         return "redirect:/my";
     }
 
-    //получение полной информации о товаре по id. убрать в другое место
-    @GetMapping("/account/product/info/{id}")
-    public String productInfo(@PathVariable("id") int id, Model model){
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        PersonDetails personDetails = (PersonDetails) authentication.getPrincipal();
-        Person person = personDetails.getPerson();
-        model.addAttribute("userAuth", person);
-        model.addAttribute("product", productService.getProductId(id));
-        return "/user/info";
-    }
 
     @GetMapping("/favorites")
     public String fav(){

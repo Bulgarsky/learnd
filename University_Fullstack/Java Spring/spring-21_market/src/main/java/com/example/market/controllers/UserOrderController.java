@@ -51,7 +51,7 @@ public class UserOrderController {
         for (Product item: productList) {
             totalPrice += item.getPrice();
         }
-        //добавить соли
+        //добавить соли номер заказ
         String uuid = UUID.randomUUID().toString();
 
         for (Product product: productList) {
@@ -71,11 +71,8 @@ public class UserOrderController {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         PersonDetails personDetails = (PersonDetails) authentication.getPrincipal();
         List<Order> orderList = orderService.findOrderByPerson(personDetails.getPerson());
-        int orderCount=0;
-        for (Order order: orderList) {
-            orderCount+=1;
-        }
-        model.addAttribute("userOrderCount", orderCount);
+
+        model.addAttribute("userOrderCount", orderList.size());
         model.addAttribute("userOrders", orderList);
         model.addAttribute("userAuth", personDetails.getPerson());
         return "user/orders";
@@ -87,11 +84,8 @@ public class UserOrderController {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         PersonDetails personDetails = (PersonDetails) authentication.getPrincipal();
         List<Order> orderActiveList = orderService.findOrderByStatusActive(personDetails.getPerson());
-        int orderActiveCount=0;
-        for (Order order: orderActiveList) {
-            orderActiveCount+=1;
-        }
-        model.addAttribute("orderActiveCount", orderActiveCount);
+
+        model.addAttribute("orderActiveCount", orderActiveList.size());
         model.addAttribute("userOrderActive",orderActiveList);
         model.addAttribute("userAuth", personDetails.getPerson());
         return "user/order/orderActive";
@@ -103,11 +97,8 @@ public class UserOrderController {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         PersonDetails personDetails = (PersonDetails) authentication.getPrincipal();
         List<Order> orderFinishList = orderService.findOrderByStatusHistory(personDetails.getPerson());
-        int orderFinishCount=0;
-        for (Order order: orderFinishList) {
-            orderFinishCount+=1;
-        }
-        model.addAttribute("orderFinishCount", orderFinishCount);
+
+        model.addAttribute("orderFinishCount", orderFinishList.size());
         model.addAttribute("userOrderHistory", orderFinishList);
         model.addAttribute("userAuth", personDetails.getPerson());
         return "user/order/orderHistory";

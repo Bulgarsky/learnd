@@ -61,14 +61,12 @@ public class ShoppingCartController {
         }
         //итог корзины
         float totalPrice= 0;
-        int productsCount = 0;
         for (Product item: productList) {
             totalPrice += item.getPrice();
-            productsCount+=1;
         }
         model.addAttribute("total_price", totalPrice);
         model.addAttribute("cart_product", productList);
-        model.addAttribute("products_count", productsCount);
+        model.addAttribute("products_count", productList.size());
 
         return "/shoppingCart";
     }

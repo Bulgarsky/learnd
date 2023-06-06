@@ -283,6 +283,10 @@
       <div class="text-dark fs-2 mb-3">
         <a href="/admin/users">к Списку пользователей<i class="bi bi-people-fill"></i></a>
       </div>
+      <div class="text-dark fs-2 mb-3">
+        <a th:href="@{/user/info/{id}(id=${orderEdit.getPerson().getId()})}"
+           th:text="'К пользователю - '+${orderEdit.getPerson().getLogin()}"></a>
+      </div>
       <hr>
       <div class="d-flex flex-column bg-light">
         <!-- информация о заказе -->
@@ -292,7 +296,8 @@
                 th:object="${orderEdit}">
             <h4 th:text="'Заказ № '+ ${orderEdit.getOrderNo()}"></h4>
             <h5 th:text="'от '+${#temporals.format(orderEdit.getDateTime(), 'dd MMM yyyy')}"></h5>
-            <h5  th:text="'Покупатель: '+${orderEdit.getPerson().getLogin()}"></h5>
+            <span><strong>Покупатель: </strong></span> <a th:href="@{/user/info/{id}(id=${orderEdit.getPerson().getId()})}"
+                                                          th:text="${orderEdit.getPerson().getLogin()}"></a>
             <div class="order">
               <div class="order-caption">
                 <table class="order-item">

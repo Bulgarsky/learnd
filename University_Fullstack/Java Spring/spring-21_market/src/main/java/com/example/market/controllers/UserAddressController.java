@@ -28,7 +28,7 @@ public class UserAddressController {
         this.personService = personService;
     }
 
-
+    //список адресов
     @GetMapping("/user/addresses")
     public String userAddresses(Model model) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
@@ -36,23 +36,18 @@ public class UserAddressController {
 
         List<ShippingAddress> userAddressList = shippingAddressService.findAddressesByPerson(personDetails.getPerson());
 
-        int addressCount=0;
-        for (ShippingAddress address: userAddressList) {
-            addressCount+=1;
-        }
-
         model.addAttribute("userAuth", personDetails.getPerson());
         model.addAttribute("userAddressesList", userAddressList);
-        model.addAttribute("userAddressCount", addressCount);
+        model.addAttribute("userAddressCount", userAddressList.size());
         return "/user/userAddresses";
     }
-
+    //добавление адреса
     @GetMapping("/shipping/address/add")
     public String addShippingAddress(Model model){
         model.addAttribute("shippingAddress", new ShippingAddress());
         return "/shipping/addShipping";
     }
-
+    //добавление нового адреса в базу
     @PostMapping("/shipping/address/add")
     public String addShippingAddress(
             @ModelAttribute("shippingAddress") @Valid ShippingAddress shippingAddress,
@@ -72,7 +67,7 @@ public class UserAddressController {
         shippingAddressService.saveAddress(newAddress, personId);
         return "redirect:/user/addresses";
     }
-
+    //редактирование адреса
     @GetMapping("/user/address/edit/{id}")
     public String editShippingAddress(
             Model model,
@@ -84,7 +79,7 @@ public class UserAddressController {
         model.addAttribute("editAddress", shippingAddressService.getAddressById(id));
         return "/shipping/editShipping";
     }
-
+    //редактирование адреса - обновление в базе
     @PostMapping("/user/address/edit/{id}")
     public String saveShippingAddress(
             @ModelAttribute("editAddress") ShippingAddress updatedAddress,
@@ -98,7 +93,7 @@ public class UserAddressController {
 
         return "redirect:/user/addresses";
     }
-
+    //удаление адреса пользователем
     @GetMapping("/user/address/delete/{id}")
     public String deleteAddress(
             @PathVariable("id")int id){
@@ -106,6 +101,7 @@ public class UserAddressController {
         return "redirect:/user/addresses";
     }
 
+    //установить статус адреса по умолчанию
     @GetMapping("/user/address/default/{id}")
     public String setDefaultAddress(
             @PathVariable("id")int id){

@@ -513,20 +513,16 @@ public class AdminController {
         PersonDetails personDetails = (PersonDetails) authentication.getPrincipal();
         Person currentPerson = personDetails.getPerson();
         model.addAttribute("userAuth", currentPerson);
-        List<Order> ordersFound = orderService.findOrderByOrderNo(orderSearch);
+
+        List<Order> foundOrders = orderService.findOrderByOrderNo(orderSearch);
         if(!orderSearch.isEmpty()) {
-            model.addAttribute("findOrders", ordersFound);
+            model.addAttribute("foundOrders", foundOrders);
         }
 
-        int ordersFoundCount = 0;
-        for (Order order: ordersFound) {
-            ordersFoundCount+=1;
-        }
-        model.addAttribute("ordersFoundCount", ordersFoundCount);
-        //вернуть все заказы через модель на страницу заказов
-        //model.addAttribute("allOrders", orderService.getAllOrder());
+        model.addAttribute("foundOrdersCount", foundOrders.size());
+
         //вернуть слово использованное для поиска в графу поиска
-        model.addAttribute("value_order_search", orderSearch);
+        model.addAttribute("searchWord", orderSearch);
         return "/admin/order/orderSearch";
     }
 

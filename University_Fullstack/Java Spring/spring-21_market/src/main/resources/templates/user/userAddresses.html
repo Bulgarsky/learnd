@@ -239,17 +239,17 @@
         <!-- блок адресов -->
         <div class="col-10">
             <div class="text-dark fs-2 mb-3">
-                <i class="bi bi-houses"></i>
-                <span> Ваши адреса</span><sup class="text-top text-muted" th:text="' '+${userAddressCount}+' ед.'"></sup>
-                <span th:text=" '|' "></span>
                 <a class="text-primary fs-4 mb-3"
                         href="/shipping/address/add">
                     <span><i class="bi bi-house-add"></i> Добавить новый</span>
                 </a>
             </div>
-
             <hr>
-
+            <div class="text-dark fs-2 mb-3">
+                <i class="bi bi-houses"></i>
+                <span> Ваши адреса</span><sup class="text-top text-muted" th:text="' '+${userAddressCount}+' ед.'"></sup>
+            </div>
+            <hr>
             <div class="row gutter m-1 p-1">
                 <div class="card col-md-5 min-width-380"
                      style="margin: 5px; padding: 5px"
@@ -300,8 +300,6 @@
                                     <span> Удалить</span>
                                 </a>
                             </div>
-
-
                         </div>
                     </div>
                 </div>

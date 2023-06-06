@@ -22,7 +22,8 @@ public class ProductSearchController {
         this.productRepository = productRepository;
     }
 
-    //большой поиск товаров (работает)
+    //большой поиск товаров для аутент.пользователей
+    //Переделать поиск
     @PostMapping("/search/")
     public String productSearch(
             @RequestParam("titleRequest") String titleRequest,
@@ -159,12 +160,8 @@ public class ProductSearchController {
             productFoundList = productRepository.findByPriceAndOrderByPriceDesc(Float.parseFloat(priceFrom), Float.parseFloat(priceTo));
         }
 
-        int foundCount=0;
-        for (Product product: productFoundList){
-            foundCount+=1;
-        }
 
-        model.addAttribute("foundCount", foundCount);
+        model.addAttribute("foundCount", productFoundList.size());
         model.addAttribute("productFoundList", productFoundList);
         model.addAttribute("value_priceSort", priceSort);
         model.addAttribute("value_titleTyped", titleRequest);
@@ -186,7 +183,7 @@ public class ProductSearchController {
         return "/404";
     }
 
-    //поиск по тайтлу
+    //поиск по тайтлу для Аутен.пользователей
     @GetMapping("/search/title")
     public String search(Model model
     ){
@@ -224,13 +221,9 @@ public class ProductSearchController {
         if (!byTitleRequest.isEmpty()){
             productFoundByTitle = productRepository.findByTitleContainingIgnoreCaseOrderByPriceAsc(byTitleRequest);
             }
-        int foundCount=0;
-        for (Product product: productFoundByTitle){
-            foundCount+=1;
-        }
 
         model.addAttribute("userAuth", personDetails.getPerson());
-        model.addAttribute("foundCount", foundCount);
+        model.addAttribute("foundCount", productFoundByTitle.size());
         model.addAttribute("titleTyped", byTitleRequest);
         model.addAttribute("productFoundList", productFoundByTitle);
 
@@ -262,15 +255,10 @@ public class ProductSearchController {
             productFoundByTitle = productRepository.findByTitleContainingIgnoreCaseOrderByPriceAsc(byTitleRequest);
         }
 
-        int foundCount=0;
-        for (Product product: productFoundByTitle){
-            foundCount+=1;
-        }
 
-        model.addAttribute("foundCount", foundCount);
+        model.addAttribute("foundCount", productFoundByTitle.size());
         model.addAttribute("titleTyped", byTitleRequest);
         model.addAttribute("productFoundList", productFoundByTitle);
-
 
         return "/NotAuthSearch";
     }

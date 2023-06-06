@@ -1,6 +1,7 @@
 package com.example.market.models;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotEmpty;
 
 import java.util.List;
 
@@ -10,10 +11,20 @@ public class Category {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
+    @NotEmpty(message="Название категории нужно заполнить")
     private String title;
+    private String description;
 
     @OneToMany(mappedBy = "category", fetch = FetchType.EAGER)
     private List<Product> product;
+
+    public Category() {
+    }
+
+    public Category(String title, String description) {
+        this.title = title;
+        this.description = description;
+    }
 
     public int getId() {
         return id;
@@ -24,7 +35,9 @@ public class Category {
     public List<Product> getProduct() {
         return product;
     }
-
+    public String getDescription() {
+        return description;
+    }
 
     public void setId(int id) {
         this.id = id;
@@ -34,5 +47,9 @@ public class Category {
     }
     public void setProduct(List<Product> product) {
         this.product = product;
+    }
+
+    public void setDescription(String description){
+        this.description=description;
     }
 }
