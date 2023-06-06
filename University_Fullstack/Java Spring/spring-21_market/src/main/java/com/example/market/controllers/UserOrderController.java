@@ -3,8 +3,8 @@ package com.example.market.controllers;
 import com.example.market.enumm.Status;
 import com.example.market.models.Cart;
 import com.example.market.models.Order;
+import com.example.market.models.Person;
 import com.example.market.models.Product;
-import com.example.market.models.ShippingAddress;
 import com.example.market.security.PersonDetails;
 import com.example.market.services.CartService;
 import com.example.market.services.OrderService;
@@ -24,21 +24,21 @@ public class UserOrderController {
     private final ProductService productService;
     private final CartService cartService;
     private final OrderService orderService;
+    private final AuthenticationController authController;
 
-    public UserOrderController(ProductService productService, CartService cartService, OrderService orderService) {
+    public UserOrderController(ProductService productService, CartService cartService, OrderService orderService, AuthenticationController authController) {
         this.productService = productService;
         this.cartService = cartService;
         this.orderService = orderService;
+        this.authController = authController;
     }
 
     //ЗАКАЗ: создать
     @GetMapping("/order/create")
     public String orderCreate(){
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        PersonDetails personDetails = (PersonDetails) authentication.getPrincipal();
-        int id_person = personDetails.getPerson().getId();
+        Person currentPerson = authController.getCurrentAuthPerson();
 
-        List<Cart> cartList = cartService.findByPersonId(id_person);
+        List<Cart> cartList = cartService.findByPersonId(currentPerson.getId());
         List<Product> productList = new ArrayList<>();
 
         //получить продукты из корзины по id товара
@@ -55,7 +55,7 @@ public class UserOrderController {
         String uuid = UUID.randomUUID().toString();
 
         for (Product product: productList) {
-            Order newOrder = new Order(uuid, product, personDetails.getPerson(), 1, product.getPrice(), Status.Принят);
+            Order newOrder = new Order(uuid, product, currentPerson, 1, product.getPrice(), Status.Принят);
             orderService.saveOrder(newOrder);
 
             //очистить корзину
@@ -68,39 +68,36 @@ public class UserOrderController {
     //Пользователь: вывести все заказы
     @GetMapping("/orders")
     public String userOrder(Model model){
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        PersonDetails personDetails = (PersonDetails) authentication.getPrincipal();
-        List<Order> orderList = orderService.findOrderByPerson(personDetails.getPerson());
+        Person currentPerson = authController.getCurrentAuthPerson();
+        List<Order> orderList = orderService.findOrderByPerson(currentPerson);
 
         model.addAttribute("userOrderCount", orderList.size());
         model.addAttribute("userOrders", orderList);
-        model.addAttribute("userAuth", personDetails.getPerson());
+        model.addAttribute("userAuth", currentPerson);
         return "user/orders";
     }
 
     //Пользователь: открыть список активных заказов
     @GetMapping("/user/order/active")
     public String userOrderActive(Model model){
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        PersonDetails personDetails = (PersonDetails) authentication.getPrincipal();
-        List<Order> orderActiveList = orderService.findOrderByStatusActive(personDetails.getPerson());
+        Person currentPerson = authController.getCurrentAuthPerson();
+        List<Order> orderActiveList = orderService.findOrderByStatusActive(currentPerson);
 
-        model.addAttribute("orderActiveCount", orderActiveList.size());
         model.addAttribute("userOrderActive",orderActiveList);
-        model.addAttribute("userAuth", personDetails.getPerson());
+        model.addAttribute("orderActiveCount", orderActiveList.size());
+        model.addAttribute("userAuth", currentPerson);
         return "user/order/orderActive";
     }
 
     //Пользователь: открыть список активных заказов
     @GetMapping("/user/order/history")
     public String userOrderHistory(Model model){
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        PersonDetails personDetails = (PersonDetails) authentication.getPrincipal();
-        List<Order> orderFinishList = orderService.findOrderByStatusHistory(personDetails.getPerson());
+        Person currentPerson = authController.getCurrentAuthPerson();
+        List<Order> orderFinishList = orderService.findOrderByStatusHistory(currentPerson);
 
-        model.addAttribute("orderFinishCount", orderFinishList.size());
         model.addAttribute("userOrderHistory", orderFinishList);
-        model.addAttribute("userAuth", personDetails.getPerson());
+        model.addAttribute("orderFinishCount", orderFinishList.size());
+        model.addAttribute("userAuth", currentPerson);
         return "user/order/orderHistory";
     }
 

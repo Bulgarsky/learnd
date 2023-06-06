@@ -19,18 +19,17 @@ import java.util.List;
 @Controller
 public class CategoryController {
     private final CategoryService categoryService;
+    private final AuthenticationController authController;
 
-    public CategoryController(CategoryService categoryService) {
+    public CategoryController(CategoryService categoryService, AuthenticationController authController) {
         this.categoryService = categoryService;
+        this.authController = authController;
     }
 
 
     @GetMapping("/category")
     public String getCategory(Model model) {
-//        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-//        PersonDetails personDetails = (PersonDetails) authentication.getPrincipal();
-//        Person currentPerson = personDetails.getPerson();
-        Person currentPerson= getCurrentAuthPerson();
+        Person currentPerson = authController.getCurrentAuthPerson();
         model.addAttribute("userAuth", currentPerson);
 
         List<Category> categoryList = categoryService.getCategoryList();
@@ -74,11 +73,6 @@ public class CategoryController {
         return "redirect:/category";
     }
 
-    public Person getCurrentAuthPerson(){
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        PersonDetails personDetails = (PersonDetails) authentication.getPrincipal();
-        return personDetails.getPerson();
-    }
 }
 
 

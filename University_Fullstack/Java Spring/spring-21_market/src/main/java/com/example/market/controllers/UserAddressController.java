@@ -21,22 +21,21 @@ import static com.example.market.enumm.ShippingAddressStatus.ADDRESS_STATUS;
 @Controller
 public class UserAddressController {
     private final ShippingAddressService shippingAddressService;
-    private final PersonService personService;
+    private final AuthenticationController authController;
 
-    public UserAddressController(ShippingAddressService shippingAddressService, PersonService personService) {
+    public UserAddressController(ShippingAddressService shippingAddressService, AuthenticationController authController) {
         this.shippingAddressService = shippingAddressService;
-        this.personService = personService;
+        this.authController = authController;
     }
 
     //список адресов
     @GetMapping("/user/addresses")
     public String userAddresses(Model model) {
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        PersonDetails personDetails = (PersonDetails) authentication.getPrincipal();
+        Person currentPerson = authController.getCurrentAuthPerson();
 
-        List<ShippingAddress> userAddressList = shippingAddressService.findAddressesByPerson(personDetails.getPerson());
+        List<ShippingAddress> userAddressList = shippingAddressService.findAddressesByPerson(currentPerson);
 
-        model.addAttribute("userAuth", personDetails.getPerson());
+        model.addAttribute("userAuth", currentPerson);
         model.addAttribute("userAddressesList", userAddressList);
         model.addAttribute("userAddressCount", userAddressList.size());
         return "/user/userAddresses";
@@ -59,12 +58,9 @@ public class UserAddressController {
             @RequestParam("building") String building,
             @RequestParam("apartment") String apartment
             ){
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        PersonDetails personDetails = (PersonDetails) authentication.getPrincipal();
-        int personId = personDetails.getPerson().getId();
-
-        ShippingAddress newAddress = new ShippingAddress(zip, country, state, city, street, building, apartment, ADDRESS_STATUS, personDetails.getPerson());
-        shippingAddressService.saveAddress(newAddress, personId);
+        Person currentPerson = authController.getCurrentAuthPerson();
+        ShippingAddress newAddress = new ShippingAddress(zip, country, state, city, street, building, apartment, ADDRESS_STATUS, currentPerson);
+        shippingAddressService.saveAddress(newAddress, currentPerson.getId());
         return "redirect:/user/addresses";
     }
     //редактирование адреса
@@ -72,8 +68,6 @@ public class UserAddressController {
     public String editShippingAddress(
             Model model,
             @PathVariable("id")int id){
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        PersonDetails personDetails = (PersonDetails) authentication.getPrincipal();
 
         model.addAttribute("user", shippingAddressService.getAddressById(id).getPerson());
         model.addAttribute("editAddress", shippingAddressService.getAddressById(id));
@@ -87,10 +81,9 @@ public class UserAddressController {
             Model model
     ){
         ShippingAddressStatus currentStatus = shippingAddressService.getAddressById(id).getAddressStatus();
-        Person tempPerson = shippingAddressService.getAddressById(id).getPerson();
-        int personId = tempPerson.getId();
-        shippingAddressService.updateAddress(id, updatedAddress, currentStatus, personId);
-
+        Person currentPerson = authController.getCurrentAuthPerson();
+        shippingAddressService.updateAddress(id, updatedAddress, currentStatus, currentPerson.getId());
+        model.addAttribute("userAuth", currentPerson);
         return "redirect:/user/addresses";
     }
     //удаление адреса пользователем
@@ -105,9 +98,7 @@ public class UserAddressController {
     @GetMapping("/user/address/default/{id}")
     public String setDefaultAddress(
             @PathVariable("id")int id){
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        PersonDetails personDetails = (PersonDetails) authentication.getPrincipal();
-        int personId = personDetails.getPerson().getId();
+        int personId = authController.getCurrentAuthPerson().getId();
         ShippingAddress address = shippingAddressService.getAddressById(id);
         shippingAddressService.setDefault(id, personId, address);
 

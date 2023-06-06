@@ -4,6 +4,8 @@ import com.example.market.models.Person;
 import com.example.market.repositories.PersonRepository;
 import com.example.market.security.PersonDetails;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -32,4 +34,5 @@ public class PersonDetailsService implements UserDetailsService {
         }
         return new PersonDetails(person.get());
     }
+
 }

@@ -1,5 +1,6 @@
 package com.example.market.controllers;
 
+import com.example.market.models.Person;
 import com.example.market.models.Product;
 import com.example.market.repositories.ProductRepository;
 import com.example.market.security.PersonDetails;
@@ -17,10 +18,12 @@ import java.util.List;
 @Controller
 public class ProductSearchController {
     private final ProductRepository productRepository;
-
-    public ProductSearchController(ProductRepository productRepository) {
+    private final AuthenticationController authController;
+    public ProductSearchController(ProductRepository productRepository, AuthenticationController authController) {
         this.productRepository = productRepository;
+        this.authController = authController;
     }
+
 
     //большой поиск товаров для аутент.пользователей
     //Переделать поиск
@@ -32,9 +35,6 @@ public class ProductSearchController {
             @RequestParam(value="priceSort", required = false, defaultValue = "") String priceSort,
             @RequestParam(value="categorySelect", required = false, defaultValue = "") String categorySelect,
             Model model){
-
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        PersonDetails personDetails = (PersonDetails) authentication.getPrincipal();
         List<Product> productFoundList = new ArrayList<>();
         //3
         //по части названия, цене "от и до", категория или без нее, с сортировкой
@@ -168,7 +168,7 @@ public class ProductSearchController {
         model.addAttribute("value_priceFrom", priceFrom);
         model.addAttribute("value_priceTo", priceTo);
 
-        switch (personDetails.getPerson().getRole()) {
+        switch (authController.getCurrentAuthPerson().getRole()) {
             case "ROLE_USER" -> {
                 return "user/userSearch";
             }
@@ -187,12 +187,10 @@ public class ProductSearchController {
     @GetMapping("/search/title")
     public String search(Model model
     ){
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        PersonDetails personDetails = (PersonDetails) authentication.getPrincipal();
-//        int id_person = personDetails.getPerson().getId();
-        model.addAttribute("userAuth", personDetails.getPerson());
-        String role = personDetails.getPerson().getRole();
-        switch (role) {
+        Person currentPerson = authController.getCurrentAuthPerson();
+        model.addAttribute("userAuth", currentPerson);
+
+        switch (currentPerson.getRole()) {
             case "ROLE_USER" -> {
                 return "user/userSearch";
             }
@@ -213,8 +211,7 @@ public class ProductSearchController {
             @RequestParam("byTitleRequest") String byTitleRequest,
             Model model
     ){
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        PersonDetails personDetails = (PersonDetails) authentication.getPrincipal();
+        Person currentPerson = authController.getCurrentAuthPerson();
 
         List<Product> productFoundByTitle = new ArrayList<>();
 
@@ -222,12 +219,12 @@ public class ProductSearchController {
             productFoundByTitle = productRepository.findByTitleContainingIgnoreCaseOrderByPriceAsc(byTitleRequest);
             }
 
-        model.addAttribute("userAuth", personDetails.getPerson());
+        model.addAttribute("userAuth", currentPerson);
         model.addAttribute("foundCount", productFoundByTitle.size());
         model.addAttribute("titleTyped", byTitleRequest);
         model.addAttribute("productFoundList", productFoundByTitle);
 
-        switch (personDetails.getPerson().getRole()) {
+        switch (currentPerson.getRole()) {
             case "ROLE_USER" -> {
                 return "user/userSearch";
             }

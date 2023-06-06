@@ -1,5 +1,6 @@
 package com.example.market.controllers;
 
+import com.example.market.models.Person;
 import com.example.market.security.PersonDetails;
 import com.example.market.services.ProductService;
 import org.springframework.security.core.Authentication;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class AuthenticationController {
     private final ProductService productService;
+
 
     public AuthenticationController(ProductService productService) {
         this.productService = productService;
@@ -25,12 +27,12 @@ public class AuthenticationController {
     //вывод товаров
     @GetMapping("/index")
     public String index(Model model){
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        PersonDetails personDetails = (PersonDetails) authentication.getPrincipal();
-        //получение роли
-        String role = personDetails.getPerson().getRole();
-        model.addAttribute("userAuth", personDetails.getPerson());
+        Person currentPerson = getCurrentAuthPerson();
+        model.addAttribute("userAuth", currentPerson);
         model.addAttribute("products", productService.getAllProduct());
+
+        //получение роли
+        String role = currentPerson.getRole();
         if (role.isEmpty()) {
             return "/NotAuthIndex";
         } else {
@@ -56,6 +58,9 @@ public class AuthenticationController {
         model.addAttribute("products", productService.getAllProduct());
         return "/NotAuthIndex";
     }
-
-
+    public Person getCurrentAuthPerson(){
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        PersonDetails personDetails = (PersonDetails) authentication.getPrincipal();
+        return personDetails.getPerson();
+    }
 }

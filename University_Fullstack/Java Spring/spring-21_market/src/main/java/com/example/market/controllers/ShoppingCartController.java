@@ -19,10 +19,12 @@ import java.util.List;
 public class ShoppingCartController {
     private final ProductService productService;
     private final CartService cartService;
+    private final AuthenticationController authController;
 
-    public ShoppingCartController(ProductService productService, CartService cartService) {
+    public ShoppingCartController(ProductService productService, CartService cartService, AuthenticationController authController) {
         this.productService = productService;
         this.cartService = cartService;
+        this.authController = authController;
     }
 
     //Корзина: добавить товар в корзину
@@ -32,13 +34,9 @@ public class ShoppingCartController {
         //получить продукт по id
         Product product = productService.getProductId(id);
 
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        PersonDetails personDetails = (PersonDetails) authentication.getPrincipal();
-
-        int id_person = personDetails.getPerson().getId();
 
         //формируем новую корзину
-        Cart cart = new Cart(id_person, product.getId());
+        Cart cart = new Cart(authController.getCurrentAuthPerson().getId(), product.getId());
         //cохраняем корзину
         cartService.saveCart(cart);
 
@@ -48,11 +46,7 @@ public class ShoppingCartController {
     //Корзина: формирование
     @GetMapping("/cart")
     public String cart(Model model) {
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        PersonDetails personDetails = (PersonDetails) authentication.getPrincipal();
-        int id_person = personDetails.getPerson().getId();
-
-        List<Cart> cartList = cartService.findByPersonId(id_person);
+        List<Cart> cartList = cartService.findByPersonId(authController.getCurrentAuthPerson().getId());
         List<Product> productList = new ArrayList<>();
 
         //переборка элементов корзина
@@ -74,11 +68,7 @@ public class ShoppingCartController {
     //КОРЗИНА: удалить товары по id
     @GetMapping("/cart/delete/{id}")
     public String deleteProductFromCart(@PathVariable("id") int id){
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        PersonDetails personDetails = (PersonDetails) authentication.getPrincipal();
-        int id_person = personDetails.getPerson().getId();
-
-        List<Cart> cartList = cartService.findByPersonId(id_person);
+        List<Cart> cartList = cartService.findByPersonId(authController.getCurrentAuthPerson().getId());
         List<Product> productList = new ArrayList<>();
 
         //получить продукты из корзины по id товара
