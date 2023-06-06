@@ -9,10 +9,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -70,6 +67,25 @@ public class CategoryController {
         //Добавить проверку и положить ошибку в еррор
 
         categoryService.saveCategory(title, description);
+        return "redirect:/category";
+    }
+
+    @GetMapping("/category/edit/{id}")
+    public String editCategory(
+            Model model,
+            @PathVariable int id){
+        model.addAttribute("editCategory", categoryService.getCategory(id));
+        return "admin/category/editCategory";
+    }
+
+    @PostMapping("/category/edit/{id}")
+    public String editCategory(
+            @ModelAttribute("editCategory") Category updatedCategory,
+            @PathVariable("id") int id,
+            Model model
+    ){
+        categoryService.updateCategory(id, updatedCategory);
+        model.addAttribute("userAuth", authController.getCurrentAuthPerson());
         return "redirect:/category";
     }
 

@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @Transactional
@@ -26,5 +27,18 @@ public class CategoryService {
         newCategory.setTitle(title);
         newCategory.setDescription(description);
         categoryRepository.save(newCategory);
+    }
+
+    public Category getCategory(int id){
+        Optional<Category> categoryOptional = categoryRepository.findById(id);
+        return categoryOptional.orElse(null);
+    }
+
+    public void updateCategory(int categoryId, Category updatedCategory){
+        Category saveCategory = new Category();
+        saveCategory.setId(categoryId);
+        saveCategory.setTitle(updatedCategory.getTitle());
+        saveCategory.setDescription(updatedCategory.getDescription());
+        categoryRepository.save(saveCategory);
     }
 }

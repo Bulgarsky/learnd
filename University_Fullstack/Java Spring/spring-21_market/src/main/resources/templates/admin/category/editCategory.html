@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Редактирование адреса</title>
+  <meta charset="UTF-8">
+  <title>Редактирование категории</title>
   <link th:href="@{/css/navbar.css}"
         type="text/css"
         rel="stylesheet">
@@ -11,16 +11,16 @@
 
   <!--    bootstrap-->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-<!--  иконки-->
+  <!--  иконки-->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
 </head>
 <body>
 
 <div class="auth-box">
   <form  class="form-signin"
-          th:method="POST"
-          th:action="@{/user/address/edit/{id}(id=${editAddress.getId()})}"
-          th:object="${editAddress}">
+         th:method="POST"
+         th:action="@{/category/edit/{id}(id=${editCategory.getId()})}"
+         th:object="${editCategory}">
     <div class="text-center mb-4">
       <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" fill="currentColor" class="bi bi-house-gear" viewBox="0 0 16 16">
         <path d="M7.293 1.5a1 1 0 0 1 1.414 0L11 3.793V2.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v3.293l2.354 2.353a.5.5 0 0 1-.708.708L8 2.207l-5 5V13.5a.5.5 0 0 0 .5.5h4a.5.5 0 0 1 0 1h-4A1.5 1.5 0 0 1 2 13.5V8.207l-.646.647a.5.5 0 1 1-.708-.708L7.293 1.5Z"/>
@@ -34,47 +34,19 @@
     <br>
     <div class="form-label-group">
 
-      <input th:field="*{zip}"
+      <input th:field="*{title}"
              required autofocus
-             type="text" class="form-control" id="zip" name="zip" placeholder="Введите почтовый индекс">
-      <label for="zip" class="text-muted text-left"><small>Почтовый индекс</small></label>
+             type="text" class="form-control" id="title" name="title" placeholder="Введите название">
+      <label for="title" class="text-muted text-left"><small>Название категории</small></label>
     </div>
     <div class="form-label-group">
 
-      <input th:field="*{country}"
+      <input th:field="*{description}"
              required
-             type="text" class="form-control" id="country" name="country" placeholder="Введите страну" value="Россия">
-      <label for="country" class="text-muted text-left"><small>Страна</small></label>
-    </div>
-    <div class="form-label-group">
-
-      <input th:field="*{state}"
-             autofocus
-             type="text" class="form-control" id="state" name="state" placeholder="Введите область или регион">
-      <label for="state" class="text-muted text-left"><small>Регион / Область / Республика</small></label>
+             type="text" class="form-control" id="description" name="description" placeholder="Введите описание">
+      <label for="description" class="text-muted text-left"><small>Описание</small></label>
     </div>
 
-    <div class="form-label-group">
-      <input th:field="*{city}" type="text" class="form-control" id="city" name="city" placeholder="Введите город">
-      <label for="city" class="text-muted text-left"><small>Населенный пункт</small></label>
-    </div>
-    <div class="form-label-group">
-
-      <input th:field="*{street}" type="text" class="form-control" id="street" name="street" placeholder="Введите Улицу и тд">
-      <label for="street" class="text-muted text-left"><small>Улица / Блок  и тд</small></label>
-    </div>
-    <div class="form-label-group">
-
-      <input th:field="*{building}" type="text" class="form-control" id="building" name="building" placeholder="Введите дом или строение">
-      <label for="building" class="text-muted text-left"><small>Дом / Строение </small></label>
-    </div>
-
-    <div class="form-label-group">
-
-      <input th:field="*{apartment}"
-             type="text" class="form-control" id="apartment" name="apartment" placeholder="Введите квартиру или помещение">
-      <label for="apartment" class="text-muted text-left"><small>Квартира / Помещение </small></label>
-    </div>
 
     <button type="submit" class="btn btn-lg btn-primary btn-block">Сохранить изменения</button>
     <p class="mt-5 mb-3 text-muted text-center">
