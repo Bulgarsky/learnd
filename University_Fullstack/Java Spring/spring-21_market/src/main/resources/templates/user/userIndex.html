@@ -128,14 +128,13 @@
     <div class="row bg-light align-item-center p-1 m-1">
         <div class="text-center p-1 m-1"
             th:each="element : ${categoryList}">
-<!--            <i class="bi" th:classappend="${!element.getIcon().isEmpty()} ? ${element.getIcon()} : 'bi-dot'"></i>-->
             <i th:class="${element.getIcon()}"></i>
             <a class="text-secondary mr-1" href="#" th:text="${element.getTitle()}"></a>
         </div>
     </div>
 </div>
 <!--    <div>-->
-<!--    Средние карточки разедов подойдут для других мест-->
+<!--    Средние карточки разделов подойдут для других мест-->
 <!--        <div class="row bg-light align-item-center p-1 m-1">-->
 <!--            <div class="card col-md-3 border-outline-primary p-3 m-2 mr-3"-->
 <!--                th:each="element : ${categoryList}">-->

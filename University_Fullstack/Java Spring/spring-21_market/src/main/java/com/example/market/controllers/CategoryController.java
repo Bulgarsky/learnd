@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -50,7 +51,42 @@ public class CategoryController {
 
         return "/404";
     }
+    //АКТИВНЫЕ и неактивные КАТЕГОРИИ (Соединить после добавления JS в один контроллер)
+    @GetMapping("/category/enabled")
+    public String getActiveCategory(Model model){
 
+        List<Category> categoryList = categoryService.getCategoryList();
+        List<Category> activeCategory = new ArrayList<>();
+        for (Category element: categoryList) {
+            if (element.isEnabled()) {
+                activeCategory.add(element);
+            }
+        }
+
+        model.addAttribute("userAuth", authController.getCurrentAuthPerson());
+        model.addAttribute("activeCategory", activeCategory);
+        model.addAttribute("activeCategoryCount", activeCategory.size());
+        return "admin/category/enabledCategory";
+    }
+
+    @GetMapping("/category/disabled")
+    public String getDisabledCategory(Model model){
+
+        List<Category> categoryList = categoryService.getCategoryList();
+        List<Category> disabledCategory = new ArrayList<>();
+        for (Category element: categoryList) {
+            if (!element.isEnabled()) {
+                disabledCategory.add(element);
+            }
+        }
+
+        model.addAttribute("userAuth", authController.getCurrentAuthPerson());
+        model.addAttribute("disabledCategory", disabledCategory);
+        model.addAttribute("disabledCategoryCount", disabledCategory.size());
+        return "admin/category/disabledCategory";
+    }
+
+    //добавить новую категорию
     @GetMapping("/category/add")
     public String addCategory(Model model){
         model.addAttribute("newCategory", new Category());
@@ -69,6 +105,7 @@ public class CategoryController {
         return "redirect:/category";
     }
 
+    //редактирование
     @GetMapping("/category/edit/{id}")
     public String editCategory(
             Model model,
@@ -109,13 +146,15 @@ public class CategoryController {
         return "redirect:/category";
     }
 
-    //Установить статус: деактивирован/включен (используется для добавления товаров)
+    //Изменение статуса категории (активные используется при добавлении товаров)
     @GetMapping("/category/isEnabled/{id}")
     public String changeCategoryStatus(
             @PathVariable("id")int id){
         categoryService.changeCategoryStatus(id);
         return "redirect:/category";
     }
+
+
 
 }
 

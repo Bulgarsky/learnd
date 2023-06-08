@@ -21,6 +21,7 @@ public class CategoryService {
         return categoryRepository.findAll();
     }
 
+
     @Transactional
     public void saveCategory(String title, String description){
         Category newCategory = new Category();
@@ -53,12 +54,6 @@ public class CategoryService {
         tempCategory.setId(optionalCategory.get().getId());
         tempCategory.setTitle(optionalCategory.get().getTitle());
         tempCategory.setDescription(optionalCategory.get().getDescription());
-
-//        if (tempCategory.isEnabled()){
-//            tempCategory.setEnabled(false);
-//        } else {
-//            tempCategory.setEnabled(true);
-//        }
         tempCategory.setEnabled(!tempCategory.isEnabled());
 
         categoryRepository.save(tempCategory);
