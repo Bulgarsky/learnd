@@ -2,11 +2,9 @@ package com.example.market.controllers;
 
 import com.example.market.models.Category;
 import com.example.market.models.Person;
-import com.example.market.security.PersonDetails;
 import com.example.market.services.CategoryService;
+import com.example.market.services.ProductService;
 import jakarta.validation.Valid;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -16,10 +14,12 @@ import java.util.List;
 @Controller
 public class CategoryController {
     private final CategoryService categoryService;
+    private final ProductService productService;
     private final AuthenticationController authController;
 
-    public CategoryController(CategoryService categoryService, AuthenticationController authController) {
+    public CategoryController(CategoryService categoryService, ProductService productService, AuthenticationController authController) {
         this.categoryService = categoryService;
+        this.productService = productService;
         this.authController = authController;
     }
 
@@ -38,8 +38,7 @@ public class CategoryController {
 
         model.addAttribute("categoryList", categoryList);
         model.addAttribute("categoryCount", categoryList.size());
-
-
+        
         switch (currentPerson.getRole()){
             case "ROLE_USER", "ROLE_SELLER" -> {
                 return "/404";
@@ -74,8 +73,12 @@ public class CategoryController {
     public String editCategory(
             Model model,
             @PathVariable int id){
-        model.addAttribute("editCategory", categoryService.getCategory(id));
-        return "admin/category/editCategory";
+        if (id != 0) {
+            model.addAttribute("editCategory", categoryService.getCategory(id));
+            return "admin/category/editCategory";
+        }else{
+            return "redirect:/category";
+        }
     }
 
     @PostMapping("/category/edit/{id}")
@@ -84,8 +87,33 @@ public class CategoryController {
             @PathVariable("id") int id,
             Model model
     ){
-        categoryService.updateCategory(id, updatedCategory);
+        if (id != 0) {
+            categoryService.updateCategory(id, updatedCategory);
+        }
         model.addAttribute("userAuth", authController.getCurrentAuthPerson());
+        return "redirect:/category";
+    }
+
+    @GetMapping("/category/delete/{id}")
+    public String deleteCategory(
+            @PathVariable("id")int id){
+        if (id != 0) {
+
+            if(!productService.getProductByCategory(id).isEmpty()) {
+                //добавить ошибку в еррор (вывести на страницу)
+            } else {
+                categoryService.deleteCategory(id);
+            }
+
+        }
+        return "redirect:/category";
+    }
+
+    //Установить статус: деактивирован/включен (используется для добавления товаров)
+    @GetMapping("/category/isEnabled/{id}")
+    public String changeCategoryStatus(
+            @PathVariable("id")int id){
+        categoryService.changeCategoryStatus(id);
         return "redirect:/category";
     }
 

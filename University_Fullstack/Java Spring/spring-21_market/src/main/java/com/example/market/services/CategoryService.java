@@ -41,4 +41,27 @@ public class CategoryService {
         saveCategory.setDescription(updatedCategory.getDescription());
         categoryRepository.save(saveCategory);
     }
+
+    @Transactional
+    public void deleteCategory (int id){
+        categoryRepository.deleteById(id);
+    }
+
+    public void changeCategoryStatus (int id){
+        Optional<Category> optionalCategory = categoryRepository.findById(id);
+        Category tempCategory = new Category();
+        tempCategory.setId(optionalCategory.get().getId());
+        tempCategory.setTitle(optionalCategory.get().getTitle());
+        tempCategory.setDescription(optionalCategory.get().getDescription());
+
+//        if (tempCategory.isEnabled()){
+//            tempCategory.setEnabled(false);
+//        } else {
+//            tempCategory.setEnabled(true);
+//        }
+        tempCategory.setEnabled(!tempCategory.isEnabled());
+
+        categoryRepository.save(tempCategory);
+    }
+
 }

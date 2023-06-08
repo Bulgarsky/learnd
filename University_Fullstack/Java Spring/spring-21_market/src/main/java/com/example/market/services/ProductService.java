@@ -50,5 +50,9 @@ public class ProductService {
         productRepository.deleteById(id);
     }
 
-
+    //Товары: получить все товары по категории
+    public List<Product> getProductByCategory(int id){
+        List<Product> productList = productRepository.findByCategoryAndOrderByPriceAsc(id);
+        return productList;
+    }
 }

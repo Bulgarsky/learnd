@@ -2,6 +2,7 @@ package com.example.market.controllers;
 
 import com.example.market.models.Person;
 import com.example.market.security.PersonDetails;
+import com.example.market.services.CategoryService;
 import com.example.market.services.ProductService;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -12,10 +13,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class AuthenticationController {
     private final ProductService productService;
+    private final CategoryService categoryService;
 
-
-    public AuthenticationController(ProductService productService) {
+    public AuthenticationController(ProductService productService, CategoryService categoryService) {
         this.productService = productService;
+        this.categoryService = categoryService;
     }
 
     //Аутентификация
@@ -30,7 +32,7 @@ public class AuthenticationController {
         Person currentPerson = getCurrentAuthPerson();
         model.addAttribute("userAuth", currentPerson);
         model.addAttribute("products", productService.getAllProduct());
-
+        model.addAttribute("categoryList", categoryService.getCategoryList());
         //получение роли
         String role = currentPerson.getRole();
         if (role.isEmpty()) {

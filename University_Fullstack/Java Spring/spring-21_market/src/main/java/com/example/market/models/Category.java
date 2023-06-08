@@ -14,6 +14,11 @@ public class Category {
     @NotEmpty(message="Название категории нужно заполнить")
     private String title;
     private String description;
+    @Column(name="is_enabled")
+    private boolean is_Enabled = true;
+
+    @Column(name="bootstrap_icon")
+    private String icon = "bi bi-dot";
 
     @OneToMany(mappedBy = "category", fetch = FetchType.EAGER)
     private List<Product> product;
@@ -39,6 +44,15 @@ public class Category {
         return description;
     }
 
+    public String getIcon() {
+        return icon;
+    }
+
+    public boolean isEnabled() {
+        return is_Enabled;
+    }
+
+
     public void setId(int id) {
         this.id = id;
     }
@@ -51,5 +65,13 @@ public class Category {
 
     public void setDescription(String description){
         this.description=description;
+    }
+
+    public void setIcon(String icon) {
+        this.icon = icon;
+    }
+
+    public void setEnabled(boolean enabled) {
+        is_Enabled = enabled;
     }
 }

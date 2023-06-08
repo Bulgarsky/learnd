@@ -124,29 +124,31 @@
     </nav>
     <hr>
 <!--    разделы-->
-    <div>
-        <div class="row bg-light align-item-center p-1 m-1">
-            <div class="card col-md-3 border-outline-primary p-3 m-2 mr-3">
-                <h5>Мебель</h5>
-                <p>Описание раздела</p>
-                <img src="#" alt="картинка раздела">
-                <a class="btn btn-primary" href="#">Перейти</a>
-            </div>
-            <div class="card col-md-3 border-outline-success p-3 m-2 mr-3">
-                <h5>Бытовая техника</h5>
-                <p>Описание раздела</p>
-                <img src="#" alt="картинка раздела">
-                <a class="btn btn-success" href="#">Перейти</a>
-            </div>
-            <div class="card col-md-3 border-outline-danger p-3 m-2">
-                <h5>Одежда</h5>
-                <p>Описание раздела</p>
-                <img src="#" alt="картинка раздела">
-                <a class="btn btn-danger" href="#">Перейти</a>
-            </div>
+<div>
+    <div class="row bg-light align-item-center p-1 m-1">
+        <div class="text-center p-1 m-1"
+            th:each="element : ${categoryList}">
+<!--            <i class="bi" th:classappend="${!element.getIcon().isEmpty()} ? ${element.getIcon()} : 'bi-dot'"></i>-->
+            <i th:class="${element.getIcon()}"></i>
+            <a class="text-secondary mr-1" href="#" th:text="${element.getTitle()}"></a>
         </div>
-        <hr>
     </div>
+</div>
+<!--    <div>-->
+<!--    Средние карточки разедов подойдут для других мест-->
+<!--        <div class="row bg-light align-item-center p-1 m-1">-->
+<!--            <div class="card col-md-3 border-outline-primary p-3 m-2 mr-3"-->
+<!--                th:each="element : ${categoryList}">-->
+<!--                <h5 th:text="${element.getTitle()}"></h5>-->
+<!--                <hr>-->
+<!--                <h6>Описание раздела</h6>-->
+<!--                <p th:text="${element.getDescription()}"></p>-->
+<!--                <img src="#" alt="картинка раздела">-->
+<!--                <a class="btn btn-primary" href="#">Перейти</a>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--        <hr>-->
+<!--    </div>-->
 <!--   реклама -->
     <div>
         <div class="card row bg-secondary p-1 m-1">
