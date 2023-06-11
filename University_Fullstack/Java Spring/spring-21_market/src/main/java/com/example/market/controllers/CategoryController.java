@@ -93,6 +93,14 @@ public class CategoryController {
         return "/admin/category/addCategory";
     }
 
+    //Изменение статуса категории (активные используется при добавлении товаров)
+    @GetMapping("/category/isEnabled/{id}")
+    public String changeCategoryStatus(
+            @PathVariable("id")int id){
+        categoryService.changeCategoryStatus(id);
+        return "redirect:/category";
+    }
+
     @PostMapping("/category/add")
     public String addCategory(
             @ModelAttribute("newCategory") @Valid Category category,
@@ -146,14 +154,24 @@ public class CategoryController {
         return "redirect:/category";
     }
 
-    //Изменение статуса категории (активные используется при добавлении товаров)
-    @GetMapping("/category/isEnabled/{id}")
-    public String changeCategoryStatus(
-            @PathVariable("id")int id){
-        categoryService.changeCategoryStatus(id);
-        return "redirect:/category";
-    }
 
+    //переход внутрь категории
+    @GetMapping("/category/info/{id}")
+    public String aboutCategory(
+            @PathVariable("id")int id,
+            Model model){
+        Category category = categoryService.getCategory(id);
+
+        if (category.getDescription() == null) {
+            category.setDescription("Описание данного раздела еще не заполнено");
+        }
+
+        model.addAttribute("userAuth", authController.getCurrentAuthPerson());
+        model.addAttribute("aboutCategory", category);
+        model.addAttribute("categoryProducts", categoryService.getCategoryProducts(id));
+        model.addAttribute("categoryProductsCount",categoryService.getCategoryProducts(id).size());
+        return "admin/category/infoCategory";
+    }
 
 
 }

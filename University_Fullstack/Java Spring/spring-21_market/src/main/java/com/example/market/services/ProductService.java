@@ -52,7 +52,8 @@ public class ProductService {
 
     //Товары: получить все товары по категории
     public List<Product> getProductByCategory(int id){
-        List<Product> productList = productRepository.findByCategoryAndOrderByPriceAsc(id);
-        return productList;
+        return productRepository.findByCategoryAndOrderByPriceAsc(id);
     }
+
+
 }

@@ -93,4 +93,7 @@ public interface ProductRepository extends JpaRepository<Product, Integer> {
     List<Product> findByCategoryAndPriceAndOrderByPriceDesc(float priceFrom, float priceTo, int category);
 
 
+
+
+
 }

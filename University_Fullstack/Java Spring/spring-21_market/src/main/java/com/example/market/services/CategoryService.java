@@ -1,6 +1,7 @@
 package com.example.market.services;
 
 import com.example.market.models.Category;
+import com.example.market.models.Product;
 import com.example.market.repositories.CategoryRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -12,9 +13,11 @@ import java.util.Optional;
 @Transactional
 public class CategoryService {
     private final CategoryRepository categoryRepository;
+    private final ProductService productService;
 
-    public CategoryService(CategoryRepository categoryRepository) {
+    public CategoryService(CategoryRepository categoryRepository, ProductService productService) {
         this.categoryRepository = categoryRepository;
+        this.productService = productService;
     }
 
     public List<Category> getCategoryList(){
@@ -57,6 +60,10 @@ public class CategoryService {
         tempCategory.setEnabled(!tempCategory.isEnabled());
 
         categoryRepository.save(tempCategory);
+    }
+
+    public List<Product> getCategoryProducts(int id){
+        return productService.getProductByCategory(id);
     }
 
 }

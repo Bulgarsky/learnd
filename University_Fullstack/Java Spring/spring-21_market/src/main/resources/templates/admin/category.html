@@ -223,9 +223,9 @@
       <div class="mb-2">
         <a class="text-dark" href="/admin/product/add">Добавить товар</a>
       </div>
-      <div class="mb-2">
+      <div class="mb-2 text-primary">
         <i class="bi bi-dot"></i>
-        <a class="text-primary" href="/category">Категории</a>
+        <a href="/category">Категории</a>
       </div>
       <div>
         <hr>
@@ -309,11 +309,23 @@
             <div class="row gutter m-1 p-1">
         <div class="card d-flex flex-row col-md-5 text-left" style="margin: 5px; padding: 5px"
              th:each="element : ${categoryList}">
-          <div class="col" style="margin: 5px; padding: 5px">
-            <span th:text="${element.getTitle()}"></span>
-              <a th:href="@{/category/edit/{id}(id=${element.getId()})}" class="text-success">
-                  <i class="bi bi-pencil-fill fa-1x"></i>
-              </a>
+          <div class="col" >
+              <div class="row" style="margin: 5px; padding: 5px">
+                  <div class="flex-fill" style="width: 70%;">
+                      <a th:href="@{/category/info/{id}(id=${element.getId()})}">
+                          <span th:text="${element.getTitle()}"></span>
+                      </a>
+                  </div>
+                  <div class="flex-fill flex-end">
+                      <span class="text-dark" th:text="'id: '+${element.getId()}"></span>
+                  </div>
+              </div>
+
+
+
+<!--              <a th:href="@{/category/edit/{id}(id=${element.getId()})}" class="text-success">-->
+<!--                  <i class="bi bi-pencil-fill fa-1x"></i>-->
+<!--              </a>-->
             <hr>
             <p><a th:href="@{/category/isEnabled/{id}(id=${element.getId()})}">
                 <i class="bi bi-file-earmark-lock text-danger"></i>
@@ -338,7 +350,8 @@
                   <div class="flex-fill" style="width: 70%;"></div>
 
                   <div class="flex-fill flex-end">
-                      <a th:href="@{/category/delete/{id}(id=${element.getId()})}" class="text-danger">
+                      <a th:href="@{/category/delete/{id}(id=${element.getId()})}"
+                         class="btn btn-outline-danger">
                           <i class="bi bi-trash3 fa-1x"></i>
                           <span> Удалить</span>
                       </a>
