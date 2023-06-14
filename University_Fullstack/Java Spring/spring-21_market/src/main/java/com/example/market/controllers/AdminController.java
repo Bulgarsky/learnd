@@ -29,6 +29,7 @@ public class AdminController {
     private String uploadPath;
 
     private final CategoryRepository categoryRepository;
+    private final CategoryService categoryService;
     private final PersonService personService;
     private final OrderService orderService;
     private final ShippingAddressService shippingAddressService;
@@ -37,9 +38,10 @@ public class AdminController {
     private final ImageService imageService;
     private final AuthenticationController authController;
 
-    public AdminController(ProductService productService, CategoryRepository categoryRepository, PersonService personService, OrderService orderService, ShippingAddressService shippingAddressService, ProductRepository productRepository, ImageService imageService, AuthenticationController authController) {
+    public AdminController(ProductService productService, CategoryRepository categoryRepository, CategoryService categoryService, PersonService personService, OrderService orderService, ShippingAddressService shippingAddressService, ProductRepository productRepository, ImageService imageService, AuthenticationController authController) {
         this.productService = productService;
         this.categoryRepository = categoryRepository;
+        this.categoryService = categoryService;
         this.personService = personService;
         this.orderService = orderService;
         this.shippingAddressService = shippingAddressService;
@@ -54,9 +56,11 @@ public class AdminController {
 
     @GetMapping("/admin/products")
     public String products(Model model){
-        model.addAttribute("userAuth", authController.getCurrentAuthPerson());
-        model.addAttribute("products", productService.getAllProduct());
+        List<Product> productList = productService.getAllProduct();
 
+        model.addAttribute("userAuth", authController.getCurrentAuthPerson());
+        model.addAttribute("products", productList);
+        model.addAttribute("productCount", productList.size());
 
         return "admin/products";
     }
@@ -66,7 +70,7 @@ public class AdminController {
     public String addProduct(Model model){
         model.addAttribute("userAuth", authController.getCurrentAuthPerson());
         model.addAttribute("product", new Product());
-        model.addAttribute("category", categoryRepository.findAll());
+        model.addAttribute("category", categoryService.getActiveCategoryList());
         return "product/addProduct";
     }
 
@@ -175,7 +179,7 @@ public class AdminController {
             Model model,
             @PathVariable("id")int id) {
         model.addAttribute("product", productService.getProductId(id));
-        model.addAttribute("category", categoryRepository.findAll());
+        model.addAttribute("category", categoryService.getActiveCategoryList());
         return "product/editProduct";
     }
 
@@ -312,16 +316,13 @@ public class AdminController {
 
     //USERS
     //получить список пользователей
-    @GetMapping("/admin/users")
+    @GetMapping("/terminal/users")
     public String getAllPerson(Model model){
         model.addAttribute("userAuth", authController.getCurrentAuthPerson());
-        int userCount = 0;
-        List<Person> userList = personService.getAllPerson();
-        for (Person person: userList) {
-            userCount+=1;
-        }
-        model.addAttribute("userCount", userCount);
-        model.addAttribute("userList", userList);
+        List<Person> personList = personService.getAllPerson();
+
+        model.addAttribute("userCount", personList.size());
+        model.addAttribute("userList", personList);
 
         return "/admin/users";
     }
@@ -403,6 +404,7 @@ public class AdminController {
 
     //ЗАКАЗЫ
     //вывести список всех заказов для администратора (работает)
+    //next lvl - pagination
     @GetMapping("/admin/orders")
     public String getAllOrder(Model model){
         model.addAttribute("userAuth", authController.getCurrentAuthPerson());

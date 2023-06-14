@@ -32,7 +32,7 @@ public class SecurityConfig{
         http
                 .authorizeHttpRequests()
                 //настройка доступа к странице для роли ADMIN (префикс ROLE_ отбрасывается)
-                .requestMatchers("/admin","/admin/terminal", "/admin/users", "/admin/orders", "/admin/products").hasRole("ADMIN")
+                .requestMatchers("/admin","/admin/terminal", "/admin/users", "/admin/orders", "/admin/products", "/terminal/**").hasRole("ADMIN")
                 //настройка доступа страницам для других ролей
                 .requestMatchers("/", "/notauth", "/notauth/**","notauth/search/**", "/index", "/index/search", "/auth", "/reg", "/error", "/resources/**", "/static/**", "/css/**","/svg/**", "/js/**", "/img/**", "/product/info/{id}", "/search/**", "/404", "/404/**").permitAll()
                 //настройка доступа к остальным страницам для ролей

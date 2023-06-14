@@ -297,17 +297,12 @@
                     <div class="card d-flex flex-row col-md-6 text-left" style="margin: 5px; padding: 5px">
                         <div class="col" style="margin: 5px; padding: 5px">
                             <span th:text="${aboutCategory.getTitle()}"></span>
-                            <a th:href="@{/category/edit/{id}(id=${aboutCategory.getId()})}"
-                               class="text-success">
-                                Редактировать
-                                <i class="bi bi-pencil-fill fa-1x"></i>
-                            </a>
                             <hr>
-                            <p><a th:href="@{/category/isEnabled/{id}(id=${aboutCategory.getId()})}">
-                                <i class="bi bi-file-earmark-lock text-danger"></i>
-                            </a>
-                                is_Enabled ? >
-                                <span class="user-role" th:text="'{ '+${aboutCategory.isEnabled()}+'}'"></span>
+                            <p>Категория активна?
+                                <span class="user-role" th:text="${aboutCategory.isEnabled()}"></span>
+                                <a th:href="@{/category/isEnabled/{id}(id=${aboutCategory.getId()})}">
+                                    <i class="bi bi-repeat text-danger"></i>
+                                </a>
                             </p>
                             <hr>
                             <p class="text-secondary">
@@ -323,7 +318,13 @@
                             <p th:text="${aboutCategory.getDescription()}"></p>
                             <hr>
                             <div class="card-text d-flex flex-start">
-                                <div class="flex-fill" style="width: 70%;"></div>
+                                <div class="flex-fill" style="width: 70%;">
+                                    <a th:href="@{/category/edit/{id}(id=${aboutCategory.getId()})}"
+                                       class="btn btn-outline-success">
+                                        <i class="bi bi-pencil-fill fa-1x"></i>
+                                        Редактировать
+                                    </a>
+                                </div>
 
                                 <div class="flex-fill flex-end">
                                     <a th:href="@{/category/delete/{id}(id=${aboutCategory.getId()})}"
@@ -345,6 +346,35 @@
                 <h5>Товары данной категории
                     <sup class="text-top text-muted" th:text="${categoryProductsCount}"></sup>
                 </h5>
+            </div>
+
+
+            <div class="row" th:each="product : ${categoryProducts}">
+                <div class="col-md-12 p-3 ml-2 mr-2 mb-2 bg-white card">
+                    <!-- Карточка товара-->
+                    <div class="row no-gutters">
+                        <div class="col-md-1">
+                            <span th:text="'id: '+${product.getId()}"></span>
+                        </div>
+                        <div class="col-md-1">
+                            <img class="img-small"
+                                 th:src="'/img/'+${product.imageList[0].getFileName()}"
+                                 th:alt="${product.getTitle()}">
+                        </div>
+                        <div class="col-md-6 text-left">
+                            <a th:href="@{/product/info/{id}(id=${product.getId()})}"
+                               th:text="${product.getTitle()}"
+                               target="_blank">
+                                </a>
+                        </div>
+                        <div class="col-md-2 text-right text-success">
+                            Редактировать
+                        </div>
+                        <div class="col-md-2 text-right text-secondary">
+                            Просмотр
+                        </div>
+                    </div>
+                </div>
             </div>
 
 

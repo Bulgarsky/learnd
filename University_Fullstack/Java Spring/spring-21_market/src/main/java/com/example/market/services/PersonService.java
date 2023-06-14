@@ -4,7 +4,6 @@ import com.example.market.enumm.Role;
 import com.example.market.models.Person;
 import com.example.market.repositories.PersonRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -65,6 +64,16 @@ public class PersonService {
         personRepository.deleteById(id);
     }
 
+    public List<Person> getCustomers(){
+        return personRepository.findPersonByRoleUser();
+    }
+    public List<Person> getAdmins(){
+        return personRepository.findPersonByRoleAdmin();
+    }
+
+    public List<Person> getUsersByRole(String role){
+        return personRepository.findPersonByRole(role);
+    }
 }
 
 

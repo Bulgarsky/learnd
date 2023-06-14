@@ -27,6 +27,6 @@ public class PersonValidate implements Validator {
         if(personService.findByLogin(person) != null){
             errors.rejectValue("login", "", "Данный пользователь уже зарегистрирован!");
         }
-
     }
+
 }

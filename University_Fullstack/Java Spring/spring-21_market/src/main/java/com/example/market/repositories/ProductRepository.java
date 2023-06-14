@@ -93,7 +93,10 @@ public interface ProductRepository extends JpaRepository<Product, Integer> {
     List<Product> findByCategoryAndPriceAndOrderByPriceDesc(float priceFrom, float priceTo, int category);
 
 
+    @Query(value = "select * from product where category_id =?1 order by id asc", nativeQuery = true)
+    List<Product> findByCategoryAndOrderById(int id);
 
-
-
+    @Override
+    @Query(value="select * from product order by id asc", nativeQuery = true)
+    List<Product> findAll();
 }

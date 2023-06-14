@@ -23,6 +23,9 @@ public class CategoryService {
     public List<Category> getCategoryList(){
         return categoryRepository.findAll();
     }
+    public List<Category> getActiveCategoryList(){
+        return categoryRepository.findEnabled();
+    }
 
 
     @Transactional

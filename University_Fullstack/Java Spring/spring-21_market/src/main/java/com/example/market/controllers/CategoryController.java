@@ -2,11 +2,13 @@ package com.example.market.controllers;
 
 import com.example.market.models.Category;
 import com.example.market.models.Person;
+import com.example.market.models.Product;
 import com.example.market.services.CategoryService;
 import com.example.market.services.ProductService;
 import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -56,16 +58,16 @@ public class CategoryController {
     public String getActiveCategory(Model model){
 
         List<Category> categoryList = categoryService.getCategoryList();
-        List<Category> activeCategory = new ArrayList<>();
+        List<Category> enabledCategory = new ArrayList<>();
         for (Category element: categoryList) {
             if (element.isEnabled()) {
-                activeCategory.add(element);
+                enabledCategory.add(element);
             }
         }
 
         model.addAttribute("userAuth", authController.getCurrentAuthPerson());
-        model.addAttribute("activeCategory", activeCategory);
-        model.addAttribute("activeCategoryCount", activeCategory.size());
+        model.addAttribute("enabledCategory", enabledCategory);
+        model.addAttribute("enabledCategoryCount", enabledCategory.size());
         return "admin/category/enabledCategory";
     }
 
@@ -135,8 +137,7 @@ public class CategoryController {
         if (id != 0) {
             categoryService.updateCategory(id, updatedCategory);
         }
-        model.addAttribute("userAuth", authController.getCurrentAuthPerson());
-        return "redirect:/category";
+        return "redirect:/category/info/{id}";
     }
 
     @GetMapping("/category/delete/{id}")
@@ -161,6 +162,7 @@ public class CategoryController {
             @PathVariable("id")int id,
             Model model){
         Category category = categoryService.getCategory(id);
+        List<Product> productList = categoryService.getCategoryProducts(id);
 
         if (category.getDescription() == null) {
             category.setDescription("Описание данного раздела еще не заполнено");
@@ -168,8 +170,8 @@ public class CategoryController {
 
         model.addAttribute("userAuth", authController.getCurrentAuthPerson());
         model.addAttribute("aboutCategory", category);
-        model.addAttribute("categoryProducts", categoryService.getCategoryProducts(id));
-        model.addAttribute("categoryProductsCount",categoryService.getCategoryProducts(id).size());
+        model.addAttribute("categoryProducts", productList);
+        model.addAttribute("categoryProductsCount",productList.size());
         return "admin/category/infoCategory";
     }
 

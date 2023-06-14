@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Категории</title>
+  <title th:text="${currentRole.getDisplayValue()}"></title>
   <link th:href="@{/css/style.css}" type="text/css" rel="stylesheet">
   <link th:href="@{/css/navbar.css}" type="text/css" rel="stylesheet">
 
@@ -14,7 +14,7 @@
 <body>
 <!--    NAVBAR-->
 <nav class="navbar sticky-top navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand danger" href="/my">
+  <a class="navbar-brand danger" href="/">
     <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="currentColor" class="bi bi-shop" viewBox="0 0 16 16">
       <path d="M2.97 1.35A1 1 0 0 1 3.73 1h8.54a1 1 0 0 1 .76.35l2.609 3.044A1.5 1.5 0 0 1 16 5.37v.255a2.375 2.375 0 0 1-4.25 1.458A2.371 2.371 0 0 1 9.875 8 2.37 2.37 0 0 1 8 7.083 2.37 2.37 0 0 1 6.125 8a2.37 2.37 0 0 1-1.875-.917A2.375 2.375 0 0 1 0 5.625V5.37a1.5 1.5 0 0 1 .361-.976l2.61-3.045zm1.78 4.275a1.375 1.375 0 0 0 2.75 0 .5.5 0 0 1 1 0 1.375 1.375 0 0 0 2.75 0 .5.5 0 0 1 1 0 1.375 1.375 0 1 0 2.75 0V5.37a.5.5 0 0 0-.12-.325L12.27 2H3.73L1.12 5.045A.5.5 0 0 0 1 5.37v.255a1.375 1.375 0 0 0 2.75 0 .5.5 0 0 1 1 0zM1.5 8.5A.5.5 0 0 1 2 9v6h1v-5a1 1 0 0 1 1-1h3a1 1 0 0 1 1 1v5h6V9a.5.5 0 0 1 1 0v6h.5a.5.5 0 0 1 0 1H.5a.5.5 0 0 1 0-1H1V9a.5.5 0 0 1 .5-.5zM4 15h3v-5H4v5zm5-5a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1h-2a1 1 0 0 1-1-1v-3zm3 0h-2v3h2v-3z"/>
     </svg>
@@ -27,7 +27,9 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
       <li class="nav-item active">
-        <span  class="text-muted">/ Все категории </span>
+        <span  class="text-muted">/ Пользователи /
+          <span th:text="${currentRole.getDisplayValue()}"></span>
+        </span>
       </li>
       <li class="nav-item">
                 <span>
@@ -84,14 +86,14 @@
       <li class="nav-item">
         <a class="nav-link" href="/admin/users">
           <!-- Пользователи  -->
-          <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-people" viewBox="0 0 16 16">
+          <svg id="svg-current" xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-people" viewBox="0 0 16 16">
             <path d="M15 14s1 0 1-1-1-4-5-4-5 3-5 4 1 1 1 1h8Zm-7.978-1A.261.261 0 0 1 7 12.996c.001-.264.167-1.03.76-1.72C8.312 10.629 9.282 10 11 10c1.717 0 2.687.63 3.24 1.276.593.69.758 1.457.76 1.72l-.008.002a.274.274 0 0 1-.014.002H7.022ZM11 7a2 2 0 1 0 0-4 2 2 0 0 0 0 4Zm3-2a3 3 0 1 1-6 0 3 3 0 0 1 6 0ZM6.936 9.28a5.88 5.88 0 0 0-1.23-.247A7.35 7.35 0 0 0 5 9c-4 0-5 3-5 4 0 .667.333 1 1 1h4.216A2.238 2.238 0 0 1 5 13c0-1.01.377-2.042 1.09-2.904.243-.294.526-.569.846-.816ZM4.92 10A5.493 5.493 0 0 0 4 13H1c0-.26.164-1.03.76-1.724.545-.636 1.492-1.256 3.16-1.275ZM1.5 5.5a3 3 0 1 1 6 0 3 3 0 0 1-6 0Zm3-2a2 2 0 1 0 0 4 2 2 0 0 0 0-4Z"/>
           </svg>
         </a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="/admin/products">
-          <!-- Товары  -->
+          <!-- товары  -->
           <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-collection" viewBox="0 0 16 16">
             <path d="M2.5 3.5a.5.5 0 0 1 0-1h11a.5.5 0 0 1 0 1h-11zm2-2a.5.5 0 0 1 0-1h7a.5.5 0 0 1 0 1h-7zM0 13a1.5 1.5 0 0 0 1.5 1.5h13A1.5 1.5 0 0 0 16 13V6a1.5 1.5 0 0 0-1.5-1.5h-13A1.5 1.5 0 0 0 0 6v7zm1.5.5A.5.5 0 0 1 1 13V6a.5.5 0 0 1 .5-.5h13a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-.5.5h-13z"/>
           </svg>
@@ -100,7 +102,7 @@
       <li class="nav-item">
         <a class="nav-link" href="/category">
           <!-- категории  -->
-          <svg id="svg-current" xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-tags" viewBox="0 0 16 16">
+          <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-tags" viewBox="0 0 16 16">
             <path d="M3 2v4.586l7 7L14.586 9l-7-7H3zM2 2a1 1 0 0 1 1-1h4.586a1 1 0 0 1 .707.293l7 7a1 1 0 0 1 0 1.414l-4.586 4.586a1 1 0 0 1-1.414 0l-7-7A1 1 0 0 1 2 6.586V2z"/>
             <path d="M5.5 5a.5.5 0 1 1 0-1 .5.5 0 0 1 0 1zm0 1a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3zM1 7.086a1 1 0 0 0 .293.707L8.75 15.25l-.043.043a1 1 0 0 1-1.414 0l-7-7A1 1 0 0 1 0 7.586V3a1 1 0 0 1 1-1v5.086z"/>
           </svg>
@@ -146,8 +148,19 @@
         </a>
       </div>
       <div class="mb-2 text-dark">
-        <a class="text-dark" href="/admin/users">
+        <a class="text-primary" href="/admin/users">
+          <i class="bi bi-dot"></i>
           Пользователи</a>
+      </div>
+      <div class="mb-2 text-dark">
+        <a class="text-primary" >
+<!--           th:href="@{/admin/role/{role}(role=${currentRole})}"-->
+
+          <i class="bi bi-dot"></i>
+          <i class="bi bi-dot"></i>
+          <span th:text="${currentRole.getDisplayValue()}"></span>
+          <sup class="text-top text-muted" th:text="' '+${personCount}"></sup>
+          </a>
       </div>
       <div class="mb-2">
                   <span class="text-muted">
@@ -156,19 +169,10 @@
       </div>
       <div class="mb-2">
                   <span class="text-muted">
-                     Администраторы
-                  </span>
-      </div>
-      <div class="mb-2">
-                  <span class="text-muted">
                      Модераторы
                   </span>
       </div>
-      <div class="mb-2">
-                  <span class="text-muted">
-                     Покупатели
-                  </span>
-      </div>
+
       <div class="mb-2">
                   <span class="text-muted">
                      Продавцы
@@ -218,14 +222,13 @@
                 </span>
       </div>
       <div class="mb-2">
-        <a class="text-dark" href="/admin/products">Все товары</a>
+        <a class="text-dark" href="/admin/products">Все товары</a><br>
       </div>
       <div class="mb-2">
-        <a class="text-dark" href="/admin/product/add">Добавить товар</a>
+        <a class="text-dark" href="/admin/product/add">Добавить товар</a><br>
       </div>
-      <div class="mb-2 text-primary">
-        <i class="bi bi-dot"></i>
-        <a href="/category">Категории</a>
+      <div class="mb-2">
+        <a class="text-dark" href="/category">Категории</a><br>
       </div>
       <div>
         <hr>
@@ -271,92 +274,37 @@
         </form>
       </div>
     </div>
-    <!--        вывод категорий-->
+    <!--        вывод пользователей-->
     <div class="col-10">
       <!--            заголовок-->
-        <div>
-            <i class="bi bi-bookmark-plus"></i>
-            <a href="/category/add">Добавить новую категорию</a>
-        </div>
-        <div>
-            <i class="bi bi-arrow-90deg-left"></i>
-            <a href="/category">Назад к списку всех категорий</a>
-        </div>
+      <div class="text-dark fs-2 mb-3">
+        <i class="bi bi-people-fill"></i>
+          <span th:text="${currentRole.getDisplayValue()}"></span>
+        <sup class="text-top text-muted" th:text="' '+${personCount}"></sup>
+      </div>
       <hr>
-        <!-- вкладки -->
-        <div class="orderbox-header">
-            <ul class="nav nav-tabs card-header-tabs text-center">
-                <li class="nav-item">
-                    <a class="nav-link active" th:href="@{/category}">
-                        <i class="bi bi-bookmarks"></i>
-                        Все категории
-                        <sup class="text-top text-muted" th:text="' '+${categoryCount}"></sup>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" th:href="@{/category/enabled}">Активные категории</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" th:href="@{/category/disabled}">Отключенные</a>
-                </li>
-            </ul>
-            <hr>
+      <div class="row gutter m-1 p-1">
+        <div class="card d-flex flex-row col-md-4 text-left" style="margin: 5px; padding: 5px"
+             th:each="user : ${personList}">
+          <div class="col-md-5">
+            <a th:href="@{/user/info/{id}(id=${user.getId()})}"
+               th:text="${user.getLogin()}"></a>
+          </div>
+
+          <div class="col-md-7">
+            <span class="user-role">
+              <span th:text="${currentRole.getDisplayValue()}+' '"></span>
+              <i class="bi bi-info-circle"></i>
+            </span>
+          </div>
+
+
         </div>
-
-
-<!--        тело с карточками -->
-        <div class="orderbox-body">
-            <div class="row gutter m-1 p-1">
-                <div class="card d-flex flex-row col-md-5 text-left" style="margin: 5px; padding: 5px" th:each="element : ${categoryList}">
-                    <div class="col" >
-                        <div class="row" style="margin: 5px; padding: 5px">
-                            <div class="flex-fill" style="width: 85%;">
-                                <a th:href="@{/category/info/{id}(id=${element.getId()})}">
-                                    <span th:text="${element.getTitle()}"></span>
-                                </a>
-                            </div>
-                            <div class="flex-fill flex-end">
-                                <span class="text-dark" th:text="'id: '+${element.getId()}"></span>
-                            </div>
-                        </div>
-                        <hr>
-                        <p>Категория активна?
-                            <span class="user-role" th:text="${element.isEnabled()}"></span>
-                            <a th:href="@{/category/isEnabled/{id}(id=${element.getId()})}">
-                                <i class="bi bi-repeat text-danger"></i>
-                            </a>
-                        </p>
-                        <hr>
-                        <p class="text-secondary">
-                            <a href="#" class="text-secondary">
-                                <i class="bi bi-file-earmark"></i>
-                                set_Default
-                                <span> всем товарам данной категории</span>
-                            </a>
-                        </p>
-                        <hr>
-                        <p th:text="${element.getDescription()}"></p>
-                        <hr>
-                        <div class="card-text d-flex flex-start">
-                            <div class="flex-fill" style="width: 70%;"></div>
-                            <div class="flex-fill flex-end">
-                                <a th:href="@{/category/delete/{id}(id=${element.getId()})}" class="btn btn-outline-danger">
-                                    <i class="bi bi-trash3 fa-1x"></i>
-                                    <span> Удалить</span>
-                                </a>
-                            </div>
-                        </div>
-                        <div th:text="${readOnly}"></div>
-
-                    </div>
-                </div>
-            </div>
-        </div>
+      </div>
 
     </div>
 
   </div>
-
 </div>
 
 

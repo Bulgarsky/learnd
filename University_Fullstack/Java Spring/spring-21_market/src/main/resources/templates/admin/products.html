@@ -149,7 +149,7 @@
       </div>
       <div class="mb-2">
         <a class="text-dark" href="/admin/users">
-          Пользователь</a>
+          Пользователи</a>
       </div>
 
       <div class="mb-2">
@@ -278,106 +278,152 @@
       </div>
     </div>
 <!--  NEW ADMIN PRODUCT LIST-->
-    <div class="orderbox col-10">
-      <div class="product-container">
+    <div class="col-10">
+      <h3>С увеличением данных - реализовать пагинацию</h3>
+      <div class="orderbox m-2 p-2">
+        <h5>
+          Список всех товаров
+          <sup class="text-top text-muted" th:text="${productCount}"></sup>
+        </h5>
 
-        <div class="product-container-row" th:each="product: ${products}">
-          <div class="product-card-box-twoline">
 
-            <div class="product-card-box-rows">
-              <div class="product-card-head">
-
-                <div class="product-card-head-blocks">
-                  <span th:text="'id: '+  ${product.getId()}"></span>
+        <div class="row" th:each="product : ${products}">
+          <div class="col-md-10 p-1 ml-2 mr-2 mb-2 bg-white card">
+            <!-- Карточка товара-->
+            <div class="row no-gutters">
+              <div class="col-md-1">
+                <span th:text="'id: '+${product.getId()}"></span>
+              </div>
+              <div class="col-md-1">
+                <img class="img-small"
+                     th:src="'/img/'+${product.imageList[0].getFileName()}"
+                     th:alt="${product.getTitle()}">
+              </div>
+              <div class="col-md-6 text-left">
+                <a th:href="@{/product/info/{id}(id=${product.getId()})}"
+                   th:text="${product.getTitle()}"
+                   target="_blank">
+                </a>
+<!--                <p th:text="${product.description}"></p>-->
+<!--                <p th:text="'Склад: '+${product.getWarehouse()}+', Продавец: '+${product.getSeller()}"></p>-->
+              </div>
+              <div class="col-md-3">
+                <div>
+                  <a class="text-left text-success"
+                     th:href="@{/admin/product/edit/{id}(id=${product.getId()})}">
+                    Редактировать
+                  </a>
                 </div>
-                <div class="product-card-head-blocks">
-
+                <div>
+                  <a class="text-left text-secondary"
+                     th:href="@{/product/info/{id}(id=${product.getId()})}"
+                     target="_blank">
+                    Просмотр</a>
                 </div>
-                <div class="product-card-head-blocks">
-                  <div class="product-card-head-title">
-                    <div class="product-card-head-title-rows">
-                      <span th:text="${product.getTitle()}"></span>
-                    </div>
-                  </div>
 
-                </div>
-                <div class="product-card-head-blocks">
 
-                </div>
-                <div class="product-card-head-blocks">
-                  <div class="product-card-head-button-block">
-                    <div class="product-card-head-button-rows">
-                      <a class="btn btn-outline-danger" th:href="@{/admin/product/delete/{id}(id=${product.getId()})}">
-                        X
-                      </a>
-                    </div>
-                  </div>
-
-                </div>
               </div>
             </div>
-
-            <div class="product-card-box-rows">
-              <div class="product-card-body">
-                <div class="product-card-body-blocks">
-                  <img
-                          th:src="'/img/'+${product.imageList[0].getFileName()}"
-                          th:alt="${product.getTitle()}">
-                </div>
-                <div class="product-card-body-blocks">
-
-                </div>
-                <div class="product-card-body-blocks">
-                  <div class="product-card-body-desc">
-                    <div class="product-card-body-desc-rows">
-                      <small class="text-muted">Описание</small><br>
-                      <span th:text="${product.getDescription()}"></span>
-                    </div>
-                    <div class="product-card-body-desc-rows">
-                      <small class="text-muted">Цена</small><br>
-                      <span th:text="${product.getPrice()}"></span>
-                    </div>
-                    <div class="product-card-body-desc-rows">
-                      <small class="text-muted">Склад</small><br>
-                      <span th:text="${product.getWarehouse()}"></span>
-                    </div>
-                    <div class="product-card-body-desc-rows">
-                      <small class="text-muted">Продавец</small><br>
-                      <span th:text="${product.getSeller()}"></span>
-                    </div>
-                  </div>
-                </div>
-                <div class="product-card-body-blocks">
-
-                </div>
-                <div class="product-card-body-blocks">
-
-                  <div class="product-card-body-button-block">
-                    <div class="product-card-body-button-rows">
-                      <a class="btn btn-outline-success"
-                         th:href="@{/admin/product/edit/{id}(id=${product.getId()})}">
-                        Обновить
-                      </a>
-                    </div>
-                    <div class="product-card-body-button-rows">
-                      <a class="btn btn-outline-info"
-                         th:href="@{/product/info/{id}(id=${product.getId()})}"
-                         target="_blank">
-                        Открыть</a>
-                    </div>
-                    <!--                <div class="product-card-body-button-rows">-->
-                    <!--                  <a class="btn btn-danger" th:href="@{/admin/product/delete/{id}(id=${product.getId()})}">X</a>-->
-                    <!--                </div>-->
-                  </div>
-
-                </div>
-              </div>
-
-            </div>
-
           </div>
-
         </div>
+
+<!--        <div class="product-container-row" th:each="product: ${products}">-->
+<!--          <div class="product-card-box-twoline">-->
+
+<!--            <div class="product-card-box-rows">-->
+<!--              <div class="product-card-head">-->
+
+<!--                <div class="product-card-head-blocks">-->
+<!--                  <span th:text="'id: '+  ${product.getId()}"></span>-->
+<!--                </div>-->
+<!--                <div class="product-card-head-blocks">-->
+
+<!--                </div>-->
+<!--                <div class="product-card-head-blocks">-->
+<!--                  <div class="product-card-head-title">-->
+<!--                    <div class="product-card-head-title-rows">-->
+<!--                      <span th:text="${product.getTitle()}"></span>-->
+<!--                    </div>-->
+<!--                  </div>-->
+
+<!--                </div>-->
+<!--                <div class="product-card-head-blocks">-->
+
+<!--                </div>-->
+<!--                <div class="product-card-head-blocks">-->
+<!--                  <div class="product-card-head-button-block">-->
+<!--                    <div class="product-card-head-button-rows">-->
+<!--                      <a class="btn btn-outline-danger" th:href="@{/admin/product/delete/{id}(id=${product.getId()})}">-->
+<!--                        X-->
+<!--                      </a>-->
+<!--                    </div>-->
+<!--                  </div>-->
+
+<!--                </div>-->
+<!--              </div>-->
+<!--            </div>-->
+
+<!--            <div class="product-card-box-rows">-->
+<!--              <div class="product-card-body">-->
+<!--                <div class="product-card-body-blocks">-->
+<!--                  <img-->
+<!--                          th:src="'/img/'+${product.imageList[0].getFileName()}"-->
+<!--                          th:alt="${product.getTitle()}">-->
+<!--                </div>-->
+<!--                <div class="product-card-body-blocks">-->
+
+<!--                </div>-->
+<!--                <div class="product-card-body-blocks">-->
+<!--                  <div class="product-card-body-desc">-->
+<!--                    <div class="product-card-body-desc-rows">-->
+<!--                      <small class="text-muted">Описание</small><br>-->
+<!--                      <span th:text="${product.getDescription()}"></span>-->
+<!--                    </div>-->
+<!--                    <div class="product-card-body-desc-rows">-->
+<!--                      <small class="text-muted">Цена</small><br>-->
+<!--                      <span th:text="${product.getPrice()}"></span>-->
+<!--                    </div>-->
+<!--                    <div class="product-card-body-desc-rows">-->
+<!--                      <small class="text-muted">Склад</small><br>-->
+<!--                      <span th:text="${product.getWarehouse()}"></span>-->
+<!--                    </div>-->
+<!--                    <div class="product-card-body-desc-rows">-->
+<!--                      <small class="text-muted">Продавец</small><br>-->
+<!--                      <span th:text="${product.getSeller()}"></span>-->
+<!--                    </div>-->
+<!--                  </div>-->
+<!--                </div>-->
+<!--                <div class="product-card-body-blocks">-->
+
+<!--                </div>-->
+<!--                <div class="product-card-body-blocks">-->
+
+<!--                  <div class="product-card-body-button-block">-->
+<!--                    <div class="product-card-body-button-rows">-->
+<!--                      <a class="btn btn-outline-success"-->
+<!--                         th:href="@{/admin/product/edit/{id}(id=${product.getId()})}">-->
+<!--                        Обновить-->
+<!--                      </a>-->
+<!--                    </div>-->
+<!--                    <div class="product-card-body-button-rows">-->
+<!--                      <a class="btn btn-outline-info"-->
+<!--                         th:href="@{/product/info/{id}(id=${product.getId()})}"-->
+<!--                         target="_blank">-->
+<!--                        Открыть</a>-->
+<!--                    </div>-->
+<!--                    &lt;!&ndash;                <div class="product-card-body-button-rows">&ndash;&gt;-->
+<!--                    &lt;!&ndash;                  <a class="btn btn-danger" th:href="@{/admin/product/delete/{id}(id=${product.getId()})}">X</a>&ndash;&gt;-->
+<!--                    &lt;!&ndash;                </div>&ndash;&gt;-->
+<!--                  </div>-->
+
+<!--                </div>-->
+<!--              </div>-->
+
+<!--            </div>-->
+
+<!--          </div>-->
+
+<!--        </div>-->
 
       </div>
     </div>

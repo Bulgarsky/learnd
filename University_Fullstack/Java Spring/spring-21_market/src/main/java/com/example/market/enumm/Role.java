@@ -3,6 +3,7 @@ package com.example.market.enumm;
 public enum Role {
     ROLE_USER("Покупатель"),
     ROLE_ADMIN("Администратор"),
+    ROLE_MODERATOR("Модератор"),
     ROLE_SELLER("Продавец");
 
     private final String displayValue;

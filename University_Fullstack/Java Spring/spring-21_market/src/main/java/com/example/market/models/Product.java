@@ -23,7 +23,7 @@ public class Product {
     private String description;
 
     @Column(name="price", nullable = false)
-    @Min(value=1, message = "Мин.цена не может быть отрицательой или мнеьше 0")
+    @Min(value=1, message = "Мин.цена не может быть отрицательной или меньше 0")
     private float price;
 
     @Column(name="warehouse", nullable = false)
