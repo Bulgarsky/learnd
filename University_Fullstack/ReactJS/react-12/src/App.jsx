@@ -28,7 +28,7 @@ function App() {
 
   return (
     <div>
-        <h1>react app</h1>
+        <h1>Cost Log react app</h1>
         {/*<CostItem*/}
         {/*    date={costs[0].date}*/}
         {/*    title={costs[0].title}*/}
@@ -48,6 +48,7 @@ function App() {
         <Costs
             costs={costs}
         />
+
     </div>
   );
 }

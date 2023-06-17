@@ -29,7 +29,6 @@ const CostItem = (props) => {
                 <h2>{props.title}</h2>
                 <div className="cost-item__price">$ {props.amount}</div>
             </div>
-
         </div>
     );
 };

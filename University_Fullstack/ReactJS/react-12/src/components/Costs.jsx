@@ -20,6 +20,7 @@ const Costs = (props) => {
                 title={props.costs[2].title}
                 amount={props.costs[2].amount}
             />
+
         </div>
     );
 };
