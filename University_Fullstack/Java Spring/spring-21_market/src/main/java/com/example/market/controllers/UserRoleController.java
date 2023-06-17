@@ -72,23 +72,4 @@ public class UserRoleController {
 
 
 
-    //                switch (each) {
-//                    case ROLE_USER -> {
-//                        List<Person> customers = personService.getCustomers();
-//                        model.addAttribute("customers", customers);
-//                        model.addAttribute("customerCount",customers.size());
-//                        return "/admin/role/customers";
-//                    }
-//                    case ROLE_ADMIN -> {
-//                        List<Person> admins = personService.getAdmins();
-//                        model.addAttribute("admins", admins);
-//                        model.addAttribute("adminCount",admins.size());
-//                        return "/admin/role/admins";
-//                    }
-//                    case ROLE_SELLER -> {
-//                        return "/admin/role/sellers";
-//                    }
-//                    case ROLE_MODERATOR -> {
-//                        return "/admin/role/moderators";
-//                    }
 }

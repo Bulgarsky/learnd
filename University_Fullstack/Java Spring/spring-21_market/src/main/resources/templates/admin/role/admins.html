@@ -277,13 +277,38 @@
     <!--        вывод пользователей-->
     <div class="col-10">
       <!--            заголовок-->
-      <div class="text-dark fs-2 mb-3">
-        <i class="bi bi-people-fill"></i>
-          <span th:text="${currentRole.getDisplayValue()}"></span>
-        <sup class="text-top text-muted" th:text="' '+${personCount}"></sup>
-      </div>
-      <hr>
-      <div class="row gutter m-1 p-1">
+        <h3>С увеличением данных - реализовать пагинацию</h3>
+        <!-- вкладки -->
+        <div class="orderbox-header">
+            <ul class="nav nav-tabs card-header-tabs text-center">
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/terminal/users}">
+                        <span>Список пользователей</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" th:href="@{/terminal/users/admin}">
+                        <i class="bi bi-people-fill"></i>
+                        <span th:text="${currentRole.getDisplayValue()}"></span>
+                        <sup class="text-top text-muted" th:text="' '+${personCount}"></sup>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/terminal/users/user}">Покупатели</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/terminal/users/seller}">Продавцы</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/terminal/users/moderator}">Модераторы</a>
+                </li>
+            </ul>
+            <hr>
+        </div>
+
+        <!--        тело с карточками -->
+        <div class="orderbox-body">
+            <div class="row gutter m-1 p-1">
         <div class="card d-flex flex-row col-md-4 text-left" style="margin: 5px; padding: 5px"
              th:each="user : ${personList}">
           <div class="col-md-5">
@@ -300,7 +325,8 @@
 
 
         </div>
-      </div>
+            </div>
+        </div>
 
     </div>
 
