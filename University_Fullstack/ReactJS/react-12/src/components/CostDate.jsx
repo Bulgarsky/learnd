@@ -1,5 +1,6 @@
 import React from 'react';
 import './CostDate.css'
+import Card from "./Card";
 
 const CostDate = (props) => {
 
@@ -9,13 +10,13 @@ const CostDate = (props) => {
 
     return (
         <div className='cost-date'>
-            <div className='cost-date__month'>
+            <div className="cost-date__month">
                 {month}
             </div>
-            <div className='cost-date__year'>
+            <div className="cost-date__year">
                 {year}
             </div>
-            <div className='cost-date__day'>
+            <div className="cost-date__day">
                 {day}
             </div>
         </div>

@@ -1,6 +1,7 @@
 import './CostItem.css';
 import React from 'react';
 import CostDate from "./CostDate";
+import Card from "./Card";
 
 const CostItem = (props) => {
     // const costDate = new Date(2023, 6, 16);
@@ -12,7 +13,7 @@ const CostItem = (props) => {
     // const day = props.date.toLocaleString("ru-RU", {day: "2-digit"});
 
     return (
-        <div className="cost-item">
+        <Card className="cost-item">
             {/*<div>{props.date.toISOString()}</div>*/}
             {/*<div>*/}
             {/*    /!*<div>{props.date.toLocaleString("ru-RU", {month: "long"})}</div>*!/*/}
@@ -29,7 +30,7 @@ const CostItem = (props) => {
                 <h2>{props.title}</h2>
                 <div className="cost-item__price">$ {props.amount}</div>
             </div>
-        </div>
+        </Card>
     );
 };
 
