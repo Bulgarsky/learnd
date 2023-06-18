@@ -1,7 +1,9 @@
-import './CostItem.css';
-import React from 'react';
 import CostDate from "./CostDate";
-import Card from "./Card";
+import Card from "../UI/Card";
+import './CostItem.css';
+
+import React, {useState} from 'react';
+
 
 const CostItem = (props) => {
     // const costDate = new Date(2023, 6, 16);
@@ -12,7 +14,23 @@ const CostItem = (props) => {
     // const year = props.date.getFullYear();
     // const day = props.date.toLocaleString("ru-RU", {day: "2-digit"});
 
+    //hook возвращает массив ( значение и функцию )
+    //значение 1 - переменная состояния
+    //значение 2 -  функция для обновления
+    const [title, setTitle] = useState(props.title);
+    //useState регистрирует изменения для конкретного экземпляра компонента
+    //let title = props.title;
+
+    const changeTitleHandler = () =>{
+        //title = "new item title";
+        setTitle('New item title');
+        //render CostItem
+    }
+
     return (
+        //императив
+        //document.getElementById('root').addEventListener(
+
         <Card className="cost-item">
             {/*<div>{props.date.toISOString()}</div>*/}
             {/*<div>*/}
@@ -27,9 +45,11 @@ const CostItem = (props) => {
             />
 
             <div className="cost-item__description">
-                <h2>{props.title}</h2>
+                <h2>{title}</h2>
                 <div className="cost-item__price">$ {props.amount}</div>
             </div>
+            {/*<button onClick={() => console.log("Click!")}>Анон.событие</button>*/}
+            <button onClick={changeTitleHandler}>change title</button>
         </Card>
     );
 };
