@@ -16,7 +16,9 @@ const NewCost = (props) => {
 
     return (
         <div className="new-cost">
-            <CostForm onSaveCostData={saveCostDataHandler}/>
+            <CostForm
+                onSaveCostData={saveCostDataHandler}
+            />
         </div>
     );
 };

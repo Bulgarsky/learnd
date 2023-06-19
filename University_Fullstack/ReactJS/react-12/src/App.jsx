@@ -57,7 +57,9 @@ const App = () => {
         {/*    title={costs[2].title}*/}
         {/*    amount={costs[2].amount}*/}
         {/*/>*/}
-        <NewCost onAddCost={addCostHandler}/>
+        <NewCost
+            onAddCost={addCostHandler}
+        />
         <Costs
             costs={costs}
         />
