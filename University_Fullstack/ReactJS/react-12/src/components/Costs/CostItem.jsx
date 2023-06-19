@@ -34,23 +34,24 @@ const CostItem = (props) => {
     return (
         //императив
         //document.getElementById('root').addEventListener(
+        <li>
+            <Card className="cost-item">
 
-        <Card className="cost-item">
+                <CostDate
+                    date={props.date}
+                />
 
-            <CostDate
-                date={props.date}
-            />
-
-            <div className="cost-item__description">
-                <h2>{props.title}</h2>
-                <div className="cost-item__price">
-                    $ {props.amount}
+                <div className="cost-item__description">
+                    <h2>{props.title}</h2>
+                    <div className="cost-item__price">
+                        $ {props.amount}
+                    </div>
                 </div>
-            </div>
-            {/*<button onClick={() => console.log("Click!")}>Анон.событие</button>*/}
+                {/*<button onClick={() => console.log("Click!")}>Анон.событие</button>*/}
 
-            {/*<button onClick={changeTitleHandler}>change title</button>*/}
-        </Card>
+                {/*<button onClick={changeTitleHandler}>change title</button>*/}
+            </Card>
+        </li>
     );
 };
 

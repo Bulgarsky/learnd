@@ -3,6 +3,7 @@ import React, {useState} from 'react';
 import CostItem from "./CostItem";
 import Card from "../UI/Card";
 import CostFilter from "./CostFilter";
+import CostList from "./CostList"
 
 import './Costs.css'
 
@@ -20,19 +21,7 @@ const Costs = (props) => {
         }
     );
 
-    let constContent = <p>В выбранном году нет насходов</p>;
 
-    if (filteredCosts.length !== 0) {
-        constContent = filteredCosts.map((element) => (
-            <CostItem
-                // всегда добавлять кей при отображении списка с элементами
-                key={element.id}
-                date={element.date}
-                title={element.title}
-                amount={element.amount}
-            />
-        ))
-    }
 
     return (
         <div>
@@ -44,7 +33,7 @@ const Costs = (props) => {
                     year={selectedYear}
                     onChangeYear={yearChangeHandler}
                     />
-                {constContent}
+                <CostList costs={filteredCosts}/>
 
                 {/*{filteredCosts.length === 0 && <p>В выбранном году нет насходов</p>*/}
                 {/*{filteredCosts.length !== 0 &&*/}
