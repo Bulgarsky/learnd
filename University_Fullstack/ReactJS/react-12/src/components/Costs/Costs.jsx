@@ -14,32 +14,49 @@ const Costs = (props) => {
         setSelectedYear(year);
     };
 
+    const filteredCosts = props.costs.filter(
+        cost => {
+            return cost.date.getFullYear().toString() === selectedYear;
+        }
+    );
+
+    let constContent = <p>В выбранном году нет насходов</p>;
+
+    if (filteredCosts.length !== 0) {
+        constContent = filteredCosts.map((element) => (
+            <CostItem
+                // всегда добавлять кей при отображении списка с элементами
+                key={element.id}
+                date={element.date}
+                title={element.title}
+                amount={element.amount}
+            />
+        ))
+    }
+
     return (
         <div>
-
             <Card className="costs">
+
                 {/*двухсторонее связывание - передача года*/}
                 {/*контролируемый компонент*/}
                 <CostFilter
                     year={selectedYear}
                     onChangeYear={yearChangeHandler}
-                />
+                    />
+                {constContent}
 
-                <CostItem
-                    date={props.costs[0].date}
-                    title={props.costs[0].title}
-                    amount={props.costs[0].amount}
-                />
-                <CostItem
-                    date={props.costs[1].date}
-                    title={props.costs[1].title}
-                    amount={props.costs[1].amount}
-                />
-                <CostItem
-                    date={props.costs[2].date}
-                    title={props.costs[2].title}
-                    amount={props.costs[2].amount}
-                />
+                {/*{filteredCosts.length === 0 && <p>В выбранном году нет насходов</p>*/}
+                {/*{filteredCosts.length !== 0 &&*/}
+                {/*    filteredCosts.map((element) => (*/}
+                {/*        <CostItem*/}
+                {/*            // всегда добавлять кей при отображении списка с элементами*/}
+                {/*            key={element.id}*/}
+                {/*            date={element.date}*/}
+                {/*            title={element.title}*/}
+                {/*            amount={element.amount}*/}
+                {/*        />))}*/}
+
 
             </Card>
         </div>
