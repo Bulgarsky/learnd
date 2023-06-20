@@ -1,0 +1,5 @@
+.app-circle{
+    border-radius: 50%;
+    border: 2px solid dodgerblue;
+    transition: width 0.3s, height 0.3s;
+}

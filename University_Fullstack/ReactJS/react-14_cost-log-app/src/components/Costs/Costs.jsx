@@ -4,6 +4,7 @@ import CostItem from "./CostItem";
 import Card from "../UI/Card";
 import CostFilter from "./CostFilter";
 import CostList from "./CostList"
+import CostDiagram from "./CostDiagram";
 
 import './Costs.css'
 
@@ -33,6 +34,7 @@ const Costs = (props) => {
                     year={selectedYear}
                     onChangeYear={yearChangeHandler}
                     />
+                <CostDiagram costs={filteredCosts}/>
                 <CostList costs={filteredCosts}/>
 
                 {/*{filteredCosts.length === 0 && <p>В выбранном году нет насходов</p>*/}
