@@ -3,7 +3,7 @@ import "./Circle.css";
 
 import React, {useState} from "react";
 
-const Circle = ({min, max, value, changed}) => {
+const Circle = ({min, max, value, changed, i}) => {
     // let [value, setValue] = useState(value);
 
 
@@ -17,7 +17,10 @@ const Circle = ({min, max, value, changed}) => {
             //1
             //setValue(value - 1);
 
-            changed(value - 1);
+            //1) при передаче i
+            //changed(i, value - 1);
+
+            changed(value -1);
         }
     }
 
@@ -26,7 +29,9 @@ const Circle = ({min, max, value, changed}) => {
             //1
             //setValue(value + 1);
 
-            changed(value + 1);
+            //1) при передаче i
+            //changed(i, value + 1);
+            changed(value +1);
         }
     }
 

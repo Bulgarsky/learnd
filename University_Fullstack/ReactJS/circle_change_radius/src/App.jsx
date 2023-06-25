@@ -50,14 +50,14 @@ const App = () => {
 
     const itemElements = items.map((item, i) =>
         <Circle
-            //1 передача i при испорльзовании в цикле
+            //1) передача i при испорльзовании в цикле
             // i={i}
             min={item.min}
             max={item.max}
             value={item.value}
             //1
             //changed={setItemValue}
-            //2 создается ссылка на каждый элемент
+            //2) создается ссылка на каждый элемент
             changed={newVal => setItemValue(i, newVal)}
             // не лучшее использование ключа:
             key={i}
