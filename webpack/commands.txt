@@ -1,0 +1,16 @@
+//create package.json
+npm init
+
+//n package manager Install Package_Name --(запись в package.json)
+npm i webpack --save-dev
+
+Gulp - task_runner, задачи их запуск
+Вебпак - нет задач, сборщик проекта
+
+
+//CLI вынесен в отдельнйы модулЬ, установка отдельно
+npm i webpack-cli --save-dev
+
+//script / build: webpack
+npm build run
+//
