@@ -3,8 +3,10 @@ import "./Circle.css";
 
 import React, {useState} from "react";
 
-const Circle = ({min, max}) => {
-    let [value, setValue] = useState(5);
+const Circle = ({min, max, value, changed}) => {
+    // let [value, setValue] = useState(value);
+
+
     let radius = value * 20 +"px";
     let circleStyles = {width: radius, height: radius};
     let canDecrease = value > min;
@@ -12,13 +14,19 @@ const Circle = ({min, max}) => {
 
     const decreaseRadius = () => {
         if (canDecrease) {
-            setValue(value - 1);
+            //1
+            //setValue(value - 1);
+
+            changed(value - 1);
         }
     }
 
     const increaseRadius = () => {
         if (canIncrease) {
-            setValue(value + 1);
+            //1
+            //setValue(value + 1);
+
+            changed(value + 1);
         }
     }
 

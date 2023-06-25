@@ -20,5 +20,5 @@ const yearKey='year';
 console.log(person[yearKey]);
 person.hasWife=true;
 console.log(person);
-person.isProgrammer=true
+person.isProgrammer=true;
 console.log(person.isProgrammer);
