@@ -49,7 +49,7 @@ const App = () => {
         let newItems = [ ...items ];
 
         console.log(newItems[i]);
-        //кладем новое значение в ячейку по новому адресу
+        //кладем новое значение в ячейку по новому адресу, новое значение хранися в новой ячейке
         newItems[i] = { ...items[i], value: newValue };
         //передаем новый массив в сеттер
         setItems(newItems);
