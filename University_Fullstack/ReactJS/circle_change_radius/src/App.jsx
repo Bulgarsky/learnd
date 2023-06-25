@@ -43,9 +43,16 @@ const App = () => {
 //        item.value= newValue;
 
         //деструктурируем объект на поля, изменяем поле
-        //console.log(i, newValue);
-        setItem({ ...item , value: newValue});
+        //setItem({ ...item , value: newValue});
 
+        //новый массив, скопированный поэлементно
+        let newItems = [ ...items ];
+
+        console.log(newItems[i]);
+        //кладем новое значение в ячейку по новому адресу
+        newItems[i] = { ...items[i], value: newValue };
+        //передаем новый массив в сеттер
+        setItems(newItems);
     }
 
     const itemElements = items.map((item, i) =>
