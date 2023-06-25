@@ -34,41 +34,52 @@ const INITIAL_DATA = [
 ]
 
 const App = () => {
-    /*
-    1
+
+    //1
     const [items, setItems] = useState (INITIAL_DATA);
-    const itemElements = items.map((item, i) =>
-        <Circle
-            min={item.min}
-            max={item.max}
-            value={item.value}
-            // не лучшее использование ключа:
-            key={i}
-        />);
-        */
 
-
-    let [item, setItem] = useState({min:1, max:10, value: 3});
-
-    function setItemValue(newValue) {
+    function setItemValue(i, newValue) {
 //        не реактивно, противоречить имутабельности:
 //        item.value= newValue;
 
         //деструктурируем объект на поля, изменяем поле
+        //console.log(i, newValue);
         setItem({ ...item , value: newValue});
-        console.log(newValue);
+
     }
+
+    const itemElements = items.map((item, i) =>
+        <Circle
+            //1 передача i при испорльзовании в цикле
+            // i={i}
+            min={item.min}
+            max={item.max}
+            value={item.value}
+            //1
+            //changed={setItemValue}
+            //2 создается ссылка на каждый элемент
+            changed={newVal => setItemValue(i, newVal)}
+            // не лучшее использование ключа:
+            key={i}
+        />);
+
+
+    //2
+    //let [item, setItem] = useState({min:1, max:10, value: 3});
+
 
   return (
       <div>
-          {/* 1 {itemElements}*/}
+          {/* 1 */}
+          {itemElements}
 
-          <Circle
-              min={item.min}
-              max={item.max}
-              value={item.value}
-              changed={setItemValue}
-          />
+          {/*2*/}
+          {/*<Circle*/}
+          {/*    min={item.min}*/}
+          {/*    max={item.max}*/}
+          {/*    value={item.value}*/}
+          {/*    changed={setItemValue}*/}
+          {/*/>*/}
       </div>
   );
 }
