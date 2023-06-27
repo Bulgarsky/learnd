@@ -13,4 +13,18 @@ npm i webpack-cli --save-dev
 
 //script / build: webpack
 npm build run
-//
+
+//-- save -> devDependencies: модули нужные для сборки
+//save - попадет в dependencies (модули которые нужны в итоговом проекте)
+npm i jquery --save
+
+
+//запускает сервер - мейн созд в памяти
+npm i webpack-dev-server --save-dev
+
+//нужен конфиг файл webpack.config.js
+//указывается entry /ouput
+//Output имеет два  обязательных ключа ключа
+ path: "./dist" - выкинет ошибку, что нужно использовать абсолютный путь
+
+ npm i path --save-dev
