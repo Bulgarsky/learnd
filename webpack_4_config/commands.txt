@@ -2,29 +2,40 @@
 npm init
 
 //n package manager Install Package_Name --(запись в package.json)
-npm i webpack --save-dev
+npm i webpack@4.5.0 --save-dev
 
 Gulp - task_runner, задачи их запуск
 Вебпак - нет задач, сборщик проекта
 
 
 //CLI вынесен в отдельнйы модулЬ, установка отдельно
-npm i webpack-cli --save-dev
+npm i webpack-cli@2.0.14 --save-dev
 
 //script / build: webpack
 npm build run
 
 //-- save -> devDependencies: модули нужные для сборки
 //save - попадет в dependencies (модули которые нужны в итоговом проекте)
-npm i jquery --save
+npm i jquery@3.3.1--save
 
 
 //запускает сервер - мейн созд в памяти
-npm i webpack-dev-server --save-dev
+npm i webpack-dev-server@3.11.3 --save-dev
 
 //нужен конфиг файл webpack.config.js
-//указывается entry /ouput
-//Output имеет два  обязательных ключа ключа
+//указывается entry /output
+//Output имеет два обязательных ключа ключа
  path: "./dist" - выкинет ошибку, что нужно использовать абсолютный путь
 
- npm i path --save-dev
+установить для возможности указания path в конфиге
+ npm i path@0.12.7 --save-dev
+
+  очистить кеш
+  npm cache clean --force
+
+"babel-core": "^6.26.0",
+"babel-loader": "^7.1.4",
+"babel-preset-env": "^6.24.1",
+"babel-preset-stage-3": "^6.24.1"
+
+npm i style-loader css-loader --save-dev

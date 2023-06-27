@@ -1,0 +1,8 @@
+npm i -D @babel/core @babel/preset-env babel-loader webpack webpack-cli webpack-dev-server
+
+babel/core - ядро преобразователя
+babel/preset-env -список преобразований (бейбл плагинов) для перегонки в старый код
+
+
+  "browserslist": "> 2%, not dead",
+  ломает сблоку в дев (обновление страницы)
