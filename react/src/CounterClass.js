@@ -13,10 +13,6 @@ export default class extends React.Component{
         return (
         <div>
             <span>{ this.state.current }</span>
-            {/*<button type="button"*/}
-            {/*        onClick={ () => this.setState({current: this.state.current+1 })}>*/}
-            {/*    +*/}
-            {/*</button>*/}
             <button type="button" onClick={this.increment}> + </button>
         </div>
         )
