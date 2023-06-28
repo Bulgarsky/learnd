@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useState, useEffect} from "react";
 import PropTypes from "prop-types";
 
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -35,8 +35,14 @@ function Counter({ min= 1, max }){
     }
      */
 
+    useEffect(() => {
+        console.log('echo useEffect')
+    }, [min, max])
+
     return (
         <div>
+            { typeof current }
+            <br/>
             <button className="btn btn-danger" type="button" onClick={ decrement }> - </button>
             {/*<span className="m-2">{ current }</span>*/}
             <input className="form-control col-md-2" type="text" value={ current } onChange={parseCurrentString}/>
