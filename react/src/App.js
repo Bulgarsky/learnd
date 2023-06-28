@@ -3,7 +3,7 @@ import React from 'react';
 import "bootstrap/dist/css/bootstrap.min.css";
 
 import UserCard from "../components/UserCard";
-import CounterClass from "./CounterClass";
+import Counter from "./Counter";
 
 
 const App = () => {
@@ -12,7 +12,8 @@ const App = () => {
         <div className="m-3 p-2">
             <h2>React App</h2>
             <hr />
-            <CounterClass />
+            <h3> min 0 max 10 </h3>
+            <Counter max={10} min={0} />
             <hr />
             <UserCard name="John Doe" text="Hello friend!"/>
             <UserCard name="Roman Pierce" text="wassup dawg"/>

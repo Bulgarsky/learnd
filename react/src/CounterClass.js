@@ -6,14 +6,17 @@ export default class extends React.Component{
     };
 
     increment = () => {
-        this.setState({current: this.state.current+1 })
+        if (this.state.current <this.props.max) {
+            this.setState({current: this.state.current+1 });
+        }
+
     };
 
     render(){
         return (
         <div>
             <span>{ this.state.current }</span>
-            <button type="button" onClick={this.increment}> + </button>
+            <button type="button" onClick={ this.increment }> + </button>
         </div>
         )
     };
