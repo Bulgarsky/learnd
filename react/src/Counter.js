@@ -1,11 +1,26 @@
 import React, {useState} from "react";
+import PropTypes from "prop-types";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 
-export default function ({ min, max }){
+function Counter({ min= 1, max }){
     let [current, setCurrent] = useState(min);
     console.log(current);
 
+    function validateDiapason(num){
+       let validateNum = Math.max(min, Math.min(max, num));
+       setCurrent(validateNum);
+    }
+
+    function parseCurrentString(event){
+        let num = parseInt(event.target.value);
+        validateDiapason(isNaN(num) ? min : num);
+    }
+
+    let increment = () => validateDiapason(current + 1);
+    let decrement = () => validateDiapason(current - 1);
+
+    /*
     function increment(){
         if (current < max) {
             setCurrent(current + 1);
@@ -17,18 +32,26 @@ export default function ({ min, max }){
             setCurrent(current - 1);
         }
     }
-
+     */
 
     return (
         <div>
             <button className="btn btn-danger" type="button" onClick={ decrement }> - </button>
-            <span className="m-2">{ current }</span>
+            {/*<span className="m-2">{ current }</span>*/}
+            <input className="form-control col-md-2" type="text" value={ current } onChange={parseCurrentString}/>
             <button className="btn btn-success" type="button" onClick={ increment }> + </button>
         </div>
     )
-};
+}
 
+Counter.prototype = {
+    min: PropTypes.number,
+    max: PropTypes.number.isRequired
+}
 
+Counter.defaultProps = {}
+
+export default Counter;
 
 
 /*
