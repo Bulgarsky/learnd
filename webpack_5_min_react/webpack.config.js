@@ -36,6 +36,7 @@ let conf = {
 					/*
 					если есть постцсс - в импортЛоадерс указывается 1
 					если оба то 2
+					//установить постцсс лоадер, плагин автопрефиксер
 					'postcss-loader',
 					'sass-loader'
 					 */
@@ -52,8 +53,10 @@ let conf = {
 			filename: '[name].css'
 		})
 	],
+	/*
+	//сломало программу
+	//vue cli 3:
 	optimization: {
-		//vue cli 3:
 		splitChunks: {
 			cacheGroups: {
 				//внешние библиотеки
@@ -74,6 +77,7 @@ let conf = {
 			}
 		}
 	}
+	 */
 };
 
 module.exports = (env, options) =>{
