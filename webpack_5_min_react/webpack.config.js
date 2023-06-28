@@ -5,7 +5,7 @@ let conf = {
 	entry: './src/main.js',
 	output: {
 		path: path.resolve(__dirname, './dist'),
-		filename: 'main.js',
+		filename: '[name].js',
 		publicPath: '/dist/'
 	},
 	devServer: {
@@ -27,9 +27,18 @@ let conf = {
 					{
 						loader: 'css-loader',
 						options: {
-							modules: true,
+							//importLoaders: 0,
+							modules: {
+								localIdentName: '[local]__[sha1:hash:hex:7]'
+							},
 						}
-					}
+					},
+					/*
+					если есть постцсс - в импортЛоадерс указывается 1
+					если оба то 2
+					'postcss-loader',
+					'sass-loader'
+					 */
 				]
 			},
 			{
@@ -40,9 +49,31 @@ let conf = {
 	},
 	plugins: [
 		new MiniCssExtractPlugin({
-			filename: 'main.css'
+			filename: '[name].css'
 		})
-	]
+	],
+	optimization: {
+		//vue cli 3:
+		splitChunks: {
+			cacheGroups: {
+				//внешние библиотеки
+				vendors: {
+					name: 'chunk-vendors',
+					test: /[\\/]node_modules[\\/]/,
+					priority: -10,
+					chunks: 'initial'
+				},
+				//наш код
+				common: {
+					name: 'chunk-common',
+					minChunks: 2,
+					priority: -20,
+					chunks: 'initial',
+					reuseExistingChunk: true
+				}
+			}
+		}
+	}
 };
 
 module.exports = (env, options) =>{
