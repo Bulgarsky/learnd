@@ -1,5 +1,5 @@
 import React from "react";
-import "./hello.css";
+import "./hello.module.css";
 
 export default function ({name = 'user'}){
 

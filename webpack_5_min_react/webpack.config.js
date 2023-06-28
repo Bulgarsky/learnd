@@ -22,7 +22,18 @@ let conf = {
 				exclude: '/node_modules'
 			},
 			{
-				test: /\.css$/,
+				test: /\.module\.css$/,
+				use: [MiniCssExtractPlugin.loader,
+					{
+						loader: 'css-loader',
+						options: {
+							modules: true,
+						}
+					}
+				]
+			},
+			{
+				test: /^((?!\.module).)*css$/,
 				use: [MiniCssExtractPlugin.loader, 'css-loader']
 			}
 		]
@@ -35,14 +46,11 @@ let conf = {
 };
 
 module.exports = (env, options) =>{
-	let isProduction = options.mode === 'production'
-	conf.devtool = isProduction
-        ? 'source-map'
-        //: 'eval-sourcemap'
+	let isProduction = options.mode === 'production';
+	//скрыть код в продакш:
+	//? false
+	conf.devtool = isProduction ? 'source-map' : 'eval-cheap-module-source-map';
 
-		//скрыть код в продакш:
-		//? false
-		: 'eval-cheap-module-source-map';
 	//если вебпак-дев-серве ниже 4 версии
 	//если продакш смотреть браузер лист из пакаж.жсон, если дев то юзать "веб"
 	conf.target = isProduction ? 'browserslist' : 'web';

@@ -2,14 +2,16 @@ import React from 'react';
 import ReactDom from "react-dom"
 import AppHello from '../component/hello';
 
-//import "bootstrap/dist/css/bootstrap.css";
+import './assets/main.css';
+import "bootstrap/dist/css/bootstrap.css";
 
 document.addEventListener("DOMContentLoaded", function (){
-	new Timer(".test", 10);
+	new Timer(".test", 1000);
 
 	ReactDom.render(
 		<>
 			<AppHello />
+			<AppHello name="John"/>
 			<AppHello name="BULGARKSY"/>
 		</>,
 		document.querySelector(".app")
