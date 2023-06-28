@@ -10,5 +10,12 @@ npm i react react-dom
 
 просмотр карты
 source-map-explorer 'path to chunk-vendors.js.map'
-
+//Добавление оптимиз сломало прогармму
 explorer bundle analise ?
+
+
+//Eslint config for create-app-react
+//this config crash app
+npm i eslint
+npm i eslint-plugin-react
+npm i eslint-plugin-import

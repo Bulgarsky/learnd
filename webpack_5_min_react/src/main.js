@@ -8,6 +8,11 @@ import "bootstrap/dist/css/bootstrap.css";
 
 document.addEventListener("DOMContentLoaded", function (){
 	new Timer(".test", 1000);
+	const x= 1;
+	const obj={
+		a:1,
+		b:2,
+	}
 
 	ReactDom.render(
 		<>
