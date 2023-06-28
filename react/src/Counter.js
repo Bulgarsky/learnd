@@ -12,6 +12,7 @@ function Counter({ min= 1, max }){
        setCurrent(validateNum);
     }
 
+    //Если границы двух значные onChange багуется
     function parseCurrentString(event){
         let num = parseInt(event.target.value);
         validateDiapason(isNaN(num) ? min : num);
