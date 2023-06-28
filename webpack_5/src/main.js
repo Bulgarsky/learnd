@@ -1,5 +1,6 @@
 //import $ from 'jquery'
-import some from './some.js'
+import some from './some.js';
+import './assets/main.css';
 
 //$('.title').html('Some text!')
 
