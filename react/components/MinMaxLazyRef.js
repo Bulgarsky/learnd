@@ -1,4 +1,4 @@
-import React, {useRef} from "react";
+import React, {useEffect, useRef} from "react";
 import PropTypes from "prop-types";
 
 MinMaxLazyState.prototype = {
@@ -34,7 +34,9 @@ function MinMaxLazyState({ min= 1, max, current, onChange }){
     let increment = () => validateDiapason(current + 1);
     let decrement = () => validateDiapason(current - 1);
 
-
+    useEffect(() => {
+        inputRef.current.value = current;
+    }, [ current ]);
 
     return (
         <div>
@@ -50,7 +52,6 @@ function MinMaxLazyState({ min= 1, max, current, onChange }){
         </div>
     )
 }
-
 
 export default MinMaxLazyState;
 

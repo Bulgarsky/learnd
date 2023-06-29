@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useMemo, useState} from 'react';
 //import MinMax from "/components/MinMax";
 import MinMax from "/components/MinMaxLazyRef";
 
@@ -10,6 +10,9 @@ const App = () => {
     let [ products, setProducts ] = useState( productStub() );
 
     let total = products.reduce( (sum, product) => sum + product.price * product.count, 0 );
+
+    //useMemo, для больших данных
+    //let total = useMemo( () => products.reduce( (sum, product) => sum + product.price * product.count, 0 ), [products]);
 
     //передать id или номер товара, чтобы поинмать для какого товара изменен каунт
     //для каждого товара будет создана функция, при переборке массива
@@ -37,7 +40,6 @@ const App = () => {
         //фильтровать, если айди не равен переданному
         setProducts( products.filter(element => element.id !== id) );
     }
-
 
     return (
         <div>
@@ -70,6 +72,7 @@ const App = () => {
                             <td>{ product.price * product.count }</td>
                             <td>
                                 <button type="button" onClick={ () => deleteProduct(product.id) }> X </button>
+                                <button type="button" onClick={ () => setCount(product.id, product.rest) }>MAX</button>
                             </td>
                         </tr>
                     ))}
