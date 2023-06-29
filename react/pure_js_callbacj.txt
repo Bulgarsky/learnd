@@ -1,0 +1,14 @@
+
+/*
+    pure js callback
+
+    function fn(i, ev) {
+        //some
+    }
+
+    let elements = document.querySelectorAll("some");
+
+    elements.forEach( (element, i) => {
+        element.addEventListener("click", e => fn(i, e))
+    } );
+ */

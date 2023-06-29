@@ -1,0 +1,10 @@
+/*
+        //иммутабельность (из коробки реакта), нельзя менять старые данные
+        //скопировать массив поэлементно, заменить каунт у элемента, сохранить в новом массиве
+        let newProducts = [ ... products ];
+        let productIndex = products.findIndex(product => product.id == id);
+        let newProduct = { ...products[productIndex] };
+        newProduct.count = count;
+        newProducts[productIndex] = newProduct;
+        setProducts(newProducts);
+ */
