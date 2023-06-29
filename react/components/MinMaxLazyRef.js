@@ -10,6 +10,7 @@ MinMaxLazyState.prototype = {
 
 function MinMaxLazyState({ min= 1, max, current, onChange }){
 
+    //ссылка на прямой узел ВЩЬ
     let inputRef = useRef();
 
     const handlerKeyboard = (event) => {
