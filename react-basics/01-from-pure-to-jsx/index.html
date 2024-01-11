@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Pure sample</title>
+</head>
+<body>
+    <div id="root"></div>
+    <!--    CDN conect react-->
+    <!--    global objects: React, ReactDOM -->
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+
+
+    <script>
+        const Book = (props) => {
+            console.log(props);
+
+            return React.createElement(
+                'div', {}, [
+                    React.createElement('h2', {}, props.name),
+                    React.createElement('p', {}, props.year),
+                    React.createElement('p', {}, props.price),
+                ]
+            )
+        }
+
+        const App = () => {
+            return React.createElement('div', {}, [
+                React.createElement("h1", {id: 'hello', className: 'class1'}, 'Books for beginner coder'),
+                React.createElement(Book, {name: 'JS for beginner', year: 2010, price: '100'}),
+                React.createElement(Book, {name: 'HTML and CSS', year: 2020, price: '150'}),
+                React.createElement(Book, {name: 'REACT TO START', year: 2023, price: '300'}),
+            ])
+        }
+
+        ReactDOM.render(React.createElement(App), document.getElementById('root'));
+    </script>
+</body>
+</html>
