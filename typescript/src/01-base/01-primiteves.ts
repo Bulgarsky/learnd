@@ -1,7 +1,7 @@
 let year: number = 2023;
 let age: number = NaN;
 
-let big: bigint = 1234n;
+//let big: bigint = 1234n;
 
 let firstName: string = "John";
 let lastName: string;
@@ -23,8 +23,11 @@ some = "shop";
 some = [];
 some.toUpperCase();
 
-let dunno: unknown = 2
+let dunno: unknown = 2;
 if (typeof dunno === "string") {
     dunno.toUpperCase();
 }
 //dunno.toUpperCase(); //err
+
+
+export {};

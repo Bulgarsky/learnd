@@ -32,10 +32,12 @@ const admin001: IAdmin = {
     role: "admin"
 }
 
-function logIn(user: {login: string, password: string}) {
+export function logIn(user: {login: string, password: string}) {
     if (user.login.length > 0 && user.password.length >0) {
         console.log(`greetings ${user.login}`)
     }
 }
 logIn(user001);
 logIn(admin001);
+
+export {};

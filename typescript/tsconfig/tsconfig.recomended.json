@@ -1,0 +1,11 @@
+//github.con/tsconfig/basis
+//npx tsc --init
+//npm install --save -dev @tsconfig/node16
+
+{
+ "extends": "@tsconfig/node16/tsconfig.json",
+
+  "compilerOptions": {
+    "outDir": "public"
+  }
+}

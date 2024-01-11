@@ -4,7 +4,7 @@ const numbs: NestedNumbers = [1, 3, 5, [[2, 5, 8], 6, 3]];
 numbs.push(3);
 numbs.push([2, 4, [2, 6]]);
 
-//JSON
+//JSON (Java Script Object Notation)
 type JSONPrimitive = string | number | boolean | null;
 type JSONObject = { [key: string]: JSONValue };
 type JSONArray = JSONValue[];

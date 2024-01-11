@@ -3,7 +3,7 @@ interface  IOrder {
 }
 
 interface IOrderFromPhone extends IOrder {
-    callNumber: String;
+    callNumber: string;
 }
 
 interface IOrderFromInternet extends IOrder{

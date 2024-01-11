@@ -32,3 +32,6 @@ function printUserInfo (
 }
 printUserInfo({firstName: "Marry"});
 printUserInfo({firstName: "Ronald", lastName: "Reagan"});
+
+
+export {};

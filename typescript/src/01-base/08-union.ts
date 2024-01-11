@@ -23,3 +23,4 @@ function welcome(person: [string, string] | string): number | string {
 
 const arr: (number | string)[] = [];
 
+export {};

@@ -17,12 +17,14 @@ function crash():never{
 }
 
 // ? - optional param
-function  logging(userName: string, userID?: string): void {
+function logging(userName: string, userID?: string): void {
     console.warn("Hello ", userName, ", ID: ", userID || "anonymous");
 }
 
-function  average(...numbers: number[]): number {
+function average(...numbers: number[]): number {
     const sum = numbers.reduce((current, total) => current + total, 0);  //0 - init value
 
     return sum / numbers.length;
 }
+
+export {};

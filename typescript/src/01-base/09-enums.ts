@@ -44,4 +44,7 @@ function promoteDeveloper(user:{ level: Grages}){
         default:
             console.log("Error: need correct ENUM Grades")
     }
+
 }
+
+export {};

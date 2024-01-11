@@ -1,0 +1,94 @@
+{
+    "compilerOptions": {
+        //конечная цель преобразования:
+        "target": "ES5",
+        "lib": [
+            //библиотеки, позволяют использовать типы, совр синтаксис и тд
+            "DOM",
+            "ES2015",
+            "ES2016",
+            "ES2017"
+        ],
+        //какая модульность будет использована после сборки:
+        "module": "ES6",
+        "moduleResolution": "node",
+        //дир с паблик файлами
+        "outDir": "./public",
+        //cборка в один файл
+        //"outFile": "somename",
+
+        //необ исп экспорты и импорты:
+        "isolatedModules": true,
+        //позвол испольховать import, вместо const module = required('module');
+        "esModuleInterop": true,
+        //не все библиотеки имеют импорт в {} (import * as React from 'react')
+        //вкл синтетик импорт
+        "allowSyntheticDefaultImports": true,
+        //не позволяет делать импорт из соседних файлов без учета регистра
+        "forceConsistentCasingInFileNames": true,
+        //при сборке в более низкую версию итератора+проверки
+//        "downlevelIteration": true,
+        ///строгий режим
+        "strict": true,
+//        "alwaysStrict": true,  //всегда строгий режим
+//        "noImplicitAny": true, //если не указан тип будет ошибка
+//        "strictNullChecks": true, //проверка на передачу Null/undef
+//        "strictPropertyInitialization": true, //классы, все свойства должны быть обозначены
+//        "strictFunctionTypes": true, //провера сигнатур функций при переназначении типов вход.парам
+//        "noImplicitThis": true, //явное указание This
+//        "strictBindCallApply": true, //проверка при bind call
+
+        //LINTING
+        //"noPropertyAccessFromIndexSignature": true, //произвольные ключи не будут вызываться через точку, иих испо можно будет только через ['ключ']
+        //связан с предыдущим
+        //"noUncheckedIndexedAccess": true, //произвольные поля становятся не обязательными
+        //"noImplicitReturns": false, //подсветка return при нескоких типах
+        //"noFallthroughCasesInSwitch": true, //проверка на break
+        //"noUnusedLocals": true, //проверка на неиспользованне переменные
+        //"noUnusedParameters": true, //проверка на вход. параметры
+
+
+
+        //для самописных библиотек:
+//        "declaration": true,
+//        "declarationDir": "decDir",
+        //результат работы компилаятора - декларация файлов:
+        //"emitDeclarationOnly": true,
+        //только использование типов ТС, не компилирование
+//        "noEmit": true,
+        //полифилы - добавить хелмперы (tslib/ npm i -D tslib)
+        //"importHelpers": true,
+        //при постепенном переходе, смешанное использование типов файлов
+//        "allowJs": true,
+        //проверка ошибок в ЖС файлах
+//        "checkJs": false,
+        //вкл эксперимнт декораторов
+//        "experimentalDecorators": false,
+        //расширяет возможности применения декораторов
+//        "emitDecoratorMetadata": false,
+        //исп. импорт json-файлов из проекта
+        "resolveJsonModule": true,
+        //jsx
+//        "jsx": "react-jsx",
+        "skipLibCheck": true
+        /* Skip type checking all .d.ts files. */
+    },
+    "include": [
+        //обрабатывать наход. тут файлы
+        "src"
+    ],
+    "exclude": [
+        //исключения где не нужны отслеживания
+        "node_modules",
+        "src/**/*.stories.*",
+        "src/**/mock"
+    ],
+    "files": [
+        "src/01-some/somename.ts"
+    ]
+}
+//все опции:
+// node_modules/.bin/tsc --help
+
+//set up types
+//npm i --save-dev @types/node

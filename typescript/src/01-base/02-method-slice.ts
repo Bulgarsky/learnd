@@ -17,3 +17,6 @@ function slice(str: string, start: number, end?: number): string {
 
 
 console.log(slice("happy new 2023 year", 3, 8));
+
+
+export {};

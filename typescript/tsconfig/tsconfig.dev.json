@@ -1,0 +1,10 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "sourceMap": true,
+    "watch": true
+  }
+}
+
+//запуск этого файла
+//node_modules/.bin/tsc -p ./tsconfig.dev.json

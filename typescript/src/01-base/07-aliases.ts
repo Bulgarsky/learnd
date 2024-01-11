@@ -9,5 +9,4 @@ type DiffCar = {
     isSale?: boolean
 }
 
-
-
+export {};

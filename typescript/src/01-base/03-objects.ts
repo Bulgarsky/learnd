@@ -1,4 +1,4 @@
-interface IUser {
+interface User {
     firstName: string,
     lastName: string,
     yearOfBirth: number,
@@ -8,7 +8,7 @@ interface IUser {
     [key: string]: unknown
 }
 
-const user1: IUser = {
+const user1: User = {
     firstName: "John",
     lastName: "Doe",
     yearOfBirth: 1987,
@@ -17,10 +17,12 @@ const user1: IUser = {
 
 user1.isMarried = true;
 
-const user2: IUser = {
+const user2: User = {
     firstName:"Samuel",
     lastName: "Jackson",
     yearOfBirth: 1946
 }
 
 user2.payedTax = true;
+
+export {};

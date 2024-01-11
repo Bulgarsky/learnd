@@ -6,7 +6,7 @@ interface IDeveloper {
     level: Level
 }
 
-function  gradeDeveloper(user:{level: Level}, /*newLevel: Level*/) {
+export function gradeDeveloper(user:{level: Level}, /*newLevel: Level*/) {
     // user.level = newLevel;
 
     switch (user.level){
@@ -22,6 +22,7 @@ function  gradeDeveloper(user:{level: Level}, /*newLevel: Level*/) {
         default:
             console.log("f gradeDeveloper: error")
     }
+
 }
 
 const user1503:IDeveloper = {
@@ -32,3 +33,5 @@ const user1503:IDeveloper = {
 
 //gradeDeveloper(user1503, "middle");
 gradeDeveloper(user1503);
+
+export {};
