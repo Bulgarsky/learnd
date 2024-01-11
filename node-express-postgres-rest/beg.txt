@@ -1,0 +1,11 @@
+npm init -y
+
+https://www.npmjs.com/package/express
+https://expressjs.com/en/4x/api.html
+npm i express
+
+https://www.npmjs.com/package/pg
+npm i pg
+
+https://www.npmjs.com/package/nodemon
+npm i -D nodemon
